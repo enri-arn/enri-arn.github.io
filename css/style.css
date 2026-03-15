@@ -1599,7 +1599,16 @@ button { cursor: pointer; font-family: inherit; }
   transition: all var(--transition);
 }
 
-.cert-item:hover i {
+.cert-item .cert-icon {
+  width: var(--text-sm);
+  height: var(--text-sm);
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.cert-item:hover i,
+.cert-item:hover .cert-icon {
   color: var(--dawn-2);
   transform: scale(1.2);
 }
