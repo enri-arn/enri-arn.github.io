@@ -1,0 +1,1700 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progetti — Enrico Arnaudo</title>
+    <meta
+      name="description"
+      content="Progetti personali e accademici di Enrico Arnaudo. Architetture a microservizi, sistemi distribuiti e altro."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">EA</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
+          <li><a href="index.html#services" class="nav-link">Cosa faccio</a></li>
+          <li><a href="index.html#experience" class="nav-link">Esperienze</a></li>
+          <li><a href="index.html#design" class="nav-link">Design & UI</a></li>
+          <li><a href="index.html#beyond" class="nav-link">Oltre il codice</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Cambia tema"
+          >
+            <i class="fas fa-sun" id="themeIcon"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════ PROJECT HERO ═══════════════ -->
+    <section class="project-hero" id="home">
+      <div class="hero-bg">
+        <div class="hero-grid"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+      </div>
+      <div class="project-hero-content">
+        <a href="index.html" class="btn btn-ghost project-back-btn reveal">
+          <i class="fas fa-arrow-left"></i> Torna al portfolio
+        </a>
+        <h1 class="hero-title reveal">
+          <span class="title-line">I miei</span>
+          <span class="title-line title-accent">Progetti</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+          Architetture, algoritmi e idee trasformate in codice.
+          Ogni progetto racconta una storia di problem-solving e design.
+        </p>
+        <div class="project-nav reveal">
+          <a href="#asgard" class="project-nav-link">
+            <i class="fas fa-server"></i> Asgard
+          </a>
+          <a href="#token-ring" class="project-nav-link">
+            <i class="fas fa-ring"></i> Token Ring
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ PROGETTO 1: ASGARD ═══════════════ -->
+    <section class="section project-section" id="asgard">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Progetto 01 — Enterprise</span>
+          <h2 class="section-title">Asgard</h2>
+          <p class="section-desc">
+            Piattaforma di microservizi per la digitalizzazione aziendale
+          </p>
+        </div>
+
+        <!-- Intro -->
+        <div class="project-intro reveal">
+          <div class="project-meta">
+            <span class="project-type">
+              <i class="fas fa-building"></i> Progetto Aziendale
+            </span>
+            <span class="project-type">
+              <i class="fas fa-lock"></i> Uso Interno
+            </span>
+            <span class="project-type">
+              <i class="fas fa-cubes"></i> Microservizi
+            </span>
+            <div class="project-tags">
+              <span>NestJS</span>
+              <span>Angular</span>
+              <span>NgRx</span>
+              <span>TypeScript</span>
+              <span>MongoDB</span>
+              <span>RabbitMQ</span>
+              <span>NATS</span>
+              <span>Docker</span>
+              <span>JWT</span>
+              <span>Microsoft Entra ID</span>
+              <span>Azure Container Apps</span>
+              <span>Azure DevOps</span>
+              <span>PrimeNG</span>
+              <span>Mongoose</span>
+            </div>
+          </div>
+          <p>
+            <strong>Asgard</strong> è una piattaforma enterprise modulare basata
+            su architettura a microservizi che fornisce un ecosistema completo
+            per la digitalizzazione aziendale. Il sistema
+            integra gestione identità (IAM), workflow dinamici, ticketing,
+            gestione documentale, inventario IT e IPAM, notifiche e servizi di ricerca
+            aggregata. Il backend è sviluppato con <strong>NestJS</strong> in modalità
+            monorepo, mentre il frontend è un'applicazione <strong>Angular</strong>
+            standalone con gestione dello stato tramite <strong>NgRx</strong>.
+          </p>
+          <p>
+            <em>Nota: Asgard è un progetto ad uso interno attualmente in corso
+            di sviluppo. Alcuni dettagli implementativi e configurazioni
+            infrastrutturali sono omessi per ragioni di riservatezza.</em>
+          </p>
+        </div>
+
+        <!-- Architettura -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Architettura a 10 Microservizi</h3>
+            <p>
+              Il sistema è composto da <strong>10 microservizi</strong>
+              specializzati, ognuno responsabile di un dominio specifico. Ogni
+              servizio ha il proprio database MongoDB dedicato per garantire
+              isolamento e scalabilità indipendente.
+            </p>
+            <p>
+              La comunicazione tra servizi avviene su due canali:
+              <strong>HTTP REST</strong> per le chiamate sincrone (es. ricerca aggregata,
+              verifica destinatari) e <strong>RabbitMQ/NATS</strong> per il messaging
+              asincrono (es. logging centralizzato, invio notifiche email). Il pattern
+              <code>ClientProxy</code> di NestJS gestisce entrambi i protocolli in modo trasparente.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">architettura.txt</span>
+            </div>
+            <pre><code>┌────────────┐  ┌─────────────┐  ┌────────────┐
+│  ASGARD    │  │   ATLAS     │  │   BRAVON   │
+│  (Search)  │  │  (Tickets)  │  │  (Logger)  │
+└────────────┘  └─────────────┘  └────────────┘
+
+┌────────────┐  ┌─────────────┐  ┌────────────┐
+│   CORVIN   │  │   DELTOR    │  │   ELIOS    │
+│   (News)   │  │ (Notifiche) │  │   (FAQ)    │
+└────────────┘  └─────────────┘  └────────────┘
+
+┌────────────┐  ┌─────────────┐  ┌────────────┐
+│   FAYRA    │  │   GRAVOS    │  │  HEIMDALL  │
+│(Documenti) │  │ (Workflows) │  │    (IAM)   │
+└────────────┘  └─────────────┘  └────────────┘
+
+                ┌────────────┐
+                │   ITRIA    │
+                │(Inventario)│
+                └────────────┘
+
+Comunicazione:
+  HTTP REST ──→  Chiamate sincrone
+  RabbitMQ  ~~→  Eventi asincroni (log, email)
+  NATS      ~~→  Comunicazione interna</code></pre>
+          </div>
+        </div>
+
+        <!-- Comunicazione inter-servizio -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Comunicazione inter-servizio</h3>
+            <p>
+              Ogni microservizio si connette ai bus di messaggistica tramite il
+              sistema di <em>microservices</em> nativo di NestJS. Il pattern
+              <strong>fire-and-forget</strong> (<code>emit</code>) viene usato
+              per logging e notifiche, mentre il pattern
+              <strong>request/response</strong> (<code>send</code>) per operazioni
+              che richiedono una risposta, come la verifica dei destinatari di un ticket.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">main.ts — Connessione microservizi</span>
+            </div>
+            <pre><code><span class="cm">// Ogni servizio si connette a RabbitMQ e NATS</span>
+app.<span class="fn">connectMicroservice</span>&lt;<span class="tp">MicroserviceOptions</span>&gt;({
+  transport: Transport.RMQ,
+  options: {
+    urls: [process.env.RABBITMQ_URL],
+  },
+}, { inheritAppConfig: <span class="kw">true</span> });
+
+app.<span class="fn">connectMicroservice</span>&lt;<span class="tp">MicroserviceOptions</span>&gt;({
+  transport: Transport.NATS,
+  options: {
+    servers: [process.env.NATS_URL],
+  },
+}, { inheritAppConfig: <span class="kw">true</span> });
+
+<span class="cm">// Pattern fire-and-forget per il logging</span>
+<span class="kw">this</span>.bravonService.<span class="fn">emit</span>(<span class="st">'log.create'</span>, logDto);
+
+<span class="cm">// Pattern request/response per le verifiche</span>
+<span class="kw">const</span> isValid = <span class="kw">await</span> firstValueFrom(
+  <span class="kw">this</span>.heimdallService
+    .<span class="fn">send</span>&lt;<span class="tp">boolean</span>&gt;(<span class="st">'verify-destination'</span>, payload)
+);</code></pre>
+          </div>
+        </div>
+
+        <!-- Nomenclatura -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text" style="max-width: 100%;">
+            <h3>Un pantheon digitale</h3>
+            <p>
+              La nomenclatura dei microservizi intreccia mitologia norrena ed
+              elementi fantasy. Ogni nome è stato scelto per
+              il suo significato simbolico, riflettendo la funzione del servizio
+              nell'ecosistema. I nomi seguono l'ordine alfabetico (Asgard, Atlas,
+              Bravon, Corvin, Deltor, Elios, Fayra, Gravos, Heimdall, Itria),
+              creando una convenzione di naming coerente e memorabile.
+            </p>
+          </div>
+          <div class="project-services-grid">
+            <div class="project-service-card">
+              <div class="service-name">Asgard</div>
+              <div class="service-role">Search & Memo</div>
+              <p>
+                Dimora degli dei norreni — punto di accesso unificato
+                all'ecosistema, centro del cosmo digitale. Orchestratore della
+                ricerca cross-service e servizio memo.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Atlas</div>
+              <div class="service-role">Ticketing</div>
+              <p>
+                Il titano che regge il mondo — sostiene il carico delle
+                richieste aziendali. Sistema di ticketing completo con
+                categorie, priorità, assegnazione e scheduler automatici.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Bravon</div>
+              <div class="service-role">Logger</div>
+              <p>
+                Cronista instancabile — consumatore di eventi RabbitMQ che
+                registra ogni azione del sistema in un audit log centralizzato.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Corvin</div>
+              <div class="service-role">News</div>
+              <p>
+                I corvi di Odino — messaggero alato che gestisce notizie e
+                comunicazioni aziendali con tag, ricerca e preferiti utente.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Deltor</div>
+              <div class="service-role">Notifiche</div>
+              <p>
+                Agente di consegna — servizio email con template Handlebars (.hbs),
+                sia via REST che tramite coda RabbitMQ, con caching dei template compilati.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Elios</div>
+              <div class="service-role">FAQ</div>
+              <p>
+                Helios, il sole — porta luce e chiarezza con FAQ ricercabili,
+                categorizzate e taggate. Alcuni endpoint pubblici senza autenticazione.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Fayra</div>
+              <div class="service-role">Documenti</div>
+              <p>
+                Un faro nella notte — guida la navigazione nell'oceano
+                documentale aziendale con archiviazione e gestione strutturata.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Gravos</div>
+              <div class="service-role">Workflows</div>
+              <p>
+                Gravitas — motore di workflow con approvazioni multi-step
+                (sequenziali, parallele, dinamiche) e form configurabili.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Heimdall</div>
+              <div class="service-role">IAM</div>
+              <p>
+                Guardiano del Bifrost — gestione identità con Microsoft Entra ID
+                (OAuth2/OIDC), CIE, utenti, gruppi, organizzazioni e sync HR.
+              </p>
+            </div>
+            <div class="project-service-card">
+              <div class="service-name">Itria</div>
+              <div class="service-role">Inventario IT & IPAM</div>
+              <p>
+                Terra fantasy — catasto digitale con inventario asset, gestione
+                IP/subnet/VLAN, rack e siti geografici.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature Highlights -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text" style="max-width: 100%;">
+            <h3>Funzionalità chiave</h3>
+          </div>
+          <div class="project-features-grid">
+            <div class="project-feature-card">
+              <i class="fas fa-search"></i>
+              <h4>Ricerca Intelligente</h4>
+              <p>
+                Motore di ricerca aggregato cross-service con relevance scoring,
+                stop-word filtering italiano e suggerimenti contestuali per
+                ticket e workflow.
+              </p>
+            </div>
+            <div class="project-feature-card">
+              <i class="fas fa-project-diagram"></i>
+              <h4>Workflow Dinamici</h4>
+              <p>
+                Sistema di approvazioni multi-step con modalità sequenziale,
+                parallela e dinamica. Risoluzione automatica degli approvatori
+                per ruolo gerarchico.
+              </p>
+            </div>
+            <div class="project-feature-card">
+              <i class="fas fa-users-cog"></i>
+              <h4>Multi-tenancy</h4>
+              <p>
+                Supporto per organizzazioni e gruppi con isolamento dati,
+                permessi granulari su 16+ risorse e IAM centralizzato.
+              </p>
+            </div>
+            <div class="project-feature-card">
+              <i class="fas fa-shield-alt"></i>
+              <h4>Audit & Sicurezza</h4>
+              <p>
+                Logging centralizzato via RabbitMQ, JWT authentication,
+                integrazione Microsoft Entra ID, CIE e audit trail completo.
+              </p>
+            </div>
+            <div class="project-feature-card">
+              <i class="fas fa-ticket-alt"></i>
+              <h4>Ticketing Avanzato</h4>
+              <p>
+                Ciclo di vita completo dei ticket con assegnazione transazionale,
+                inoltro inter-servizio, scheduler Cron e notifiche email automatiche.
+              </p>
+            </div>
+            <div class="project-feature-card">
+              <i class="fas fa-network-wired"></i>
+              <h4>IPAM & Asset Management</h4>
+              <p>
+                Gestione completa dell'infrastruttura IT: inventario asset,
+                subnet, VLAN, indirizzi IP, rack e siti geografici con mappe Leaflet.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend: NestJS -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text" style="max-width: 100%;">
+            <h3><i class="fas fa-server"></i> Backend — NestJS Monorepo</h3>
+            <p>
+              Il backend è strutturato come un <strong>monorepo NestJS</strong> che contiene
+              tutti i 10 microservizi sotto la directory <code>apps/</code> e un set di
+              librerie condivise in <code>libs/</code>. Le librerie forniscono infrastruttura
+              trasversale: configurazione JWT, guard per autenticazione e autorizzazione,
+              decoratori custom, definizione dei permessi e pipe di validazione.
+            </p>
+            <p>
+              Ogni servizio espone i propri endpoint REST e si registra contemporaneamente
+              come microservizio RabbitMQ e NATS. Il sistema di permessi è granulare, con
+              autorizzazioni specifiche per ognuna delle 16+ risorse gestite (ticket, news,
+              FAQ, workflow, richieste, asset, IP, subnet, VLAN, rack, ecc.).
+            </p>
+          </div>
+        </div>
+
+        <!-- Codice: Ticket Schema -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Schema Ticket — Mongoose</h3>
+            <p>
+              I ticket sono il cuore del sistema di supporto. Lo schema Mongoose
+              utilizza decoratori <code>@Prop</code> con validazioni enum per
+              stati e priorità, e definisce <strong>indici ottimizzati</strong>
+              sulle query più frequenti: ricerca per destinatario, operatore attivo,
+              categoria e data di creazione.
+            </p>
+            <p>
+              Ogni ticket attraversa un ciclo di vita: <em>Nuovo → In carico →
+              In attesa → Risolto</em>, con quattro livelli di priorità
+              (Bassa, Media, Alta, Urgente) e assegnazione a utenti, gruppi o
+              organizzazioni.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">tickets/schemas/ticket.schema.ts</span>
+            </div>
+            <pre><code>@<span class="fn">Schema</span>()
+<span class="kw">export class</span> <span class="tp">Ticket</span> <span class="kw">extends</span> <span class="tp">Document</span> {
+  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> })
+  subject: <span class="tp">string</span>;
+
+  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> })
+  category: <span class="tp">string</span>;
+
+  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> })
+  description: <span class="tp">string</span>;
+
+  @<span class="fn">Prop</span>({
+    type: <span class="tp">String</span>,
+    enum: [<span class="st">'Nuovo'</span>, <span class="st">'In carico'</span>,
+           <span class="st">'In attesa'</span>, <span class="st">'Risolto'</span>],
+    default: <span class="st">'Nuovo'</span>,
+  })
+  status: <span class="tp">string</span>;
+
+  @<span class="fn">Prop</span>({
+    type: <span class="tp">String</span>,
+    enum: [<span class="st">'Bassa'</span>, <span class="st">'Media'</span>,
+           <span class="st">'Alta'</span>, <span class="st">'Urgente'</span>],
+    default: <span class="st">'Media'</span>,
+  })
+  priority: <span class="tp">string</span>;
+
+  @<span class="fn">Prop</span>({ type: <span class="tp">Object</span>, required: <span class="kw">true</span> })
+  user: Partial&lt;<span class="tp">ActiveUserData</span>&gt;;
+
+  @<span class="fn">Prop</span>({ type: <span class="tp">Object</span> })
+  operator: Partial&lt;<span class="tp">ActiveUserData</span>&gt;;
+
+  @<span class="fn">Prop</span>({ type: <span class="tp">Boolean</span>, default: <span class="kw">false</span> })
+  active: <span class="tp">boolean</span>;
+}
+
+<span class="kw">export const</span> TicketSchema =
+  SchemaFactory.<span class="fn">createForClass</span>(Ticket);
+
+<span class="cm">// Indici ottimizzati per query frequenti</span>
+TicketSchema.<span class="fn">index</span>(
+  { destination: <span class="nm">1</span>, destinationType: <span class="nm">1</span>, status: <span class="nm">1</span> }
+);
+TicketSchema.<span class="fn">index</span>(
+  { <span class="st">'operator.sub'</span>: <span class="nm">1</span>, active: <span class="nm">1</span> }
+);
+TicketSchema.<span class="fn">index</span>({ category: <span class="nm">1</span>, subcategory: <span class="nm">1</span> });
+TicketSchema.<span class="fn">index</span>({ creationDate: <span class="nm">-1</span> });</code></pre>
+          </div>
+        </div>
+
+        <!-- Codice: Creazione Ticket -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Creazione di un Ticket</h3>
+            <p>
+              Quando un utente crea un ticket, il servizio <strong>Atlas</strong>
+              arricchisce i dati con le informazioni dell'autore estratte dal JWT,
+              persiste il documento in MongoDB, registra l'azione nel logger
+              centralizzato <strong>Bravon</strong> tramite RabbitMQ e invia una
+              notifica email via <strong>Deltor</strong> con template Handlebars
+              personalizzato.
+            </p>
+            <p>
+              Questo flusso illustra la collaborazione tra microservizi: un singolo
+              endpoint REST in Atlas scatena eventi su due servizi distinti
+              (logging e notifiche) in modo completamente asincrono.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">tickets/tickets.service.ts — create()</span>
+            </div>
+            <pre><code><span class="kw">async</span> <span class="fn">create</span>(
+  createTicketDto: <span class="tp">CreateTicketDto</span>,
+  user: <span class="tp">ActiveUserData</span>,
+): <span class="tp">Promise</span>&lt;<span class="tp">Ticket</span>&gt; {
+  <span class="kw">const</span> author = {
+    fullname: user.fullname,
+    sub: user.sub,
+    email: user.email,
+    location: user.location,
+  };
+
+  <span class="kw">const</span> createdTicket = <span class="kw">new</span> <span class="kw">this</span>.ticketModel({
+    ...createTicketDto,
+    creationDate: <span class="kw">new</span> <span class="tp">Date</span>(),
+    user: author,
+  });
+
+  <span class="kw">await</span> createdTicket.<span class="fn">save</span>();
+
+  <span class="cm">// Log su Bravon (RabbitMQ fire-and-forget)</span>
+  <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">logAction</span>(
+    <span class="st">'ticket.create'</span>,
+    <span class="st">`Ticket: ${createTicketDto.subject}`</span>
+  );
+
+  <span class="cm">// Notifica via Deltor (template Handlebars)</span>
+  <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">sendEmailNotification</span>({
+    subject: <span class="st">`Nuovo Ticket - ${createTicketDto.subject}`</span>,
+    template: <span class="st">'ticket-created'</span>,
+    additionalData: {
+      ticketSubject: createTicketDto.subject,
+      authorName: user.fullname,
+      category: createTicketDto.category,
+      priority: createTicketDto.priority,
+    },
+  });
+
+  <span class="kw">return</span> createdTicket;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Codice: Assegnazione transazionale -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Assegnazione transazionale</h3>
+            <p>
+              L'assegnazione di un ticket a un operatore utilizza le
+              <strong>transazioni MongoDB</strong> per garantire consistenza
+              atomica: il sistema verifica che l'operatore non abbia già un
+              ticket attivo e che il ticket non sia già assegnato, il tutto
+              all'interno di una singola sessione transazionale.
+            </p>
+            <p>
+              In caso di errore o violazione dei vincoli, l'intera operazione
+              viene annullata tramite <code>abortTransaction()</code>,
+              prevenendo assegnazioni duplicate o stati inconsistenti.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">tickets/tickets.service.ts — assignTicketToOperator()</span>
+            </div>
+            <pre><code><span class="kw">async</span> <span class="fn">assignTicketToOperator</span>(
+  ticketId: <span class="tp">string</span>,
+  operator: Partial&lt;<span class="tp">ActiveUserData</span>&gt;,
+): <span class="tp">Promise</span>&lt;<span class="tp">HttpStatus</span>&gt; {
+  <span class="kw">const</span> session = <span class="kw">await</span> <span class="kw">this</span>.ticketModel
+    .<span class="fn">startSession</span>();
+  session.<span class="fn">startTransaction</span>();
+
+  <span class="kw">try</span> {
+    <span class="cm">// Verifica vincoli di business</span>
+    <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">checkOperatorHasAssignedTicket</span>(
+      operator
+    );
+    <span class="kw">const</span> ticket = <span class="kw">await</span> <span class="kw">this</span>
+      .<span class="fn">checkTicketIsNotAssigned</span>(ticketId);
+
+    ticket.operator = {
+      fullname: operator.fullname,
+      sub: operator.sub,
+      email: operator.email,
+    };
+    ticket.active = <span class="kw">true</span>;
+    <span class="kw">await</span> ticket.<span class="fn">save</span>({ session });
+
+    <span class="kw">await</span> session.<span class="fn">commitTransaction</span>();
+    <span class="kw">return</span> HttpStatus.OK;
+  } <span class="kw">catch</span> (error) {
+    <span class="kw">await</span> session.<span class="fn">abortTransaction</span>();
+    <span class="kw">throw</span> error;
+  } <span class="kw">finally</span> {
+    session.<span class="fn">endSession</span>();
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Codice: Workflow e Richieste (Gravos) -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Workflow e richieste — Gravos</h3>
+            <p>
+              <strong>Gravos</strong> implementa un motore di workflow configurabile.
+              Ogni workflow definisce dei <em>campi dinamici</em> (stringa, numero, email,
+              data, booleano, array con opzioni) e una pipeline di <em>step di approvazione</em>
+              con tre modalità:
+            </p>
+            <ul class="project-list">
+              <li>
+                <strong>SEQUENTIAL</strong> — Gli approvatori devono approvare in ordine.
+              </li>
+              <li>
+                <strong>PARALLEL</strong> — Approvazioni parallele con soglia minima configurabile.
+              </li>
+              <li>
+                <strong>DYNAMIC</strong> — Approvatore risolto a runtime in base al ruolo
+                (responsabile del richiedente o coordinatore del gruppo).
+              </li>
+            </ul>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">workflows/schemas/workflow.schema.ts</span>
+            </div>
+            <pre><code><span class="kw">export interface</span> <span class="tp">StepDefinition</span> {
+  name: <span class="tp">string</span>;
+  participants: <span class="tp">string</span>[];
+  mode: <span class="st">'SEQUENTIAL'</span> | <span class="st">'PARALLEL'</span>
+        | <span class="st">'DYNAMIC'</span>;
+  minApprovals?: <span class="tp">number</span>;
+  dynamicResolver?:
+    <span class="st">'REQUESTER_MANAGER'</span> |
+    <span class="st">'GROUP_COORDINATOR'</span>;
+}
+
+<span class="kw">export interface</span> <span class="tp">FieldDefinition</span> {
+  name: <span class="tp">string</span>;
+  label: <span class="tp">string</span>;
+  type: <span class="st">'string'</span> | <span class="st">'number'</span> | <span class="st">'email'</span>
+        | <span class="st">'date'</span> | <span class="st">'boolean'</span> | <span class="st">'array'</span>;
+  validations?: {
+    required?: <span class="tp">boolean</span>;
+    pattern?: <span class="tp">string</span>;
+    minLength?: <span class="tp">number</span>;
+  };
+  options?: <span class="tp">SelectOption</span>[];
+}
+
+@<span class="fn">Schema</span>({ timestamps: <span class="kw">true</span> })
+<span class="kw">export class</span> <span class="tp">Workflow</span> <span class="kw">extends</span> <span class="tp">Document</span> {
+  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> }) name: <span class="tp">string</span>;
+  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> }) category: <span class="tp">string</span>;
+  @<span class="fn">Prop</span>() instructions: <span class="tp">string</span>;
+  @<span class="fn">Prop</span>() fields: <span class="tp">FieldDefinition</span>[];
+  @<span class="fn">Prop</span>() steps: <span class="tp">StepDefinition</span>[];
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Codice: Motore di approvazione -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Motore di approvazione multi-step</h3>
+            <p>
+              Il cuore di Gravos è il metodo <code>approveRequest</code>: verifica
+              l'autorizzazione dell'utente sullo step corrente, previene doppie
+              approvazioni, determina se lo step è completato e avanza la richiesta
+              attraverso la pipeline. Lo stato segue il flusso:
+              <em>PENDING → IN_PROGRESS → APPROVED/REJECTED → COMPLETED</em>.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">requests/requests.service.ts — approveRequest()</span>
+            </div>
+            <pre><code><span class="kw">async</span> <span class="fn">approveRequest</span>(
+  id: <span class="tp">string</span>,
+  approvalDto: <span class="tp">ApprovalRecordDto</span>,
+  user: <span class="tp">ActiveUserData</span>,
+): <span class="tp">Promise</span>&lt;<span class="tp">Request</span>&gt; {
+  <span class="kw">const</span> request = <span class="kw">await</span> <span class="kw">this</span>.requestModel
+    .<span class="fn">findById</span>(id);
+  <span class="kw">const</span> workflow = <span class="kw">await</span> <span class="kw">this</span>.workflowsService
+    .<span class="fn">findOne</span>(request.workflowId, user);
+  <span class="kw">const</span> currentStep =
+    workflow.steps[request.currentStepIndex];
+
+  <span class="cm">// Verifica autorizzazione e doppia approvazione</span>
+  <span class="kw">const</span> canApprove = <span class="kw">await</span> <span class="kw">this</span>
+    .<span class="fn">canUserApproveStep</span>(currentStep, user, request);
+  <span class="kw">if</span> (!canApprove) <span class="kw">throw new</span> <span class="tp">BadRequestException</span>(
+    <span class="st">'Non autorizzato per questo step'</span>
+  );
+
+  <span class="cm">// Registra approvazione e avanza pipeline</span>
+  request.approvals.<span class="fn">push</span>({
+    stepIndex: request.currentStepIndex,
+    userId: user.sub, approved: approvalDto.approved,
+    timestamp: <span class="kw">new</span> <span class="tp">Date</span>(),
+  });
+
+  <span class="kw">const</span> completed = <span class="kw">this</span>
+    .<span class="fn">isStepCompleted</span>(currentStep, request);
+  <span class="kw">const</span> approved = <span class="kw">this</span>
+    .<span class="fn">isStepApproved</span>(currentStep, request);
+
+  <span class="kw">if</span> (completed &amp;&amp; approved) {
+    <span class="kw">if</span> (request.currentStepIndex
+        &lt; workflow.steps.length - <span class="nm">1</span>) {
+      request.currentStepIndex += <span class="nm">1</span>;
+      request.status = <span class="st">'IN_PROGRESS'</span>;
+    } <span class="kw">else</span> {
+      request.status = <span class="st">'APPROVED'</span>;
+    }
+  }
+
+  <span class="kw">return await</span> request.<span class="fn">save</span>();
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Codice: Search Service -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Ricerca aggregata cross-service</h3>
+            <p>
+              Il servizio <strong>Asgard</strong> (gateway) orchestra una
+              <strong>ricerca federata in parallelo</strong> interrogando
+              simultaneamente FAQ (Elios), News (Corvin), Categorie ticket (Atlas)
+              e Workflow (Gravos) tramite <code>Promise.allSettled</code>.
+              I risultati vengono aggregati, ordinati per relevance e arricchiti
+              con suggerimenti contestuali.
+            </p>
+            <p>
+              Se cerchi "permesso ferie", il sistema non solo trova FAQ e news
+              correlate, ma suggerisce automaticamente di creare un ticket HR
+              o avviare una richiesta ferie.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">search/search.service.ts — performIntelligentSearch()</span>
+            </div>
+            <pre><code><span class="kw">async</span> <span class="fn">performIntelligentSearch</span>(
+  searchQuery: <span class="tp">SearchQueryDto</span>,
+): <span class="tp">Promise</span>&lt;<span class="tp">SearchResponseDto</span>&gt; {
+  <span class="kw">const</span> startTime = <span class="tp">Date</span>.<span class="fn">now</span>();
+  <span class="kw">const</span> { query } = searchQuery;
+
+  <span class="cm">// Ricerche parallele su 4 microservizi</span>
+  <span class="kw">const</span> [faqs, news, categories, workflows] =
+    <span class="kw">await</span> <span class="tp">Promise</span>.<span class="fn">allSettled</span>([
+      <span class="kw">this</span>.<span class="fn">searchFAQs</span>(query),
+      <span class="kw">this</span>.<span class="fn">searchNews</span>(query),
+      <span class="kw">this</span>.<span class="fn">getRelevantCategories</span>(query),
+      <span class="kw">this</span>.<span class="fn">searchWorkflows</span>(query),
+    ]);
+
+  <span class="cm">// Aggrega e ordina per rilevanza</span>
+  <span class="kw">const</span> quickActions: <span class="tp">QuickAction</span>[] = [];
+  <span class="kw">if</span> (faqs.status === <span class="st">'fulfilled'</span>)
+    quickActions.<span class="fn">push</span>(
+      ...<span class="kw">this</span>.<span class="fn">mapFAQsToActions</span>(faqs.value)
+    );
+  <span class="kw">if</span> (news.status === <span class="st">'fulfilled'</span>)
+    quickActions.<span class="fn">push</span>(
+      ...<span class="kw">this</span>.<span class="fn">mapNewsToActions</span>(news.value)
+    );
+
+  quickActions.<span class="fn">sort</span>(
+    (a, b) =&gt; b.relevance - a.relevance
+  );
+
+  <span class="kw">return</span> {
+    query,
+    quickActions: quickActions.<span class="fn">slice</span>(<span class="nm">0</span>, <span class="nm">10</span>),
+    ticketSuggestions: <span class="kw">this</span>
+      .<span class="fn">generateTicketSuggestions</span>(categories),
+    requestSuggestions: <span class="kw">this</span>
+      .<span class="fn">generateRequestSuggestions</span>(workflows),
+    processingTime: <span class="tp">Date</span>.<span class="fn">now</span>() - startTime,
+  };
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- SSO: Microsoft Entra ID -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3><i class="fas fa-key"></i> SSO — Microsoft Entra ID</h3>
+            <p>
+              L'autenticazione aziendale è gestita da <strong>Heimdall</strong>
+              attraverso <strong>Microsoft Entra ID</strong> (ex Azure AD) come
+              SSO aziendale, implementando il flusso completo
+              <strong>OAuth2/OIDC con PKCE</strong>. Il sistema supporta anche
+              l'autenticazione tramite <strong>CIE</strong> (Carta d'Identità Elettronica),
+              identificando l'utente tramite codice fiscale.
+            </p>
+            <p>
+              La validazione dell'ID Token include verifica della firma JWKS,
+              controllo issuer/audience, scadenza e protezione contro
+              <em>replay attack</em> tramite nonce. Dopo la validazione, il
+              sistema genera token JWT interni con permessi granulari, gruppi
+              e organizzazione dell'utente.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">authentication/authentication.service.ts</span>
+            </div>
+            <pre><code><span class="kw">async</span> <span class="fn">exchangeOAuthCode</span>(
+  codeExchangeDto: <span class="tp">OAuthCodeExchangeDto</span>,
+): <span class="tp">Promise</span>&lt;<span class="tp">MicrosoftAuthResponse</span>&gt; {
+  <span class="cm">// 1. Validazione state (CSRF protection)</span>
+  <span class="kw">this</span>.<span class="fn">validateState</span>(codeExchangeDto.state);
+
+  <span class="cm">// 2. Scambio code → token con Microsoft</span>
+  <span class="kw">const</span> msTokens = <span class="kw">await</span> <span class="kw">this</span>
+    .<span class="fn">exchangeCodeForToken</span>(
+      codeExchangeDto.code,
+      codeExchangeDto.codeVerifier,
+      codeExchangeDto.redirectUri,
+    );
+
+  <span class="cm">// 3. Validazione ID Token (JWKS + nonce)</span>
+  <span class="kw">const</span> claims = <span class="kw">await</span> <span class="kw">this</span>
+    .<span class="fn">validateIdToken</span>(
+      msTokens.id_token,
+      codeExchangeDto.nonce,
+    );
+
+  <span class="cm">// 4. Informazioni utente da Microsoft Graph</span>
+  <span class="kw">const</span> userInfo = <span class="kw">await</span> <span class="kw">this</span>
+    .<span class="fn">getMicrosoftUserInfo</span>(msTokens.access_token);
+
+  <span class="cm">// 5. Lookup utente interno + populate gruppi</span>
+  <span class="kw">let</span> user = <span class="kw">await</span> <span class="kw">this</span>.userModel
+    .<span class="fn">findOne</span>({ email: claims.email })
+    .<span class="fn">populate</span>({
+      path: <span class="st">'groups'</span>,
+      populate: { path: <span class="st">'organization'</span> },
+    });
+
+  <span class="cm">// 6. Generazione token JWT interni</span>
+  <span class="kw">const</span> tokens = <span class="kw">await</span> <span class="kw">this</span>
+    .<span class="fn">generateTokens</span>(user._id, {
+      email: user.email,
+      permissions: user.permissions,
+      fullname: user.fullName,
+      groups: user.groups.<span class="fn">map</span>(g =&gt; g._id),
+      organization: user.groups[<span class="nm">0</span>]?.organization,
+    });
+
+  <span class="kw">return</span> { ...tokens, entraUserInfo: userInfo };
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Validazione ID Token -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Validazione ID Token — JWKS</h3>
+            <p>
+              La validazione del token Microsoft segue le best practice OIDC:
+              la libreria <code>jose</code> scarica le chiavi pubbliche dal
+              <strong>JWKS endpoint</strong> di Microsoft, verifica la firma,
+              controlla issuer e audience, e valida il nonce per prevenire
+              attacchi di tipo replay.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">authentication/authentication.service.ts — validateIdToken()</span>
+            </div>
+            <pre><code><span class="kw">private async</span> <span class="fn">validateIdToken</span>(
+  idToken: <span class="tp">string</span>,
+  expectedNonce?: <span class="tp">string</span>,
+): <span class="tp">Promise</span>&lt;<span class="tp">IdTokenClaims</span>&gt; {
+  <span class="kw">const</span> JWKS = jose.<span class="fn">createRemoteJWKSet</span>(
+    <span class="kw">new</span> <span class="tp">URL</span>(<span class="kw">this</span>.MICROSOFT_JWKS_URI)
+  );
+
+  <span class="kw">const</span> { payload } = <span class="kw">await</span> jose.<span class="fn">jwtVerify</span>(
+    idToken, JWKS, {
+      issuer: <span class="kw">this</span>.MICROSOFT_ISSUER,
+      audience: <span class="kw">this</span>.MICROSOFT_CLIENT_ID,
+    }
+  );
+
+  <span class="kw">const</span> claims = payload <span class="kw">as</span> <span class="tp">IdTokenClaims</span>;
+
+  <span class="cm">// Protezione contro replay attack</span>
+  <span class="kw">if</span> (expectedNonce &amp;&amp; claims.nonce !== expectedNonce)
+    <span class="kw">throw new</span> <span class="tp">UnauthorizedException</span>(
+      <span class="st">'Nonce validation failed'</span>
+    );
+
+  <span class="kw">return</span> claims;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Frontend: Angular + NgRx -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text" style="max-width: 100%;">
+            <h3><i class="fas fa-desktop"></i> Frontend — Angular + NgRx</h3>
+            <p>
+              Il frontend è un'applicazione <strong>Angular 21</strong> basata
+              interamente su <strong>standalone components</strong> (nessun NgModule).
+              La gestione dello stato è centralizzata tramite <strong>NgRx</strong>
+              con <strong>17 feature slice</strong> nello store, corrispondenti ai
+              diversi domini dell'applicazione. L'interfaccia utilizza
+              <strong>PrimeNG</strong> con un tema custom (<em>AtlasPreset</em>),
+              <strong>Leaflet</strong> per le mappe, <strong>Chart.js</strong> per
+              i grafici e <strong>Quill</strong> come rich text editor.
+            </p>
+            <p>
+              Ogni feature segue una struttura consistente: dentro <code>state/</code>
+              si trovano <em>actions</em>, <em>reducer</em>, <em>effects</em>,
+              <em>selectors</em> e <em>model</em>. Questo pattern garantisce
+              separazione delle responsabilità, testabilità e prevedibilità del
+              flusso dati unidirezionale.
+            </p>
+          </div>
+        </div>
+
+        <!-- Codice: NgRx Store Config -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Configurazione dello Store NgRx</h3>
+            <p>
+              Lo store globale è configurato a livello di applicazione con
+              <code>provideStore()</code> e raggruppa 17 reducer:
+              autenticazione, ticket, news, FAQ, workflow, richieste, utenti,
+              gruppi, organizzazioni, asset, subnet, VLAN, IP, geolocalizzazione,
+              categorie, notifiche e ricerca.
+            </p>
+            <p>
+              Ogni slice ha i propri <strong>Effects</strong> che gestiscono
+              le chiamate API, la navigazione e le notifiche toast. Il
+              <code>StoreDevtools</code> è attivo solo in development mode.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">app.config.ts</span>
+            </div>
+            <pre><code><span class="kw">export const</span> appConfig: <span class="tp">ApplicationConfig</span> = {
+  providers: [
+    <span class="fn">provideHttpClient</span>(
+      <span class="fn">withInterceptors</span>([authInterceptor])
+    ),
+    <span class="fn">provideRouter</span>(routes),
+    <span class="fn">providePrimeNG</span>({
+      theme: { preset: AtlasPreset },
+    }),
+    <span class="fn">provideStore</span>({
+      auth: authReducer,
+      tickets: ticketReducer,
+      news: newsReducer,
+      faqs: faqReducer,
+      workflows: workflowReducer,
+      requests: requestReducer,
+      users: userReducer,
+      groups: groupReducer,
+      organizations: organizationsReducer,
+      categories: categoryReducer,
+      notifications: notificationsReducer,
+      assets: assetReducer,
+      geography: geographyReducer,
+      subnets: subnetReducer,
+      vlans: vlanReducer,
+      ipAddresses: ipAddressReducer,
+      search: searchReducer,
+    }),
+    <span class="fn">provideEffects</span>([
+      AuthEffects, TicketEffects,
+      NewsEffects, FaqsEffects,
+      WorkflowEffects, RequestEffects,
+      UserEffects, GroupEffects,
+      OrganizationsEffects, CategoryEffects,
+      NotificationsEffects, AssetEffects,
+      GeographyEffects, SubnetEffects,
+      VlanEffects, IpAddressEffects,
+      SearchEffects,
+    ]),
+    <span class="fn">provideStoreDevtools</span>({
+      maxAge: <span class="nm">25</span>,
+      logOnly: !<span class="fn">isDevMode</span>(),
+    }),
+  ],
+};</code></pre>
+          </div>
+        </div>
+
+        <!-- Codice: NgRx Actions + Reducer -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Actions e Reducer — Pattern NgRx</h3>
+            <p>
+              Ogni entità segue il pattern <strong>Command/Success/Failure</strong>:
+              l'action di comando viene dispatched dal componente, l'effect gestisce
+              la chiamata API, e le action di successo/errore aggiornano il reducer.
+              Lo stato traccia il loading per ogni operazione individualmente.
+            </p>
+            <p>
+              Il reducer dei ticket usa una <code>Map</code> per deduplicare
+              i risultati durante lo scroll infinito, evitando duplicati quando
+              nuovi dati vengono accumulati progressivamente.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">atlas/state/ticket.actions.ts + ticket.reducer.ts</span>
+            </div>
+            <pre><code><span class="cm">// ─── Actions (tripletta Command/Success/Failure)</span>
+<span class="kw">export const</span> getAllTickets = <span class="fn">createAction</span>(
+  <span class="st">'[Ticket] Get All'</span>
+);
+<span class="kw">export const</span> getAllTicketsSuccess = <span class="fn">createAction</span>(
+  <span class="st">'[Ticket] Get All Success'</span>,
+  <span class="fn">props</span>&lt;{ total: <span class="tp">number</span>; tickets: <span class="tp">Ticket</span>[] }&gt;()
+);
+<span class="kw">export const</span> createTicket = <span class="fn">createAction</span>(
+  <span class="st">'[Ticket] Create'</span>,
+  <span class="fn">props</span>&lt;{ ticket: <span class="tp">CreateTicketDto</span> }&gt;()
+);
+<span class="kw">export const</span> assignTicket = <span class="fn">createAction</span>(
+  <span class="st">'[Ticket] Assign'</span>,
+  <span class="fn">props</span>&lt;{ id: <span class="tp">string</span> }&gt;()
+);
+
+<span class="cm">// ─── Reducer con Map per deduplicazione</span>
+<span class="kw">export const</span> ticketReducer = <span class="fn">createReducer</span>(
+  initialState,
+  <span class="fn">on</span>(getAllTicketsSuccess, (state, { total, tickets }) =&gt; {
+    <span class="kw">const</span> map = <span class="kw">new</span> <span class="tp">Map</span>(
+      state.allTickets.<span class="fn">map</span>(t =&gt; [t._id, t])
+    );
+    tickets.<span class="fn">forEach</span>(t =&gt; map.<span class="fn">set</span>(t._id, t));
+    <span class="kw">return</span> {
+      ...state,
+      allTickets: <span class="tp">Array</span>.<span class="fn">from</span>(map.<span class="fn">values</span>()),
+      loadingAllTickets: { loading: <span class="kw">false</span>, error: <span class="kw">null</span> },
+      pagination: { ...state.pagination, total,
+        hasMore: tickets.length === state.pagination.limit },
+    };
+  }),
+  <span class="fn">on</span>(setFilters, (state, { filters }) =&gt; ({
+    ...state, filters, allTickets: [],
+    pagination: { ...state.pagination, skip: <span class="nm">0</span> },
+  })),
+);</code></pre>
+          </div>
+        </div>
+
+        <!-- Codice: NgRx Effects -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Effects — Side Effects & API Calls</h3>
+            <p>
+              Gli Effects gestiscono ogni interazione con il backend.
+              Utilizzano <code>exhaustMap</code> per le chiamate API,
+              <code>withLatestFrom</code> per leggere lo stato corrente
+              (paginazione e filtri), <code>retry</code> per resilienza
+              automatica e <code>tap</code> per side effect come toast e
+              navigazione.
+            </p>
+            <p>
+              Il pattern è consistente in tutti i 17 slice: l'effect si
+              sottoscrive all'action, legge i parametri dallo store, chiama
+              il service HTTP e dispatcha l'action di successo o errore.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">atlas/state/ticket.effects.ts</span>
+            </div>
+            <pre><code>@<span class="fn">Injectable</span>()
+<span class="kw">export class</span> <span class="tp">TicketEffects</span> {
+  <span class="kw">private</span> actions = <span class="fn">inject</span>(Actions);
+  <span class="kw">private</span> store = <span class="fn">inject</span>(Store);
+  <span class="kw">private</span> ticketService = <span class="fn">inject</span>(TicketService);
+  <span class="kw">private</span> messageService = <span class="fn">inject</span>(MessageService);
+
+  getAllTickets = <span class="fn">createEffect</span>(() =&gt;
+    <span class="kw">this</span>.actions.<span class="fn">pipe</span>(
+      <span class="fn">ofType</span>(getAllTickets, setFilters),
+      <span class="fn">withLatestFrom</span>(
+        <span class="kw">this</span>.store.<span class="fn">pipe</span>(<span class="fn">select</span>(selectLimit)),
+        <span class="kw">this</span>.store.<span class="fn">pipe</span>(<span class="fn">select</span>(selectSkip)),
+        <span class="kw">this</span>.store.<span class="fn">pipe</span>(<span class="fn">select</span>(selectFilter))
+      ),
+      <span class="fn">exhaustMap</span>(([, limit, skip, filters]) =&gt;
+        <span class="kw">this</span>.ticketService
+          .<span class="fn">getAllTickets</span>(limit, skip, filters).<span class="fn">pipe</span>(
+            <span class="fn">retry</span>({ count: <span class="nm">4</span>, delay: <span class="nm">4000</span> }),
+            <span class="fn">map</span>(({ total, tickets }) =&gt;
+              <span class="fn">getAllTicketsSuccess</span>({ total, tickets })
+            ),
+            <span class="fn">catchError</span>(err =&gt;
+              <span class="fn">of</span>(<span class="fn">getAllTicketsFailure</span>({ error: err }))
+            )
+          )
+      )
+    )
+  );
+
+  createTicketSuccess = <span class="fn">createEffect</span>(() =&gt;
+    <span class="kw">this</span>.actions.<span class="fn">pipe</span>(
+      <span class="fn">ofType</span>(createTicketSuccess),
+      <span class="fn">tap</span>(({ id }) =&gt; {
+        <span class="kw">this</span>.messageService.<span class="fn">add</span>({
+          key: <span class="st">'global-toast'</span>,
+          severity: <span class="st">'success'</span>,
+          summary: <span class="st">'Successo'</span>,
+          detail: <span class="st">'Ticket creato con successo!'</span>,
+        });
+        <span class="kw">this</span>.router.<span class="fn">navigate</span>(
+          [<span class="st">'/atlas/create-ticket/end'</span>, id]
+        );
+      })
+    ), { dispatch: <span class="kw">false</span> }
+  );
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Cloud: Azure -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3><i class="fas fa-cloud"></i> Cloud & DevOps — Azure</h3>
+            <p>
+              L'infrastruttura di Asgard è interamente basata sull'ecosistema
+              <strong>Microsoft Azure</strong>:
+            </p>
+            <ul class="project-list">
+              <li>
+                <strong>Azure Container Apps</strong> — Ogni microservizio viene
+                deployato come container isolato su Azure Container Apps,
+                beneficiando di scaling automatico, revisioni e ingress management
+                senza la complessità di Kubernetes.
+              </li>
+              <li>
+                <strong>Azure Container Registry (ACR)</strong> — Le immagini Docker
+                di tutti i servizi (backend e frontend) vengono costruite e
+                pubblicate in un registry privato ACR, garantendo sicurezza e
+                velocità di pull durante il deployment.
+              </li>
+              <li>
+                <strong>Azure DevOps</strong> — Le pipeline CI/CD sono definite
+                in <code>azure-pipelines.yml</code> e gestiscono build, test,
+                creazione immagini Docker e deployment automatico su Container Apps.
+                Ogni push sul branch principale attiva l'intera pipeline.
+              </li>
+              <li>
+                <strong>Microsoft Entra ID</strong> — Utilizzato come identity
+                provider aziendale per il Single Sign-On (SSO) tramite il
+                protocollo OAuth2/OIDC con PKCE, integrato nativamente nel
+                flusso di autenticazione di Heimdall.
+              </li>
+            </ul>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">Pipeline CI/CD</span>
+            </div>
+            <pre><code>┌──────────────┐    ┌──────────────┐
+│  Developer   │    │ Azure DevOps │
+│  git push    │───→│  Pipeline    │
+└──────────────┘    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │    Build     │
+                    │  + Test      │
+                    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │   Docker     │
+                    │  Build &     │
+                    │  Push to ACR │
+                    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │ Azure        │
+                    │ Container    │
+                    │ Apps Deploy  │
+                    └──────────────┘
+
+Registry: Azure Container Registry
+Auth:     Microsoft Entra ID (SSO)
+Runtime:  Azure Container Apps</code></pre>
+          </div>
+        </div>
+
+        <!-- Guard e Sicurezza -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Sistema di Guard e Permessi</h3>
+            <p>
+              Ogni endpoint è protetto da un sistema a due livelli di guard
+              globali registrati come <code>APP_GUARD</code>: il primo verifica
+              l'autenticazione (JWT access token, skip per endpoint pubblici), il
+              secondo controlla i <strong>permessi granulari</strong> per le 16+
+              risorse del sistema.
+            </p>
+            <p>
+              I decoratori custom <code>@Auth()</code>, <code>@Permissions()</code>
+              e <code>@ActiveUser()</code> semplificano l'uso nei controller,
+              rendendo la sicurezza dichiarativa e consistente in tutto il monorepo.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">Architettura di sicurezza</span>
+            </div>
+            <pre><code><span class="cm">// Guard globali registrati in ogni servizio</span>
+providers: [
+  { provide: APP_GUARD,
+    useClass: <span class="tp">AuthenticationGuard</span> },
+  { provide: APP_GUARD,
+    useClass: <span class="tp">PermissionsGuard</span> },
+],
+
+<span class="cm">// Uso nei controller con decoratori custom</span>
+@<span class="fn">Permissions</span>(
+  Permission.TicketCreate,
+  Permission.TicketAll
+)
+@<span class="fn">Post</span>()
+<span class="kw">async</span> <span class="fn">create</span>(
+  @<span class="fn">Body</span>() dto: <span class="tp">CreateTicketDto</span>,
+  @<span class="fn">ActiveUser</span>() user: <span class="tp">ActiveUserData</span>,
+) {
+  <span class="kw">return</span> <span class="kw">this</span>.ticketsService.<span class="fn">create</span>(dto, user);
+}
+
+<span class="cm">// Endpoint pubblico (nessuna autenticazione)</span>
+@<span class="fn">Auth</span>(AuthType.None)
+@<span class="fn">Get</span>(<span class="st">'public'</span>)
+<span class="kw">async</span> <span class="fn">getPublicFaqs</span>() {
+  <span class="kw">return</span> <span class="kw">this</span>.faqsService.<span class="fn">findPublic</span>();
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Scheduler & Cron -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Scheduler e task automatici</h3>
+            <p>
+              <strong>Atlas</strong> utilizza il modulo
+              <code>@nestjs/schedule</code> per eseguire task automatici tramite
+              espressioni Cron. Lo scheduler sblocca automaticamente i ticket
+              rimasti inattivi per oltre un'ora e esegue un cleanup giornaliero
+              dei ticket attivi, garantendo che nessuna richiesta rimanga bloccata
+              per disattenzione.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">tickets/ticket-scheduler.service.ts</span>
+            </div>
+            <pre><code><span class="cm">// Ogni ora: sblocca ticket inattivi &gt; 1h</span>
+@<span class="fn">Cron</span>(<span class="st">'0 * * * *'</span>,
+  { timeZone: <span class="st">'Europe/Rome'</span> })
+<span class="kw">async</span> <span class="fn">unlockInactiveTickets</span>() {
+  <span class="cm">// Auto-unlock ticket inattivi</span>
+}
+
+<span class="cm">// Ogni giorno alle 22:03: cleanup</span>
+@<span class="fn">Cron</span>(<span class="st">'3 22 * * *'</span>,
+  { timeZone: <span class="st">'Europe/Rome'</span> })
+<span class="kw">async</span> <span class="fn">handleCron</span>() {
+  <span class="cm">// Pulizia giornaliera ticket attivi</span>
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Stato del progetto -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text" style="max-width: 100%;">
+            <h3><i class="fas fa-code-branch"></i> Stato del progetto</h3>
+            <p>
+              Asgard è un progetto in <strong>sviluppo attivo</strong>,
+              continuamente esteso con nuove funzionalità e moduli. L'architettura
+              a microservizi consente di aggiungere nuovi servizi senza impattare
+              quelli esistenti, e il monorepo NestJS facilita la condivisione di
+              codice tra i servizi tramite le librerie in <code>libs/</code>.
+            </p>
+            <p>
+              <em>Nota: essendo un progetto ad uso aziendale interno,
+              le configurazioni infrastrutturali, le variabili d'ambiente,
+              gli endpoint specifici e altri dettagli sensibili sono stati
+              omessi da questa presentazione per ragioni di riservatezza.</em>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ PROGETTO 2: TOKEN RING ═══════════════ -->
+    <section class="section project-section" id="token-ring">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Progetto 02 — Accademico</span>
+          <h2 class="section-title">Token Ring Banking System</h2>
+          <p class="section-desc">
+            Mutua esclusione distribuita con elezione del coordinatore
+          </p>
+        </div>
+
+        <!-- Intro -->
+        <div class="project-intro reveal">
+          <div class="project-meta">
+            <span class="project-type">
+              <i class="fas fa-graduation-cap"></i> Progetto Universitario
+            </span>
+            <span class="project-type">
+              <i class="fas fa-network-wired"></i> Sistemi Distribuiti
+            </span>
+            <div class="project-tags">
+              <span>NestJS</span>
+              <span>TypeScript</span>
+              <span>Axios</span>
+              <span>RxJS</span>
+              <span>UUID</span>
+              <span>Jest</span>
+            </div>
+          </div>
+          <p>
+            Progetto per il corso di <strong>Intelligenza Artificiale
+            Distribuita</strong>. Implementa un sistema bancario distribuito con
+            4 nodi ATM indipendenti che condividono l'accesso a un saldo comune
+            senza memoria condivisa — tutta la coordinazione avviene tramite
+            message passing HTTP.
+          </p>
+          <p>
+            L'algoritmo <strong>Token Ring</strong> garantisce la mutua
+            esclusione: un singolo token circola nel ring e porta con sé il
+            saldo. Solo il nodo che possiede il token può eseguire transazioni.
+            Il <strong>Bully Algorithm</strong> gestisce l'elezione del
+            coordinatore in caso di guasti.
+          </p>
+        </div>
+
+        <!-- Architettura Ring -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Architettura del Ring</h3>
+            <p>
+              4 processi NestJS indipendenti (ATM1–ATM4) su porte 3001–3004,
+              disposti in un anello logico. Il token circola in una sola
+              direzione e trasporta il saldo corrente del conto bancario.
+            </p>
+            <p>
+              Nessuna memoria condivisa: il saldo vive esclusivamente nel
+              token. Quando un nodo riceve il token, può eseguire una transazione
+              (deposito/prelievo) e poi lo inoltra al nodo successivo.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">ring-topology.txt</span>
+            </div>
+            <pre><code>    ┌──────────┐         ┌──────────┐
+    │  ATM 1   │────────→│  ATM 2   │
+    │  :3001   │         │  :3002   │
+    └──────────┘         └──────────┘
+         ↑                     │
+         │      Token Ring     │
+         │    (porta il $)     ↓
+    ┌──────────┐         ┌──────────┐
+    │  ATM 4   │←────────│  ATM 3   │
+    │  :3004   │         │  :3003   │
+    └──────────┘         └──────────┘</code></pre>
+          </div>
+        </div>
+
+        <!-- Codice: Token interface e processToken -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Il cuore del Token Ring</h3>
+            <p>
+              Il token è una struttura semplice: un ID univoco (UUID), l'ID del
+              nodo che lo detiene e il saldo corrente. Quando un nodo lo riceve,
+              controlla se ha transazioni in coda: se sì, entra nella sezione
+              critica ed esegue; altrimenti, inoltra immediatamente.
+            </p>
+            <p>
+              Questa è la garanzia fondamentale della mutua esclusione: un solo
+              nodo alla volta può modificare il saldo, eliminando race condition
+              senza lock o semafori.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">common/types.ts</span>
+            </div>
+            <pre><code><span class="kw">export interface</span> <span class="tp">Token</span> {
+  id: <span class="tp">string</span>;       <span class="cm">// UUID univoco</span>
+  holderId: <span class="tp">number</span>;  <span class="cm">// Nodo corrente</span>
+  balance: <span class="tp">number</span>;   <span class="cm">// Saldo del conto</span>
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Sezione critica</h3>
+            <p>
+              <code>processToken()</code> è il cuore dell'algoritmo. Quando
+              arriva il token, se ci sono transazioni in coda il nodo entra
+              nella sezione critica, esegue la transazione, aggiorna il saldo
+              nel token e lo inoltra al prossimo nodo.
+            </p>
+            <p>
+              Il servizio <code>BankingService</code> è stateless: riceve il
+              saldo corrente e restituisce il nuovo saldo, senza mantenere stato
+              locale. Questo riflette il principio che il saldo vive
+              esclusivamente nel token.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">atm/atm.service.ts</span>
+            </div>
+            <pre><code><span class="kw">private async</span> <span class="fn">processToken</span>(): <span class="tp">Promise</span>&lt;<span class="tp">void</span>&gt; {
+  <span class="kw">this</span>.isProcessing = <span class="kw">true</span>;
+  <span class="kw">try</span> {
+    <span class="kw">if</span> (<span class="kw">this</span>.tokenService.<span class="fn">canAccessCriticalSection</span>()) {
+      <span class="cm">// Ha transazioni in coda: esegui</span>
+      <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">executeNextTransaction</span>();
+    } <span class="kw">else</span> {
+      <span class="cm">// Nessuna transazione: inoltra</span>
+      <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">forwardToken</span>();
+    }
+  } <span class="kw">finally</span> {
+    <span class="kw">this</span>.isProcessing = <span class="kw">false</span>;
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Bully Algorithm -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Bully Algorithm</h3>
+            <p>
+              Quando un nodo rileva un guasto, avvia un'elezione: invia un
+              messaggio ELECTION a tutti i nodi con ID superiore. Se nessuno
+              risponde OK, si autoelegge coordinatore. Altrimenti, attende che
+              un nodo con ID più alto annunci la sua coordinazione.
+            </p>
+            <p>
+              Il coordinatore ha responsabilità speciali: monitorare la
+              circolazione del token, condurre votazioni di consenso e
+              rigenerare il token in caso di perdita.
+            </p>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">election/election.service.ts</span>
+            </div>
+            <pre><code><span class="kw">async</span> <span class="fn">startElection</span>(): <span class="tp">Promise</span>&lt;<span class="tp">void</span>&gt; {
+  <span class="kw">if</span> (<span class="kw">this</span>.electionInProgress) <span class="kw">return</span>;
+  <span class="kw">this</span>.electionInProgress = <span class="kw">true</span>;
+
+  <span class="kw">const</span> higherNodes = <span class="kw">this</span>.<span class="fn">getNodesWithHigherIds</span>();
+
+  <span class="kw">if</span> (higherNodes.length === <span class="nm">0</span>) {
+    <span class="cm">// Nessun nodo con ID superiore</span>
+    <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">becomeCoordinator</span>();
+    <span class="kw">return</span>;
+  }
+
+  <span class="kw">const</span> responses = <span class="kw">await</span> <span class="tp">Promise</span>.<span class="fn">allSettled</span>(
+    higherNodes.<span class="fn">map</span>((nodeId) =&gt;
+      <span class="kw">this</span>.<span class="fn">sendElectionMessage</span>(nodeId)
+    )
+  );
+
+  <span class="kw">const</span> receivedOk = responses.<span class="fn">some</span>(
+    (r) =&gt; r.status === <span class="st">'fulfilled'</span>
+  );
+
+  <span class="kw">if</span> (!receivedOk) {
+    <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">becomeCoordinator</span>();
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Fault Tolerance -->
+        <div class="project-block reveal">
+          <div class="project-block-text">
+            <h3>Tolleranza ai guasti</h3>
+            <p>
+              Il sistema gestisce tre scenari di failure:
+            </p>
+            <ul class="project-list">
+              <li>
+                <strong>Scenario A — Token perso:</strong> il nodo con il token
+                crasha. Il coordinatore rileva l'assenza del token, conduce una
+                votazione di consenso e rigenera un nuovo token con il saldo più
+                recente.
+              </li>
+              <li>
+                <strong>Scenario B — Nodo non-token:</strong> un nodo senza
+                token fallisce. Il ring viene ricostruito automaticamente
+                escludendo il nodo guasto.
+              </li>
+              <li>
+                <strong>Scenario C — Recovery:</strong> un nodo ripristinato si
+                annuncia al coordinatore e viene reintegrato nella topologia.
+              </li>
+            </ul>
+          </div>
+          <div class="project-code">
+            <div class="code-header">
+              <div class="code-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="code-title">coordinator/coordinator.service.ts</span>
+            </div>
+            <pre><code><span class="fn">reconstructRing</span>(): <span class="tp">Map</span>&lt;<span class="tp">number</span>, <span class="tp">number</span>&gt; {
+  <span class="kw">const</span> topology = <span class="kw">new</span> <span class="tp">Map</span>&lt;<span class="tp">number</span>, <span class="tp">number</span>&gt;();
+
+  <span class="kw">for</span> (<span class="kw">let</span> i = <span class="nm">0</span>;
+       i &lt; <span class="kw">this</span>.activeNodes.length; i++) {
+    <span class="kw">const</span> current = <span class="kw">this</span>.activeNodes[i];
+    <span class="kw">const</span> next = <span class="kw">this</span>.activeNodes[
+      (i + <span class="nm">1</span>) % <span class="kw">this</span>.activeNodes.length
+    ];
+    topology.<span class="fn">set</span>(current, next);
+  }
+
+  <span class="kw">return</span> topology;
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <span class="logo-bracket">&lt;</span>
+              <span class="logo-text">EA</span>
+              <span class="logo-bracket">/&gt;</span>
+            </a>
+            <p>
+              Enrico Arnaudo — Informatico presso ASL CN1. Cuneo,
+              Italia.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h5>Navigazione</h5>
+            <ul>
+              <li><a href="index.html#about">Chi sono</a></li>
+              <li><a href="index.html#services">Cosa faccio</a></li>
+              <li><a href="index.html#experience">Esperienze</a></li>
+              <li><a href="index.html#design">Design & UI</a></li>
+              <li><a href="index.html#beyond">Oltre il codice</a></li>
+              <li><a href="index.html#contact">Contatti</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h5>Competenze</h5>
+            <ul>
+              <li>Full-Stack Development</li>
+              <li>Microsoft Ecosystem</li>
+              <li>Cloud & DevOps</li>
+              <li>UI/UX Design</li>
+              <li>Sistemi Distribuiti</li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h5>Contatti</h5>
+            <p>
+              <a href="mailto:arnaudoenrico@gmail.com"
+                >arnaudoenrico@gmail.com</a
+              >
+            </p>
+            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
+            <p>Bernezzo (CN), Italia</p>
+            <div class="footer-social">
+              <a
+                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Enrico Arnaudo. Tutti i diritti riservati.</p>
+          <div class="footer-bottom-links">
+            <a href="index.html#privacy">Privacy Policy</a>
+            <span>&middot;</span>
+            <a href="index.html#contact">Contatti</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
