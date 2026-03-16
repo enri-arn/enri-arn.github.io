@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asgard Dashboard — Design Showcase — Enrico Arnaudo</title>
+    <meta
+      name="description"
+      content="Case study: design della dashboard Asgard. Dal wireframe al risultato finale, per la piattaforma enterprise di ASL CN1 Cuneo."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">EA</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
+          <li><a href="index.html#services" class="nav-link">Cosa faccio</a></li>
+          <li><a href="index.html#experience" class="nav-link">Esperienze</a></li>
+          <li><a href="index.html#design" class="nav-link">Design & UI</a></li>
+          <li><a href="index.html#beyond" class="nav-link">Oltre il codice</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Cambia tema"
+          >
+            <i class="fas fa-sun" id="themeIcon"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="project-hero" id="home">
+      <div class="hero-bg">
+        <div class="hero-grid"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+      </div>
+      <div class="project-hero-content">
+        <a href="index.html#design" class="btn btn-ghost project-back-btn reveal">
+          <i class="fas fa-arrow-left"></i> Torna al portfolio
+        </a>
+        <h1 class="hero-title reveal">
+          <span class="title-line">Asgard</span>
+          <span class="title-line title-accent">Dashboard</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+          Dal wireframe alla dashboard finale. La storia del design
+          della piattaforma Asgard per ASL CN1.
+        </p>
+        <div class="project-nav reveal">
+          <a href="#wireframe" class="project-nav-link">
+            <i class="fas fa-pencil-ruler"></i> Wireframe
+          </a>
+          <a href="#prototipo" class="project-nav-link">
+            <i class="fas fa-fill-drip"></i> Prototipo
+          </a>
+          <a href="#risultato" class="project-nav-link">
+            <i class="fas fa-rocket"></i> Risultato Finale
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ CASE STUDY: ASGARD DASHBOARD ═══════════════ -->
+    <section class="section project-section" id="atlas">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Case Study &mdash; Piattaforma Asgard</span>
+          <h2 class="section-title">Dashboard Asgard</h2>
+          <p class="section-desc">
+            ASL CN1 gestiva ticket, asset IT, richieste e flussi di lavoro attraverso
+            strumenti frammentati. Serviva una dashboard unificata che aggregasse
+            tutti i domini della piattaforma.
+          </p>
+        </div>
+
+        <!-- Intro -->
+        <div class="project-intro reveal">
+          <div class="project-meta">
+            <span class="project-type">
+              <i class="fas fa-palette"></i> UI/UX Design
+            </span>
+            <span class="project-type">
+              <i class="fas fa-desktop"></i> Web Application
+            </span>
+            <span class="project-type">
+              <i class="fas fa-hospital"></i> Sanit&agrave; Pubblica
+            </span>
+            <div class="project-tags">
+              <span>Figma</span>
+              <span>Angular</span>
+              <span>PrimeNG</span>
+              <span>Design System</span>
+              <span>Data Visualization</span>
+              <span>Accessibilit&agrave;</span>
+              <span>Microservizi</span>
+            </div>
+          </div>
+          <p>
+            La sfida: costruire un'unica interfaccia che aggreghi dati da tutti e 10 i
+            microservizi &mdash; ticketing (Atlas), asset IT e IPAM (Itria), workflow (Gravos),
+            documenti (Fayra), news (Corvin), utenti (Heimdall) e altro &mdash; sostituendo
+            processi frammentati con una dashboard che permetta di monitorare l'intera
+            piattaforma in tempo reale.
+          </p>
+        </div>
+
+        <!-- 01. Wireframe -->
+        <div class="project-block reveal" id="wireframe">
+          <div class="project-block-text">
+            <h3>01. Wireframe &mdash; Struttura e Gerarchia Informativa</h3>
+            <p>
+              Il punto di partenza: quali dati servono al primo colpo d'occhio?
+              Con 10 microservizi, centinaia di asset, workflow attivi e ticket aperti,
+              la gerarchia informativa doveva essere rigorosa per evitare il sovraccarico
+              cognitivo.
+            </p>
+            <p>
+              La scelta architetturale chiave: <strong>un unico drawer laterale sinistro</strong>
+              al posto del tradizionale header orizzontale. Questo layout massimizza lo spazio
+              verticale disponibile per i dati, riducendo lo scroll e permettendo di visualizzare
+              pi&ugrave; informazioni simultaneamente &mdash; fondamentale in un contesto dove operatori
+              gestiscono centinaia di ticket e asset.
+            </p>
+            <ul class="project-list">
+              <li>Drawer laterale con icone modulo: navigazione compatta che ottimizza lo spazio verticale</li>
+              <li>KPI bar superiore nell'area contenuto: metriche chiave aggregate da pi&ugrave; servizi</li>
+              <li>Area principale per dati ad alta frequenza (ticket, asset, grafici)</li>
+              <li>Health strip dei servizi per visione d'insieme della piattaforma</li>
+            </ul>
+          </div>
+          <div class="design-visual">
+            <div class="design-visual-header">
+              <span class="design-phase-badge">Wireframe</span>
+            </div>
+            <div class="mockup-browser">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="browser-content atlas-browser-content">
+                <div class="atlas-wireframe wf-drawer-layout">
+                  <!-- Left drawer -->
+                  <div class="wf-drawer">
+                    <div class="wf-drawer-logo"></div>
+                    <div class="wf-drawer-icons">
+                      <div class="wf-drawer-icon"></div>
+                      <div class="wf-drawer-icon wf-drawer-icon-active"></div>
+                      <div class="wf-drawer-icon"></div>
+                      <div class="wf-drawer-icon"></div>
+                      <div class="wf-drawer-icon"></div>
+                      <div class="wf-drawer-icon"></div>
+                      <div class="wf-drawer-icon"></div>
+                    </div>
+                    <div class="wf-drawer-avatar"></div>
+                  </div>
+                  <!-- Main area -->
+                  <div class="wf-drawer-content">
+                    <!-- KPI row -->
+                    <div class="wf-kpi-row">
+                      <div class="wf-kpi"><div class="wf-kpi-number"></div><div class="wf-kpi-label"></div></div>
+                      <div class="wf-kpi"><div class="wf-kpi-number"></div><div class="wf-kpi-label"></div></div>
+                      <div class="wf-kpi"><div class="wf-kpi-number"></div><div class="wf-kpi-label"></div></div>
+                      <div class="wf-kpi"><div class="wf-kpi-number"></div><div class="wf-kpi-label"></div></div>
+                    </div>
+                    <!-- Content area -->
+                    <div class="wf-main">
+                      <div class="wf-content">
+                        <div class="wf-table">
+                          <div class="wf-table-header"></div>
+                          <div class="wf-table-row"></div>
+                          <div class="wf-table-row"></div>
+                          <div class="wf-table-row"></div>
+                          <div class="wf-table-row"></div>
+                          <div class="wf-table-row"></div>
+                        </div>
+                        <div class="wf-chart">
+                          <div class="wf-chart-title"></div>
+                          <div class="wf-chart-bars">
+                            <div class="wf-bar" style="height:40%"></div>
+                            <div class="wf-bar" style="height:65%"></div>
+                            <div class="wf-bar" style="height:50%"></div>
+                            <div class="wf-bar" style="height:80%"></div>
+                            <div class="wf-bar" style="height:35%"></div>
+                            <div class="wf-bar" style="height:55%"></div>
+                            <div class="wf-bar" style="height:70%"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="wf-sidebar">
+                        <div class="wf-sidebar-title"></div>
+                        <div class="wf-cat-item"></div>
+                        <div class="wf-cat-item"></div>
+                        <div class="wf-cat-item"></div>
+                        <div class="wf-cat-item"></div>
+                        <div class="wf-cat-item wf-cat-child"></div>
+                        <div class="wf-cat-item wf-cat-child"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02. Prototipo -->
+        <div class="project-block reveal" id="prototipo">
+          <div class="project-block-text">
+            <h3>02. Prototipo &mdash; Colore, Stato e Semantica Visiva</h3>
+            <p>
+              Dal wireframe al prototipo hi-fi: il design system Asgard prende forma.
+              Il drawer laterale si arricchisce delle icone colorate dei microservizi,
+              ogni modulo ha il suo colore identificativo, gli stati usano una palette
+              semantica coerente, e le informazioni critiche (SLA breach, workflow bloccati)
+              emergono visivamente con segnali di attenzione.
+            </p>
+            <ul class="project-list">
+              <li>Drawer laterale con icone colorate per modulo: navigazione immediata senza occupare spazio verticale</li>
+              <li>Colore per modulo: indigo (Atlas), ambra (Itria), cyan (Gravos), rosa (Corvin), viola (Fayra)</li>
+              <li>Badge di stato colorati con semantica univoca</li>
+              <li>KPI con trend e indicazione del microservizio di origine</li>
+            </ul>
+          </div>
+          <div class="design-visual">
+            <div class="design-visual-header">
+              <span class="design-phase-badge design-phase-proto">Prototipo</span>
+            </div>
+            <div class="mockup-browser">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="browser-content atlas-browser-content">
+                <div class="atlas-prototype proto-drawer-layout">
+                  <!-- Left drawer -->
+                  <div class="proto-drawer">
+                    <div class="proto-drawer-logo"><img src="logo.png" alt="Asgard" style="height:12px;"></div>
+                    <div class="proto-drawer-icons">
+                      <div class="proto-drawer-icon proto-drawer-icon-active" style="background: rgba(99,102,241,0.25); color:#818cf8;" title="Dashboard"><i class="fas fa-th-large" style="font-size:5px;"></i></div>
+                      <div class="proto-drawer-icon" style="color:#6366f1;" title="Atlas"><i class="fas fa-ticket-alt" style="font-size:5px;"></i></div>
+                      <div class="proto-drawer-icon" style="color:#f59e0b;" title="Itria"><i class="fas fa-server" style="font-size:5px;"></i></div>
+                      <div class="proto-drawer-icon" style="color:#06b6d4;" title="Gravos"><i class="fas fa-project-diagram" style="font-size:5px;"></i></div>
+                      <div class="proto-drawer-icon" style="color:#a855f7;" title="Fayra"><i class="fas fa-file-alt" style="font-size:5px;"></i></div>
+                      <div class="proto-drawer-icon" style="color:#ec4899;" title="Corvin"><i class="fas fa-newspaper" style="font-size:5px;"></i></div>
+                      <div class="proto-drawer-icon" style="color:#3b82f6;" title="Heimdall"><i class="fas fa-users" style="font-size:5px;"></i></div>
+                    </div>
+                    <div class="proto-drawer-avatar"></div>
+                  </div>
+                  <!-- Main area -->
+                  <div class="proto-drawer-content">
+                    <!-- KPI row -->
+                    <div class="proto-kpi-row" style="grid-template-columns: repeat(4, 1fr);">
+                      <div class="proto-kpi">
+                        <div class="proto-kpi-number">342</div>
+                        <div class="proto-kpi-label">Utenti Attivi</div>
+                      </div>
+                      <div class="proto-kpi proto-kpi-warn">
+                        <div class="proto-kpi-number">1,247</div>
+                        <div class="proto-kpi-label">Asset IT</div>
+                      </div>
+                      <div class="proto-kpi proto-kpi-danger">
+                        <div class="proto-kpi-number">34</div>
+                        <div class="proto-kpi-label">Ticket Aperti</div>
+                      </div>
+                      <div class="proto-kpi">
+                        <div class="proto-kpi-number">96.8%</div>
+                        <div class="proto-kpi-label">SLA</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03. Risultato Finale -->
+        <div class="project-block project-block-full reveal" id="risultato">
+          <div class="project-block-text" style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <h3>03. Risultato Finale</h3>
+            <p>
+              L'interfaccia finale integra i feedback raccolti durante le sessioni di test
+              con operatori ASL. Il risultato bilancia densit&agrave; informativa e leggibilit&agrave;,
+              aggregando dati da tutti e 10 i microservizi &mdash; ticketing, asset IT, IPAM,
+              workflow, documenti, news, utenti &mdash; in un&rsquo;unica panoramica.
+            </p>
+            <p>
+              Tempi medi di completamento task ridotti del 40% rispetto al sistema
+              precedente basato su strumenti frammentati.
+            </p>
+            <a href="dashboard-atlas.html" class="btn btn-primary" style="margin-top: var(--space-xl);">
+              <i class="fas fa-external-link-alt"></i> Scopri il risultato finale
+            </a>
+          </div>
+          <!-- Preview thumbnail -->
+          <div class="design-visual design-visual-full" style="margin-top: var(--space-2xl);">
+            <div class="design-visual-header">
+              <span class="design-phase-badge design-phase-final">Risultato</span>
+            </div>
+            <a href="dashboard-atlas.html" style="display:block; text-decoration:none;">
+              <div class="mockup-browser">
+                <div class="browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="browser-content atlas-browser-content atlas-preview-thumb">
+                  <div class="atlas-prototype proto-drawer-layout">
+                    <!-- Left drawer -->
+                    <div class="proto-drawer" style="background: linear-gradient(180deg, rgba(65,88,208,0.2), rgba(200,80,192,0.15));">
+                      <div class="proto-drawer-logo"><img src="logo.png" alt="Asgard" style="height:12px;"></div>
+                      <div class="proto-drawer-icons">
+                        <div class="proto-drawer-icon proto-drawer-icon-active" style="background: rgba(99,102,241,0.25); color:#818cf8;"><i class="fas fa-th-large" style="font-size:5px;"></i></div>
+                        <div class="proto-drawer-icon" style="color:#6366f1;"><i class="fas fa-ticket-alt" style="font-size:5px;"></i></div>
+                        <div class="proto-drawer-icon" style="color:#f59e0b;"><i class="fas fa-server" style="font-size:5px;"></i></div>
+                        <div class="proto-drawer-icon" style="color:#06b6d4;"><i class="fas fa-project-diagram" style="font-size:5px;"></i></div>
+                        <div class="proto-drawer-icon" style="color:#a855f7;"><i class="fas fa-file-alt" style="font-size:5px;"></i></div>
+                        <div class="proto-drawer-icon" style="color:#ec4899;"><i class="fas fa-newspaper" style="font-size:5px;"></i></div>
+                        <div class="proto-drawer-icon" style="color:#3b82f6;"><i class="fas fa-users" style="font-size:5px;"></i></div>
+                        <div class="proto-drawer-icon" style="color:#f97316;"><i class="fas fa-sun" style="font-size:5px;"></i></div>
+                      </div>
+                      <div class="proto-drawer-avatar"></div>
+                    </div>
+                    <!-- Main area -->
+                    <div class="proto-drawer-content">
+                      <div class="proto-kpi-row" style="grid-template-columns: repeat(6, 1fr);">
+                        <div class="proto-kpi" style="border-color: rgba(59,130,246,0.25);">
+                          <div class="proto-kpi-number" style="color:#60a5fa;">342</div>
+                          <div class="proto-kpi-label">Utenti Attivi</div>
+                        </div>
+                        <div class="proto-kpi" style="border-color: rgba(245,158,11,0.25);">
+                          <div class="proto-kpi-number" style="color:#fbbf24;">1,247</div>
+                          <div class="proto-kpi-label">Asset IT Totali</div>
+                        </div>
+                        <div class="proto-kpi" style="border-color: rgba(99,102,241,0.25);">
+                          <div class="proto-kpi-number" style="color:#818cf8;">34</div>
+                          <div class="proto-kpi-label">Ticket Aperti</div>
+                        </div>
+                        <div class="proto-kpi" style="border-color: rgba(168,85,247,0.25);">
+                          <div class="proto-kpi-number" style="color:#c084fc;">1,892</div>
+                          <div class="proto-kpi-label">Documenti</div>
+                        </div>
+                        <div class="proto-kpi" style="border-color: rgba(6,182,212,0.25);">
+                          <div class="proto-kpi-number" style="color:#22d3ee;">23</div>
+                          <div class="proto-kpi-label">Workflow Pendenti</div>
+                        </div>
+                        <div class="proto-kpi" style="border-color: rgba(34,197,94,0.25);">
+                          <div class="proto-kpi-number" style="color:#4ade80;">96.8%</div>
+                          <div class="proto-kpi-label">SLA Compliance</div>
+                        </div>
+                      </div>
+                      <div class="proto-main">
+                        <div class="proto-content">
+                          <div class="proto-table">
+                            <div class="proto-table-header">
+                              <span>ID</span><span>Titolo</span><span>Stato</span><span>Priorit&agrave;</span><span>Categoria</span><span>Assegnato</span>
+                            </div>
+                            <div class="proto-table-row">
+                              <span class="proto-id">#1247</span>
+                              <span>Stampante non funzionante &mdash; Piano 3 Ala B</span>
+                              <span class="proto-badge proto-badge-open">OPEN</span>
+                              <span class="proto-priority-high"></span>
+                              <span>Hardware</span>
+                              <span>L. Bianchi</span>
+                            </div>
+                            <div class="proto-table-row">
+                              <span class="proto-id">#1246</span>
+                              <span>Richiesta accesso VPN per telelavoro</span>
+                              <span class="proto-badge proto-badge-progress">IN_PROGRESS</span>
+                              <span class="proto-priority-medium"></span>
+                              <span>Rete</span>
+                              <span>A. Verdi</span>
+                            </div>
+                            <div class="proto-table-row">
+                              <span class="proto-id">#1245</span>
+                              <span>Reset password utente LDAP</span>
+                              <span class="proto-badge proto-badge-resolved">RESOLVED</span>
+                              <span class="proto-priority-low"></span>
+                              <span>Account</span>
+                              <span>M. Rossi</span>
+                            </div>
+                            <div class="proto-table-row">
+                              <span class="proto-id">#1244</span>
+                              <span>Monitor flickering postazione 12</span>
+                              <span class="proto-badge proto-badge-new">NEW</span>
+                              <span class="proto-priority-medium"></span>
+                              <span>Hardware</span>
+                              <span>&mdash;</span>
+                            </div>
+                            <div class="proto-table-row">
+                              <span class="proto-id">#1243</span>
+                              <span>Aggiornamento Office 365</span>
+                              <span class="proto-badge proto-badge-progress">IN_PROGRESS</span>
+                              <span class="proto-priority-low"></span>
+                              <span>Software</span>
+                              <span>P. Neri</span>
+                            </div>
+                            <div class="proto-table-row">
+                              <span class="proto-id">#1241</span>
+                              <span>Connessione lenta sede Mondov&igrave;</span>
+                              <span class="proto-badge proto-badge-open">OPEN</span>
+                              <span class="proto-priority-high"></span>
+                              <span>Rete</span>
+                              <span>L. Bianchi</span>
+                            </div>
+                          </div>
+                          <div class="proto-chart">
+                            <div class="proto-chart-bars">
+                              <div class="proto-bar" style="height:45%; background: linear-gradient(180deg, #4ade80, #6366f1);"></div>
+                              <div class="proto-bar" style="height:65%; background: linear-gradient(180deg, #4ade80, #6366f1);"></div>
+                              <div class="proto-bar" style="height:50%; background: linear-gradient(180deg, #4ade80, #6366f1);"></div>
+                              <div class="proto-bar" style="height:80%; background: linear-gradient(180deg, #4ade80, #6366f1);"></div>
+                              <div class="proto-bar" style="height:35%; background: linear-gradient(180deg, #4ade80, #6366f1);"></div>
+                              <div class="proto-bar" style="height:55%; background: linear-gradient(180deg, #4ade80, #6366f1);"></div>
+                              <div class="proto-bar" style="height:70%; background: linear-gradient(180deg, #4ade80, #6366f1);"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="proto-sidebar">
+                          <div class="proto-sidebar-title">Moduli</div>
+                          <div class="proto-cat"><span class="proto-cat-dot" style="background:#6366f1"></span> Atlas (487)</div>
+                          <div class="proto-cat"><span class="proto-cat-dot" style="background:#f59e0b"></span> Itria (1,247)</div>
+                          <div class="proto-cat"><span class="proto-cat-dot" style="background:#06b6d4"></span> Gravos (23)</div>
+                          <div class="proto-cat"><span class="proto-cat-dot" style="background:#a855f7"></span> Fayra (1,892)</div>
+                          <div class="proto-cat"><span class="proto-cat-dot" style="background:#ec4899"></span> Corvin (156)</div>
+                          <div class="proto-cat"><span class="proto-cat-dot" style="background:#3b82f6"></span> Heimdall (342)</div>
+                          <div class="proto-cat"><span class="proto-cat-dot" style="background:#f97316"></span> Elios (89)</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Decisioni di Design -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text">
+            <h3>Decisioni di Design</h3>
+            <p>
+              In un contesto sanitario pubblico, ogni scelta di design &egrave; una scelta
+              di efficienza operativa. L'interfaccia non &egrave; un esercizio estetico
+              ma uno strumento che deve ridurre errori e accelerare i processi.
+            </p>
+          </div>
+          <div class="design-decisions-grid">
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-columns"></i></div>
+              <h5>Drawer laterale unico</h5>
+              <p>Un solo drawer a sinistra con icone modulo al posto dell'header orizzontale. Massimizza lo spazio verticale per i dati, riducendo scroll e sovraccarico visivo.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-palette"></i></div>
+              <h5>Palette sanitaria</h5>
+              <p>Blu e grigi per ridurre l'affaticamento in sessioni lunghe. Rosso riservato esclusivamente a SLA breach e urgenze.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-table"></i></div>
+              <h5>Densit&agrave; informativa</h5>
+              <p>Dashboard compatta con KPI da 6 moduli diversi, widget area-specifici e dettaglio on-demand al click.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-traffic-light"></i></div>
+              <h5>Identit&agrave; per modulo</h5>
+              <p>Ogni microservizio ha un colore dedicato. L&rsquo;utente riconosce immediatamente l&rsquo;area di provenienza dei dati.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <span class="logo-bracket">&lt;</span>
+              <span class="logo-text">EA</span>
+              <span class="logo-bracket">/&gt;</span>
+            </a>
+            <p>
+              Enrico Arnaudo — Informatico presso ASL CN1. Cuneo,
+              Italia.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h5>Navigazione</h5>
+            <ul>
+              <li><a href="index.html#about">Chi sono</a></li>
+              <li><a href="index.html#services">Cosa faccio</a></li>
+              <li><a href="index.html#experience">Esperienze</a></li>
+              <li><a href="index.html#design">Design & UI</a></li>
+              <li><a href="index.html#beyond">Oltre il codice</a></li>
+              <li><a href="index.html#contact">Contatti</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h5>Competenze</h5>
+            <ul>
+              <li>Full-Stack Development</li>
+              <li>Microsoft Ecosystem</li>
+              <li>Cloud & DevOps</li>
+              <li>UI/UX Design</li>
+              <li>Sistemi Distribuiti</li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h5>Contatti</h5>
+            <p>
+              <a href="mailto:arnaudoenrico@gmail.com"
+                >arnaudoenrico@gmail.com</a
+              >
+            </p>
+            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
+            <p>Bernezzo (CN), Italia</p>
+            <div class="footer-social">
+              <a
+                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Enrico Arnaudo. Tutti i diritti riservati.</p>
+          <div class="footer-bottom-links">
+            <a href="index.html#privacy">Privacy Policy</a>
+            <span>&middot;</span>
+            <a href="index.html#contact">Contatti</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

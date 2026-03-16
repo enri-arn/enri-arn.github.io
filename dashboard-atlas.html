@@ -1,0 +1,1556 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asgard Platform &mdash; Dashboard Overview</title>
+    <meta
+      name="description"
+      content="Dashboard della piattaforma Asgard: ticketing, asset IT, workflow, documenti, news e gestione utenti per ASL CN1 Cuneo."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      /* ═══════════════════════════════════════════════
+         APP-INTERNAL CUSTOM PROPERTIES
+         ═══════════════════════════════════════════════ */
+      .device-screen {
+        --app-bg: #0c0c18;
+        --app-sidebar-bg: #080812;
+        --app-surface: rgba(255,255,255,0.03);
+        --app-surface-hover: rgba(255,255,255,0.06);
+        --app-border: rgba(255,255,255,0.06);
+        --app-text: rgba(255,255,255,0.88);
+        --app-text-2: rgba(255,255,255,0.55);
+        --app-text-3: rgba(255,255,255,0.30);
+        --app-accent: #818cf8;
+      }
+      [data-theme="light"] .device-screen {
+        --app-bg: #f0f2f5;
+        --app-sidebar-bg: #e4e7ec;
+        --app-surface: rgba(0,0,0,0.025);
+        --app-surface-hover: rgba(0,0,0,0.05);
+        --app-border: rgba(0,0,0,0.08);
+        --app-text: rgba(0,0,0,0.85);
+        --app-text-2: rgba(0,0,0,0.55);
+        --app-text-3: rgba(0,0,0,0.35);
+      }
+
+      /* ═══════════════════════════════════════════════
+         PAGE SHELL
+         ═══════════════════════════════════════════════ */
+      .asg-showcase {
+        padding-top: 100px;
+        min-height: 100vh;
+        background: var(--bg-primary);
+      }
+      .asg-showcase-container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 var(--space-xl) var(--space-3xl);
+      }
+
+      /* ── Showcase Header ── */
+      .asg-showcase-header { margin-bottom: var(--space-2xl); }
+      .asg-showcase-intro { max-width: 740px; }
+      .asg-showcase-intro h1 {
+        font-size: var(--text-3xl);
+        font-weight: 800;
+        color: var(--text-primary);
+        letter-spacing: -0.02em;
+        margin-bottom: var(--space-sm);
+      }
+      .asg-showcase-intro h1 i { color: var(--accent-light); }
+      .asg-showcase-intro p {
+        font-size: var(--text-md);
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+      .asg-showcase-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-top: var(--space-lg);
+      }
+      .asg-showcase-tag {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        font-weight: 500;
+        padding: 0.3rem 0.7rem;
+        border-radius: var(--radius-full);
+        background: var(--accent-subtle);
+        color: var(--accent-light);
+        border: 1px solid rgba(99,102,241,0.15);
+      }
+
+      /* ═══════════════════════════════════════════════
+         DEVICE FRAME
+         ═══════════════════════════════════════════════ */
+      .device-frame {
+        border-radius: 16px;
+        overflow: hidden;
+        border: 2px solid var(--border);
+        background: var(--bg-secondary);
+        box-shadow:
+          0 0 0 1px rgba(255,255,255,0.05),
+          0 30px 90px -15px rgba(0,0,0,0.55),
+          0 0 60px -20px rgba(99,102,241,0.12);
+      }
+      [data-theme="light"] .device-frame {
+        box-shadow:
+          0 0 0 1px rgba(0,0,0,0.05),
+          0 30px 90px -15px rgba(0,0,0,0.15);
+      }
+
+      /* Browser chrome */
+      .device-topbar {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+      }
+      .device-dots { display: flex; gap: 7px; flex-shrink: 0; }
+      .device-dots span { width: 12px; height: 12px; border-radius: 50%; }
+      .device-dots span:nth-child(1) { background: #ef4444; }
+      .device-dots span:nth-child(2) { background: #f59e0b; }
+      .device-dots span:nth-child(3) { background: #22c55e; }
+      .device-url-bar {
+        flex: 1;
+        max-width: 480px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+        padding: 5px 14px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        color: var(--text-muted);
+      }
+      .device-url-bar i { color: #22c55e; font-size: 0.6rem; }
+      .device-nav-actions {
+        display: flex;
+        gap: var(--space-sm);
+        flex-shrink: 0;
+        color: var(--text-muted);
+        font-size: var(--text-sm);
+        opacity: 0.5;
+      }
+
+      /* Device stand */
+      .device-stand {
+        width: 120px; height: 28px;
+        margin: 0 auto;
+        background: var(--border);
+        border-radius: 0 0 8px 8px;
+      }
+      .device-stand::after {
+        content: '';
+        display: block;
+        width: 180px; height: 5px;
+        margin: 0 auto;
+        background: var(--border);
+        border-radius: 0 0 4px 4px;
+        position: relative;
+        top: 28px;
+        left: -30px;
+      }
+
+      /* ═══════════════════════════════════════════════
+         APP SCREEN
+         ═══════════════════════════════════════════════ */
+      .device-screen {
+        background: var(--app-bg);
+        display: flex;
+        min-height: 720px;
+      }
+
+      /* ── Drawer sidebar ── */
+      .app-sidebar {
+        width: 230px;
+        background: var(--app-sidebar-bg);
+        border-right: 1px solid var(--app-border);
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      .app-sidebar-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px 10px;
+      }
+      .app-sidebar-logo {
+        width: 30px; height: 30px;
+        border-radius: 8px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .app-sidebar-logo img {
+        width: 100%; height: 100%;
+        object-fit: contain;
+      }
+      .app-sidebar-brand {
+        font-family: var(--font-mono);
+        font-weight: 800;
+        font-size: 0.8rem;
+        color: var(--app-text);
+        letter-spacing: 0.08em;
+      }
+      .app-sidebar-brand small {
+        display: block;
+        font-size: 0.45rem;
+        font-weight: 400;
+        color: var(--app-text-3);
+        letter-spacing: 0.02em;
+        margin-top: 1px;
+      }
+      .app-sidebar-search {
+        margin: 6px 12px 10px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 10px;
+        background: var(--app-surface);
+        border: 1px solid var(--app-border);
+        border-radius: 8px;
+        font-size: 0.6rem;
+        color: var(--app-text-3);
+      }
+      .app-sidebar-search i { font-size: 0.55rem; }
+      .app-sidebar-search kbd {
+        font-family: var(--font-mono);
+        font-size: 0.45rem;
+        padding: 1px 4px;
+        border-radius: 3px;
+        background: var(--app-surface-hover);
+        border: 1px solid var(--app-border);
+        margin-left: auto;
+        color: var(--app-text-3);
+      }
+      .app-sidebar-section {
+        padding: 0 12px;
+        margin-bottom: 6px;
+      }
+      .app-sidebar-section-title {
+        font-family: var(--font-mono);
+        font-size: 0.45rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--app-text-3);
+        padding: 10px 8px 6px;
+      }
+      .app-sidebar-item {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 7px 10px;
+        border-radius: 8px;
+        font-size: 0.62rem;
+        font-weight: 500;
+        color: var(--app-text-2);
+        cursor: default;
+        transition: all 0.15s ease;
+        margin-bottom: 1px;
+      }
+      .app-sidebar-item i {
+        width: 16px;
+        text-align: center;
+        font-size: 0.6rem;
+        flex-shrink: 0;
+      }
+      .app-sidebar-item:hover {
+        background: var(--app-surface-hover);
+        color: var(--app-text);
+      }
+      .app-sidebar-item.active {
+        background: rgba(52,211,153,0.12);
+        color: #34d399;
+      }
+      .app-sidebar-item.active i {
+        color: #34d399;
+      }
+      .app-sidebar-item-badge {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 0.48rem;
+        font-weight: 700;
+        padding: 1px 6px;
+        border-radius: 8px;
+        background: var(--app-surface-hover);
+        color: var(--app-text-3);
+      }
+      .app-sidebar-item.active .app-sidebar-item-badge {
+        background: rgba(52,211,153,0.15);
+        color: #34d399;
+      }
+      .app-sidebar-spacer { flex: 1; }
+      .app-sidebar-footer {
+        padding: 10px 12px 14px;
+        border-top: 1px solid var(--app-border);
+        margin-top: 6px;
+      }
+      .app-sidebar-user {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 7px 10px;
+        border-radius: 8px;
+      }
+      .app-sidebar-user:hover {
+        background: var(--app-surface-hover);
+      }
+      .app-sidebar-avatar {
+        width: 28px; height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #34d399, #059669);
+        flex-shrink: 0;
+      }
+      .app-sidebar-user-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .app-sidebar-user-name {
+        font-size: 0.6rem;
+        font-weight: 600;
+        color: var(--app-text);
+      }
+      .app-sidebar-user-role {
+        font-size: 0.45rem;
+        color: var(--app-text-3);
+        margin-top: 1px;
+      }
+      .app-sidebar-user-icon {
+        font-size: 0.55rem;
+        color: var(--app-text-3);
+      }
+
+      /* ── Main area ── */
+      .app-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+      /* ═══════════════════════════════════════════════
+         APP BODY / CONTENT
+         ═══════════════════════════════════════════════ */
+      .app-body {
+        flex: 1;
+        padding: 18px 22px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      .app-page-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--app-text);
+        margin-bottom: 2px;
+      }
+      .app-page-sub {
+        font-size: 0.65rem;
+        color: var(--app-text-3);
+        margin-bottom: 16px;
+      }
+
+      /* ── KPI Row ── */
+      .app-kpi-row {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .app-kpi {
+        background: var(--app-surface);
+        border: 1px solid var(--app-border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.2s;
+      }
+      .app-kpi:hover { border-color: rgba(99,102,241,0.2); }
+      .app-kpi::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 3px; height: 100%;
+      }
+      .app-kpi[data-color="blue"]::before { background: #3b82f6; }
+      .app-kpi[data-color="amber"]::before { background: #f59e0b; }
+      .app-kpi[data-color="indigo"]::before { background: #6366f1; }
+      .app-kpi[data-color="purple"]::before { background: #a855f7; }
+      .app-kpi[data-color="cyan"]::before { background: #06b6d4; }
+      .app-kpi[data-color="green"]::before { background: #22c55e; }
+
+      .app-kpi-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+      }
+      .app-kpi-module {
+        font-family: var(--font-mono);
+        font-size: 0.5rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .app-kpi[data-color="blue"] .app-kpi-module { color: #60a5fa; }
+      .app-kpi[data-color="amber"] .app-kpi-module { color: #fbbf24; }
+      .app-kpi[data-color="indigo"] .app-kpi-module { color: #818cf8; }
+      .app-kpi[data-color="purple"] .app-kpi-module { color: #c084fc; }
+      .app-kpi[data-color="cyan"] .app-kpi-module { color: #22d3ee; }
+      .app-kpi[data-color="green"] .app-kpi-module { color: #4ade80; }
+
+      .app-kpi-trend {
+        font-family: var(--font-mono);
+        font-size: 0.5rem;
+        font-weight: 600;
+        padding: 1px 5px;
+        border-radius: 8px;
+      }
+      .app-kpi-trend.up { background: rgba(34,197,94,0.12); color: #4ade80; }
+      .app-kpi-trend.down { background: rgba(239,68,68,0.12); color: #f87171; }
+      .app-kpi-number {
+        font-family: var(--font-mono);
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--app-text);
+        line-height: 1;
+      }
+      .app-kpi-number small {
+        font-size: 0.65em;
+        font-weight: 600;
+      }
+      .app-kpi-label {
+        font-size: 0.6rem;
+        color: var(--app-text-3);
+        margin-top: 3px;
+      }
+
+      /* ── Widget Grid ── */
+      .app-widgets {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .app-widget {
+        background: var(--app-surface);
+        border: 1px solid var(--app-border);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .app-w-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--app-border);
+      }
+      .app-w-title {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--app-text-2);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .app-w-title i { font-size: 0.65rem; }
+      .app-w-badge {
+        font-family: var(--font-mono);
+        font-size: 0.5rem;
+        font-weight: 600;
+        padding: 2px 7px;
+        border-radius: 8px;
+        background: var(--app-surface-hover);
+        color: var(--app-text-3);
+      }
+      .app-w-body { padding: 10px 14px; }
+
+      /* ── Sidebar widgets stack ── */
+      .app-sidebar-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      /* ═══════════════════════════════════════════════
+         ATLAS - TICKET TABLE
+         ═══════════════════════════════════════════════ */
+      .app-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .app-table thead th {
+        font-family: var(--font-mono);
+        font-size: 0.55rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--app-text-3);
+        font-weight: 600;
+        padding: 7px 10px;
+        text-align: left;
+        border-bottom: 1px solid var(--app-border);
+      }
+      .app-table tbody td {
+        font-size: 0.65rem;
+        padding: 7px 10px;
+        color: var(--app-text-2);
+        border-bottom: 1px solid var(--app-border);
+      }
+      .app-table tbody tr:last-child td { border-bottom: none; }
+      .app-table tbody tr:hover { background: var(--app-surface-hover); }
+      .app-table .td-id {
+        font-family: var(--font-mono);
+        color: var(--app-text-3);
+        font-size: 0.6rem;
+      }
+      .app-table .td-title {
+        color: var(--app-text);
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Status & priority badges */
+      .badge {
+        font-size: 0.5rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 9px;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .badge-new      { background: rgba(99,102,241,0.15);  color: #818cf8; }
+      .badge-open     { background: rgba(59,130,246,0.15);  color: #60a5fa; }
+      .badge-progress { background: rgba(245,158,11,0.15);  color: #fbbf24; }
+      .badge-resolved { background: rgba(34,197,94,0.15);   color: #4ade80; }
+      .badge-closed   { background: rgba(128,128,128,0.15); color: #9ca3af; }
+      .prio { display: inline-flex; align-items: center; gap: 4px; font-size: 0.55rem; }
+      .prio i { font-size: 0.35rem; }
+      .prio-low    { color: #9ca3af; }
+      .prio-medium { color: #eab308; }
+      .prio-high   { color: #f97316; }
+      .prio-urgent { color: #ef4444; }
+
+      /* ═══════════════════════════════════════════════
+         ITRIA - ASSET BARS
+         ═══════════════════════════════════════════════ */
+      .asset-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 7px;
+      }
+      .asset-icon {
+        width: 22px; height: 22px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.55rem;
+        flex-shrink: 0;
+      }
+      .asset-info { flex: 1; min-width: 0; }
+      .asset-name {
+        font-size: 0.6rem;
+        color: var(--app-text-2);
+        font-weight: 500;
+      }
+      .asset-bar-track {
+        height: 4px;
+        background: var(--app-border);
+        border-radius: 2px;
+        margin-top: 3px;
+        overflow: hidden;
+      }
+      .asset-bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.8s ease;
+      }
+      .asset-count {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        font-weight: 700;
+        color: var(--app-text);
+        min-width: 28px;
+        text-align: right;
+      }
+      .asset-status-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid var(--app-border);
+      }
+      .asset-status-pill {
+        font-size: 0.5rem;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .asset-status-pill .dot {
+        width: 5px; height: 5px;
+        border-radius: 50%;
+      }
+
+      /* ═══════════════════════════════════════════════
+         IPAM - NETWORK UTILIZATION
+         ═══════════════════════════════════════════════ */
+      .subnet-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .subnet-cidr {
+        font-family: var(--font-mono);
+        font-size: 0.55rem;
+        color: var(--app-text-2);
+        min-width: 90px;
+      }
+      .subnet-track {
+        flex: 1;
+        height: 6px;
+        background: var(--app-border);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .subnet-fill {
+        height: 100%;
+        border-radius: 3px;
+        transition: width 0.6s ease;
+      }
+      .subnet-pct {
+        font-family: var(--font-mono);
+        font-size: 0.55rem;
+        font-weight: 700;
+        min-width: 30px;
+        text-align: right;
+      }
+      .subnet-label {
+        font-size: 0.5rem;
+        color: var(--app-text-3);
+        min-width: 70px;
+      }
+
+      /* ═══════════════════════════════════════════════
+         GRAVOS - WORKFLOW LIST
+         ═══════════════════════════════════════════════ */
+      .wf-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--app-border);
+      }
+      .wf-item:last-child { border-bottom: none; }
+      .wf-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+      .wf-content { flex: 1; min-width: 0; }
+      .wf-name {
+        font-size: 0.6rem;
+        font-weight: 600;
+        color: var(--app-text);
+      }
+      .wf-meta {
+        font-size: 0.5rem;
+        color: var(--app-text-3);
+        margin-top: 2px;
+      }
+      .wf-step {
+        font-family: var(--font-mono);
+        font-size: 0.48rem;
+        font-weight: 600;
+        padding: 1px 5px;
+        border-radius: 6px;
+        background: var(--app-surface-hover);
+        color: var(--app-text-3);
+        align-self: flex-start;
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+
+      /* ═══════════════════════════════════════════════
+         CORVIN / FAYRA / NEWS & DOCS
+         ═══════════════════════════════════════════════ */
+      .news-item {
+        display: flex;
+        gap: 8px;
+        padding: 7px 0;
+        border-bottom: 1px solid var(--app-border);
+      }
+      .news-item:last-child { border-bottom: none; }
+      .news-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: #ec4899;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+      .news-text {
+        font-size: 0.6rem;
+        color: var(--app-text-2);
+        line-height: 1.4;
+      }
+      .news-text strong { color: var(--app-text); font-weight: 600; }
+      .news-time {
+        font-family: var(--font-mono);
+        font-size: 0.48rem;
+        color: var(--app-text-3);
+        display: block;
+        margin-top: 1px;
+      }
+      .doc-stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .doc-stat {
+        text-align: center;
+        padding: 8px;
+        background: var(--app-surface);
+        border-radius: 8px;
+        border: 1px solid var(--app-border);
+      }
+      .doc-stat-n {
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        font-weight: 800;
+        color: var(--app-text);
+      }
+      .doc-stat-l {
+        font-size: 0.5rem;
+        color: var(--app-text-3);
+        margin-top: 1px;
+      }
+
+      /* ═══════════════════════════════════════════════
+         ACTIVITY FEED
+         ═══════════════════════════════════════════════ */
+      .act-item {
+        display: flex;
+        gap: 7px;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--app-border);
+      }
+      .act-item:last-child { border-bottom: none; }
+      .act-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+      .act-text {
+        font-size: 0.55rem;
+        color: var(--app-text-3);
+        line-height: 1.4;
+      }
+      .act-text strong { color: var(--app-text-2); }
+      .act-text .mono {
+        font-family: var(--font-mono);
+        color: var(--app-accent);
+      }
+
+      /* ═══════════════════════════════════════════════
+         SERVICES HEALTH STRIP
+         ═══════════════════════════════════════════════ */
+      .app-health {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        background: var(--app-surface);
+        border: 1px solid var(--app-border);
+        border-radius: 10px;
+        overflow-x: auto;
+      }
+      .app-health-label {
+        font-family: var(--font-mono);
+        font-size: 0.5rem;
+        font-weight: 600;
+        color: var(--app-text-3);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .health-svc {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+      .health-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: #22c55e;
+        flex-shrink: 0;
+      }
+      .health-name {
+        font-family: var(--font-mono);
+        font-size: 0.5rem;
+        color: var(--app-text-3);
+      }
+
+      /* ═══════════════════════════════════════════════
+         BOTTOM ROW - ITRIA + IPAM (full width)
+         ═══════════════════════════════════════════════ */
+      .app-bottom-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      /* ═══════════════════════════════════════════════
+         PLATFORM ARCHITECTURE (outside device)
+         ═══════════════════════════════════════════════ */
+      .platform-section {
+        margin-top: 60px;
+        margin-bottom: var(--space-2xl);
+      }
+      .platform-section h2 {
+        font-size: var(--text-xl);
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: var(--space-xs);
+      }
+      .platform-section > p {
+        font-size: var(--text-sm);
+        color: var(--text-muted);
+      }
+
+      /* ═══════════════════════════════════════════════
+         RESPONSIVE
+         ═══════════════════════════════════════════════ */
+      @media (max-width: 1200px) {
+        .platform-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      @media (max-width: 1024px) {
+        .app-kpi-row { grid-template-columns: repeat(3, 1fr); }
+        .app-widgets { grid-template-columns: 1fr; }
+        .app-bottom-row { grid-template-columns: 1fr; }
+        .platform-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 768px) {
+        .asg-showcase { padding-top: 80px; }
+        .asg-showcase-intro h1 { font-size: var(--text-2xl); }
+        .app-sidebar { display: none; }
+        .app-kpi-row { grid-template-columns: repeat(2, 1fr); }
+        .app-body { padding: 12px 14px; }
+        .device-url-bar { display: none; }
+        .device-screen { min-height: auto; }
+        .platform-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 480px) {
+        .app-kpi-row { grid-template-columns: 1fr; }
+        .device-stand { display: none; }
+        .platform-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">EA</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
+          <li><a href="index.html#services" class="nav-link">Cosa faccio</a></li>
+          <li><a href="index.html#experience" class="nav-link">Esperienze</a></li>
+          <li><a href="index.html#design" class="nav-link">Design & UI</a></li>
+          <li><a href="index.html#beyond" class="nav-link">Oltre il codice</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Cambia tema">
+            <i class="fas fa-sun" id="themeIcon"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════ ASGARD SHOWCASE ═══════════════ -->
+    <main class="asg-showcase">
+      <div class="asg-showcase-container">
+
+        <!-- ── Header ── -->
+        <div class="asg-showcase-header reveal">
+          <div class="atlas-dash-breadcrumb">
+            <a href="design-showcase.html"><i class="fas fa-arrow-left"></i> Design Showcase</a>
+            <span>/</span>
+            <span>Asgard Platform</span>
+          </div>
+          <div class="asg-showcase-intro">
+            <h1><img src="logo.png" alt="Asgard" style="height:1.2em; vertical-align: middle; margin-right: 0.3em;"> Asgard Platform</h1>
+            <p>
+              La dashboard centrale della piattaforma Asgard, un ecosistema di 10 microservizi
+              sviluppato per ASL CN1 Cuneo. Gestisce ticketing, asset IT, workflow, documenti,
+              news, identit&agrave; e accessi su un&rsquo;architettura distribuita.
+            </p>
+            <div class="asg-showcase-meta">
+              <span class="asg-showcase-tag">NestJS</span>
+              <span class="asg-showcase-tag">Angular</span>
+              <span class="asg-showcase-tag">MongoDB</span>
+              <span class="asg-showcase-tag">RabbitMQ</span>
+              <span class="asg-showcase-tag">PrimeNG</span>
+              <span class="asg-showcase-tag">10 Microservizi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════ DEVICE FRAME ═══════════════ -->
+        <div class="device-frame reveal">
+          <!-- Browser chrome -->
+          <div class="device-topbar">
+            <div class="device-dots"><span></span><span></span><span></span></div>
+            <div class="device-url-bar">
+              <i class="fas fa-lock"></i>
+              asgard.aslcn1.local/dashboard
+            </div>
+            <div class="device-nav-actions">
+              <i class="fas fa-arrow-left"></i>
+              <i class="fas fa-arrow-right"></i>
+              <i class="fas fa-redo-alt"></i>
+            </div>
+          </div>
+
+          <!-- ═══ APP SCREEN ═══ -->
+          <div class="device-screen">
+
+            <!-- Drawer sidebar -->
+            <div class="app-sidebar">
+              <div class="app-sidebar-header">
+                <div class="app-sidebar-logo"><img src="logo.png" alt="Asgard"></div>
+                <div class="app-sidebar-brand">ASGARD <small>Platform v3.2</small></div>
+              </div>
+              <div class="app-sidebar-search">
+                <i class="fas fa-search"></i> Cerca&hellip;
+                <kbd>&#8984;K</kbd>
+              </div>
+
+              <div class="app-sidebar-section">
+                <div class="app-sidebar-section-title">Menu Principale</div>
+                <div class="app-sidebar-item active">
+                  <i class="fas fa-th-large"></i> Dashboard
+                </div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-ticket-alt"></i> Atlas &mdash; Ticket
+                  <span class="app-sidebar-item-badge">34</span>
+                </div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-server"></i> Itria &mdash; Asset
+                  <span class="app-sidebar-item-badge">1,247</span>
+                </div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-project-diagram"></i> Gravos &mdash; Workflow
+                  <span class="app-sidebar-item-badge">23</span>
+                </div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-folder-open"></i> Fayra &mdash; Documenti
+                </div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-newspaper"></i> Corvin &mdash; News
+                </div>
+              </div>
+
+              <div class="app-sidebar-section">
+                <div class="app-sidebar-section-title">Gestione</div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-users"></i> Heimdall &mdash; Utenti
+                  <span class="app-sidebar-item-badge">342</span>
+                </div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-question-circle"></i> Elios &mdash; FAQ
+                </div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-search"></i> Bravon &mdash; Ricerca
+                </div>
+                <div class="app-sidebar-item">
+                  <i class="fas fa-bell"></i> Deltor &mdash; Notifiche
+                  <span class="app-sidebar-item-badge">3</span>
+                </div>
+              </div>
+
+              <div class="app-sidebar-spacer"></div>
+
+              <div class="app-sidebar-section">
+                <div class="app-sidebar-item">
+                  <i class="fas fa-cog"></i> Impostazioni
+                </div>
+              </div>
+
+              <div class="app-sidebar-footer">
+                <div class="app-sidebar-user">
+                  <div class="app-sidebar-avatar"></div>
+                  <div class="app-sidebar-user-info">
+                    <div class="app-sidebar-user-name">M. Rossi</div>
+                    <div class="app-sidebar-user-role">Amministratore IT</div>
+                  </div>
+                  <i class="fas fa-ellipsis-v app-sidebar-user-icon"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="app-main">
+              <!-- Body -->
+              <div class="app-body">
+                <div class="app-page-title">Panoramica Piattaforma</div>
+                <div class="app-page-sub">ASL CN1 Cuneo &mdash; Dati aggiornati al 16 Marzo 2026</div>
+
+                <!-- ══════ KPI ROW ══════ -->
+                <div class="app-kpi-row">
+                  <div class="app-kpi" data-color="blue">
+                    <div class="app-kpi-top">
+                      <span class="app-kpi-module">Heimdall</span>
+                      <span class="app-kpi-trend up"><i class="fas fa-arrow-up"></i> +8</span>
+                    </div>
+                    <div class="app-kpi-number">342</div>
+                    <div class="app-kpi-label">Utenti Attivi</div>
+                  </div>
+                  <div class="app-kpi" data-color="amber">
+                    <div class="app-kpi-top">
+                      <span class="app-kpi-module">Itria</span>
+                      <span class="app-kpi-trend up"><i class="fas fa-arrow-up"></i> +15</span>
+                    </div>
+                    <div class="app-kpi-number">1,247</div>
+                    <div class="app-kpi-label">Asset IT Totali</div>
+                  </div>
+                  <div class="app-kpi" data-color="indigo">
+                    <div class="app-kpi-top">
+                      <span class="app-kpi-module">Atlas</span>
+                      <span class="app-kpi-trend down"><i class="fas fa-arrow-down"></i> -8%</span>
+                    </div>
+                    <div class="app-kpi-number">34</div>
+                    <div class="app-kpi-label">Ticket Aperti</div>
+                  </div>
+                  <div class="app-kpi" data-color="purple">
+                    <div class="app-kpi-top">
+                      <span class="app-kpi-module">Fayra</span>
+                      <span class="app-kpi-trend up"><i class="fas fa-arrow-up"></i> +156</span>
+                    </div>
+                    <div class="app-kpi-number">1,892</div>
+                    <div class="app-kpi-label">Documenti Archiviati</div>
+                  </div>
+                  <div class="app-kpi" data-color="cyan">
+                    <div class="app-kpi-top">
+                      <span class="app-kpi-module">Gravos</span>
+                      <span class="app-kpi-trend down"><i class="fas fa-arrow-down"></i> 7 mie</span>
+                    </div>
+                    <div class="app-kpi-number">23</div>
+                    <div class="app-kpi-label">Workflow Pendenti</div>
+                  </div>
+                  <div class="app-kpi" data-color="green">
+                    <div class="app-kpi-top">
+                      <span class="app-kpi-module">SLA</span>
+                      <span class="app-kpi-trend up"><i class="fas fa-arrow-up"></i> +1.2%</span>
+                    </div>
+                    <div class="app-kpi-number">96.8<small>%</small></div>
+                    <div class="app-kpi-label">SLA Compliance</div>
+                  </div>
+                </div>
+
+                <!-- ══════ MAIN WIDGETS ══════ -->
+                <div class="app-widgets">
+                  <!-- LEFT: Atlas table + below row -->
+                  <div>
+                    <!-- Atlas Ticket Table -->
+                    <div class="app-widget" style="margin-bottom:14px;">
+                      <div class="app-w-head">
+                        <span class="app-w-title" style="color:#818cf8;"><i class="fas fa-ticket-alt"></i> Atlas &mdash; Ticket Recenti</span>
+                        <span class="app-w-badge">487 totali</span>
+                      </div>
+                      <div style="overflow-x:auto;">
+                        <table class="app-table">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Titolo</th>
+                              <th>Stato</th>
+                              <th>Priorit&agrave;</th>
+                              <th>Categoria</th>
+                              <th>Assegnato</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="td-id">#1247</td>
+                              <td class="td-title">Stampante non funzionante &mdash; Piano 3 Ala B</td>
+                              <td><span class="badge badge-open">OPEN</span></td>
+                              <td><span class="prio prio-high"><i class="fas fa-circle"></i> HIGH</span></td>
+                              <td>Hardware</td>
+                              <td>M. Rossi</td>
+                            </tr>
+                            <tr>
+                              <td class="td-id">#1246</td>
+                              <td class="td-title">Richiesta accesso VPN per telelavoro</td>
+                              <td><span class="badge badge-progress">IN_PROGRESS</span></td>
+                              <td><span class="prio prio-medium"><i class="fas fa-circle"></i> MEDIUM</span></td>
+                              <td>Rete</td>
+                              <td>G. Verdi</td>
+                            </tr>
+                            <tr>
+                              <td class="td-id">#1245</td>
+                              <td class="td-title">Reset password utente LDAP</td>
+                              <td><span class="badge badge-resolved">RESOLVED</span></td>
+                              <td><span class="prio prio-low"><i class="fas fa-circle"></i> LOW</span></td>
+                              <td>Account</td>
+                              <td>A. Bianchi</td>
+                            </tr>
+                            <tr>
+                              <td class="td-id">#1244</td>
+                              <td class="td-title">Monitor flickering postazione 12</td>
+                              <td><span class="badge badge-new">NEW</span></td>
+                              <td><span class="prio prio-medium"><i class="fas fa-circle"></i> MEDIUM</span></td>
+                              <td>Hardware</td>
+                              <td>&mdash;</td>
+                            </tr>
+                            <tr>
+                              <td class="td-id">#1243</td>
+                              <td class="td-title">Aggiornamento Office 365 &mdash; Radiologia</td>
+                              <td><span class="badge badge-progress">IN_PROGRESS</span></td>
+                              <td><span class="prio prio-high"><i class="fas fa-circle"></i> HIGH</span></td>
+                              <td>Software</td>
+                              <td>P. Neri</td>
+                            </tr>
+                            <tr>
+                              <td class="td-id">#1241</td>
+                              <td class="td-title">Connessione lenta sede distaccata Mondov&igrave;</td>
+                              <td><span class="badge badge-open">OPEN</span></td>
+                              <td><span class="prio prio-urgent"><i class="fas fa-circle"></i> URGENT</span></td>
+                              <td>Rete</td>
+                              <td>G. Verdi</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <!-- Itria Asset Inventory + IPAM side by side -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                      <!-- Itria Assets -->
+                      <div class="app-widget">
+                        <div class="app-w-head">
+                          <span class="app-w-title" style="color:#fbbf24;"><i class="fas fa-server"></i> Itria &mdash; Inventario Asset</span>
+                          <span class="app-w-badge">1,247</span>
+                        </div>
+                        <div class="app-w-body">
+                          <div class="asset-row">
+                            <div class="asset-icon" style="background:rgba(99,102,241,0.12);color:#818cf8;"><i class="fas fa-desktop"></i></div>
+                            <div class="asset-info">
+                              <div class="asset-name">Desktop PC</div>
+                              <div class="asset-bar-track"><div class="asset-bar-fill" style="width:33%;background:#6366f1;"></div></div>
+                            </div>
+                            <span class="asset-count">412</span>
+                          </div>
+                          <div class="asset-row">
+                            <div class="asset-icon" style="background:rgba(59,130,246,0.12);color:#60a5fa;"><i class="fas fa-laptop"></i></div>
+                            <div class="asset-info">
+                              <div class="asset-name">Laptop</div>
+                              <div class="asset-bar-track"><div class="asset-bar-fill" style="width:15%;background:#3b82f6;"></div></div>
+                            </div>
+                            <span class="asset-count">187</span>
+                          </div>
+                          <div class="asset-row">
+                            <div class="asset-icon" style="background:rgba(168,85,247,0.12);color:#c084fc;"><i class="fas fa-tv"></i></div>
+                            <div class="asset-info">
+                              <div class="asset-name">Monitor</div>
+                              <div class="asset-bar-track"><div class="asset-bar-fill" style="width:24%;background:#a855f7;"></div></div>
+                            </div>
+                            <span class="asset-count">298</span>
+                          </div>
+                          <div class="asset-row">
+                            <div class="asset-icon" style="background:rgba(236,72,153,0.12);color:#f472b6;"><i class="fas fa-print"></i></div>
+                            <div class="asset-info">
+                              <div class="asset-name">Stampanti</div>
+                              <div class="asset-bar-track"><div class="asset-bar-fill" style="width:7.5%;background:#ec4899;"></div></div>
+                            </div>
+                            <span class="asset-count">94</span>
+                          </div>
+                          <div class="asset-row">
+                            <div class="asset-icon" style="background:rgba(245,158,11,0.12);color:#fbbf24;"><i class="fas fa-phone-alt"></i></div>
+                            <div class="asset-info">
+                              <div class="asset-name">Telefoni IP</div>
+                              <div class="asset-bar-track"><div class="asset-bar-fill" style="width:5.4%;background:#f59e0b;"></div></div>
+                            </div>
+                            <span class="asset-count">67</span>
+                          </div>
+                          <div class="asset-row">
+                            <div class="asset-icon" style="background:rgba(107,114,128,0.12);color:#9ca3af;"><i class="fas fa-hdd"></i></div>
+                            <div class="asset-info">
+                              <div class="asset-name">Altro</div>
+                              <div class="asset-bar-track"><div class="asset-bar-fill" style="width:15.2%;background:#6b7280;"></div></div>
+                            </div>
+                            <span class="asset-count">189</span>
+                          </div>
+                          <!-- Status pills -->
+                          <div class="asset-status-row">
+                            <span class="asset-status-pill" style="background:rgba(34,197,94,0.1);color:#4ade80;"><span class="dot" style="background:#22c55e;"></span> In uso 834</span>
+                            <span class="asset-status-pill" style="background:rgba(59,130,246,0.1);color:#60a5fa;"><span class="dot" style="background:#3b82f6;"></span> Disponibili 156</span>
+                            <span class="asset-status-pill" style="background:rgba(245,158,11,0.1);color:#fbbf24;"><span class="dot" style="background:#f59e0b;"></span> Manutenz. 89</span>
+                            <span class="asset-status-pill" style="background:rgba(239,68,68,0.1);color:#f87171;"><span class="dot" style="background:#ef4444;"></span> Dismessi 43</span>
+                          </div>
+                          <div style="font-size:0.48rem;color:var(--app-text-3);margin-top:8px;font-family:var(--font-mono);">
+                            5 sedi &bull; 23 location &bull; 47 subnet
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- IPAM Network -->
+                      <div class="app-widget">
+                        <div class="app-w-head">
+                          <span class="app-w-title" style="color:#fbbf24;"><i class="fas fa-network-wired"></i> Itria &mdash; IPAM &amp; Rete</span>
+                          <span class="app-w-badge">12 VLAN</span>
+                        </div>
+                        <div class="app-w-body">
+                          <div class="subnet-row">
+                            <span class="subnet-cidr">10.69.1.0/24</span>
+                            <div class="subnet-track"><div class="subnet-fill" style="width:82%;background:linear-gradient(90deg,#22c55e,#f59e0b);"></div></div>
+                            <span class="subnet-pct" style="color:#f59e0b;">82%</span>
+                            <span class="subnet-label">Sede Cuneo</span>
+                          </div>
+                          <div class="subnet-row">
+                            <span class="subnet-cidr">10.69.2.0/24</span>
+                            <div class="subnet-track"><div class="subnet-fill" style="width:67%;background:#22c55e;"></div></div>
+                            <span class="subnet-pct" style="color:#4ade80;">67%</span>
+                            <span class="subnet-label">Mondov&igrave;</span>
+                          </div>
+                          <div class="subnet-row">
+                            <span class="subnet-cidr">10.69.3.0/24</span>
+                            <div class="subnet-track"><div class="subnet-fill" style="width:53%;background:#22c55e;"></div></div>
+                            <span class="subnet-pct" style="color:#4ade80;">53%</span>
+                            <span class="subnet-label">Saluzzo</span>
+                          </div>
+                          <div class="subnet-row">
+                            <span class="subnet-cidr">10.69.4.0/24</span>
+                            <div class="subnet-track"><div class="subnet-fill" style="width:94%;background:linear-gradient(90deg,#f59e0b,#ef4444);"></div></div>
+                            <span class="subnet-pct" style="color:#ef4444;">94%</span>
+                            <span class="subnet-label">Server Farm</span>
+                          </div>
+                          <div class="subnet-row">
+                            <span class="subnet-cidr">10.69.5.0/24</span>
+                            <div class="subnet-track"><div class="subnet-fill" style="width:41%;background:#22c55e;"></div></div>
+                            <span class="subnet-pct" style="color:#4ade80;">41%</span>
+                            <span class="subnet-label">Savigliano</span>
+                          </div>
+                          <div class="subnet-row">
+                            <span class="subnet-cidr">10.69.10.0/23</span>
+                            <div class="subnet-track"><div class="subnet-fill" style="width:76%;background:linear-gradient(90deg,#22c55e,#f59e0b);"></div></div>
+                            <span class="subnet-pct" style="color:#fbbf24;">76%</span>
+                            <span class="subnet-label">WiFi Corp</span>
+                          </div>
+                          <!-- Summary -->
+                          <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--app-border);display:flex;justify-content:space-between;align-items:center;">
+                            <span style="font-size:0.55rem;color:var(--app-text-3);">IP Allocati</span>
+                            <span style="font-family:var(--font-mono);font-size:0.65rem;font-weight:700;color:var(--app-text);">2,140 <span style="color:var(--app-text-3);font-weight:400;">/ 3,072</span></span>
+                          </div>
+                          <div style="height:4px;background:var(--app-border);border-radius:2px;margin-top:4px;">
+                            <div style="height:100%;width:69.7%;background:linear-gradient(90deg,#3b82f6,#6366f1);border-radius:2px;"></div>
+                          </div>
+                          <div style="font-size:0.48rem;color:var(--app-text-3);margin-top:6px;font-family:var(--font-mono);display:flex;justify-content:space-between;">
+                            <span>47 subnet &bull; 12 VLAN &bull; FortiNAC sync 02:00</span>
+                            <span style="color:#4ade80;">69.7% utilizzato</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- RIGHT: Sidebar stack -->
+                  <div class="app-sidebar-stack">
+
+                    <!-- Gravos Workflows -->
+                    <div class="app-widget">
+                      <div class="app-w-head">
+                        <span class="app-w-title" style="color:#22d3ee;"><i class="fas fa-project-diagram"></i> Gravos &mdash; Workflow</span>
+                        <span class="app-w-badge">23 pendenti</span>
+                      </div>
+                      <div class="app-w-body">
+                        <div class="wf-item">
+                          <div class="wf-dot" style="background:#f59e0b;"></div>
+                          <div class="wf-content">
+                            <div class="wf-name">Richiesta Ferie &mdash; F. Gallo</div>
+                            <div class="wf-meta">In attesa approvazione HR</div>
+                          </div>
+                          <span class="wf-step">2/3</span>
+                        </div>
+                        <div class="wf-item">
+                          <div class="wf-dot" style="background:#06b6d4;"></div>
+                          <div class="wf-content">
+                            <div class="wf-name">Richiesta Permesso &mdash; S. Costa</div>
+                            <div class="wf-meta">In attesa manager diretto</div>
+                          </div>
+                          <span class="wf-step">1/3</span>
+                        </div>
+                        <div class="wf-item">
+                          <div class="wf-dot" style="background:#22c55e;"></div>
+                          <div class="wf-content">
+                            <div class="wf-name">Acquisto Monitor &mdash; IT Dept</div>
+                            <div class="wf-meta">Approvato &mdash; in esecuzione</div>
+                          </div>
+                          <span class="wf-step">3/3</span>
+                        </div>
+                        <div class="wf-item">
+                          <div class="wf-dot" style="background:#f59e0b;"></div>
+                          <div class="wf-content">
+                            <div class="wf-name">Onboarding &mdash; L. Bianchi</div>
+                            <div class="wf-meta">In attesa IT provisioning</div>
+                          </div>
+                          <span class="wf-step">1/2</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Corvin News + Fayra Docs -->
+                    <div class="app-widget">
+                      <div class="app-w-head">
+                        <span class="app-w-title" style="color:#f472b6;"><i class="fas fa-newspaper"></i> Corvin &mdash; News</span>
+                        <span class="app-w-badge">3,400 views</span>
+                      </div>
+                      <div class="app-w-body" style="padding-bottom:0;">
+                        <div class="news-item">
+                          <div class="news-dot"></div>
+                          <div class="news-text">
+                            <strong>Aggiornamento policy sicurezza informatica</strong>
+                            <span class="news-time">2 ore fa &bull; 1,240 views</span>
+                          </div>
+                        </div>
+                        <div class="news-item">
+                          <div class="news-dot" style="background:#06b6d4;"></div>
+                          <div class="news-text">
+                            <strong>Nuovi orari sportelli CUP dal 1 Aprile</strong>
+                            <span class="news-time">1 giorno fa &bull; 890 views</span>
+                          </div>
+                        </div>
+                        <div class="news-item">
+                          <div class="news-dot" style="background:#f59e0b;"></div>
+                          <div class="news-text">
+                            <strong>Manutenzione server programmata 22 Mar</strong>
+                            <span class="news-time">3 giorni fa &bull; 674 views</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Fayra Documents -->
+                    <div class="app-widget">
+                      <div class="app-w-head">
+                        <span class="app-w-title" style="color:#c084fc;"><i class="fas fa-folder-open"></i> Fayra &mdash; Archivio</span>
+                        <span class="app-w-badge">+156 mese</span>
+                      </div>
+                      <div class="app-w-body">
+                        <div class="doc-stat-grid">
+                          <div class="doc-stat">
+                            <div class="doc-stat-n" style="color:#c084fc;">1,658</div>
+                            <div class="doc-stat-l">Documenti</div>
+                          </div>
+                          <div class="doc-stat">
+                            <div class="doc-stat-n" style="color:#a855f7;">234</div>
+                            <div class="doc-stat-l">Procedure</div>
+                          </div>
+                          <div class="doc-stat">
+                            <div class="doc-stat-n" style="color:#818cf8;">47</div>
+                            <div class="doc-stat-l">FAQ Attive</div>
+                          </div>
+                          <div class="doc-stat">
+                            <div class="doc-stat-n" style="color:#22d3ee;">12</div>
+                            <div class="doc-stat-l">Categorie</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Activity Feed -->
+                    <div class="app-widget">
+                      <div class="app-w-head">
+                        <span class="app-w-title"><i class="fas fa-history"></i> Attivit&agrave; Recente</span>
+                      </div>
+                      <div class="app-w-body">
+                        <div class="act-item">
+                          <div class="act-dot" style="background:#22c55e;"></div>
+                          <div class="act-text"><strong>M. Rossi</strong> ha risolto ticket <span class="mono">#1245</span> &bull; 2 min</div>
+                        </div>
+                        <div class="act-item">
+                          <div class="act-dot" style="background:#6366f1;"></div>
+                          <div class="act-text"><strong>L. Bianchi</strong> ha creato ticket <span class="mono">#1247</span> &bull; 15 min</div>
+                        </div>
+                        <div class="act-item">
+                          <div class="act-dot" style="background:#a855f7;"></div>
+                          <div class="act-text"><strong>P. Neri</strong> ha caricato <span class="mono">Procedura_004.pdf</span> &bull; 30 min</div>
+                        </div>
+                        <div class="act-item">
+                          <div class="act-dot" style="background:#f59e0b;"></div>
+                          <div class="act-text"><strong>Sistema</strong> ha assegnato <span class="mono">#1246</span> a G. Verdi &bull; 1h</div>
+                        </div>
+                        <div class="act-item">
+                          <div class="act-dot" style="background:#ef4444;"></div>
+                          <div class="act-text"><strong>SLA Alert</strong> &mdash; <span class="mono">#1241</span> breach limite &bull; 2h</div>
+                        </div>
+                        <div class="act-item">
+                          <div class="act-dot" style="background:#ec4899;"></div>
+                          <div class="act-text"><strong>Corvin</strong> ha pubblicato news &ldquo;Policy Sicurezza&rdquo; &bull; 2h</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ══════ SERVICES HEALTH ══════ -->
+                <div class="app-health">
+                  <span class="app-health-label">Servizi</span>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Asgard</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Atlas</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Bravon</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Corvin</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Deltor</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Elios</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Fayra</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Gravos</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Heimdall</span></div>
+                  <div class="health-svc"><span class="health-dot"></span><span class="health-name">Itria</span></div>
+                </div>
+
+              </div><!-- /app-body -->
+            </div><!-- /app-main -->
+          </div><!-- /device-screen -->
+        </div><!-- /device-frame -->
+
+        <!-- Stand -->
+        <div class="device-stand reveal"></div>
+
+        <!-- ═══════════════ LINK ARCHITETTURA ═══════════════ -->
+        <div class="platform-section reveal" style="text-align:center;">
+          <h2>10 Microservizi. Un Ecosistema.</h2>
+          <p style="max-width:560px;margin:0 auto var(--space-xl);">
+            Asgard integra ticketing, asset IT, workflow, documenti, news, notifiche,
+            FAQ, logging, identit&agrave; e ricerca in un&rsquo;architettura distribuita.
+          </p>
+          <a href="projects.html#asgard" class="btn btn-primary">
+            <i class="fas fa-sitemap"></i> Scopri l&rsquo;architettura completa
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <span class="logo-bracket">&lt;</span>
+              <span class="logo-text">EA</span>
+              <span class="logo-bracket">/&gt;</span>
+            </a>
+            <p>
+              Enrico Arnaudo &mdash; Informatico presso ASL CN1. Cuneo,
+              Italia.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h5>Navigazione</h5>
+            <ul>
+              <li><a href="index.html#about">Chi sono</a></li>
+              <li><a href="index.html#services">Cosa faccio</a></li>
+              <li><a href="index.html#experience">Esperienze</a></li>
+              <li><a href="index.html#design">Design & UI</a></li>
+              <li><a href="index.html#beyond">Oltre il codice</a></li>
+              <li><a href="index.html#contact">Contatti</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h5>Competenze</h5>
+            <ul>
+              <li>Full-Stack Development</li>
+              <li>Microsoft Ecosystem</li>
+              <li>Cloud & DevOps</li>
+              <li>UI/UX Design</li>
+              <li>Sistemi Distribuiti</li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h5>Contatti</h5>
+            <p>
+              <a href="mailto:arnaudoenrico@gmail.com"
+                >arnaudoenrico@gmail.com</a
+              >
+            </p>
+            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
+            <p>Bernezzo (CN), Italia</p>
+            <div class="footer-social">
+              <a
+                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Enrico Arnaudo. Tutti i diritti riservati.</p>
+          <div class="footer-bottom-links">
+            <a href="index.html#privacy">Privacy Policy</a>
+            <span>&middot;</span>
+            <a href="index.html#contact">Contatti</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
