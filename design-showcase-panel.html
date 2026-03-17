@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pannello Clinico — Design Showcase — Enrico Arnaudo</title>
+    <meta
+      name="description"
+      content="Case study: design di un pannello di gestione clinica per il monitoraggio pazienti. Dall'analisi al risultato finale."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">EA</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
+          <li><a href="index.html#services" class="nav-link">Cosa faccio</a></li>
+          <li><a href="index.html#experience" class="nav-link">Esperienze</a></li>
+          <li><a href="index.html#design" class="nav-link">Design & UI</a></li>
+          <li><a href="index.html#beyond" class="nav-link">Oltre il codice</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Cambia tema"
+          >
+            <i class="fas fa-sun" id="themeIcon"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="project-hero" id="home">
+      <div class="hero-bg">
+        <div class="hero-grid"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+      </div>
+      <div class="project-hero-content">
+        <a href="index.html#design" class="btn btn-ghost project-back-btn reveal">
+          <i class="fas fa-arrow-left"></i> Torna al portfolio
+        </a>
+        <h1 class="hero-title reveal">
+          <span class="title-line">Pannello</span>
+          <span class="title-line title-accent">Clinico</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+          Redesign concettuale di un pannello per il monitoraggio a distanza
+          dei pazienti in ambito sanitario. Semplicit&agrave;, chiarezza, zero decorazioni.
+        </p>
+        <div class="project-nav reveal">
+          <a href="#contesto" class="project-nav-link">
+            <i class="fas fa-stethoscope"></i> Contesto
+          </a>
+          <a href="#wireframe" class="project-nav-link">
+            <i class="fas fa-pencil-ruler"></i> Wireframe
+          </a>
+          <a href="#prototipo" class="project-nav-link">
+            <i class="fas fa-fill-drip"></i> Prototipo
+          </a>
+          <a href="#risultato" class="project-nav-link">
+            <i class="fas fa-check-circle"></i> Risultato
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ CASE STUDY: PANNELLO CLINICO ═══════════════ -->
+    <section class="section project-section" id="contesto">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Case Study &mdash; Monitoraggio Pazienti</span>
+          <h2 class="section-title">Scheda Clinica Paziente</h2>
+          <p class="section-desc">
+            Durante l'emergenza COVID-19, il monitoraggio a distanza dei pazienti
+            richiedeva un'interfaccia che fosse prima di tutto chiara, veloce da leggere
+            e impossibile da fraintendere, anche sotto pressione.
+          </p>
+        </div>
+
+        <!-- Intro -->
+        <div class="project-intro reveal">
+          <div class="project-meta">
+            <span class="project-type">
+              <i class="fas fa-palette"></i> UI Design
+            </span>
+            <span class="project-type">
+              <i class="fas fa-laptop-medical"></i> Pannello Gestionale
+            </span>
+            <span class="project-type">
+              <i class="fas fa-hospital"></i> Sanit&agrave; Pubblica
+            </span>
+            <div class="project-tags">
+              <span>Figma</span>
+              <span>Angular</span>
+              <span>Design Funzionale</span>
+              <span>Accessibilit&agrave;</span>
+              <span>Timeline</span>
+              <span>Colori Semantici</span>
+            </div>
+          </div>
+          <p>
+            Questo case study illustra il redesign concettuale di un pannello di
+            monitoraggio pazienti che avevo sviluppato durante l'emergenza COVID-19.
+            L'interfaccia originale era funzionale ma costruita in fretta; qui mostro
+            il processo di riprogettazione con un focus sulle scelte di design
+            che rendono un pannello gestionale clinico efficace.
+          </p>
+          <p>
+            A differenza di una dashboard enterprise, un pannello clinico non deve
+            essere <em>accattivante</em> &mdash; deve essere <strong>invisibile</strong>.
+            L'operatore sanitario non ha tempo di interpretare grafiche elaborate:
+            ogni informazione deve essere leggibile in meno di un secondo,
+            con colori che parlano da soli.
+          </p>
+        </div>
+
+        <!-- 01. Wireframe -->
+        <div class="project-block reveal" id="wireframe">
+          <div class="project-block-text">
+            <h3>01. Wireframe &mdash; Architettura dell'Informazione Clinica</h3>
+            <p>
+              Il wireframe parte da una domanda: cosa deve vedere un operatore sanitario
+              quando apre la scheda di un paziente monitorato a distanza?
+              Non grafici complessi, ma uno <strong>stato immediato</strong> e una
+              <strong>cronologia leggibile</strong>.
+            </p>
+            <p>
+              La struttura si divide in due zone: a sinistra l'anagrafica e lo stato
+              corrente del paziente; a destra il diario clinico come timeline verticale.
+              Nessun drawer, nessun sidebar nascosto &mdash; tutto visibile al primo colpo.
+            </p>
+            <ul class="project-list">
+              <li>Header minimale con nome paziente, codice fiscale e stato corrente</li>
+              <li>Sezione sinistra: dati anagrafici, parametri vitali, stato sorveglianza</li>
+              <li>Sezione destra: timeline/diario con eventi in ordine cronologico</li>
+              <li>Nessuna navigazione complessa: una sola pagina, tutte le informazioni</li>
+            </ul>
+          </div>
+          <div class="design-visual">
+            <div class="design-visual-header">
+              <span class="design-phase-badge">Wireframe</span>
+            </div>
+            <div class="mockup-browser">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="browser-content clinic-browser-content">
+                <div class="clinic-wireframe">
+                  <!-- Top bar -->
+                  <div class="cwf-topbar">
+                    <div class="cwf-topbar-left">
+                      <div class="cwf-avatar-wf"></div>
+                      <div class="cwf-name-block">
+                        <div class="cwf-name-line"></div>
+                        <div class="cwf-code-line"></div>
+                      </div>
+                    </div>
+                    <div class="cwf-status-wf"></div>
+                  </div>
+                  <!-- Body -->
+                  <div class="cwf-body">
+                    <!-- Left: patient data -->
+                    <div class="cwf-data-col">
+                      <div class="cwf-section-title"></div>
+                      <div class="cwf-field"></div>
+                      <div class="cwf-field"></div>
+                      <div class="cwf-field cwf-field-short"></div>
+                      <div class="cwf-section-title" style="margin-top:8px"></div>
+                      <div class="cwf-vitals-row">
+                        <div class="cwf-vital"></div>
+                        <div class="cwf-vital"></div>
+                        <div class="cwf-vital"></div>
+                      </div>
+                    </div>
+                    <!-- Right: timeline -->
+                    <div class="cwf-timeline-col">
+                      <div class="cwf-section-title"></div>
+                      <div class="cwf-timeline">
+                        <div class="cwf-tl-item">
+                          <div class="cwf-tl-dot"></div>
+                          <div class="cwf-tl-content">
+                            <div class="cwf-tl-date"></div>
+                            <div class="cwf-tl-text"></div>
+                          </div>
+                        </div>
+                        <div class="cwf-tl-item">
+                          <div class="cwf-tl-dot"></div>
+                          <div class="cwf-tl-content">
+                            <div class="cwf-tl-date"></div>
+                            <div class="cwf-tl-text"></div>
+                            <div class="cwf-tl-text cwf-tl-text-short"></div>
+                          </div>
+                        </div>
+                        <div class="cwf-tl-item">
+                          <div class="cwf-tl-dot"></div>
+                          <div class="cwf-tl-content">
+                            <div class="cwf-tl-date"></div>
+                            <div class="cwf-tl-text"></div>
+                          </div>
+                        </div>
+                        <div class="cwf-tl-item">
+                          <div class="cwf-tl-dot"></div>
+                          <div class="cwf-tl-content">
+                            <div class="cwf-tl-date"></div>
+                            <div class="cwf-tl-text"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02. Prototipo -->
+        <div class="project-block reveal" id="prototipo">
+          <div class="project-block-text">
+            <h3>02. Prototipo &mdash; Colore come Linguaggio Funzionale</h3>
+            <p>
+              Nel prototipo entra il colore, ma con una regola ferrea: ogni colore
+              &egrave; una <strong>funzione</strong>, non una decorazione. Il background resta
+              bianco puro (#FFFFFF) senza sfumature, senza gradienti &mdash; il contesto clinico
+              richiede massima leggibilit&agrave;.
+            </p>
+            <p>
+              La timeline diventa il cuore dell'interfaccia: ogni evento ha un colore
+              e un'icona univoci. Un vaccino &egrave; sempre verde con la siringa,
+              una quarantena &egrave; sempre arancione col lucchetto, una nota clinica &egrave;
+              sempre blu con il quaderno. L'operatore non legge: <em>riconosce</em>.
+            </p>
+            <ul class="project-list">
+              <li>Background bianco puro, nessuna sfumatura o gradiente</li>
+              <li>Palette a 5 colori semantici: verde (vaccino), arancione (quarantena), blu (nota), rosso (allerta), grigio (sistema)</li>
+              <li>Icone univoche per tipo evento: siringa, lucchetto, clipboard, exclamation, cog</li>
+              <li>Stato paziente con badge a colore pieno: immediato e inequivocabile</li>
+            </ul>
+          </div>
+          <div class="design-visual">
+            <div class="design-visual-header">
+              <span class="design-phase-badge design-phase-proto">Prototipo</span>
+            </div>
+            <div class="mockup-browser">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="browser-content clinic-browser-content">
+                <div class="clinic-prototype">
+                  <!-- Top bar -->
+                  <div class="cp-topbar">
+                    <div class="cp-topbar-left">
+                      <div class="cp-avatar">MR</div>
+                      <div class="cp-name-block">
+                        <div class="cp-name">Mario Rossi</div>
+                        <div class="cp-code">RSSMRA85M01H501Z</div>
+                      </div>
+                    </div>
+                    <div class="cp-status cp-status-sorveglianza">Sorveglianza attiva</div>
+                  </div>
+                  <!-- Body -->
+                  <div class="cp-body">
+                    <!-- Left: patient info -->
+                    <div class="cp-info-col">
+                      <div class="cp-section-label">Anagrafica</div>
+                      <div class="cp-field">
+                        <span class="cp-field-label">Nato il</span>
+                        <span class="cp-field-value">01/08/1985</span>
+                      </div>
+                      <div class="cp-field">
+                        <span class="cp-field-label">Residenza</span>
+                        <span class="cp-field-value">Cuneo (CN)</span>
+                      </div>
+                      <div class="cp-field">
+                        <span class="cp-field-label">Telefono</span>
+                        <span class="cp-field-value">347 *** 1234</span>
+                      </div>
+                      <div class="cp-section-label" style="margin-top: 6px;">Parametri</div>
+                      <div class="cp-vitals">
+                        <div class="cp-vital">
+                          <div class="cp-vital-value">36.4&deg;</div>
+                          <div class="cp-vital-label">Temp.</div>
+                        </div>
+                        <div class="cp-vital">
+                          <div class="cp-vital-value">97%</div>
+                          <div class="cp-vital-label">SpO2</div>
+                        </div>
+                        <div class="cp-vital">
+                          <div class="cp-vital-value cp-vital-ok">Buono</div>
+                          <div class="cp-vital-label">Stato</div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Right: timeline -->
+                    <div class="cp-timeline-col">
+                      <div class="cp-section-label">Diario Clinico</div>
+                      <div class="cp-timeline">
+                        <div class="cp-tl-item">
+                          <div class="cp-tl-dot cp-dot-vaccine"><i class="fas fa-syringe"></i></div>
+                          <div class="cp-tl-body">
+                            <div class="cp-tl-date">15 Mar 2021</div>
+                            <div class="cp-tl-title">Vaccino — 2&ordf; dose Pfizer</div>
+                          </div>
+                        </div>
+                        <div class="cp-tl-item">
+                          <div class="cp-tl-dot cp-dot-note"><i class="fas fa-clipboard"></i></div>
+                          <div class="cp-tl-body">
+                            <div class="cp-tl-date">10 Mar 2021</div>
+                            <div class="cp-tl-title">Nota — Controllo telefonico</div>
+                            <div class="cp-tl-desc">Paziente asintomatico, parametri stabili.</div>
+                          </div>
+                        </div>
+                        <div class="cp-tl-item">
+                          <div class="cp-tl-dot cp-dot-quarantine"><i class="fas fa-lock"></i></div>
+                          <div class="cp-tl-body">
+                            <div class="cp-tl-date">28 Feb 2021</div>
+                            <div class="cp-tl-title">Fine quarantena</div>
+                          </div>
+                        </div>
+                        <div class="cp-tl-item">
+                          <div class="cp-tl-dot cp-dot-alert"><i class="fas fa-exclamation-triangle"></i></div>
+                          <div class="cp-tl-body">
+                            <div class="cp-tl-date">18 Feb 2021</div>
+                            <div class="cp-tl-title">Allerta — Saturazione bassa</div>
+                            <div class="cp-tl-desc">SpO2 al 92%, consigliato controllo.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03. Risultato Finale -->
+        <div class="project-block project-block-full reveal" id="risultato">
+          <div class="project-block-text" style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <h3>03. Risultato Finale &mdash; Scheda Paziente Completa</h3>
+            <p>
+              Il risultato finale integra tutti gli elementi in un'unica vista.
+              L'operatore apre la scheda e in meno di 3 secondi ha il quadro completo:
+              chi &egrave; il paziente, in che stato si trova, e cos'&egrave; successo negli ultimi giorni.
+              Nessun click aggiuntivo, nessuna pagina da caricare.
+            </p>
+            <a href="panel-clinico.html" class="btn btn-primary" style="margin-top: var(--space-xl);">
+              <i class="fas fa-external-link-alt"></i> Scopri il risultato finale
+            </a>
+          </div>
+          <!-- Full preview -->
+          <div class="design-visual design-visual-full" style="margin-top: var(--space-2xl); max-width: 900px;">
+            <div class="design-visual-header">
+              <span class="design-phase-badge design-phase-final">Risultato</span>
+            </div>
+            <div class="mockup-browser">
+              <div class="browser-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="browser-content clinic-browser-content clinic-final-content">
+                <div class="clinic-final">
+                  <!-- Top bar -->
+                  <div class="cf-topbar">
+                    <div class="cf-topbar-left">
+                      <div class="cf-avatar">MR</div>
+                      <div class="cf-name-block">
+                        <div class="cf-name">Mario Rossi</div>
+                        <div class="cf-code">CF: RSSMRA85M01H501Z &middot; Nato il 01/08/1985 &middot; Cuneo (CN)</div>
+                      </div>
+                    </div>
+                    <div class="cf-topbar-right">
+                      <div class="cf-status cf-status-active">
+                        <i class="fas fa-circle"></i> Sorveglianza attiva
+                      </div>
+                      <div class="cf-topbar-actions">
+                        <div class="cf-action-btn"><i class="fas fa-phone"></i></div>
+                        <div class="cf-action-btn"><i class="fas fa-print"></i></div>
+                        <div class="cf-action-btn cf-action-primary"><i class="fas fa-plus"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Body -->
+                  <div class="cf-body">
+                    <!-- Left column -->
+                    <div class="cf-left">
+                      <!-- Vitals -->
+                      <div class="cf-card">
+                        <div class="cf-card-title"><i class="fas fa-heartbeat"></i> Parametri Vitali</div>
+                        <div class="cf-vitals-grid">
+                          <div class="cf-vital-item">
+                            <div class="cf-vital-icon cf-vital-temp"><i class="fas fa-thermometer-half"></i></div>
+                            <div class="cf-vital-data">
+                              <div class="cf-vital-value">36.4&deg;C</div>
+                              <div class="cf-vital-label">Temperatura</div>
+                            </div>
+                          </div>
+                          <div class="cf-vital-item">
+                            <div class="cf-vital-icon cf-vital-spo2"><i class="fas fa-lungs"></i></div>
+                            <div class="cf-vital-data">
+                              <div class="cf-vital-value">97%</div>
+                              <div class="cf-vital-label">Saturazione</div>
+                            </div>
+                          </div>
+                          <div class="cf-vital-item">
+                            <div class="cf-vital-icon cf-vital-bp"><i class="fas fa-heart"></i></div>
+                            <div class="cf-vital-data">
+                              <div class="cf-vital-value">120/80</div>
+                              <div class="cf-vital-label">Pressione</div>
+                            </div>
+                          </div>
+                          <div class="cf-vital-item">
+                            <div class="cf-vital-icon cf-vital-hr"><i class="fas fa-wave-square"></i></div>
+                            <div class="cf-vital-data">
+                              <div class="cf-vital-value">72 bpm</div>
+                              <div class="cf-vital-label">Freq. Cardiaca</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Info -->
+                      <div class="cf-card">
+                        <div class="cf-card-title"><i class="fas fa-user"></i> Informazioni</div>
+                        <div class="cf-info-grid">
+                          <div class="cf-info-row">
+                            <span class="cf-info-label">Telefono</span>
+                            <span class="cf-info-value">+39 347 *** 1234</span>
+                          </div>
+                          <div class="cf-info-row">
+                            <span class="cf-info-label">MMG</span>
+                            <span class="cf-info-value">Dr.ssa Bianchi</span>
+                          </div>
+                          <div class="cf-info-row">
+                            <span class="cf-info-label">Inizio sorv.</span>
+                            <span class="cf-info-value">14/02/2021</span>
+                          </div>
+                          <div class="cf-info-row">
+                            <span class="cf-info-label">Tamponi</span>
+                            <span class="cf-info-value">3 (ultimo: negativo)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Right: timeline -->
+                    <div class="cf-right">
+                      <div class="cf-card cf-card-timeline">
+                        <div class="cf-card-title"><i class="fas fa-stream"></i> Diario Clinico</div>
+                        <div class="cf-timeline">
+                          <div class="cf-tl-item">
+                            <div class="cf-tl-dot cf-dot-vaccine"><i class="fas fa-syringe"></i></div>
+                            <div class="cf-tl-body">
+                              <div class="cf-tl-header">
+                                <span class="cf-tl-tag cf-tag-vaccine">Vaccino</span>
+                                <span class="cf-tl-date">15 Mar 2021 — 09:30</span>
+                              </div>
+                              <div class="cf-tl-title">2&ordf; dose — Pfizer-BioNTech</div>
+                              <div class="cf-tl-desc">Somministrata presso hub vaccinale Cuneo. Nessuna reazione avversa.</div>
+                            </div>
+                          </div>
+                          <div class="cf-tl-item">
+                            <div class="cf-tl-dot cf-dot-note"><i class="fas fa-clipboard"></i></div>
+                            <div class="cf-tl-body">
+                              <div class="cf-tl-header">
+                                <span class="cf-tl-tag cf-tag-note">Nota</span>
+                                <span class="cf-tl-date">10 Mar 2021 — 14:15</span>
+                              </div>
+                              <div class="cf-tl-title">Controllo telefonico periodico</div>
+                              <div class="cf-tl-desc">Paziente asintomatico, parametri nella norma. Confermata data vaccino.</div>
+                            </div>
+                          </div>
+                          <div class="cf-tl-item">
+                            <div class="cf-tl-dot cf-dot-quarantine"><i class="fas fa-lock"></i></div>
+                            <div class="cf-tl-body">
+                              <div class="cf-tl-header">
+                                <span class="cf-tl-tag cf-tag-quarantine">Quarantena</span>
+                                <span class="cf-tl-date">28 Feb 2021 — 08:00</span>
+                              </div>
+                              <div class="cf-tl-title">Fine periodo di isolamento</div>
+                              <div class="cf-tl-desc">Tampone negativo, isolamento concluso dopo 14 giorni.</div>
+                            </div>
+                          </div>
+                          <div class="cf-tl-item">
+                            <div class="cf-tl-dot cf-dot-alert"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="cf-tl-body">
+                              <div class="cf-tl-header">
+                                <span class="cf-tl-tag cf-tag-alert">Allerta</span>
+                                <span class="cf-tl-date">18 Feb 2021 — 11:20</span>
+                              </div>
+                              <div class="cf-tl-title">Saturazione sotto soglia</div>
+                              <div class="cf-tl-desc">SpO2 rilevata al 92%. Consigliato controllo medico domiciliare.</div>
+                            </div>
+                          </div>
+                          <div class="cf-tl-item">
+                            <div class="cf-tl-dot cf-dot-quarantine"><i class="fas fa-lock"></i></div>
+                            <div class="cf-tl-body">
+                              <div class="cf-tl-header">
+                                <span class="cf-tl-tag cf-tag-quarantine">Quarantena</span>
+                                <span class="cf-tl-date">14 Feb 2021 — 10:00</span>
+                              </div>
+                              <div class="cf-tl-title">Inizio isolamento domiciliare</div>
+                              <div class="cf-tl-desc">Tampone positivo, avvio sorveglianza sanitaria attiva.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decisioni di Design -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text">
+            <h3>Decisioni di Design</h3>
+            <p>
+              In un pannello clinico, ogni scelta visiva ha conseguenze dirette
+              sulla velocit&agrave; di lettura e sulla probabilit&agrave; di errore.
+              Non c'&egrave; spazio per decorazioni: il design &egrave; al servizio
+              della funzione, senza compromessi.
+            </p>
+          </div>
+          <div class="design-decisions-grid">
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-square-full" style="color:#ffffff; text-shadow: 0 0 1px #ccc;"></i></div>
+              <h5>Background bianco puro</h5>
+              <p>Nessuna sfumatura, nessun gradiente. Il bianco #FFFFFF riduce il rumore visivo e massimizza il contrasto con testi e badge colorati. In contesto clinico, la leggibilit&agrave; &egrave; sopravvivenza.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-swatchbook"></i></div>
+              <h5>Colori semantici netti</h5>
+              <p>5 colori, 5 significati. Verde = vaccino, arancione = quarantena, blu = nota, rosso = allerta, grigio = sistema. Nessuna ambiguit&agrave;: l'operatore riconosce, non legge.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-stream"></i></div>
+              <h5>Timeline come diario</h5>
+              <p>Il diario clinico &egrave; una timeline verticale con eventi in ordine cronologico inverso. Ogni evento ha icona, colore e tag dedicato. Intuitivo come scorrere una chat.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-eye"></i></div>
+              <h5>Zero navigazione</h5>
+              <p>Nessun tab, nessun sotto-menu. Una sola vista con tutte le informazioni. L'operatore non deve mai chiedersi "dove trovo...?" &mdash; &egrave; tutto l&igrave;, subito.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <span class="logo-bracket">&lt;</span>
+              <span class="logo-text">EA</span>
+              <span class="logo-bracket">/&gt;</span>
+            </a>
+            <p>
+              Enrico Arnaudo — Informatico presso ASL CN1. Cuneo,
+              Italia.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h5>Navigazione</h5>
+            <ul>
+              <li><a href="index.html#about">Chi sono</a></li>
+              <li><a href="index.html#services">Cosa faccio</a></li>
+              <li><a href="index.html#experience">Esperienze</a></li>
+              <li><a href="index.html#design">Design & UI</a></li>
+              <li><a href="index.html#beyond">Oltre il codice</a></li>
+              <li><a href="index.html#contact">Contatti</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h5>Competenze</h5>
+            <ul>
+              <li>Full-Stack Development</li>
+              <li>Microsoft Ecosystem</li>
+              <li>Cloud & DevOps</li>
+              <li>UI/UX Design</li>
+              <li>Sistemi Distribuiti</li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h5>Contatti</h5>
+            <p>
+              <a href="mailto:arnaudoenrico@gmail.com"
+                >arnaudoenrico@gmail.com</a
+              >
+            </p>
+            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
+            <p>Bernezzo (CN), Italia</p>
+            <div class="footer-social">
+              <a
+                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Enrico Arnaudo. Tutti i diritti riservati.</p>
+          <div class="footer-bottom-links">
+            <a href="index.html#privacy">Privacy Policy</a>
+            <span>&middot;</span>
+            <a href="index.html#contact">Contatti</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

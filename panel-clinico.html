@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pannello Clinico &mdash; Scheda Paziente</title>
+    <meta
+      name="description"
+      content="Redesign concettuale di un pannello di monitoraggio clinico pazienti per la sorveglianza sanitaria."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      /* ═══════════════════════════════════════════════
+         CLINICAL PANEL — ALWAYS LIGHT
+         White background, semantic colors, zero decoration.
+         The panel itself does NOT follow the site theme.
+         ═══════════════════════════════════════════════ */
+
+      /* ── Page shell ── */
+      .clinic-showcase {
+        padding-top: 100px;
+        min-height: 100vh;
+        background: var(--bg-primary);
+      }
+      .clinic-showcase-container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 var(--space-xl) var(--space-3xl);
+      }
+
+      /* ── Showcase Header ── */
+      .clinic-showcase-header { margin-bottom: var(--space-2xl); }
+      .clinic-showcase-intro { max-width: 740px; }
+      .clinic-showcase-intro h1 {
+        font-size: var(--text-3xl);
+        font-weight: 800;
+        color: var(--text-primary);
+        letter-spacing: -0.02em;
+        margin-bottom: var(--space-sm);
+      }
+      .clinic-showcase-intro h1 i { color: #2e7d32; }
+      .clinic-showcase-intro p {
+        font-size: var(--text-md);
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+      .clinic-showcase-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-top: var(--space-lg);
+      }
+      .clinic-showcase-tag {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        font-weight: 500;
+        padding: 0.3rem 0.7rem;
+        border-radius: var(--radius-full);
+        background: rgba(46,125,50,0.1);
+        color: #4caf50;
+        border: 1px solid rgba(46,125,50,0.15);
+      }
+      [data-theme="light"] .clinic-showcase-tag {
+        background: rgba(46,125,50,0.08);
+        color: #2e7d32;
+      }
+
+      /* ═══════════════════════════════════════════════
+         DEVICE FRAME (reused from atlas)
+         ═══════════════════════════════════════════════ */
+      .cl-device-frame {
+        border-radius: 16px;
+        overflow: hidden;
+        border: 2px solid var(--border);
+        background: var(--bg-secondary);
+        box-shadow:
+          0 0 0 1px rgba(255,255,255,0.05),
+          0 30px 90px -15px rgba(0,0,0,0.55),
+          0 0 60px -20px rgba(46,125,50,0.12);
+      }
+      [data-theme="light"] .cl-device-frame {
+        box-shadow:
+          0 0 0 1px rgba(0,0,0,0.05),
+          0 30px 90px -15px rgba(0,0,0,0.15);
+      }
+      .cl-device-topbar {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+      }
+      .cl-device-dots { display: flex; gap: 7px; flex-shrink: 0; }
+      .cl-device-dots span { width: 12px; height: 12px; border-radius: 50%; }
+      .cl-device-dots span:nth-child(1) { background: #ef4444; }
+      .cl-device-dots span:nth-child(2) { background: #f59e0b; }
+      .cl-device-dots span:nth-child(3) { background: #22c55e; }
+      .cl-device-url {
+        flex: 1;
+        max-width: 480px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+        padding: 5px 14px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        color: var(--text-muted);
+      }
+      .cl-device-url i { color: #22c55e; font-size: 0.6rem; }
+      .cl-device-nav {
+        display: flex;
+        gap: var(--space-sm);
+        flex-shrink: 0;
+        color: var(--text-muted);
+        font-size: var(--text-sm);
+        opacity: 0.5;
+      }
+      .cl-device-stand {
+        width: 120px; height: 28px;
+        margin: 0 auto;
+        background: var(--border);
+        border-radius: 0 0 8px 8px;
+      }
+      .cl-device-stand::after {
+        content: '';
+        display: block;
+        width: 180px; height: 5px;
+        margin: 0 auto;
+        background: var(--border);
+        border-radius: 0 0 4px 4px;
+        position: relative;
+        top: 28px;
+        left: -30px;
+      }
+
+      /* ═══════════════════════════════════════════════
+         APP SCREEN — CLINICAL (always white)
+         ═══════════════════════════════════════════════ */
+      .cl-screen {
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+        min-height: 780px;
+        color: #1a1a2e;
+        font-family: var(--font-sans);
+      }
+
+      /* ── Top navigation bar ── */
+      .cl-navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 44px;
+        background: #fafbfc;
+        border-bottom: 1px solid #e8e8f0;
+        flex-shrink: 0;
+      }
+      .cl-navbar-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .cl-app-name {
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #2e7d32;
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .cl-app-name i { font-size: 0.7rem; }
+      .cl-nav-items {
+        display: flex;
+        gap: 2px;
+      }
+      .cl-nav-item {
+        font-size: 0.6rem;
+        font-weight: 500;
+        color: #888;
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: default;
+        transition: all 0.15s;
+      }
+      .cl-nav-item:hover { background: #f0f0f4; color: #555; }
+      .cl-nav-item.active {
+        background: #e8f5e9;
+        color: #2e7d32;
+        font-weight: 600;
+      }
+      .cl-navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cl-nav-search {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 10px;
+        background: #f4f4f8;
+        border: 1px solid #e8e8f0;
+        border-radius: 6px;
+        font-size: 0.55rem;
+        color: #aaa;
+      }
+      .cl-nav-search i { font-size: 0.5rem; }
+      .cl-nav-user {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4a90d9, #357abd);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.5rem;
+        font-weight: 700;
+      }
+
+      /* ── Patient header strip ── */
+      .cl-patient-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+        background: #fff;
+        border-bottom: 1px solid #e8e8f0;
+        flex-shrink: 0;
+      }
+      .cl-patient-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .cl-patient-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4a90d9, #357abd);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.82rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .cl-patient-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .cl-patient-name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        line-height: 1.3;
+      }
+      .cl-patient-meta {
+        font-size: 0.58rem;
+        color: #999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cl-patient-meta span { display: flex; align-items: center; gap: 3px; }
+      .cl-patient-meta i { font-size: 0.48rem; }
+      .cl-patient-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cl-status-badge {
+        font-size: 0.58rem;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .cl-status-badge i { font-size: 0.35rem; }
+      .cl-status-active {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .cl-btn-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        background: #f4f4f8;
+        border: 1px solid #e0e0e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: default;
+        transition: all 0.15s;
+      }
+      .cl-btn-icon:hover { background: #e8e8f0; }
+      .cl-btn-icon i { font-size: 0.6rem; color: #666; }
+      .cl-btn-primary {
+        background: #2e7d32;
+        border-color: #2e7d32;
+      }
+      .cl-btn-primary i { color: #fff; }
+
+      /* ── Main body ── */
+      .cl-body {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      /* ── Left sidebar ── */
+      .cl-sidebar {
+        border-right: 1px solid #e8e8f0;
+        padding: 14px 16px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: #fafbfc;
+      }
+
+      .cl-card {
+        background: #fff;
+        border: 1px solid #e8e8f0;
+        border-radius: 8px;
+        padding: 10px 12px;
+      }
+      .cl-card-title {
+        font-size: 0.6rem;
+        font-weight: 700;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .cl-card-title i {
+        font-size: 0.58rem;
+        color: #4a90d9;
+      }
+
+      /* Vitals */
+      .cl-vitals-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+      .cl-vital-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        background: #f8f9fb;
+        border-radius: 6px;
+        border: 1px solid #f0f0f4;
+      }
+      .cl-vital-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .cl-vital-icon i { font-size: 0.65rem; }
+      .cl-vi-temp { background: #fff3e0; color: #ef6c00; }
+      .cl-vi-spo2 { background: #e3f2fd; color: #1565c0; }
+      .cl-vi-bp   { background: #fce4ec; color: #c62828; }
+      .cl-vi-hr   { background: #e8f5e9; color: #2e7d32; }
+      .cl-vital-data { display: flex; flex-direction: column; }
+      .cl-vital-val {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        line-height: 1.2;
+      }
+      .cl-vital-label {
+        font-size: 0.48rem;
+        color: #aaa;
+      }
+
+      /* Info rows */
+      .cl-info-grid { display: flex; flex-direction: column; gap: 0; }
+      .cl-info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+        border-bottom: 1px solid #f4f4f8;
+      }
+      .cl-info-row:last-child { border-bottom: none; }
+      .cl-info-label { font-size: 0.58rem; color: #aaa; }
+      .cl-info-value { font-size: 0.58rem; font-weight: 600; color: #333; }
+
+      /* Tamponi mini table */
+      .cl-tamponi-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .cl-tampone-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 6px;
+        background: #f8f9fb;
+        border-radius: 4px;
+        font-size: 0.55rem;
+      }
+      .cl-tampone-row i { font-size: 0.5rem; }
+      .cl-tampone-date {
+        font-family: var(--font-mono);
+        color: #999;
+        min-width: 52px;
+      }
+      .cl-tampone-result {
+        font-weight: 700;
+        margin-left: auto;
+      }
+      .cl-res-positive { color: #e53935; }
+      .cl-res-negative { color: #43a047; }
+
+      /* ── Right: Timeline area ── */
+      .cl-main {
+        padding: 14px 20px;
+        overflow-y: auto;
+        background: #fff;
+      }
+
+      .cl-diary-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .cl-diary-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #555;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .cl-diary-title i { color: #4a90d9; font-size: 0.68rem; }
+      .cl-diary-filters {
+        display: flex;
+        gap: 3px;
+      }
+      .cl-filter-chip {
+        font-size: 0.5rem;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 12px;
+        border: 1px solid #e0e0e8;
+        color: #888;
+        cursor: default;
+        transition: all 0.15s;
+      }
+      .cl-filter-chip:hover { border-color: #bbb; color: #555; }
+      .cl-filter-chip.active {
+        background: #e3f2fd;
+        border-color: #90caf9;
+        color: #1565c0;
+      }
+
+      /* ── Timeline ── */
+      .cl-timeline {
+        position: relative;
+      }
+      .cl-timeline::before {
+        content: '';
+        position: absolute;
+        left: 12px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #e8e8f0;
+      }
+
+      .cl-tl-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 16px;
+        position: relative;
+      }
+
+      .cl-tl-dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 0 0 3px #fff;
+      }
+      .cl-tl-dot i { font-size: 0.55rem; color: #fff; }
+      .cl-tl-dot-vaccine    { background: #43a047; }
+      .cl-tl-dot-note       { background: #1e88e5; }
+      .cl-tl-dot-quarantine { background: #ef6c00; }
+      .cl-tl-dot-alert      { background: #e53935; }
+      .cl-tl-dot-system     { background: #9e9e9e; }
+      .cl-tl-dot-tampone    { background: #7b1fa2; }
+
+      .cl-tl-body {
+        flex: 1;
+        background: #fafbfc;
+        border: 1px solid #f0f0f4;
+        border-radius: 8px;
+        padding: 10px 12px;
+        transition: border-color 0.15s;
+      }
+      .cl-tl-body:hover { border-color: #ddd; }
+
+      .cl-tl-top {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 3px;
+      }
+      .cl-tl-tag {
+        font-size: 0.48rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .cl-tag-vaccine    { background: #e8f5e9; color: #2e7d32; }
+      .cl-tag-note       { background: #e3f2fd; color: #1565c0; }
+      .cl-tag-quarantine { background: #fff3e0; color: #e65100; }
+      .cl-tag-alert      { background: #ffebee; color: #c62828; }
+      .cl-tag-system     { background: #f5f5f5; color: #616161; }
+      .cl-tag-tampone    { background: #f3e5f5; color: #6a1b9a; }
+
+      .cl-tl-date {
+        font-size: 0.5rem;
+        color: #bbb;
+        font-family: var(--font-mono);
+      }
+      .cl-tl-title {
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 2px;
+      }
+      .cl-tl-desc {
+        font-size: 0.58rem;
+        color: #888;
+        line-height: 1.5;
+      }
+      .cl-tl-desc strong { color: #555; }
+      .cl-tl-attachment {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 4px;
+        font-size: 0.5rem;
+        font-weight: 500;
+        color: #1e88e5;
+        padding: 2px 6px;
+        background: #e3f2fd;
+        border-radius: 4px;
+      }
+      .cl-tl-attachment i { font-size: 0.45rem; }
+
+      /* ── Footer bar ── */
+      .cl-footer-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 20px;
+        background: #fafbfc;
+        border-top: 1px solid #e8e8f0;
+        flex-shrink: 0;
+      }
+      .cl-footer-left {
+        font-size: 0.5rem;
+        color: #bbb;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .cl-footer-left span { display: flex; align-items: center; gap: 4px; }
+      .cl-footer-left i { font-size: 0.45rem; }
+      .cl-footer-right { display: flex; gap: 4px; }
+      .cl-footer-btn {
+        font-size: 0.5rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 5px;
+        border: 1px solid #e0e0e8;
+        background: #fff;
+        color: #666;
+        cursor: default;
+        transition: all 0.15s;
+      }
+      .cl-footer-btn:hover { background: #f4f4f8; }
+      .cl-footer-btn-primary {
+        background: #2e7d32;
+        border-color: #2e7d32;
+        color: #fff;
+      }
+      .cl-footer-btn-primary:hover { background: #388e3c; }
+
+      /* ═══════════════════════════════════════════════
+         RESPONSIVE
+         ═══════════════════════════════════════════════ */
+      @media (max-width: 1024px) {
+        .cl-body { grid-template-columns: 260px 1fr; }
+      }
+      @media (max-width: 768px) {
+        .clinic-showcase { padding-top: 80px; }
+        .clinic-showcase-intro h1 { font-size: var(--text-2xl); }
+        .cl-body { grid-template-columns: 1fr; }
+        .cl-sidebar { border-right: none; border-bottom: 1px solid #e8e8f0; }
+        .cl-screen { min-height: auto; }
+        .cl-device-url { display: none; }
+        .cl-nav-items { display: none; }
+        .cl-diary-filters { display: none; }
+      }
+      @media (max-width: 480px) {
+        .cl-patient-meta { display: none; }
+        .cl-vitals-grid { grid-template-columns: 1fr; }
+        .cl-device-stand { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">EA</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
+          <li><a href="index.html#services" class="nav-link">Cosa faccio</a></li>
+          <li><a href="index.html#experience" class="nav-link">Esperienze</a></li>
+          <li><a href="index.html#design" class="nav-link">Design & UI</a></li>
+          <li><a href="index.html#beyond" class="nav-link">Oltre il codice</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Cambia tema">
+            <i class="fas fa-sun" id="themeIcon"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════ CLINIC PANEL SHOWCASE ═══════════════ -->
+    <main class="clinic-showcase">
+      <div class="clinic-showcase-container">
+
+        <!-- ── Header ── -->
+        <div class="clinic-showcase-header reveal">
+          <div class="atlas-dash-breadcrumb">
+            <a href="design-showcase-panel.html"><i class="fas fa-arrow-left"></i> Design Showcase</a>
+            <span>/</span>
+            <span>Pannello Clinico</span>
+          </div>
+          <div class="clinic-showcase-intro">
+            <h1><i class="fas fa-laptop-medical"></i> Pannello Clinico</h1>
+            <p>
+              Redesign concettuale di un pannello per il monitoraggio a distanza dei pazienti,
+              sviluppato originariamente durante l'emergenza COVID-19. Un'interfaccia dove
+              il design non decora &mdash; informa.
+            </p>
+            <div class="clinic-showcase-meta">
+              <span class="clinic-showcase-tag">Angular</span>
+              <span class="clinic-showcase-tag">Design Funzionale</span>
+              <span class="clinic-showcase-tag">Timeline UX</span>
+              <span class="clinic-showcase-tag">Colori Semantici</span>
+              <span class="clinic-showcase-tag">Accessibilit&agrave;</span>
+              <span class="clinic-showcase-tag">Sanit&agrave; Pubblica</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════ DEVICE FRAME ═══════════════ -->
+        <div class="cl-device-frame reveal">
+          <!-- Browser chrome -->
+          <div class="cl-device-topbar">
+            <div class="cl-device-dots"><span></span><span></span><span></span></div>
+            <div class="cl-device-url">
+              <i class="fas fa-lock"></i>
+              sorveglianza.aslcn1.local/paziente/RSSMRA85M01H501Z
+            </div>
+            <div class="cl-device-nav">
+              <i class="fas fa-arrow-left"></i>
+              <i class="fas fa-arrow-right"></i>
+              <i class="fas fa-redo-alt"></i>
+            </div>
+          </div>
+
+          <!-- ═══ APP SCREEN ═══ -->
+          <div class="cl-screen">
+
+            <!-- App navbar -->
+            <div class="cl-navbar">
+              <div class="cl-navbar-left">
+                <div class="cl-app-name"><i class="fas fa-shield-virus"></i> Sorveglianza Sanitaria</div>
+                <div class="cl-nav-items">
+                  <div class="cl-nav-item">Dashboard</div>
+                  <div class="cl-nav-item active">Scheda Paziente</div>
+                  <div class="cl-nav-item">Lista Pazienti</div>
+                  <div class="cl-nav-item">Report</div>
+                </div>
+              </div>
+              <div class="cl-navbar-right">
+                <div class="cl-nav-search"><i class="fas fa-search"></i> Cerca paziente&hellip;</div>
+                <div class="cl-nav-user">EA</div>
+              </div>
+            </div>
+
+            <!-- Patient header -->
+            <div class="cl-patient-header">
+              <div class="cl-patient-left">
+                <div class="cl-patient-avatar">MR</div>
+                <div class="cl-patient-info">
+                  <div class="cl-patient-name">Mario Rossi</div>
+                  <div class="cl-patient-meta">
+                    <span><i class="fas fa-id-card"></i> RSSMRA85M01H501Z</span>
+                    <span><i class="fas fa-birthday-cake"></i> 01/08/1985 (40 anni)</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Cuneo (CN)</span>
+                    <span><i class="fas fa-phone"></i> +39 347 *** 1234</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cl-patient-right">
+                <div class="cl-status-badge cl-status-active">
+                  <i class="fas fa-circle"></i> Sorveglianza attiva
+                </div>
+                <div class="cl-btn-icon" title="Chiama"><i class="fas fa-phone"></i></div>
+                <div class="cl-btn-icon" title="Stampa"><i class="fas fa-print"></i></div>
+                <div class="cl-btn-icon" title="Esporta"><i class="fas fa-file-export"></i></div>
+                <div class="cl-btn-icon cl-btn-primary" title="Nuovo evento"><i class="fas fa-plus"></i></div>
+              </div>
+            </div>
+
+            <!-- Body -->
+            <div class="cl-body">
+
+              <!-- Left sidebar -->
+              <div class="cl-sidebar">
+
+                <!-- Vitals -->
+                <div class="cl-card">
+                  <div class="cl-card-title"><i class="fas fa-heartbeat"></i> Parametri Vitali</div>
+                  <div class="cl-vitals-grid">
+                    <div class="cl-vital-item">
+                      <div class="cl-vital-icon cl-vi-temp"><i class="fas fa-thermometer-half"></i></div>
+                      <div class="cl-vital-data">
+                        <div class="cl-vital-val">36.4&deg;C</div>
+                        <div class="cl-vital-label">Temperatura</div>
+                      </div>
+                    </div>
+                    <div class="cl-vital-item">
+                      <div class="cl-vital-icon cl-vi-spo2"><i class="fas fa-lungs"></i></div>
+                      <div class="cl-vital-data">
+                        <div class="cl-vital-val">97%</div>
+                        <div class="cl-vital-label">Saturazione O2</div>
+                      </div>
+                    </div>
+                    <div class="cl-vital-item">
+                      <div class="cl-vital-icon cl-vi-bp"><i class="fas fa-heart"></i></div>
+                      <div class="cl-vital-data">
+                        <div class="cl-vital-val">120/80</div>
+                        <div class="cl-vital-label">Pressione</div>
+                      </div>
+                    </div>
+                    <div class="cl-vital-item">
+                      <div class="cl-vital-icon cl-vi-hr"><i class="fas fa-wave-square"></i></div>
+                      <div class="cl-vital-data">
+                        <div class="cl-vital-val">72 bpm</div>
+                        <div class="cl-vital-label">Freq. Cardiaca</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Info -->
+                <div class="cl-card">
+                  <div class="cl-card-title"><i class="fas fa-user"></i> Informazioni Cliniche</div>
+                  <div class="cl-info-grid">
+                    <div class="cl-info-row">
+                      <span class="cl-info-label">MMG</span>
+                      <span class="cl-info-value">Dr.ssa L. Bianchi</span>
+                    </div>
+                    <div class="cl-info-row">
+                      <span class="cl-info-label">Inizio sorveglianza</span>
+                      <span class="cl-info-value">14/02/2021</span>
+                    </div>
+                    <div class="cl-info-row">
+                      <span class="cl-info-label">Tipo sorveglianza</span>
+                      <span class="cl-info-value">Domiciliare</span>
+                    </div>
+                    <div class="cl-info-row">
+                      <span class="cl-info-label">Patologie pregresse</span>
+                      <span class="cl-info-value">Nessuna</span>
+                    </div>
+                    <div class="cl-info-row">
+                      <span class="cl-info-label">Allergie</span>
+                      <span class="cl-info-value">Nessuna nota</span>
+                    </div>
+                    <div class="cl-info-row">
+                      <span class="cl-info-label">Operatore assegnato</span>
+                      <span class="cl-info-value">E. Arnaudo</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tamponi -->
+                <div class="cl-card">
+                  <div class="cl-card-title"><i class="fas fa-vial"></i> Tamponi (3)</div>
+                  <div class="cl-tamponi-grid">
+                    <div class="cl-tampone-row">
+                      <i class="fas fa-vial" style="color: #43a047;"></i>
+                      <span class="cl-tampone-date">28/02/21</span>
+                      <span>Molecolare</span>
+                      <span class="cl-tampone-result cl-res-negative">Negativo</span>
+                    </div>
+                    <div class="cl-tampone-row">
+                      <i class="fas fa-vial" style="color: #e53935;"></i>
+                      <span class="cl-tampone-date">21/02/21</span>
+                      <span>Molecolare</span>
+                      <span class="cl-tampone-result cl-res-positive">Positivo</span>
+                    </div>
+                    <div class="cl-tampone-row">
+                      <i class="fas fa-vial" style="color: #e53935;"></i>
+                      <span class="cl-tampone-date">14/02/21</span>
+                      <span>Rapido</span>
+                      <span class="cl-tampone-result cl-res-positive">Positivo</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Right: Timeline / Diary -->
+              <div class="cl-main">
+                <div class="cl-diary-header">
+                  <div class="cl-diary-title"><i class="fas fa-stream"></i> Diario Clinico</div>
+                  <div class="cl-diary-filters">
+                    <div class="cl-filter-chip active">Tutti</div>
+                    <div class="cl-filter-chip">Vaccini</div>
+                    <div class="cl-filter-chip">Note</div>
+                    <div class="cl-filter-chip">Quarantena</div>
+                    <div class="cl-filter-chip">Allerte</div>
+                    <div class="cl-filter-chip">Tamponi</div>
+                  </div>
+                </div>
+
+                <div class="cl-timeline">
+
+                  <!-- Vaccino -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-vaccine"><i class="fas fa-syringe"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-vaccine">Vaccino</span>
+                        <span class="cl-tl-date">15 Mar 2021 &mdash; 09:30</span>
+                      </div>
+                      <div class="cl-tl-title">2&ordf; dose &mdash; Pfizer-BioNTech (Comirnaty)</div>
+                      <div class="cl-tl-desc">
+                        Somministrata presso Hub Vaccinale Cuneo Rondissone. Lotto: EL9269.
+                        Nessuna reazione avversa riportata. Ciclo vaccinale completo.
+                      </div>
+                      <div class="cl-tl-attachment"><i class="fas fa-paperclip"></i> certificato_vaccino.pdf</div>
+                    </div>
+                  </div>
+
+                  <!-- Nota -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-note"><i class="fas fa-clipboard"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-note">Nota</span>
+                        <span class="cl-tl-date">10 Mar 2021 &mdash; 14:15</span>
+                      </div>
+                      <div class="cl-tl-title">Controllo telefonico periodico</div>
+                      <div class="cl-tl-desc">
+                        Paziente asintomatico da 10 giorni. Parametri vitali nella norma
+                        (T 36.2&deg;C, SpO2 98%). Confermata data 2&ordf; dose vaccino al 15/03.
+                        <strong>Nessuna criticit&agrave;.</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tampone negativo -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-tampone"><i class="fas fa-vial"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-tampone">Tampone</span>
+                        <span class="cl-tl-date">28 Feb 2021 &mdash; 08:45</span>
+                      </div>
+                      <div class="cl-tl-title">Tampone molecolare &mdash; Esito NEGATIVO</div>
+                      <div class="cl-tl-desc">
+                        Tampone di controllo post-isolamento. Esito negativo confermato dal laboratorio
+                        ASL CN1. Autorizzata la fine dell'isolamento domiciliare.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Fine quarantena -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-quarantine"><i class="fas fa-lock-open"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-quarantine">Quarantena</span>
+                        <span class="cl-tl-date">28 Feb 2021 &mdash; 10:00</span>
+                      </div>
+                      <div class="cl-tl-title">Fine isolamento domiciliare</div>
+                      <div class="cl-tl-desc">
+                        Tampone negativo confermato. Isolamento concluso dopo 14 giorni (dal 14/02 al 28/02).
+                        Paziente autorizzato a riprendere le normali attivit&agrave;.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Nota -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-note"><i class="fas fa-clipboard"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-note">Nota</span>
+                        <span class="cl-tl-date">22 Feb 2021 &mdash; 10:30</span>
+                      </div>
+                      <div class="cl-tl-title">Controllo telefonico &mdash; Paziente in miglioramento</div>
+                      <div class="cl-tl-desc">
+                        Sintomi in regressione. Tosse lieve residua. SpO2 stabile al 96%.
+                        Temperatura rientrata nella norma (36.5&deg;C). Programmato tampone di controllo per il 28/02.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Allerta -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-alert"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-alert">Allerta</span>
+                        <span class="cl-tl-date">18 Feb 2021 &mdash; 11:20</span>
+                      </div>
+                      <div class="cl-tl-title">Saturazione sotto soglia critica</div>
+                      <div class="cl-tl-desc">
+                        SpO2 rilevata al <strong>92%</strong> durante il controllo telefonico. Temperatura 37.8&deg;C.
+                        Disposto controllo medico domiciliare urgente da parte del MMG di riferimento.
+                        Valutata eventuale ospedalizzazione &mdash; non necessaria dopo visita.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tampone positivo -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-tampone"><i class="fas fa-vial"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-tampone">Tampone</span>
+                        <span class="cl-tl-date">14 Feb 2021 &mdash; 09:30</span>
+                      </div>
+                      <div class="cl-tl-title">Tampone rapido &mdash; Esito POSITIVO</div>
+                      <div class="cl-tl-desc">
+                        Eseguito presso punto tamponi Cuneo Centro. Esito positivo, confermato con molecolare
+                        in data successiva. Avviata procedura di sorveglianza sanitaria attiva.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Inizio quarantena -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-quarantine"><i class="fas fa-lock"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-quarantine">Quarantena</span>
+                        <span class="cl-tl-date">14 Feb 2021 &mdash; 10:00</span>
+                      </div>
+                      <div class="cl-tl-title">Inizio isolamento domiciliare</div>
+                      <div class="cl-tl-desc">
+                        Tampone positivo confermato. Paziente posto in isolamento domiciliare presso
+                        la propria residenza. Conviventi (2) posti in quarantena fiduciaria.
+                        Assegnato operatore per monitoraggio telefonico ogni 48h.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Evento sistema -->
+                  <div class="cl-tl-item">
+                    <div class="cl-tl-dot cl-tl-dot-system"><i class="fas fa-cog"></i></div>
+                    <div class="cl-tl-body">
+                      <div class="cl-tl-top">
+                        <span class="cl-tl-tag cl-tag-system">Sistema</span>
+                        <span class="cl-tl-date">14 Feb 2021 &mdash; 10:05</span>
+                      </div>
+                      <div class="cl-tl-title">Scheda paziente creata</div>
+                      <div class="cl-tl-desc">
+                        Inserimento automatico nel sistema di sorveglianza. Operatore assegnato: E. Arnaudo.
+                        MMG notificato: Dr.ssa L. Bianchi.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Footer bar -->
+            <div class="cl-footer-bar">
+              <div class="cl-footer-left">
+                <span><i class="fas fa-clock"></i> Ultimo aggiornamento: 15 Mar 2021, 09:35</span>
+                <span><i class="fas fa-user-shield"></i> Operatore: E. Arnaudo</span>
+                <span><i class="fas fa-calendar-check"></i> Giorni in sorveglianza: 29</span>
+              </div>
+              <div class="cl-footer-right">
+                <div class="cl-footer-btn"><i class="fas fa-print"></i> Stampa scheda</div>
+                <div class="cl-footer-btn cl-footer-btn-primary"><i class="fas fa-plus"></i> Nuovo evento</div>
+              </div>
+            </div>
+
+          </div><!-- /cl-screen -->
+        </div><!-- /cl-device-frame -->
+
+        <!-- Stand -->
+        <div class="cl-device-stand reveal"></div>
+
+      </div>
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <span class="logo-bracket">&lt;</span>
+              <span class="logo-text">EA</span>
+              <span class="logo-bracket">/&gt;</span>
+            </a>
+            <p>
+              Enrico Arnaudo &mdash; Informatico presso ASL CN1. Cuneo,
+              Italia.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h5>Navigazione</h5>
+            <ul>
+              <li><a href="index.html#about">Chi sono</a></li>
+              <li><a href="index.html#services">Cosa faccio</a></li>
+              <li><a href="index.html#experience">Esperienze</a></li>
+              <li><a href="index.html#design">Design & UI</a></li>
+              <li><a href="index.html#beyond">Oltre il codice</a></li>
+              <li><a href="index.html#contact">Contatti</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h5>Competenze</h5>
+            <ul>
+              <li>Full-Stack Development</li>
+              <li>Microsoft Ecosystem</li>
+              <li>Cloud & DevOps</li>
+              <li>UI/UX Design</li>
+              <li>Sistemi Distribuiti</li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h5>Contatti</h5>
+            <p>
+              <a href="mailto:arnaudoenrico@gmail.com"
+                >arnaudoenrico@gmail.com</a
+              >
+            </p>
+            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
+            <p>Bernezzo (CN), Italia</p>
+            <div class="footer-social">
+              <a
+                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Enrico Arnaudo. Tutti i diritti riservati.</p>
+          <div class="footer-bottom-links">
+            <a href="index.html#privacy">Privacy Policy</a>
+            <span>&middot;</span>
+            <a href="index.html#contact">Contatti</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
