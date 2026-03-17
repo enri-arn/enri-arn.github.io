@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trail App Concept — Design Showcase — Enrico Arnaudo</title>
+    <meta
+      name="description"
+      content="Case study: concept di un'app mobile-first dedicata al mondo outdoor. Un esercizio di design, dal wireframe al prototipo."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">EA</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
+          <li><a href="index.html#services" class="nav-link">Cosa faccio</a></li>
+          <li><a href="index.html#experience" class="nav-link">Esperienze</a></li>
+          <li><a href="index.html#design" class="nav-link">Design & UI</a></li>
+          <li><a href="index.html#beyond" class="nav-link">Oltre il codice</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Cambia tema"
+          >
+            <i class="fas fa-sun" id="themeIcon"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="project-hero" id="home">
+      <div class="hero-bg">
+        <div class="hero-grid"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+      </div>
+      <div class="project-hero-content">
+        <a href="index.html#design" class="btn btn-ghost project-back-btn reveal">
+          <i class="fas fa-arrow-left"></i> Torna al portfolio
+        </a>
+        <h1 class="hero-title reveal">
+          <span class="title-line">Un'App per</span>
+          <span class="title-line title-accent">Chi Cammina</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+          Un concept di social network mobile-first dove i sentieri sono i protagonisti,
+          non le persone. Un'idea che nasce da un problema reale: le informazioni
+          su condizioni dei sentieri, neve e praticabilit&agrave; sono sparse ovunque.
+          Chiss&agrave;, magari un giorno diventer&agrave; qualcosa di concreto.
+        </p>
+        <div class="project-nav reveal">
+          <a href="#wireframe" class="project-nav-link">
+            <i class="fas fa-pencil-ruler"></i> Wireframe
+          </a>
+          <a href="#prototipo" class="project-nav-link">
+            <i class="fas fa-fill-drip"></i> Prototipo
+          </a>
+          <a href="#risultato" class="project-nav-link">
+            <i class="fas fa-rocket"></i> Risultato Finale
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ CASE STUDY: TRAIL APP CONCEPT ═══════════════ -->
+    <section class="section project-section" id="rambler">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Case Study &mdash; Concept App</span>
+          <h2 class="section-title">Un'idea per il mondo outdoor</h2>
+          <p class="section-desc">
+            Le informazioni su condizioni dei sentieri, livelli neve e percorsi escursionistici
+            sono sparse tra decine di fonti diverse. Questo concept esplora come potrebbe funzionare
+            un'app che le raccoglie in un unico posto, mettendo il sentiero al centro di tutto.
+          </p>
+        </div>
+
+        <!-- Intro -->
+        <div class="project-intro reveal">
+          <div class="project-meta">
+            <span class="project-type">
+              <i class="fas fa-palette"></i> UI/UX Design
+            </span>
+            <span class="project-type">
+              <i class="fas fa-mobile-alt"></i> Mobile App
+            </span>
+            <span class="project-type">
+              <i class="fas fa-mountain"></i> Outdoor &amp; Community
+            </span>
+            <div class="project-tags">
+              <span>Figma</span>
+              <span>Mobile-First</span>
+              <span>Concept</span>
+              <span>Community</span>
+              <span>Mappe</span>
+              <span>Outdoor</span>
+            </div>
+          </div>
+          <p>
+            Questo concept nasce da un'osservazione: chi fa escursionismo
+            si affida a fonti sparse e frammentate
+            per sapere le condizioni dei sentieri, i livelli di neve, la praticabilit&agrave;
+            delle strade. Informazioni preziose ma disperse, impossibili da cercare, senza storico.
+          </p>
+          <p>
+            L'idea: un social network <strong>mobile-first</strong> dove i sentieri
+            sono le entit&agrave; principali &mdash; non le persone. Invece del classico
+            profilo utente al centro, qui c'&egrave; la <em>scheda sentiero</em>.
+            Un'esperienza pensata per essere in tasca, sul sentiero &mdash;
+            con una versione web che esiste solo come estensione.
+          </p>
+          <p>
+            &Egrave; un esercizio di design che parte da un bisogno reale.
+            Se un giorno prender&agrave; forma, sar&agrave; perch&eacute; qualcuno
+            ha sentito lo stesso problema. Per ora, &egrave; un concept che racconta
+            come potrebbe funzionare.
+          </p>
+        </div>
+
+        <!-- 01. Wireframe -->
+        <div class="project-block reveal" id="wireframe">
+          <div class="project-block-text">
+            <h3>01. Wireframe &mdash; Architettura Mobile-First</h3>
+            <p>
+              Il punto di partenza: come organizzare le informazioni sui sentieri
+              per uno schermo da 6 pollici? La sfida principale &egrave; la densit&agrave;:
+              ogni card deve comunicare in un colpo d'occhio il nome del sentiero,
+              la difficolt&agrave;, le condizioni attuali e l'ultima segnalazione della community.
+            </p>
+            <p>
+              La bottom tab bar segue il pattern consolidato dei social network:
+              Feed, Esplora/Mappa, Aggiungi, Notifiche, Profilo.
+              L'utente non deve mai pensare a dove si trova &mdash; la navigazione
+              &egrave; muscolare, immediata.
+            </p>
+            <ul class="project-list">
+              <li>Feed verticale di card sentiero con foto, nome, difficolt&agrave; e condizioni</li>
+              <li>Scheda escursione con stats, segnalazioni community e azioni rapide</li>
+              <li>Mappa con marker colorati per tipo di segnalazione e bottom sheet</li>
+              <li>Bottom tab bar consistente su tutte le schermate</li>
+            </ul>
+          </div>
+          <div class="design-visual">
+            <div class="design-visual-header">
+              <span class="design-phase-badge">Wireframe</span>
+            </div>
+            <div class="rambler-phone-grid">
+              <!-- Phone 1: Feed -->
+              <div class="mockup-phone">
+                <div class="phone-notch"></div>
+                <div class="phone-screen rambler-browser-content">
+                  <div class="rambler-wireframe rwf-feed">
+                    <div class="rwf-statusbar">
+                      <div class="rwf-time"></div>
+                      <div class="rwf-icons"></div>
+                    </div>
+                    <div class="rwf-searchbar"></div>
+                    <div class="rwf-card">
+                      <div class="rwf-card-img"></div>
+                      <div class="rwf-card-body">
+                        <div class="rwf-card-title"></div>
+                        <div class="rwf-card-meta"></div>
+                        <div class="rwf-card-condition"></div>
+                      </div>
+                    </div>
+                    <div class="rwf-card">
+                      <div class="rwf-card-img"></div>
+                      <div class="rwf-card-body">
+                        <div class="rwf-card-title"></div>
+                        <div class="rwf-card-meta"></div>
+                        <div class="rwf-card-condition"></div>
+                      </div>
+                    </div>
+                    <div class="rwf-tabbar">
+                      <div class="rwf-tab rwf-tab-active"></div>
+                      <div class="rwf-tab"></div>
+                      <div class="rwf-tab rwf-tab-add"></div>
+                      <div class="rwf-tab"></div>
+                      <div class="rwf-tab"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-home-indicator"></div>
+              </div>
+
+              <!-- Phone 2: Trail Detail -->
+              <div class="mockup-phone">
+                <div class="phone-notch"></div>
+                <div class="phone-screen rambler-browser-content">
+                  <div class="rambler-wireframe rwf-detail">
+                    <div class="rwf-statusbar">
+                      <div class="rwf-time"></div>
+                      <div class="rwf-icons"></div>
+                    </div>
+                    <div class="rwf-detail-hero"></div>
+                    <div class="rwf-detail-stats">
+                      <div class="rwf-stat"></div>
+                      <div class="rwf-stat"></div>
+                      <div class="rwf-stat"></div>
+                    </div>
+                    <div class="rwf-detail-section-title"></div>
+                    <div class="rwf-report-item"></div>
+                    <div class="rwf-report-item"></div>
+                    <div class="rwf-report-item"></div>
+                    <div class="rwf-detail-actions">
+                      <div class="rwf-action-btn-main"></div>
+                      <div class="rwf-action-btn"></div>
+                      <div class="rwf-action-btn"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-home-indicator"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02. Prototipo -->
+        <div class="project-block reveal" id="prototipo">
+          <div class="project-block-text">
+            <h3>02. Prototipo &mdash; Colore e Identit&agrave; Naturale</h3>
+            <p>
+              Il colore entra con una palette ispirata alla natura: verdi bosco per le condizioni
+              buone, ambra per le cautele, rosso per i pericoli. Il verde primario
+              &egrave; il colore dominante dell'interfaccia, presente nella tab bar e nei pulsanti principali.
+            </p>
+            <p>
+              Ogni tipo di segnalazione ha un colore dedicato che la identifica sulla mappa
+              prima ancora di leggere il testo &mdash; la comunicazione visiva
+              &egrave; immediata e funzionale, non decorativa.
+            </p>
+            <ul class="project-list">
+              <li>Palette natura: tonalit&agrave; di verde, ambra, terra e cielo</li>
+              <li>Condition badges con colore semantico: verde (percorribile), ambra (cautela), rosso (chiuso)</li>
+              <li>Marker mappa colorati per tipologia di segnalazione</li>
+              <li>Icone Font Awesome per ogni tipo di segnalazione</li>
+            </ul>
+          </div>
+          <div class="design-visual">
+            <div class="design-visual-header">
+              <span class="design-phase-badge design-phase-proto">Prototipo</span>
+            </div>
+            <div class="rambler-phone-grid">
+              <!-- Phone 1: Feed (prototype) -->
+              <div class="mockup-phone">
+                <div class="phone-notch"></div>
+                <div class="phone-screen rambler-browser-content">
+                  <div class="rambler-prototype rp-feed">
+                    <div class="rp-statusbar">
+                      <span class="rp-time">9:41</span>
+                      <span class="rp-signal"><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-three-quarters"></i></span>
+                    </div>
+                    <div class="rp-header">
+                      <span class="rp-logo"><i class="fas fa-mountain"></i> trails</span>
+                      <span class="rp-search-icon"><i class="fas fa-search"></i></span>
+                    </div>
+                    <div class="rp-trail-card">
+                      <div class="rp-trail-img" style="background: linear-gradient(135deg, #2d6a4f, #52b788);"></div>
+                      <div class="rp-trail-body">
+                        <div class="rp-trail-header">
+                          <span class="rp-trail-name">Lago della Rovina</span>
+                          <span class="rp-difficulty rp-diff-medium">E</span>
+                        </div>
+                        <div class="rp-trail-location"><i class="fas fa-map-marker-alt"></i> Valle Gesso</div>
+                        <div class="rp-trail-footer">
+                          <span class="rp-condition rp-cond-good"><i class="fas fa-circle"></i> Percorribile</span>
+                          <span class="rp-reports"><i class="fas fa-comment"></i> 4</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rp-trail-card">
+                      <div class="rp-trail-img" style="background: linear-gradient(135deg, #6b705c, #a68a64);"></div>
+                      <div class="rp-trail-body">
+                        <div class="rp-trail-header">
+                          <span class="rp-trail-name">Rifugio Remondino</span>
+                          <span class="rp-difficulty rp-diff-hard">EE</span>
+                        </div>
+                        <div class="rp-trail-location"><i class="fas fa-map-marker-alt"></i> Valle Gesso</div>
+                        <div class="rp-trail-footer">
+                          <span class="rp-condition rp-cond-caution"><i class="fas fa-circle"></i> Neve sopra 2200m</span>
+                          <span class="rp-reports"><i class="fas fa-comment"></i> 7</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rp-tabbar">
+                      <div class="rp-tab rp-tab-active"><i class="fas fa-stream"></i><span>Feed</span></div>
+                      <div class="rp-tab"><i class="fas fa-map"></i><span>Mappa</span></div>
+                      <div class="rp-tab rp-tab-add"><i class="fas fa-plus"></i></div>
+                      <div class="rp-tab"><i class="fas fa-bell"></i><span>Notifiche</span></div>
+                      <div class="rp-tab"><i class="fas fa-user"></i><span>Profilo</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-home-indicator"></div>
+              </div>
+
+              <!-- Phone 2: Trail Detail (prototype) -->
+              <div class="mockup-phone">
+                <div class="phone-notch"></div>
+                <div class="phone-screen rambler-browser-content">
+                  <div class="rambler-prototype rp-detail">
+                    <div class="rp-statusbar">
+                      <span class="rp-time">9:41</span>
+                      <span class="rp-signal"><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-three-quarters"></i></span>
+                    </div>
+                    <div class="rp-detail-hero" style="background: linear-gradient(135deg, #2d6a4f, #52b788);">
+                      <div class="rp-detail-back"><i class="fas fa-arrow-left"></i></div>
+                      <div class="rp-detail-title">Lago della Rovina</div>
+                      <div class="rp-detail-badge rp-diff-medium">E</div>
+                    </div>
+                    <div class="rp-detail-stats">
+                      <div class="rp-stat"><i class="fas fa-route"></i><span>12.4 km</span></div>
+                      <div class="rp-stat"><i class="fas fa-mountain"></i><span>780 m D+</span></div>
+                      <div class="rp-stat"><i class="fas fa-clock"></i><span>4h 30m</span></div>
+                    </div>
+                    <div class="rp-detail-condition rp-cond-good">
+                      <i class="fas fa-check-circle"></i> Percorribile &mdash; aggiornato 2h fa
+                    </div>
+                    <div class="rp-section-label">Segnalazioni recenti</div>
+                    <div class="rp-report">
+                      <div class="rp-report-dot rp-dot-snow"><i class="fas fa-snowflake"></i></div>
+                      <div class="rp-report-body">
+                        <div class="rp-report-text">Neve sopra 2000m, ramponi utili</div>
+                        <div class="rp-report-date">2h fa &mdash; Marco T.</div>
+                      </div>
+                    </div>
+                    <div class="rp-report">
+                      <div class="rp-report-dot rp-dot-trail"><i class="fas fa-hiking"></i></div>
+                      <div class="rp-report-body">
+                        <div class="rp-report-text">Sentiero libero fino al rifugio</div>
+                        <div class="rp-report-date">6h fa &mdash; Laura B.</div>
+                      </div>
+                    </div>
+                    <div class="rp-report">
+                      <div class="rp-report-dot rp-dot-danger"><i class="fas fa-exclamation-triangle"></i></div>
+                      <div class="rp-report-body">
+                        <div class="rp-report-text">Tratto esposto al km 8, attenzione</div>
+                        <div class="rp-report-date">1g fa &mdash; Paolo R.</div>
+                      </div>
+                    </div>
+                    <div class="rp-detail-actions">
+                      <div class="rp-btn-primary"><i class="fas fa-location-arrow"></i> Naviga</div>
+                      <div class="rp-btn-secondary"><i class="fas fa-bookmark"></i></div>
+                      <div class="rp-btn-secondary"><i class="fas fa-share-alt"></i></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-home-indicator"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03. Risultato Finale -->
+        <div class="project-block reveal" id="risultato">
+          <div class="project-block-text">
+            <h3>03. Risultato Finale &mdash; Il Concept Completo</h3>
+            <p>
+              Il risultato finale: tre schermate che mostrano come potrebbe funzionare l'esperienza.
+              L'utente apre l'app, scorre il feed dei sentieri, consulta la scheda
+              di un'escursione con le segnalazioni della community, e passa alla mappa
+              per una visione d'insieme. Semplice, immediato, pensato per chi &egrave; gi&agrave; in cammino.
+            </p>
+          </div>
+          <div class="design-visual">
+            <div class="design-visual-header">
+              <span class="design-phase-badge design-phase-final">Risultato</span>
+            </div>
+            <div class="rambler-phone-grid">
+              <!-- Phone 1: Feed (final) -->
+              <div class="mockup-phone">
+                <div class="phone-notch"></div>
+                <div class="phone-screen rambler-browser-content">
+                  <div class="rambler-final rf-feed">
+                    <div class="rf-statusbar">
+                      <span class="rf-time">9:41</span>
+                      <span class="rf-signal"><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-three-quarters"></i></span>
+                    </div>
+                    <div class="rf-header">
+                      <span class="rf-logo"><i class="fas fa-mountain"></i> trails</span>
+                      <div class="rf-header-actions">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-sliders-h"></i>
+                      </div>
+                    </div>
+                    <div class="rf-trail-card">
+                      <div class="rf-trail-img" style="background: linear-gradient(135deg, #1b4332, #2d6a4f, #52b788);">
+                        <span class="rf-trail-badge-overlay rp-diff-medium">E</span>
+                      </div>
+                      <div class="rf-trail-body">
+                        <div class="rf-trail-header">
+                          <span class="rf-trail-name">Lago della Rovina</span>
+                        </div>
+                        <div class="rf-trail-location"><i class="fas fa-map-marker-alt"></i> Valle Gesso, Entracque</div>
+                        <div class="rf-trail-footer">
+                          <span class="rf-condition rf-cond-good"><i class="fas fa-check-circle"></i> Percorribile</span>
+                          <span class="rf-reports"><i class="fas fa-comment"></i> 4 segnalazioni</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rf-trail-card">
+                      <div class="rf-trail-img" style="background: linear-gradient(135deg, #5c4033, #8b6914, #a68a64);">
+                        <span class="rf-trail-badge-overlay rp-diff-hard">EE</span>
+                      </div>
+                      <div class="rf-trail-body">
+                        <div class="rf-trail-header">
+                          <span class="rf-trail-name">Rifugio Remondino</span>
+                        </div>
+                        <div class="rf-trail-location"><i class="fas fa-map-marker-alt"></i> Valle Gesso, Terme di Valdieri</div>
+                        <div class="rf-trail-footer">
+                          <span class="rf-condition rf-cond-caution"><i class="fas fa-exclamation-circle"></i> Neve sopra 2200m</span>
+                          <span class="rf-reports"><i class="fas fa-comment"></i> 7 segnalazioni</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rf-tabbar">
+                      <div class="rf-tab rf-tab-active"><i class="fas fa-stream"></i><span>Feed</span></div>
+                      <div class="rf-tab"><i class="fas fa-map"></i><span>Mappa</span></div>
+                      <div class="rf-tab rf-tab-add"><i class="fas fa-plus"></i></div>
+                      <div class="rf-tab"><i class="fas fa-bell"></i><span>Notifiche</span></div>
+                      <div class="rf-tab"><i class="fas fa-user"></i><span>Profilo</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-home-indicator"></div>
+              </div>
+
+              <!-- Phone 2: Map (final) -->
+              <div class="mockup-phone">
+                <div class="phone-notch"></div>
+                <div class="phone-screen rambler-browser-content">
+                  <div class="rambler-final rf-map">
+                    <div class="rf-statusbar">
+                      <span class="rf-time">9:41</span>
+                      <span class="rf-signal"><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-three-quarters"></i></span>
+                    </div>
+                    <div class="rf-filter-chips">
+                      <span class="rf-chip rf-chip-active">Tutti</span>
+                      <span class="rf-chip rf-chip-snow"><i class="fas fa-snowflake"></i> Neve</span>
+                      <span class="rf-chip rf-chip-trail"><i class="fas fa-hiking"></i> Sentieri</span>
+                      <span class="rf-chip rf-chip-climb"><i class="fas fa-mountain"></i> Arrampicata</span>
+                    </div>
+                    <div class="rf-map-area">
+                      <div class="rf-marker rf-marker-snow" style="top: 18%; left: 28%;"><i class="fas fa-snowflake"></i></div>
+                      <div class="rf-marker rf-marker-trail" style="top: 35%; left: 52%;"><i class="fas fa-hiking"></i></div>
+                      <div class="rf-marker rf-marker-danger" style="top: 48%; left: 25%;"><i class="fas fa-exclamation-triangle"></i></div>
+                      <div class="rf-marker rf-marker-trail" style="top: 25%; left: 68%;"><i class="fas fa-hiking"></i></div>
+                      <div class="rf-marker rf-marker-climb" style="top: 55%; left: 62%;"><i class="fas fa-mountain"></i></div>
+                      <div class="rf-marker rf-marker-snow" style="top: 42%; left: 78%;"><i class="fas fa-snowflake"></i></div>
+                    </div>
+                    <div class="rf-bottomsheet">
+                      <div class="rf-sheet-handle"></div>
+                      <div class="rf-sheet-label">Segnalazioni vicine</div>
+                      <div class="rf-sheet-item">
+                        <span class="rf-sheet-dot rf-dot-snow"></span>
+                        <span class="rf-sheet-text">Neve fresca Colle Fauniera</span>
+                        <span class="rf-sheet-time">1h</span>
+                      </div>
+                      <div class="rf-sheet-item">
+                        <span class="rf-sheet-dot rf-dot-trail"></span>
+                        <span class="rf-sheet-text">Sentiero libero Val Maira</span>
+                        <span class="rf-sheet-time">3h</span>
+                      </div>
+                      <div class="rf-sheet-item">
+                        <span class="rf-sheet-dot rf-dot-climb"></span>
+                        <span class="rf-sheet-text">Via nuova Rocca Provenzale</span>
+                        <span class="rf-sheet-time">5h</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-home-indicator"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decisioni di Design -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text">
+            <h3>Decisioni di Design</h3>
+            <p>
+              Un'app per chi cammina in montagna deve essere progettata per condizioni
+              reali: mani fredde, sole diretto sullo schermo, connessione instabile.
+              Ogni scelta di design risponde a un vincolo concreto del contesto outdoor.
+            </p>
+          </div>
+          <div class="design-decisions-grid">
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-mobile-alt"></i></div>
+              <h5>Mobile-first, non mobile-only</h5>
+              <p>La piattaforma primaria &egrave; lo smartphone. La versione web esiste come estensione per consultare dati a casa, ma l'esperienza core &egrave; in tasca, sul sentiero.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-route"></i></div>
+              <h5>Sentieri al centro, non persone</h5>
+              <p>L'entit&agrave; principale &egrave; il sentiero, non l'utente. Il feed mostra trail, la ricerca cerca trail, i profili sono secondari. I percorsi sono al centro di tutto.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-users"></i></div>
+              <h5>Community crowdsourced</h5>
+              <p>Le condizioni dei sentieri cambiano ogni giorno. Invece di un database statico, le informazioni arrivano dalla community in tempo reale &mdash; un approccio collaborativo che tiene tutto aggiornato.</p>
+            </div>
+            <div class="design-decision-card">
+              <div class="decision-icon"><i class="fas fa-palette"></i></div>
+              <h5>Palette naturale funzionale</h5>
+              <p>I colori non sono decorativi: verde = percorribile, ambra = cautela, rosso = chiuso/pericolo. Marker mappa colorati per tipo. L'utente riconosce le condizioni prima ancora di leggere.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Disclaimer scherzoso -->
+        <div class="project-block project-block-full reveal">
+          <div class="project-block-text" style="text-align: center;">
+            <h3><i class="fas fa-gavel"></i> Nota Legale (pi&ugrave; o meno)</h3>
+            <p>
+              Se quest'idea ti piace al punto da volerla copiare, sappi che ne sarei lusingato.
+              Per&ograve; fammelo sapere prima &mdash; cos&igrave; posso darti qualche spunto in pi&ugrave;,
+              condividere gli appunti che non ho pubblicato, e magari offrirti un caff&egrave;.
+            </p>
+            <p>
+              Se invece decidi di copiarla di nascosto... beh, ho un cugino avvocato
+              <em>(non &egrave; vero, ma suona bene)</em> e soprattutto ho tutto il tempo
+              del mondo per scriverti messaggi passivo-aggressivi su LinkedIn.
+              Sei avvisato. <i class="fas fa-handshake" style="opacity:.6;"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+              <span class="logo-bracket">&lt;</span>
+              <span class="logo-text">EA</span>
+              <span class="logo-bracket">/&gt;</span>
+            </a>
+            <p>
+              Enrico Arnaudo — Informatico presso ASL CN1. Cuneo,
+              Italia.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h5>Navigazione</h5>
+            <ul>
+              <li><a href="index.html#about">Chi sono</a></li>
+              <li><a href="index.html#services">Cosa faccio</a></li>
+              <li><a href="index.html#experience">Esperienze</a></li>
+              <li><a href="index.html#design">Design & UI</a></li>
+              <li><a href="index.html#beyond">Oltre il codice</a></li>
+              <li><a href="index.html#contact">Contatti</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h5>Competenze</h5>
+            <ul>
+              <li>Full-Stack Development</li>
+              <li>Microsoft Ecosystem</li>
+              <li>Cloud & DevOps</li>
+              <li>UI/UX Design</li>
+              <li>Sistemi Distribuiti</li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h5>Contatti</h5>
+            <p>
+              <a href="mailto:arnaudoenrico@gmail.com"
+                >arnaudoenrico@gmail.com</a
+              >
+            </p>
+            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
+            <p>Bernezzo (CN), Italia</p>
+            <div class="footer-social">
+              <a
+                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
+                target="_blank"
+                aria-label="LinkedIn"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Enrico Arnaudo. Tutti i diritti riservati.</p>
+          <div class="footer-bottom-links">
+            <a href="index.html#privacy">Privacy Policy</a>
+            <span>&middot;</span>
+            <a href="index.html#contact">Contatti</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
