@@ -16,6 +16,7 @@
     initActiveNavLinks();
     initSmoothScroll();
     initHeroParallax();
+    initEasterEgg();
   });
 
   /* ══════════════════════════════════════════════════════
@@ -193,6 +194,7 @@
   ══════════════════════════════════════════════════════ */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      if (anchor.classList.contains("nav-logo")) return;
       anchor.addEventListener("click", (e) => {
         const target = document.querySelector(anchor.getAttribute("href"));
         if (!target) return;
@@ -1054,6 +1056,44 @@
       }
 
       requestAnimationFrame(animate);
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════
+     EASTER EGG — Triple click on EA logo
+  ══════════════════════════════════════════════════════ */
+  function initEasterEgg() {
+    const logo = document.querySelector(".nav-logo");
+    if (!logo) return;
+
+    let clickCount = 0;
+    let clickTimer = null;
+
+    logo.addEventListener("click", (e) => {
+      e.preventDefault();
+      clickCount++;
+
+      if (clickCount === 1) {
+        // Wait to see if more clicks follow
+        clickTimer = setTimeout(() => {
+          // Only 1 or 2 clicks — do normal scroll to #home
+          clickCount = 0;
+          const target = document.querySelector("#home");
+          if (target) {
+            const navbarHeight =
+              document.getElementById("navbar")?.offsetHeight || 80;
+            const targetPos =
+              target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+            window.scrollTo({ top: targetPos, behavior: "smooth" });
+          }
+        }, 600);
+      }
+
+      if (clickCount >= 3) {
+        clearTimeout(clickTimer);
+        clickCount = 0;
+        window.location.href = "cronaca.html";
+      }
     });
   }
 
