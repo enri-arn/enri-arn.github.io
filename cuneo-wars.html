@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuneo Wars — La Minaccia Occitana</title>
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* ── Star Wars font ──────────────────────── */
+      @font-face {
+        font-family: 'StarJedi';
+        src: url('Starjhol.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #000;
+        color: #ffd700;
+        font-family: 'Inter', sans-serif;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      /* ── Stars background ─────────────────────── */
+      .starfield {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .starfield .star {
+        position: absolute;
+        border-radius: 50%;
+        background: #fff;
+        animation: twinkle linear infinite alternate;
+      }
+      @keyframes twinkle {
+        0%   { opacity: 0.15; }
+        100% { opacity: 1; }
+      }
+
+      /* ── Back button ──────────────────────────── */
+      .back-btn {
+        position: fixed;
+        top: 1.5rem;
+        left: 1.5rem;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        border-radius: 12px;
+        color: #ffd700;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        transition: all 0.3s ease;
+      }
+      .back-btn:hover {
+        border-color: #ffd700;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        transform: translateX(-3px);
+      }
+      .back-btn:hover i { transform: translateX(-3px); }
+      .back-btn i { transition: transform 0.3s ease; }
+
+      /* ── Audio toggle ─────────────────────────── */
+      .audio-toggle {
+        position: fixed;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 200;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        border-radius: 12px;
+        color: #ffd700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .audio-toggle:hover {
+        border-color: #ffd700;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+      }
+
+      /* ── Scroll hint ──────────────────────────── */
+      .scroll-hint {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 200;
+        color: #ffd700;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        opacity: 0;
+        text-align: center;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+      .scroll-hint.visible { opacity: 0.6; }
+      .scroll-hint i {
+        display: block;
+        margin-top: 0.4rem;
+        font-size: 1.2rem;
+        animation: bounceDown 1.5s ease infinite;
+      }
+      @keyframes bounceDown {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(6px); }
+      }
+
+      /* ── Phase: Intro "A long time ago…" ──────── */
+      .phase-intro {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4e9bcd;
+        font-size: clamp(1.1rem, 3.5vw, 1.8rem);
+        font-weight: 300;
+        text-align: center;
+        line-height: 2.2;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        pointer-events: none;
+      }
+      .phase-intro.active { opacity: 1; }
+
+      /* ── Phase: Logo ──────────────────────────── */
+      .phase-logo {
+        position: fixed;
+        inset: 0;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 1.2s ease, transform 3s ease;
+        transform: scale(1);
+        pointer-events: none;
+      }
+      .phase-logo.active {
+        opacity: 1;
+      }
+      .phase-logo.shrink {
+        opacity: 0;
+        transform: scale(0.15);
+      }
+
+      .logo-title {
+        font-family: 'StarJedi', 'Inter', sans-serif;
+        font-size: clamp(3rem, 12vw, 9rem);
+        font-weight: normal;
+        color: #ffd700;
+        text-align: center;
+        text-shadow:
+          0 0 60px rgba(255, 215, 0, 0.5),
+          0 0 120px rgba(255, 215, 0, 0.2);
+        line-height: 1;
+      }
+      .logo-subtitle {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(0.7rem, 2vw, 1.1rem);
+        font-weight: 400;
+        letter-spacing: 0.35em;
+        margin-top: 1.2rem;
+        color: #ffd700;
+        opacity: 0.7;
+        text-transform: uppercase;
+      }
+
+      /* ── Phase: Crawl ─────────────────────────── */
+      .phase-crawl {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        z-index: 5;
+        opacity: 0;
+        transition: opacity 1s ease;
+        pointer-events: none;
+      }
+      .phase-crawl.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .crawl-perspective {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 200%;
+        transform-origin: 50% 28%;
+        transform: perspective(400px) rotateX(18deg);
+        overflow: hidden;
+      }
+
+      .crawl-content {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+        padding-top: 60vh;
+        padding-bottom: 80vh;
+        will-change: transform;
+        transform: translateY(0);
+      }
+
+      /* ── Crawl typography ─────────────────────── */
+      .crawl-content h2 {
+        font-family: 'StarJedi', 'Inter', sans-serif;
+        text-align: center;
+        font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+        font-weight: normal;
+        margin-bottom: 2rem;
+        color: #ffd700;
+        letter-spacing: 0.05em;
+      }
+
+      .crawl-content h3 {
+        text-align: center;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-weight: 700;
+        margin: 3rem 0 1.5rem;
+        color: #ffd700;
+        opacity: 0.95;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .crawl-content p {
+        text-align: justify;
+        font-size: clamp(1.15rem, 2.8vw, 1.55rem);
+        line-height: 2;
+        margin-bottom: 1.5rem;
+        color: #ffd700;
+        font-weight: 400;
+      }
+
+      .crawl-content p strong {
+        color: #ffe566;
+        font-weight: 700;
+      }
+
+      .crawl-content .divider {
+        text-align: center;
+        font-size: 1.4rem;
+        letter-spacing: 0.8em;
+        margin: 3rem 0;
+        opacity: 0.5;
+      }
+
+      .crawl-content .ending {
+        text-align: center;
+        margin-top: 3.5rem;
+        padding-top: 2.5rem;
+        border-top: 1px solid rgba(255, 215, 0, 0.15);
+      }
+      .crawl-content .ending p {
+        text-align: center;
+        font-style: italic;
+        opacity: 0.7;
+        font-size: clamp(1rem, 2.2vw, 1.3rem);
+      }
+      .crawl-content .ending .sigil {
+        display: inline-block;
+        margin-top: 2rem;
+        font-family: 'StarJedi', 'Inter', sans-serif;
+        font-size: 1.2rem;
+        letter-spacing: 0.15em;
+        opacity: 0.5;
+      }
+
+      /* ── Hyperspace overlay ─────────────────────── */
+      .hyperspace-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .hyperspace-overlay.active {
+        opacity: 1;
+      }
+      .hyperspace-overlay canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* "Return" button at end of crawl */
+      .hyperspace-btn {
+        position: fixed;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9);
+        z-index: 100;
+        padding: 1rem 2.5rem;
+        font-family: 'StarJedi', 'Inter', sans-serif;
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+        color: #ffd700;
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid rgba(255, 215, 0, 0.4);
+        border-radius: 8px;
+        cursor: pointer;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        transition: all 0.5s ease;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .hyperspace-btn.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) scale(1);
+      }
+      .hyperspace-btn:hover {
+        border-color: #ffd700;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.05);
+        text-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+        transform: translateX(-50%) scale(1.05);
+      }
+
+      /* Flash bianco finale */
+      .hyperspace-flash {
+        position: fixed;
+        inset: 0;
+        z-index: 600;
+        background: #fff;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+      }
+      .hyperspace-flash.active {
+        opacity: 1;
+      }
+
+      /* ── Responsive ───────────────────────────── */
+      @media (max-width: 600px) {
+        .crawl-content {
+          padding-left: 1.2rem;
+          padding-right: 1.2rem;
+        }
+        .crawl-perspective {
+          transform: perspective(350px) rotateX(16deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Audio element -->
+    <audio id="bgMusic" src="star_wars.mp3" preload="auto" loop></audio>
+
+    <!-- Stars -->
+    <div class="starfield" id="starfield"></div>
+
+    <!-- Back button -->
+    <a href="index.html#contact" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+      Torna alla base
+    </a>
+
+    <!-- Audio toggle -->
+    <button class="audio-toggle" id="audioToggle" title="Musica ON/OFF">
+      <i class="fas fa-volume-up" id="audioIcon"></i>
+    </button>
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint" id="scrollHint">
+      SCORRI PER LEGGERE
+      <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <!-- Phase 1: "A long time ago…" -->
+    <div class="phase-intro" id="phaseIntro">
+      Tanto tempo fa, in una provincia molto,<br>
+      molto lontana da tutto&hellip;
+    </div>
+
+    <!-- Phase 2: Logo -->
+    <div class="phase-logo" id="phaseLogo">
+      <div>
+        <div class="logo-title">
+          CUNEO<br>WARS
+        </div>
+        <div class="logo-subtitle">Episodio I &mdash; La Minaccia Occitana</div>
+      </div>
+    </div>
+
+    <!-- Phase 3: Crawl (scroll-driven) -->
+    <div class="phase-crawl" id="phaseCrawl">
+      <div class="crawl-perspective">
+        <div class="crawl-content" id="crawlContent">
+          <h2>Episodio I<br>La Minaccia Occitana</h2>
+
+          <p>
+            La provincia &egrave; in fermento.<br>
+            Nelle valli del Cuneese, tra server che non dormono mai e sentieri
+            che iniziano dove finisce l'asfalto, vive un informatico che ha
+            compreso una verit&agrave; fondamentale: il fine settimana non
+            &egrave; fatto per i monitor. &Egrave; fatto per la montagna.
+          </p>
+
+          <p>
+            Cresciuto tra infrastrutture IT e pause caff&egrave; troppo brevi,
+            egli ha scelto un'altra via. Una via fatta di scarponi infangati,
+            sveglie indecenti e zaini caricati con una logica tutta sua: meglio
+            troppo che &ldquo;non abbastanza&rdquo;. Cos&igrave; nacque la
+            leggenda dei bivacchi con provviste sufficienti a sfamare un'intera
+            legione romana&hellip; nel dubbio.
+          </p>
+
+          <div class="divider">&#x2726; &middot; &#x2726; &middot; &#x2726;</div>
+
+          <h3>Capitolo I &mdash; La Valle Maira Colpisce al Cuore</h3>
+
+          <p>
+            La Valle Maira non &egrave; una semplice valle.<br>
+            &Egrave; un richiamo. Un luogo a cui tornare sempre, anche quando
+            le gambe chiedono piet&agrave; e il meteo mente spudoratamente.
+          </p>
+
+          <p>
+            Qui il nostro eroe ha passato notti in bivacco combattendo con
+            materassini ribelli, sacchi a pelo &ldquo;tre stagioni&rdquo; che
+            ne conoscono al massimo due e quella sensazione costante di essere
+            contemporaneamente distrutto e felice. Ogni bivacco &egrave; casa,
+            ogni tavolaccio &egrave; un trono, ogni alba una ricompensa che fa
+            dimenticare tutto il resto.
+          </p>
+
+          <p>
+            Chi lo accompagna lo sa: il cibo non manca mai. Pane, formaggi,
+            salumi, calorie a sufficienza per un assedio prolungato. Nessuno
+            ha ancora spiegato come entri tutto nello zaino, ma nessuno osa
+            pi&ugrave; fare domande.
+          </p>
+
+          <div class="divider">&#183; &#183; &#183;</div>
+
+          <h3>Capitolo II &mdash; Monte Matto: The Crazy Mountain</h3>
+
+          <p>
+            Poi c'&egrave; lui.<br>
+            Il Monte Matto.<br>
+            Conosciuto nei racconti come <strong>The Crazy Mountain</strong>.
+          </p>
+
+          <p>
+            La missione inizi&ograve; alle quattro del mattino.<br>
+            Lui e Christian, spinti da entusiasmo e caffeina, partirono con
+            un obiettivo chiaro: salire in cima e godersi una vista epica,
+            degna delle migliori leggende alpine.
+          </p>
+
+          <p>
+            La montagna, tuttavia, aveva altri piani.
+          </p>
+
+          <p>
+            In vetta li attendeva la nebbia. Una nebbia totale. Assoluta.
+            Un vuoto bianco cos&igrave; fitto che anche la Forza avrebbe avuto
+            difficolt&agrave; a penetrarlo. Nessun panorama, nessuna foto
+            memorabile. Solo vento, risate e la consapevolezza che s&igrave;,
+            quella sveglia alle quattro la rifarebbero comunque.
+          </p>
+
+          <div class="divider">&#x2726; &middot; &#x2726; &middot; &#x2726;</div>
+
+          <h3>Capitolo III &mdash; Bivacchi, Alba e Filosofia da Quota</h3>
+
+          <p>
+            La notte in bivacco &egrave; un'esperienza mistica.<br>
+            Cos&igrave; dicono.
+          </p>
+
+          <p>
+            La realt&agrave; &egrave; fatta di sacchi a pelo che sembrano
+            improvvisamente troppo corti, di rumori strani nel buio e di
+            qualcuno che russa come un AT-ST in avaria. Eppure, all'alba,
+            quando il sole supera la cresta e il mondo &egrave; fermo, ogni
+            disagio perde significato.
+          </p>
+
+          <p>
+            In quel silenzio la montagna ricorda una verit&agrave; semplice:
+            sei piccolo, la tecnologia &egrave; un dettaglio e il miglior
+            debugger resta sempre una notte sopra i duemila metri.
+          </p>
+
+          <div class="divider">&#183; &#183; &#183;</div>
+
+          <h3>Capitolo IV &mdash; La Scoperta della Forza Occitana</h3>
+
+          <p>
+            La vera svolta, per&ograve;, non arriv&ograve; sui sentieri.<br>
+            Arriv&ograve; per caso.<br>
+            Per colpa di <strong>Pol</strong>.
+          </p>
+
+          <p>
+            Una sera qualunque, una musica sconosciuta, un ballo improvvisato.
+            Fu amore a prima vista. I balli occitani non si imparano con la
+            testa: ti entrano dentro, ti prendono i piedi e non ti lasciano
+            pi&ugrave;.
+          </p>
+
+          <p>
+            Da allora ogni gioved&igrave; sera &egrave; addestramento.<br>
+            Balfolk: il tempio dove affinare la tecnica, sbagliare passi,
+            migliorare lentamente. Un percorso lungo, fatto di giri,
+            contragiri e frasi come &ldquo;no, cos&igrave; &egrave; la
+            courenta dell'altra valle&rdquo;.
+          </p>
+
+          <div class="divider">&#x2726; &middot; &#x2726; &middot; &#x2726;</div>
+
+          <h3>Capitolo V &mdash; I Signori del Ritmo</h3>
+
+          <p>
+            Poi arrivano i concerti.<br>
+            E l&igrave; non ci sono pi&ugrave; scuse.
+          </p>
+
+          <p>
+            I <strong>Lou Tapage</strong>: impossibile mancare. Mai.<br>
+            Quando suonano, la piazza diventa un campo di battaglia e restare
+            fermi &egrave; semplicemente fuori discussione.
+          </p>
+
+          <p>
+            I <strong>Lou Dalfin</strong>, i <strong>Lou Seriol</strong>,
+            i <strong>Lou Pitakass</strong>.<br>
+            Ogni gruppo &egrave; una declinazione diversa della Forza Occitana.
+            Ogni serata finisce troppo tardi e comincia sempre con la stessa
+            convinzione ingenua: &ldquo;stasera vado piano&rdquo;.
+          </p>
+
+          <p>
+            La grazia non &egrave; garantita.<br>
+            L'entusiasmo s&igrave;, sempre.
+          </p>
+
+          <div class="divider">&#x2726; &middot; &#x2726; &middot; &#x2726;</div>
+
+          <div class="ending">
+            <p>
+              La storia non finisce qui.<br>
+              Ci sono ancora bivacchi da riempire,<br>
+              vette da salire per vedere solo nebbia,<br>
+              balli da sbagliare con convinzione<br>
+              e concerti da cui tornare senza voce.
+            </p>
+            <p>
+              Perch&eacute; un cuneese non si ferma mai davvero.<br>
+              Al massimo fa una pausa.<br>
+              Magari al rifugio.
+            </p>
+            <div class="sigil">&lt;EA /&gt;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hyperspace button (fixed, outside 3D transform) -->
+    <button class="hyperspace-btn" id="hyperspaceBtn">Salta nell'iperspazio</button>
+
+    <!-- Hyperspace effect overlay -->
+    <div class="hyperspace-overlay" id="hyperspaceOverlay"></div>
+    <div class="hyperspace-flash" id="hyperspaceFlash"></div>
+
+    <script>
+      /* ═══════════════════════════════════════════
+         CUNEO WARS — Sequence Controller
+         Phase 1: Intro text (fade in/out)
+         Phase 2: Logo (appear, hold, shrink away)
+         Phase 3: Crawl (scroll-driven by user)
+         ═══════════════════════════════════════════ */
+
+      /* ── Stars ──────────────────────────────── */
+      (function () {
+        var c = document.getElementById('starfield');
+        for (var i = 0; i < 300; i++) {
+          var s = document.createElement('div');
+          s.className = 'star';
+          var sz = (0.5 + Math.random() * 2.5) + 'px';
+          s.style.width = sz;
+          s.style.height = sz;
+          s.style.left = Math.random() * 100 + '%';
+          s.style.top = Math.random() * 100 + '%';
+          s.style.animationDuration = (1 + Math.random() * 3) + 's';
+          s.style.animationDelay = (Math.random() * 3) + 's';
+          c.appendChild(s);
+        }
+      })();
+
+      /* ── Audio (mp3) ────────────────────────── */
+      (function () {
+        var audio = document.getElementById('bgMusic');
+        var btn = document.getElementById('audioToggle');
+        var icon = document.getElementById('audioIcon');
+        var playing = true;
+
+        // Autoplay on load
+        audio.volume = 0.5;
+        audio.play().catch(function () {
+          // Browser blocked autoplay — wait for first user interaction
+          playing = false;
+          icon.className = 'fas fa-volume-mute';
+          var resumeOnce = function () {
+            if (!playing) {
+              audio.volume = 0.5;
+              audio.play().catch(function () {});
+              playing = true;
+              icon.className = 'fas fa-volume-up';
+            }
+            document.removeEventListener('click', resumeOnce);
+            document.removeEventListener('wheel', resumeOnce);
+            document.removeEventListener('touchstart', resumeOnce);
+          };
+          document.addEventListener('click', resumeOnce);
+          document.addEventListener('wheel', resumeOnce);
+          document.addEventListener('touchstart', resumeOnce);
+        });
+
+        btn.addEventListener('click', function () {
+          if (playing) {
+            audio.pause();
+            playing = false;
+            icon.className = 'fas fa-volume-mute';
+          } else {
+            audio.volume = 0.5;
+            audio.play().catch(function () {});
+            playing = true;
+            icon.className = 'fas fa-volume-up';
+          }
+        });
+      })();
+
+      /* ── Phase sequencer ────────────────────── */
+      (function () {
+        var intro = document.getElementById('phaseIntro');
+        var logo = document.getElementById('phaseLogo');
+        var crawl = document.getElementById('phaseCrawl');
+        var hint = document.getElementById('scrollHint');
+        var content = document.getElementById('crawlContent');
+
+        var scrollY = 0;
+        var phase = 0; // 0=waiting, 1=intro, 2=logo, 3=crawl
+
+        // Phase 1: show intro
+        setTimeout(function () {
+          phase = 1;
+          intro.classList.add('active');
+        }, 500);
+
+        // Phase 1 -> 2: fade out intro, show logo
+        setTimeout(function () {
+          intro.classList.remove('active');
+        }, 5500);
+
+        setTimeout(function () {
+          phase = 2;
+          logo.classList.add('active');
+        }, 7000);
+
+        // Phase 2 -> 3: shrink logo, show crawl
+        setTimeout(function () {
+          logo.classList.add('shrink');
+        }, 12000);
+
+        setTimeout(function () {
+          phase = 3;
+          logo.style.display = 'none';
+          crawl.classList.add('active');
+          hint.classList.add('visible');
+        }, 15000);
+
+        // Hide hint after first scroll
+        var hintHidden = false;
+
+        /* ── Scroll-driven crawl ─────────────── */
+        var scrollPos = 0;
+        var maxScroll = 0;
+        var speed = 2.5; // pixels per delta unit
+
+        function updateMaxScroll() {
+          // Total scrollable distance = content height - viewport
+          maxScroll = Math.max(0, content.scrollHeight - window.innerHeight * 0.6);
+        }
+
+        // Recalculate on resize
+        window.addEventListener('resize', updateMaxScroll);
+
+        // Wait a bit for fonts to load, then calc
+        setTimeout(updateMaxScroll, 15500);
+        setTimeout(updateMaxScroll, 17000);
+
+        function applyCrawl() {
+          content.style.transform = 'translateY(' + (-scrollPos) + 'px)';
+          // Show hyperspace button when near the end
+          var hypBtn = document.getElementById('hyperspaceBtn');
+          if (maxScroll > 0 && scrollPos >= maxScroll * 0.85) {
+            hypBtn.classList.add('visible');
+          } else {
+            hypBtn.classList.remove('visible');
+          }
+        }
+
+        // Mouse wheel
+        window.addEventListener('wheel', function (e) {
+          if (phase < 3) return;
+          e.preventDefault();
+
+          if (!hintHidden) {
+            hint.classList.remove('visible');
+            hintHidden = true;
+          }
+
+          updateMaxScroll();
+          scrollPos += e.deltaY * speed;
+          if (scrollPos < 0) scrollPos = 0;
+          if (scrollPos > maxScroll) scrollPos = maxScroll;
+          applyCrawl();
+        }, { passive: false });
+
+        // Touch support
+        var touchStartY = 0;
+        window.addEventListener('touchstart', function (e) {
+          if (phase < 3) return;
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', function (e) {
+          if (phase < 3) return;
+          e.preventDefault();
+
+          if (!hintHidden) {
+            hint.classList.remove('visible');
+            hintHidden = true;
+          }
+
+          var dy = touchStartY - e.touches[0].clientY;
+          touchStartY = e.touches[0].clientY;
+
+          updateMaxScroll();
+          scrollPos += dy * 1.8;
+          if (scrollPos < 0) scrollPos = 0;
+          if (scrollPos > maxScroll) scrollPos = maxScroll;
+          applyCrawl();
+        }, { passive: false });
+
+        // Keyboard (arrow keys, page up/down, space)
+        window.addEventListener('keydown', function (e) {
+          if (phase < 3) return;
+          var delta = 0;
+          switch (e.key) {
+            case 'ArrowDown': case ' ':  delta = 120; break;
+            case 'ArrowUp':              delta = -120; break;
+            case 'PageDown':             delta = 400; break;
+            case 'PageUp':               delta = -400; break;
+            default: return;
+          }
+          e.preventDefault();
+
+          if (!hintHidden) {
+            hint.classList.remove('visible');
+            hintHidden = true;
+          }
+
+          updateMaxScroll();
+          scrollPos += delta;
+          if (scrollPos < 0) scrollPos = 0;
+          if (scrollPos > maxScroll) scrollPos = maxScroll;
+          applyCrawl();
+        });
+      })();
+
+      /* ── Hyperspace jump effect (canvas, outward streaks) ── */
+      (function () {
+        var btn = document.getElementById('hyperspaceBtn');
+        var overlay = document.getElementById('hyperspaceOverlay');
+        var flash = document.getElementById('hyperspaceFlash');
+        var fired = false;
+
+        btn.addEventListener('click', function () {
+          if (fired) return;
+          fired = true;
+
+          var W = window.innerWidth;
+          var H = window.innerHeight;
+          var cx = W / 2;
+          var cy = H / 2;
+          var maxR = Math.sqrt(cx * cx + cy * cy);
+
+          // Hide crawl and button
+          var phaseCrawl = document.getElementById('phaseCrawl');
+          phaseCrawl.style.transition = 'opacity 0.8s ease';
+          phaseCrawl.style.opacity = '0';
+          btn.style.transition = 'opacity 0.4s ease';
+          btn.style.opacity = '0';
+          btn.style.pointerEvents = 'none';
+
+          // ── Collect real star positions from the starfield ──
+          var starfield = document.getElementById('starfield');
+          var existingStars = starfield.querySelectorAll('.star');
+          var stars = [];
+
+          for (var i = 0; i < existingStars.length; i++) {
+            var rect = existingStars[i].getBoundingClientRect();
+            var sx = rect.left + rect.width / 2;
+            var sy = rect.top + rect.height / 2;
+            var angle = Math.atan2(sy - cy, sx - cx);
+            var dist = Math.sqrt((sx - cx) * (sx - cx) + (sy - cy) * (sy - cy));
+            stars.push({
+              angle: angle,
+              baseR: dist,
+              size: rect.width,
+              speed: 0.5 + Math.random() * 0.7,
+              brightness: 0.6 + Math.random() * 0.4,
+              blue: Math.random() < 0.25
+            });
+          }
+
+          // Add extra stars to fill the sky (denser effect)
+          for (var k = 0; k < 400; k++) {
+            var angle = Math.random() * Math.PI * 2;
+            // Distribute across full screen radius
+            var dist = 5 + Math.random() * maxR;
+            stars.push({
+              angle: angle,
+              baseR: dist,
+              size: 0.5 + Math.random() * 2.5,
+              speed: 0.4 + Math.random() * 0.8,
+              brightness: 0.4 + Math.random() * 0.6,
+              blue: Math.random() < 0.25
+            });
+          }
+
+          var NUM = stars.length;
+
+          // Create canvas on top — starfield stays visible behind initially
+          var dpr = window.devicePixelRatio || 1;
+          var canvas = document.createElement('canvas');
+          canvas.width = W * dpr;
+          canvas.height = H * dpr;
+          overlay.appendChild(canvas);
+          var ctx = canvas.getContext('2d');
+          ctx.scale(dpr, dpr);
+
+          overlay.classList.add('active');
+
+          // Now hide the HTML starfield (canvas takes over)
+          starfield.style.transition = 'opacity 0.3s ease';
+          starfield.style.opacity = '0';
+
+          var startTime = null;
+          var duration = 4500;
+
+          function animate(ts) {
+            if (!startTime) startTime = ts;
+            var elapsed = ts - startTime;
+            var t = Math.min(1, elapsed / duration);
+
+            // Black background — deep space, always
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, W, H);
+
+            // Ease-in curve: very slow start, explosive acceleration
+            // Using quintic for more dramatic ramp
+            var accel = t * t * t * t;
+
+            // How far each star moves outward from its starting position
+            var maxMove = maxR * 2.5;
+
+            for (var j = 0; j < NUM; j++) {
+              var s = stars[j];
+              var cosA = Math.cos(s.angle);
+              var sinA = Math.sin(s.angle);
+
+              // Current outer radius = original position + outward movement
+              var outerR = s.baseR + accel * maxMove * s.speed;
+
+              // Streak length: starts as a dot, grows into a long line
+              // At t=0 it's just the star size, at t=1 it's a massive streak
+              var streakLen = s.size + accel * maxMove * s.speed * 0.7;
+              var innerR = Math.max(0, outerR - streakLen);
+
+              // Skip if completely off-screen
+              if (innerR > maxR * 2) continue;
+
+              var x1 = cx + cosA * innerR;
+              var y1 = cy + sinA * innerR;
+              var x2 = cx + cosA * outerR;
+              var y2 = cy + sinA * outerR;
+
+              // Thickness: starts thin (original star dot), grows
+              var lineW = s.size * (1 + accel * 2.5);
+              lineW = Math.min(lineW, 5);
+
+              // Alpha: full from the start (they're already visible stars)
+              // Gets brighter as they streak
+              var alpha = s.brightness * (0.8 + accel * 0.4);
+              alpha = Math.min(1, alpha);
+
+              if (s.blue) {
+                ctx.strokeStyle = 'rgba(190, 210, 255, ' + alpha + ')';
+              } else {
+                ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+              }
+
+              ctx.lineWidth = lineW;
+              ctx.lineCap = 'round';
+              ctx.beginPath();
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(x2, y2);
+              ctx.stroke();
+            }
+
+            // Subtle central glow at vanishing point
+            var glowAlpha = 0.05 + accel * 0.12;
+            var glowR = 80 + accel * 50;
+            var grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
+            grad.addColorStop(0, 'rgba(210, 225, 255, ' + glowAlpha + ')');
+            grad.addColorStop(1, 'rgba(210, 225, 255, 0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(cx, cy, glowR, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (elapsed < duration) {
+              requestAnimationFrame(animate);
+            } else {
+              // White flash and redirect
+              flash.classList.add('active');
+              setTimeout(function () {
+                window.location.href = 'index.html#contact';
+              }, 700);
+            }
+          }
+
+          // Start immediately — stars are already there
+          requestAnimationFrame(animate);
+        });
+      })();
+    </script>
+  </body>
+</html>
