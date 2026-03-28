@@ -39,6 +39,67 @@
         overflow: hidden;
         height: 100vh;
         width: 100vw;
+        cursor: none;
+      }
+
+      /* ── Lightsaber cursor ─────────────────────── */
+      .saber-cursor {
+        position: fixed;
+        z-index: 9999;
+        pointer-events: none;
+        /* pivot from the handle (bottom) so it swings like a real saber */
+        transform-origin: center bottom;
+        transition: filter 0.15s ease;
+      }
+      .saber-blade-glow {
+        width: 10px;
+        height: 72px;
+        border-radius: 5px 5px 2px 2px;
+        position: relative;
+        background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(80,255,80,0.7) 40%, rgba(0,200,0,0.3) 100%);
+        box-shadow:
+          0 0 8px 3px rgba(0,255,0,0.55),
+          0 0 20px 7px rgba(0,255,0,0.3),
+          0 0 45px 14px rgba(0,255,0,0.12);
+      }
+      .saber-blade-core {
+        position: absolute;
+        top: 0; bottom: 1px; left: 3px; right: 3px;
+        border-radius: 3px 3px 1px 1px;
+        background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.5) 100%);
+      }
+      .saber-handle {
+        width: 10px;
+        height: 22px;
+        margin: 0 auto;
+        border-radius: 1px 1px 3px 3px;
+        background: linear-gradient(180deg, #aaa, #666 40%, #555 60%, #777);
+        border: 1px solid #888;
+        position: relative;
+      }
+      .saber-handle::before {
+        content: '';
+        position: absolute;
+        top: -2px; left: -3px; right: -3px;
+        height: 5px;
+        border-radius: 1px;
+        background: linear-gradient(180deg, #ccc, #888);
+      }
+      .saber-handle::after {
+        content: '';
+        position: absolute;
+        bottom: -2px; left: -1px; right: -1px;
+        height: 4px;
+        border-radius: 0 0 3px 3px;
+        background: #555;
+      }
+      /* ── Red saber variant ── */
+      .saber-cursor.red .saber-blade-glow {
+        background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,80,80,0.7) 40%, rgba(200,0,0,0.3) 100%);
+        box-shadow:
+          0 0 8px 3px rgba(255,0,0,0.55),
+          0 0 20px 7px rgba(255,0,0,0.3),
+          0 0 45px 14px rgba(255,0,0,0.12);
       }
 
       /* ── Stars background ─────────────────────── */
@@ -608,6 +669,14 @@
     <div class="hyperspace-overlay" id="hyperspaceOverlay"></div>
     <div class="hyperspace-flash" id="hyperspaceFlash"></div>
 
+    <!-- Lightsaber cursor element -->
+    <div class="saber-cursor" id="saberCursor">
+      <div class="saber-blade-glow">
+        <div class="saber-blade-core"></div>
+      </div>
+      <div class="saber-handle"></div>
+    </div>
+
     <script>
       /* ═══════════════════════════════════════════
          CUNEO WARS — Sequence Controller
@@ -615,6 +684,62 @@
          Phase 2: Logo (appear, hold, shrink away)
          Phase 3: Crawl (scroll-driven by user)
          ═══════════════════════════════════════════ */
+
+      /* ── Lightsaber cursor logic ──────────────── */
+      (function () {
+        var saber = document.getElementById('saberCursor');
+        var halfW = window.innerWidth / 2;
+        var prevX = 0;
+        var currentAngle = 0;   // current visual rotation
+        var targetAngle = 0;    // where we want to rotate to
+        var velocity = 0;       // angular velocity for momentum
+
+        window.addEventListener('resize', function () {
+          halfW = window.innerWidth / 2;
+        });
+
+        document.addEventListener('mousemove', function (e) {
+          // Position: anchor at bottom of handle
+          saber.style.left = e.clientX + 'px';
+          saber.style.top = e.clientY + 'px';
+
+          // Color: left = red, right = green
+          if (e.clientX < halfW) {
+            saber.classList.add('red');
+          } else {
+            saber.classList.remove('red');
+          }
+
+          // Brandish: horizontal mouse speed tilts the blade
+          var dx = e.clientX - prevX;
+          prevX = e.clientX;
+          // Clamp and scale: fast movement = bigger swing
+          targetAngle = Math.max(-45, Math.min(45, dx * -2.5));
+          velocity += (targetAngle - currentAngle) * 0.3;
+        });
+
+        // Smooth spring animation
+        function tick() {
+          velocity += (targetAngle - currentAngle) * 0.08;
+          velocity *= 0.82; // damping — springy but settles
+          currentAngle += velocity;
+          // Decay target back to 0 (blade returns upright)
+          targetAngle *= 0.9;
+
+          saber.style.transform =
+            'translate(-50%, -72px) rotate(' + currentAngle.toFixed(1) + 'deg)';
+          requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+
+        // Hide when mouse leaves the window
+        document.addEventListener('mouseleave', function () {
+          saber.style.display = 'none';
+        });
+        document.addEventListener('mouseenter', function () {
+          saber.style.display = '';
+        });
+      })();
 
       /* ── Stars ──────────────────────────────── */
       (function () {
@@ -844,6 +969,8 @@
           var starfield = document.getElementById('starfield');
           var existingStars = starfield.querySelectorAll('.star');
           var stars = [];
+          // Minimum distance from center — creates the tunnel hole
+          var tunnelHoleR = 35;
 
           for (var i = 0; i < existingStars.length; i++) {
             var rect = existingStars[i].getBoundingClientRect();
@@ -851,6 +978,8 @@
             var sy = rect.top + rect.height / 2;
             var angle = Math.atan2(sy - cy, sx - cx);
             var dist = Math.sqrt((sx - cx) * (sx - cx) + (sy - cy) * (sy - cy));
+            // Push any star that's too close to center outward
+            if (dist < tunnelHoleR) dist = tunnelHoleR + Math.random() * 30;
             stars.push({
               angle: angle,
               baseR: dist,
@@ -864,8 +993,8 @@
           // Add extra stars to fill the sky (denser effect)
           for (var k = 0; k < 400; k++) {
             var angle = Math.random() * Math.PI * 2;
-            // Distribute across full screen radius
-            var dist = 5 + Math.random() * maxR;
+            // Distribute across full screen radius, but not inside the hole
+            var dist = tunnelHoleR + Math.random() * (maxR - tunnelHoleR);
             stars.push({
               angle: angle,
               baseR: dist,
@@ -921,9 +1050,9 @@
               var outerR = s.baseR + accel * maxMove * s.speed;
 
               // Streak length: starts as a dot, grows into a long line
-              // At t=0 it's just the star size, at t=1 it's a massive streak
               var streakLen = s.size + accel * maxMove * s.speed * 0.7;
-              var innerR = Math.max(0, outerR - streakLen);
+              // Inner radius never goes below tunnelHoleR — keeps the central hole
+              var innerR = Math.max(tunnelHoleR, outerR - streakLen);
 
               // Skip if completely off-screen
               if (innerR > maxR * 2) continue;
