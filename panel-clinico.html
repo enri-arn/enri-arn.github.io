@@ -660,74 +660,556 @@
         .cl-device-stand { display: none; }
       }
     </style>
+  
+    <!-- ═══════════════════════════════════════════════
+         Barra pixel del sito. Il mockup qui sotto resta
+         nel suo stile originale: è l'oggetto esposto,
+         pixellarlo sarebbe un controsenso.
+    ═══════════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230f0f23'/%3E%3Crect x='2' y='1' width='4' height='1' fill='%234ade80'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='3' width='3' height='1' fill='%234ade80'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='6' width='4' height='1' fill='%234ade80'/%3E%3C/svg%3E"
+    />
+    <style>
+      .pixel-bar {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.6rem 0.9rem;
+        padding: 0.6rem 0.9rem;
+        background: #16162e;
+        border-bottom: 4px solid #2e2e55;
+        font-family: "Press Start 2P", monospace;
+        font-size: 0.5rem;
+        color: #e8e8f5;
+      }
+
+      .pixel-bar a {
+        color: #0f0f23;
+        background: #4ade80;
+        text-decoration: none;
+        padding: 0.55rem 0.7rem;
+        box-shadow: 3px 3px 0 #060612;
+      }
+
+      .pixel-bar a:hover {
+        background: #facc15;
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #060612;
+      }
+
+      .pixel-bar .pixel-bar-note {
+        color: #9c9cc4;
+        font-family: "VT323", monospace;
+        font-size: 1.05rem;
+      }
+
+      /* ═══════════════════════════════════════════════
+         MONITOR CRT PIXEL ART
+         Il mockup vive dentro lo schermo di un catorcio
+         beige del secolo scorso. Il design resta intatto:
+         cambia solo il mobile attorno.
+      ═══════════════════════════════════════════════ */
+      .crt {
+        --crt-case: #cfc9b4;
+        --crt-hi: #e9e3cf;
+        --crt-lo: #9d9784;
+        --crt-edge: #24242c;
+        margin: 2rem 0 3rem;
+      }
+
+      .crt-case {
+        background: var(--crt-case);
+        border: 5px solid var(--crt-edge);
+        box-shadow:
+          inset 5px 5px 0 var(--crt-hi),
+          inset -5px -5px 0 var(--crt-lo),
+          10px 10px 0 rgba(0, 0, 0, 0.5);
+        padding: 1.1rem 1.1rem 0.9rem;
+        max-width: 78rem;
+        margin: 0 auto;
+      }
+
+      /* alette di aerazione ai lati del marchio */
+      .crt-vents {
+        height: 10px;
+        margin: 0 0 0.6rem;
+        background: repeating-linear-gradient(
+          to right,
+          var(--crt-lo) 0 4px,
+          transparent 4px 10px
+        );
+      }
+
+      .crt-screen {
+        position: relative;
+        background: #05050c;
+        border: 5px solid #14141a;
+        box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.95);
+        padding: 6px;
+        overflow: hidden;
+      }
+
+      /* il vetro: righe di scansione + vignettatura, sopra a tutto */
+      .crt-glass {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 5;
+        background:
+          linear-gradient(
+            115deg,
+            rgba(255, 255, 255, 0.06) 0%,
+            transparent 32%
+          ),
+          repeating-linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.07) 0 1px,
+            transparent 1px 3px
+          ),
+          radial-gradient(
+            ellipse at 50% 45%,
+            transparent 68%,
+            rgba(0, 0, 0, 0.3) 100%
+          );
+      }
+
+      /* dentro al monitor il finto browser non serve più le sue ombre.
+         Lo schermo ha un'altezza fissa e il mockup ci scorre dentro:
+         così il monitor si vede tutto intero, piedistallo compreso. */
+      .crt-screen .device-frame,
+      .crt-screen .cl-device-frame {
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 68vh;
+        min-height: 20rem;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+
+      /* barra di scorrimento in tinta col mobile */
+      .crt-screen .device-frame::-webkit-scrollbar,
+      .crt-screen .cl-device-frame::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .crt-screen .device-frame::-webkit-scrollbar-thumb,
+      .crt-screen .cl-device-frame::-webkit-scrollbar-thumb {
+        background: var(--crt-lo);
+        border: 2px solid var(--crt-edge);
+      }
+
+      .crt-hint {
+        font-family: "Press Start 2P", monospace;
+        font-size: 0.45rem;
+        color: #6b6658;
+      }
+
+      /* pannello comandi sotto lo schermo */
+      .crt-panel {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin-top: 0.75rem;
+        padding: 0 0.15rem;
+      }
+
+      .crt-led {
+        width: 10px;
+        height: 10px;
+        background: #4ade80;
+        box-shadow: 0 0 8px #4ade80;
+        flex-shrink: 0;
+        animation: crt-pulse 2.4s steps(2) infinite;
+      }
+
+      @keyframes crt-pulse {
+        50% { opacity: 0.35; }
+      }
+
+      .crt-brand {
+        font-family: "Press Start 2P", monospace;
+        font-size: 0.5rem;
+        color: #3a3a44;
+        letter-spacing: 0.04em;
+      }
+
+      .crt-knobs {
+        margin-left: auto;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .crt-knobs i {
+        width: 16px;
+        height: 16px;
+        display: block;
+        background: var(--crt-lo);
+        box-shadow: inset 2px 2px 0 var(--crt-hi), inset -2px -2px 0 #7d7868;
+      }
+
+      /* collo e piedistallo */
+      .crt-neck {
+        width: 84px;
+        height: 20px;
+        margin: 0 auto;
+        background: var(--crt-case);
+        border: 5px solid var(--crt-edge);
+        border-top: none;
+        box-shadow: inset -5px 0 0 var(--crt-lo);
+      }
+
+      .crt-base {
+        width: 180px;
+        max-width: 70%;
+        height: 14px;
+        margin: 0 auto;
+        background: var(--crt-lo);
+        border: 5px solid var(--crt-edge);
+        border-top: none;
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.45);
+      }
+
+      @media (min-width: 640px) {
+        /* i CRT veri hanno una cornice spessa e una fascia bassa più profonda */
+        .crt-case { padding: 1.75rem 1.75rem 1.4rem; }
+        .crt-brand { font-size: 0.55rem; }
+        .crt-panel { margin-top: 1.1rem; }
+        .crt-neck { width: 110px; height: 26px; }
+        .crt-base { width: 230px; height: 18px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .crt-led { animation: none; }
+      }
+
+      /* ─── SFARFALLIO E ACCENSIONE DEL TUBO ─── */
+
+      /* il vetro respira appena: è il tubo che non sta mai fermo */
+      .crt-glass {
+        animation: crt-flicker 5.5s infinite;
+      }
+
+      @keyframes crt-flicker {
+        0%, 100% { opacity: 1; }
+        8%   { opacity: 0.88; }
+        9%   { opacity: 1; }
+        41%  { opacity: 0.94; }
+        42%  { opacity: 1; }
+        66%  { opacity: 0.9; }
+        67%  { opacity: 1; }
+        83%  { opacity: 0.96; }
+        84%  { opacity: 1; }
+      }
+
+      /* banda chiara che scorre lentamente, come le riprese di una TV */
+      .crt-roll {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 22%;
+        pointer-events: none;
+        z-index: 4;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(255, 255, 255, 0.045),
+          transparent
+        );
+        animation: crt-roll 7s linear infinite;
+      }
+
+      @keyframes crt-roll {
+        from { top: -25%; }
+        to   { top: 105%; }
+      }
+
+      /* il tubo: si accende e si spegne come si deve */
+      .crt-screen .device-frame,
+      .crt-screen .cl-device-frame {
+        transform-origin: center center;
+      }
+
+      .crt.is-off .device-frame,
+      .crt.is-off .cl-device-frame {
+        animation: crt-power-off 0.55s ease-in forwards;
+        pointer-events: none;
+      }
+
+      .crt.is-on .device-frame,
+      .crt.is-on .cl-device-frame {
+        animation: crt-power-on 0.6s ease-out backwards;
+      }
+
+      @keyframes crt-power-off {
+        0%   { transform: scale(1, 1);        filter: brightness(1);  opacity: 1; }
+        45%  { transform: scale(1, 0.012);    filter: brightness(6);  opacity: 1; }
+        75%  { transform: scale(0.35, 0.012); filter: brightness(12); opacity: 1; }
+        100% { transform: scale(0, 0.008);    filter: brightness(18); opacity: 0; }
+      }
+
+      @keyframes crt-power-on {
+        0%   { transform: scale(0, 0.008);    filter: brightness(18); opacity: 0; }
+        28%  { transform: scale(0.35, 0.012); filter: brightness(12); opacity: 1; }
+        55%  { transform: scale(1, 0.012);    filter: brightness(6);  opacity: 1; }
+        100% { transform: scale(1, 1);        filter: brightness(1);  opacity: 1; }
+      }
+
+      /* a schermo spento sparisce anche il vetro: resta il nero del tubo */
+      .crt.is-off .crt-glass,
+      .crt.is-off .crt-roll {
+        opacity: 0;
+        animation: none;
+        transition: opacity 0.3s;
+      }
+
+      /* il LED segue l'interruttore */
+      .crt.is-off .crt-led {
+        background: #7a3030;
+        box-shadow: none;
+        animation: none;
+      }
+
+      /* ─── PULSANTE DI ACCENSIONE ─── */
+      .crt-power {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: auto;
+        font-family: "Press Start 2P", monospace;
+        font-size: 0.45rem;
+        color: #2e2e36;
+        background: var(--crt-lo);
+        border: none;
+        padding: 0.5rem 0.6rem;
+        cursor: pointer;
+        box-shadow:
+          inset 3px 3px 0 var(--crt-hi),
+          inset -3px -3px 0 #7d7868,
+          3px 3px 0 rgba(0, 0, 0, 0.45);
+      }
+
+      .crt-power:hover {
+        background: #b3ad99;
+      }
+
+      /* premuto: il tasto rientra nella scocca */
+      .crt-power[aria-pressed="true"] {
+        box-shadow:
+          inset -3px -3px 0 var(--crt-hi),
+          inset 3px 3px 0 #7d7868,
+          1px 1px 0 rgba(0, 0, 0, 0.45);
+        transform: translate(2px, 2px);
+      }
+
+      /* simbolo di accensione disegnato senza glifi */
+      .crt-power-sym {
+        position: relative;
+        width: 13px;
+        height: 13px;
+        border: 3px solid currentColor;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .crt-power-sym::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 7px;
+        height: 7px;
+        background: var(--crt-lo);
+      }
+
+      .crt-power:hover .crt-power-sym::before { background: #b3ad99; }
+
+      .crt-power-sym::after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 9px;
+        background: currentColor;
+      }
+
+      /* le manopole si spostano dopo il pulsante */
+      .crt-knobs { margin-left: 0; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .crt-glass, .crt-roll { animation: none; }
+        .crt.is-off .device-frame,
+        .crt.is-off .cl-device-frame,
+        .crt.is-on .device-frame,
+        .crt.is-on .cl-device-frame { animation-duration: 0.01ms; }
+      }
+
+      /* a schermo spento non c'è niente da scorrere */
+      .crt.is-off .crt-hint {
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+
+      /* ═══════════════════════════════════════════════
+         GUSCIO DELLA PAGINA IN PIXEL ART
+         Vale solo per ciò che sta fuori dal monitor: il
+         mockup dentro allo schermo non viene toccato.
+      ═══════════════════════════════════════════════ */
+      body {
+        background: #0f0f23 !important;
+      }
+
+      .pg-hero {
+        max-width: 60rem;
+        margin: 0 auto;
+        padding: 2.5rem 1rem 1.5rem;
+        text-align: center;
+      }
+
+      .pg-kicker {
+        font-family: "Press Start 2P", monospace;
+        font-size: 0.5rem;
+        color: #f472b6;
+        letter-spacing: 0.15em;
+        margin-bottom: 1.1rem;
+      }
+
+      .pg-title {
+        font-family: "Press Start 2P", monospace;
+        font-size: clamp(1.1rem, 5.2vw, 2.1rem);
+        line-height: 1.45;
+        color: #e8e8f5;
+        text-shadow: 3px 3px 0 #f472b6, 6px 6px 0 #060612;
+        margin: 0 0 1.1rem;
+      }
+
+      .pg-lead {
+        font-family: "VT323", monospace;
+        font-size: 1.35rem;
+        line-height: 1.5;
+        color: #9c9cc4;
+        max-width: 48ch;
+        margin: 0 auto 1.4rem;
+      }
+
+      .pg-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+
+      .pg-tag {
+        font-family: "VT323", monospace;
+        font-size: 1.05rem;
+        color: #4ade80;
+        background: #0f0f23;
+        border: 2px solid #2e2e55;
+        padding: 0.1rem 0.6rem;
+      }
+
+      .pg-footer {
+        margin-top: 3rem;
+        padding: 2.5rem 1rem;
+        text-align: center;
+        background: #16162e;
+        border-top: 4px solid #2e2e55;
+        font-family: "VT323", monospace;
+        font-size: 1.2rem;
+        color: #9c9cc4;
+      }
+
+      .pg-back {
+        display: inline-block;
+        font-family: "Press Start 2P", monospace;
+        font-size: 0.55rem;
+        color: #0f0f23;
+        background: #4ade80;
+        text-decoration: none;
+        padding: 0.7rem 1rem;
+        box-shadow: 3px 3px 0 #060612;
+        margin-top: 1.2rem;
+      }
+
+      .pg-back:hover,
+      .pg-back:focus-visible {
+        background: #facc15;
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #060612;
+      }
+
+      /* ═══════════════════════════════════════════════
+         Il vecchio sito metteva una penna come cursore.
+         Su una pagina che mostra una TV a tubo catodico
+         ci vuole ben altro.
+      ═══════════════════════════════════════════════ */
+      body {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='28' viewBox='0 0 11 14' shape-rendering='crispEdges'%3E%3Crect x='4' y='0' width='3' height='1' fill='%234ade80'/%3E%3Crect x='2' y='1' width='7' height='12' fill='%2323232e'/%3E%3Crect x='2' y='1' width='7' height='1' fill='%233f3f4e'/%3E%3Crect x='3' y='2' width='5' height='2' fill='%230d0d14'/%3E%3Crect x='4' y='5' width='3' height='2' fill='%23c0392b'/%3E%3Crect x='3' y='8' width='2' height='1' fill='%238b919e'/%3E%3Crect x='6' y='8' width='2' height='1' fill='%238b919e'/%3E%3Crect x='3' y='10' width='2' height='1' fill='%238b919e'/%3E%3Crect x='6' y='10' width='2' height='1' fill='%238b919e'/%3E%3Crect x='2' y='12' width='7' height='1' fill='%234a4a58'/%3E%3C/svg%3E") 11 0, auto;
+      }
+
+      /* sui comandi resta la manina: si deve capire cosa si clicca */
+      a,
+      button,
+      [role="button"],
+      .crt-power,
+      .pixel-bar a {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
+    <div class="pixel-bar">
+      <a href="index.html">&lt;&lt; HOME</a>
+      <a href="design-showcase-panel.html">&lt;&lt; CASE STUDY</a>
+    </div>
+
     <!-- ═══════════════ NAVIGATION ═══════════════ -->
-    <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <a href="index.html" class="nav-logo">
-          <span class="logo-bracket">&lt;</span>
-          <span class="logo-text">EA</span>
-          <span class="logo-bracket">/&gt;</span>
-        </a>
-
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
-          <li><a href="index.html#services" class="nav-link">Cosa faccio</a></li>
-          <li><a href="index.html#experience" class="nav-link">Esperienze</a></li>
-          <li><a href="index.html#design" class="nav-link">Design & UI</a></li>
-          <li><a href="index.html#beyond" class="nav-link">Oltre il codice</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
-        </ul>
-
-        <div class="nav-actions">
-          <button class="theme-toggle" id="themeToggle" aria-label="Cambia tema">
-            <i class="fas fa-sun" id="themeIcon"></i>
-          </button>
-          <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-    </nav>
 
     <!-- ═══════════════ CLINIC PANEL SHOWCASE ═══════════════ -->
     <main class="clinic-showcase">
       <div class="clinic-showcase-container">
 
         <!-- ── Header ── -->
-        <div class="clinic-showcase-header reveal">
-          <div class="atlas-dash-breadcrumb">
-            <a href="design-showcase-panel.html"><i class="fas fa-arrow-left"></i> Design Showcase</a>
-            <span>/</span>
-            <span>Pannello Clinico</span>
+        <header class="pg-hero">
+          <p class="pg-kicker">MOCKUP &middot; PANNELLO</p>
+          <h1 class="pg-title">PANNELLO<br />CLINICO</h1>
+          <p class="pg-lead">Monitoraggio a distanza dei pazienti. Un&rsquo;interfaccia in cui il design non decora: informa, e deve farlo in meno di un secondo.</p>
+          <div class="pg-tags">
+            <span class="pg-tag">Angular</span>
+            <span class="pg-tag">Colori semantici</span>
+            <span class="pg-tag">Timeline</span>
+            <span class="pg-tag">Accessibilit&agrave;</span>
           </div>
-          <div class="clinic-showcase-intro">
-            <h1><i class="fas fa-laptop-medical"></i> Pannello Clinico</h1>
-            <p>
-              Redesign concettuale di un pannello per il monitoraggio a distanza dei pazienti,
-              sviluppato originariamente durante l'emergenza COVID-19. Un'interfaccia dove
-              il design non decora &mdash; informa.
-            </p>
-            <div class="clinic-showcase-meta">
-              <span class="clinic-showcase-tag">Angular</span>
-              <span class="clinic-showcase-tag">Design Funzionale</span>
-              <span class="clinic-showcase-tag">Timeline UX</span>
-              <span class="clinic-showcase-tag">Colori Semantici</span>
-              <span class="clinic-showcase-tag">Accessibilit&agrave;</span>
-              <span class="clinic-showcase-tag">Sanit&agrave; Pubblica</span>
-            </div>
-          </div>
-        </div>
+        </header>
 
         <!-- ═══════════════ DEVICE FRAME ═══════════════ -->
-        <div class="cl-device-frame reveal">
+        <div class="crt">
+          <div class="crt-case">
+            <div class="crt-vents" aria-hidden="true"></div>
+            <div class="crt-screen">
+              <div class="crt-glass" aria-hidden="true"></div>
+              <div class="crt-roll" aria-hidden="true"></div>
+              <div class="cl-device-frame reveal">
           <!-- Browser chrome -->
           <div class="cl-device-topbar">
             <div class="cl-device-dots"><span></span><span></span><span></span></div>
             <div class="cl-device-url">
               <i class="fas fa-lock"></i>
-              sorveglianza.aslcn1.local/paziente/RSSMRA85M01H501Z
+              sorveglianza.example/paziente/RSSMRA85M01H501Z
             </div>
             <div class="cl-device-nav">
               <i class="fas fa-arrow-left"></i>
@@ -941,7 +1423,7 @@
                       <div class="cl-tl-title">Tampone molecolare &mdash; Esito NEGATIVO</div>
                       <div class="cl-tl-desc">
                         Tampone di controllo post-isolamento. Esito negativo confermato dal laboratorio
-                        ASL CN1. Autorizzata la fine dell'isolamento domiciliare.
+                        Servizio competente. Autorizzata la fine dell'isolamento domiciliare.
                       </div>
                     </div>
                   </div>
@@ -1063,89 +1545,41 @@
             </div>
 
           </div><!-- /cl-screen -->
+        </div>
+            </div>
+            <div class="crt-panel">
+              <span class="crt-led" aria-hidden="true"></span>
+              <span class="crt-brand">EA-TRON 2000 &middot; MEDIC EDITION</span>
+              <span class="crt-hint">SCORRI DENTRO LO SCHERMO</span>
+              <button
+                class="crt-power"
+                type="button"
+                data-crt-power
+                aria-pressed="false"
+                aria-label="Accendi o spegni lo schermo"
+              >
+                <span class="crt-power-sym" aria-hidden="true"></span>
+                <span data-crt-power-label>ON</span>
+              </button>
+              <span class="crt-knobs" aria-hidden="true"><i></i><i></i></span>
+            </div>
+          </div>
+          <div class="crt-neck" aria-hidden="true"></div>
+          <div class="crt-base" aria-hidden="true"></div>
         </div><!-- /cl-device-frame -->
 
         <!-- Stand -->
-        <div class="cl-device-stand reveal"></div>
 
       </div>
     </main>
 
     <!-- ═══════════════ FOOTER ═══════════════ -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <a href="index.html" class="nav-logo">
-              <span class="logo-bracket">&lt;</span>
-              <span class="logo-text">EA</span>
-              <span class="logo-bracket">/&gt;</span>
-            </a>
-            <p>
-              Enrico Arnaudo &mdash; Informatico presso ASL CN1. Cuneo,
-              Italia.
-            </p>
-          </div>
-
-          <div class="footer-links">
-            <h5>Navigazione</h5>
-            <ul>
-              <li><a href="index.html#about">Chi sono</a></li>
-              <li><a href="index.html#services">Cosa faccio</a></li>
-              <li><a href="index.html#experience">Esperienze</a></li>
-              <li><a href="index.html#design">Design & UI</a></li>
-              <li><a href="index.html#beyond">Oltre il codice</a></li>
-              <li><a href="index.html#contact">Contatti</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-links">
-            <h5>Competenze</h5>
-            <ul>
-              <li>Full-Stack Development</li>
-              <li>Microsoft Ecosystem</li>
-              <li>Cloud & DevOps</li>
-              <li>UI/UX Design</li>
-              <li>Sistemi Distribuiti</li>
-            </ul>
-          </div>
-
-          <div class="footer-contact">
-            <h5>Contatti</h5>
-            <p>
-              <a href="mailto:arnaudoenrico@gmail.com"
-                >arnaudoenrico@gmail.com</a
-              >
-            </p>
-            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
-            <p>Bernezzo (CN), Italia</p>
-            <div class="footer-social">
-              <a
-                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
-                target="_blank"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
-                <i class="fas fa-envelope"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 Enrico Arnaudo. Tutti i diritti riservati.</p>
-          <div class="footer-bottom-links">
-            <a href="index.html#privacy">Privacy Policy</a>
-            <span>&middot;</span>
-            <a href="index.html#contact">Contatti</a>
-          </div>
-        </div>
-      </div>
+    <footer class="pg-footer">
+      <p>(c) 2026 Enrico Arnaudo &middot; fatto a mano, un pixel alla volta</p>
+      <a href="design-showcase-panel.html" class="pg-back">&lt;&lt; TORNA AL CASE STUDY</a>
     </footer>
 
     <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <script src="js/pixel-page.js"></script>
   </body>
 </html>

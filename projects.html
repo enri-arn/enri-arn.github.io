@@ -1,1700 +1,1358 @@
 <!doctype html>
-<html lang="it" data-theme="dark">
+<html lang="it" class="page">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Progetti — Enrico Arnaudo</title>
     <meta
       name="description"
-      content="Progetti personali e accademici di Enrico Arnaudo. Architetture a microservizi, sistemi distribuiti e altro."
+      content="I progetti di Enrico Arnaudo: Asgard, una piattaforma enterprise a dodici microservizi su Azure con un pantheon di nomi mitologici, e un sistema bancario distribuito con algoritmo Token Ring e Bully election."
+    />
+    <meta name="theme-color" content="#0f0f23" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230f0f23'/%3E%3Crect x='2' y='1' width='4' height='1' fill='%234ade80'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='3' width='3' height='1' fill='%234ade80'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='6' width='4' height='1' fill='%234ade80'/%3E%3C/svg%3E"
     />
 
-    <!-- Fonts -->
+    <!--
+      Cerchi gli hostname di Asgard nel sorgente?
+      Non ci sono nemmeno qui. Gli snippet sono ricostruzioni: leggibili, non copiabili. 🕵
+    -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
-    />
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pixel.css" />
   </head>
+
   <body>
-    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <!-- ═══════════════ NAVBAR ═══════════════ -->
     <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <a href="index.html" class="nav-logo">
-          <span class="logo-bracket">&lt;</span>
-          <span class="logo-text">EA</span>
-          <span class="logo-bracket">/&gt;</span>
-        </a>
+      <a href="index.html" class="nav-logo" aria-label="Home">
+        <span class="logo-block">EA</span>
+      </a>
 
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
-          <li><a href="index.html#services" class="nav-link">Cosa faccio</a></li>
-          <li><a href="index.html#experience" class="nav-link">Esperienze</a></li>
-          <li><a href="index.html#design" class="nav-link">Design & UI</a></li>
-          <li><a href="index.html#beyond" class="nav-link">Oltre il codice</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
-        </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
 
-        <div class="nav-actions">
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Cambia tema"
-          >
-            <i class="fas fa-sun" id="themeIcon"></i>
-          </button>
-          <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about" class="nav-link">Chi sono</a></li>
+        <li><a href="index.html#quests" class="nav-link">Quest Log</a></li>
+        <li><a href="index.html#skills" class="nav-link">Skill Tree</a></li>
+        <li><a href="index.html#portfolio" class="nav-link">Bonus Level</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contatti</a></li>
+      </ul>
     </nav>
 
-    <!-- ═══════════════ PROJECT HERO ═══════════════ -->
-    <section class="project-hero" id="home">
-      <div class="hero-bg">
-        <div class="hero-grid"></div>
-        <div class="hero-glow hero-glow-1"></div>
-        <div class="hero-glow hero-glow-2"></div>
-      </div>
-      <div class="project-hero-content">
-        <a href="index.html" class="btn btn-ghost project-back-btn reveal">
-          <i class="fas fa-arrow-left"></i> Torna al portfolio
-        </a>
-        <h1 class="hero-title reveal">
-          <span class="title-line">I miei</span>
-          <span class="title-line title-accent">Progetti</span>
-        </h1>
-        <p class="hero-subtitle reveal">
-          Architetture, algoritmi e idee trasformate in codice.
-          Ogni progetto racconta una storia di problem-solving e design.
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <header class="page-hero">
+      <p class="page-kicker">SAVE FILE 01 — PROGETTI</p>
+      <h1 class="page-title">PROGETTI</h1>
+      <p class="page-lead">
+        Due mondi molto diversi: una piattaforma enterprise con un pantheon di
+        divinità, e un anello di bancomat che si passano un gettone.
+      </p>
+      <a href="index.html" class="back-link">&lt;&lt; TORNA ALLA MAPPA</a>
+    </header>
+
+    <main>
+      <!-- ═══════════════════════════════════════════════
+           PROGETTO 01 — ASGARD
+      ═══════════════════════════════════════════════ -->
+      <section class="section" id="asgard">
+        <h2 class="section-title"><span class="title-level">WORLD 2-1 · MAIN QUEST</span>ASGARD</h2>
+        <p class="section-sub">// piattaforma enterprise a microservizi — progetto privato, in produzione</p>
+
+        <div class="pixel-card prose">
+          <p>
+            <strong>Asgard</strong> è una piattaforma modulare che digitalizza
+            la vita interna di un'organizzazione: aprire un ticket, chiedere
+            un'approvazione, sapere chi ha in carico quale computer, trovare
+            la procedura giusta senza chiedere al collega di fianco. È nata
+            dentro un progetto di digital transformation nella sanità pubblica
+            e oggi è in esercizio.
+          </p>
+          <p>
+            Dietro c'è un monorepo <strong>NestJS</strong> con
+            <strong>dodici microservizi</strong>, un frontend
+            <strong>Angular</strong> e circa trecento endpoint REST. Ogni
+            servizio ha il suo database, il suo dominio e confini precisi. Non
+            perché i microservizi siano di moda, ma perché il service desk e il
+            motore di approvazioni hanno ritmi di evoluzione diversi, e tenerli
+            nello stesso blocco significa fermare entrambi ogni volta che ne
+            cambi uno.
+          </p>
+          <p>
+            Tutto gira su <strong>Azure Container Apps</strong>: un'unica
+            immagine Docker multi-app da cui nascono dodici container che si
+            differenziano per una sola variabile, Cosmos DB for MongoDB come
+            database dei servizi, Azure SQL come warehouse analitico, Service
+            Bus per gli eventi, Redis per realtime e rate limiting, Key Vault
+            per i segreti. Sviluppo in locale con <code>docker-compose</code>,
+            emulatore ufficiale del Service Bus incluso.
+          </p>
+          <div class="stack-row">
+            <span class="loot-item">TypeScript</span>
+            <span class="loot-item">NestJS</span>
+            <span class="loot-item">Angular</span>
+            <span class="loot-item">MongoDB (Cosmos DB)</span>
+            <span class="loot-item">Azure SQL</span>
+            <span class="loot-item">Service Bus</span>
+            <span class="loot-item">Redis</span>
+            <span class="loot-item">Docker</span>
+            <span class="loot-item">Container Apps</span>
+            <span class="loot-item">Key Vault</span>
+            <span class="loot-item">OAuth2 / OIDC</span>
+            <span class="loot-item">MCP</span>
+          </div>
+
+          <div class="stat-grid" aria-label="Asgard in numeri">
+            <div class="stat-tile"><span class="stat-num">12</span><span class="stat-lbl">MICROSERVIZI</span></div>
+            <div class="stat-tile"><span class="stat-num">~300</span><span class="stat-lbl">ENDPOINT REST</span></div>
+            <div class="stat-tile"><span class="stat-num">3</span><span class="stat-lbl">CODE EVENTI</span></div>
+            <div class="stat-tile"><span class="stat-num">2</span><span class="stat-lbl">IDENTITY PROVIDER</span></div>
+            <div class="stat-tile"><span class="stat-num">30+</span><span class="stat-lbl">TOOL MCP</span></div>
+            <div class="stat-tile"><span class="stat-num">8</span><span class="stat-lbl">CONNETTORI DATI</span></div>
+            <div class="stat-tile"><span class="stat-num">13</span><span class="stat-lbl">TIPI DI GRAFICO</span></div>
+            <div class="stat-tile"><span class="stat-num">1</span><span class="stat-lbl">IMMAGINE DOCKER</span></div>
+          </div>
+        </div>
+
+        <!-- Nota di riservatezza, con ironia ma sul serio -->
+        <div class="classified">
+          <p class="classified-head">⚠ DOCUMENTO PARZIALMENTE OSCURATO</p>
+          <p>
+            Asgard è un progetto privato e in esercizio. Qui trovi
+            l'<strong>architettura</strong>, i <strong>pattern</strong> e le
+            <strong>scelte</strong>: come si parlano i servizi, come funziona
+            l'autenticazione, com'è fatto un workflow, come arriva un dato a un
+            grafico. Quello che non trovi — hostname, nomi delle risorse cloud,
+            identificativi di tenant e subscription, nomi dei segreti, i
+            sistemi esterni con cui si integra — non manca per timidezza. È
+            che un portfolio non è il posto dove appendere la piantina di casa
+            con indicata la finestra che non chiude bene.
+          </p>
+          <p>
+            Gli snippet di codice di questa sezione sono
+            <strong>ricostruzioni semplificate</strong> fedeli ai pattern
+            reali, non righe copiate dal repository. Chi fa questo mestiere
+            capisce al volo. Chi invece insiste per avere i dettagli, mi sta
+            già dicendo qualcosa di sé.
+          </p>
+        </div>
+
+        <!-- ─── ARCHITETTURA ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">ARCHITETTURA</span>COME SI PARLANO
+        </h3>
+        <p class="section-sub">
+          // tre canali, ognuno per un motivo diverso. mescolarli è il modo più
+          rapido per costruire un monolite distribuito
         </p>
-        <div class="project-nav reveal">
-          <a href="#asgard" class="project-nav-link">
-            <i class="fas fa-server"></i> Asgard
-          </a>
-          <a href="#token-ring" class="project-nav-link">
-            <i class="fas fa-ring"></i> Token Ring
-          </a>
-        </div>
-      </div>
-    </section>
 
-    <!-- ═══════════════ PROGETTO 1: ASGARD ═══════════════ -->
-    <section class="section project-section" id="asgard">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Progetto 01 — Enterprise</span>
-          <h2 class="section-title">Asgard</h2>
-          <p class="section-desc">
-            Piattaforma di microservizi per la digitalizzazione aziendale
-          </p>
+        <div class="code-block diagram">
+          <p class="code-head">TOPOLOGIA — VISTA DALL'ALTO</p>
+          <pre><code>  Angular ---- JWT utente ----&gt; Heimdall        <span class="tk-cm">// chi sei, cosa puoi fare</span>
+     |                             |
+     |  HTTP con il token          |  JWT interno, permessi, gruppi
+     v                             v
+  Asgard · Atlas · Gravos · Itria · Lysor · Elios · Fayra · Corvin · Mimir
+     |             |
+     |             +-- HTTP interno: domande con risposta subito
+     |                 (Gravos -&gt; Heimdall: «chi è il manager di X?»)
+     |
+     +---- eventi ----&gt; Azure Service Bus
+                          |-- logger-queue -----------&gt; Bravon   <span class="tk-cm">// audit</span>
+                          |-- notifications-queue ----&gt; Deltor   <span class="tk-cm">// email</span>
+                          +-- search-indexing-queue --&gt; Asgard   <span class="tk-cm">// indice di ricerca</span>
+
+  Atlas ---- Socket.IO (adapter Redis) ----&gt; browser   <span class="tk-cm">// ticket.created / updated / released</span></code></pre>
         </div>
 
-        <!-- Intro -->
-        <div class="project-intro reveal">
-          <div class="project-meta">
-            <span class="project-type">
-              <i class="fas fa-building"></i> Progetto Aziendale
-            </span>
-            <span class="project-type">
-              <i class="fas fa-lock"></i> Uso Interno
-            </span>
-            <span class="project-type">
-              <i class="fas fa-cubes"></i> Microservizi
-            </span>
-            <div class="project-tags">
-              <span>NestJS</span>
-              <span>Angular</span>
-              <span>NgRx</span>
-              <span>TypeScript</span>
-              <span>MongoDB</span>
-              <span>RabbitMQ</span>
-              <span>NATS</span>
-              <span>Docker</span>
-              <span>JWT</span>
-              <span>Microsoft Entra ID</span>
-              <span>Azure Container Apps</span>
-              <span>Azure DevOps</span>
-              <span>PrimeNG</span>
-              <span>Mongoose</span>
-            </div>
-          </div>
-          <p>
-            <strong>Asgard</strong> è una piattaforma enterprise modulare basata
-            su architettura a microservizi che fornisce un ecosistema completo
-            per la digitalizzazione aziendale. Il sistema
-            integra gestione identità (IAM), workflow dinamici, ticketing,
-            gestione documentale, inventario IT e IPAM, notifiche e servizi di ricerca
-            aggregata. Il backend è sviluppato con <strong>NestJS</strong> in modalità
-            monorepo, mentre il frontend è un'applicazione <strong>Angular</strong>
-            standalone con gestione dello stato tramite <strong>NgRx</strong>.
-          </p>
-          <p>
-            <em>Nota: Asgard è un progetto ad uso interno attualmente in corso
-            di sviluppo. Alcuni dettagli implementativi e configurazioni
-            infrastrutturali sono omessi per ragioni di riservatezza.</em>
-          </p>
-        </div>
-
-        <!-- Architettura -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Architettura a 10 Microservizi</h3>
+        <div class="card-grid card-grid-3">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">HTTP, QUANDO SERVE UNA RISPOSTA</h4>
             <p>
-              Il sistema è composto da <strong>10 microservizi</strong>
-              specializzati, ognuno responsabile di un dominio specifico. Ogni
-              servizio ha il proprio database MongoDB dedicato per garantire
-              isolamento e scalabilità indipendente.
-            </p>
-            <p>
-              La comunicazione tra servizi avviene su due canali:
-              <strong>HTTP REST</strong> per le chiamate sincrone (es. ricerca aggregata,
-              verifica destinatari) e <strong>RabbitMQ/NATS</strong> per il messaging
-              asincrono (es. logging centralizzato, invio notifiche email). Il pattern
-              <code>ClientProxy</code> di NestJS gestisce entrambi i protocolli in modo trasparente.
+              Il frontend chiama ogni servizio direttamente, con il JWT
+              dell'utente. Tra servizi, la chiamata sincrona si usa solo per
+              domande che non possono aspettare: Gravos chiede a Heimdall chi è
+              il manager del richiedente per risolvere un approvatore; Atlas
+              chiede se un destinatario esiste ed è visibile a chi inoltra.
+              Sono endpoint <em>interni</em>, mai raggiungibili dal browser.
             </p>
           </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">architettura.txt</span>
-            </div>
-            <pre><code>┌────────────┐  ┌─────────────┐  ┌────────────┐
-│  ASGARD    │  │   ATLAS     │  │   BRAVON   │
-│  (Search)  │  │  (Tickets)  │  │  (Logger)  │
-└────────────┘  └─────────────┘  └────────────┘
 
-┌────────────┐  ┌─────────────┐  ┌────────────┐
-│   CORVIN   │  │   DELTOR    │  │   ELIOS    │
-│   (News)   │  │ (Notifiche) │  │   (FAQ)    │
-└────────────┘  └─────────────┘  └────────────┘
-
-┌────────────┐  ┌─────────────┐  ┌────────────┐
-│   FAYRA    │  │   GRAVOS    │  │  HEIMDALL  │
-│(Documenti) │  │ (Workflows) │  │    (IAM)   │
-└────────────┘  └─────────────┘  └────────────┘
-
-                ┌────────────┐
-                │   ITRIA    │
-                │(Inventario)│
-                └────────────┘
-
-Comunicazione:
-  HTTP REST ──→  Chiamate sincrone
-  RabbitMQ  ~~→  Eventi asincroni (log, email)
-  NATS      ~~→  Comunicazione interna</code></pre>
-          </div>
-        </div>
-
-        <!-- Comunicazione inter-servizio -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Comunicazione inter-servizio</h3>
+          <div class="pixel-card prose">
+            <h4 class="card-heading">EVENTI, PER CIÒ CHE PUÒ ASPETTARE</h4>
             <p>
-              Ogni microservizio si connette ai bus di messaggistica tramite il
-              sistema di <em>microservices</em> nativo di NestJS. Il pattern
-              <strong>fire-and-forget</strong> (<code>emit</code>) viene usato
-              per logging e notifiche, mentre il pattern
-              <strong>request/response</strong> (<code>send</code>) per operazioni
-              che richiedono una risposta, come la verifica dei destinatari di un ticket.
+              Tre code su Service Bus: <code>log.create</code> da tutti verso
+              Bravon, <code>send-email</code> verso Deltor,
+              <code>search.index</code> verso l'indice di ricerca. Se Deltor è
+              fermo, i ticket si aprono lo stesso e le email partono quando
+              torna su. In produzione i servizi si autenticano al bus con
+              <strong>managed identity</strong>: nessuna connection string da
+              custodire.
             </p>
           </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">main.ts — Connessione microservizi</span>
-            </div>
-            <pre><code><span class="cm">// Ogni servizio si connette a RabbitMQ e NATS</span>
-app.<span class="fn">connectMicroservice</span>&lt;<span class="tp">MicroserviceOptions</span>&gt;({
-  transport: Transport.RMQ,
-  options: {
-    urls: [process.env.RABBITMQ_URL],
-  },
-}, { inheritAppConfig: <span class="kw">true</span> });
 
-app.<span class="fn">connectMicroservice</span>&lt;<span class="tp">MicroserviceOptions</span>&gt;({
-  transport: Transport.NATS,
-  options: {
-    servers: [process.env.NATS_URL],
-  },
-}, { inheritAppConfig: <span class="kw">true</span> });
-
-<span class="cm">// Pattern fire-and-forget per il logging</span>
-<span class="kw">this</span>.bravonService.<span class="fn">emit</span>(<span class="st">'log.create'</span>, logDto);
-
-<span class="cm">// Pattern request/response per le verifiche</span>
-<span class="kw">const</span> isValid = <span class="kw">await</span> firstValueFrom(
-  <span class="kw">this</span>.heimdallService
-    .<span class="fn">send</span>&lt;<span class="tp">boolean</span>&gt;(<span class="st">'verify-destination'</span>, payload)
-);</code></pre>
-          </div>
-        </div>
-
-        <!-- Nomenclatura -->
-        <div class="project-block project-block-full reveal">
-          <div class="project-block-text" style="max-width: 100%;">
-            <h3>Un pantheon digitale</h3>
+          <div class="pixel-card prose">
+            <h4 class="card-heading">REALTIME, SENZA POLLING</h4>
             <p>
-              La nomenclatura dei microservizi intreccia mitologia norrena ed
-              elementi fantasy. Ogni nome è stato scelto per
-              il suo significato simbolico, riflettendo la funzione del servizio
-              nell'ecosistema. I nomi seguono l'ordine alfabetico (Asgard, Atlas,
-              Bravon, Corvin, Deltor, Elios, Fayra, Gravos, Heimdall, Itria),
-              creando una convenzione di naming coerente e memorabile.
-            </p>
-          </div>
-          <div class="project-services-grid">
-            <div class="project-service-card">
-              <div class="service-name">Asgard</div>
-              <div class="service-role">Search & Memo</div>
-              <p>
-                Dimora degli dei norreni — punto di accesso unificato
-                all'ecosistema, centro del cosmo digitale. Orchestratore della
-                ricerca cross-service e servizio memo.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Atlas</div>
-              <div class="service-role">Ticketing</div>
-              <p>
-                Il titano che regge il mondo — sostiene il carico delle
-                richieste aziendali. Sistema di ticketing completo con
-                categorie, priorità, assegnazione e scheduler automatici.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Bravon</div>
-              <div class="service-role">Logger</div>
-              <p>
-                Cronista instancabile — consumatore di eventi RabbitMQ che
-                registra ogni azione del sistema in un audit log centralizzato.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Corvin</div>
-              <div class="service-role">News</div>
-              <p>
-                I corvi di Odino — messaggero alato che gestisce notizie e
-                comunicazioni aziendali con tag, ricerca e preferiti utente.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Deltor</div>
-              <div class="service-role">Notifiche</div>
-              <p>
-                Agente di consegna — servizio email con template Handlebars (.hbs),
-                sia via REST che tramite coda RabbitMQ, con caching dei template compilati.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Elios</div>
-              <div class="service-role">FAQ</div>
-              <p>
-                Helios, il sole — porta luce e chiarezza con FAQ ricercabili,
-                categorizzate e taggate. Alcuni endpoint pubblici senza autenticazione.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Fayra</div>
-              <div class="service-role">Documenti</div>
-              <p>
-                Un faro nella notte — guida la navigazione nell'oceano
-                documentale aziendale con archiviazione e gestione strutturata.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Gravos</div>
-              <div class="service-role">Workflows</div>
-              <p>
-                Gravitas — motore di workflow con approvazioni multi-step
-                (sequenziali, parallele, dinamiche) e form configurabili.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Heimdall</div>
-              <div class="service-role">IAM</div>
-              <p>
-                Guardiano del Bifrost — gestione identità con Microsoft Entra ID
-                (OAuth2/OIDC), CIE, utenti, gruppi, organizzazioni e sync HR.
-              </p>
-            </div>
-            <div class="project-service-card">
-              <div class="service-name">Itria</div>
-              <div class="service-role">Inventario IT & IPAM</div>
-              <p>
-                Terra fantasy — catasto digitale con inventario asset, gestione
-                IP/subnet/VLAN, rack e siti geografici.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature Highlights -->
-        <div class="project-block project-block-full reveal">
-          <div class="project-block-text" style="max-width: 100%;">
-            <h3>Funzionalità chiave</h3>
-          </div>
-          <div class="project-features-grid">
-            <div class="project-feature-card">
-              <i class="fas fa-search"></i>
-              <h4>Ricerca Intelligente</h4>
-              <p>
-                Motore di ricerca aggregato cross-service con relevance scoring,
-                stop-word filtering italiano e suggerimenti contestuali per
-                ticket e workflow.
-              </p>
-            </div>
-            <div class="project-feature-card">
-              <i class="fas fa-project-diagram"></i>
-              <h4>Workflow Dinamici</h4>
-              <p>
-                Sistema di approvazioni multi-step con modalità sequenziale,
-                parallela e dinamica. Risoluzione automatica degli approvatori
-                per ruolo gerarchico.
-              </p>
-            </div>
-            <div class="project-feature-card">
-              <i class="fas fa-users-cog"></i>
-              <h4>Multi-tenancy</h4>
-              <p>
-                Supporto per organizzazioni e gruppi con isolamento dati,
-                permessi granulari su 16+ risorse e IAM centralizzato.
-              </p>
-            </div>
-            <div class="project-feature-card">
-              <i class="fas fa-shield-alt"></i>
-              <h4>Audit & Sicurezza</h4>
-              <p>
-                Logging centralizzato via RabbitMQ, JWT authentication,
-                integrazione Microsoft Entra ID, CIE e audit trail completo.
-              </p>
-            </div>
-            <div class="project-feature-card">
-              <i class="fas fa-ticket-alt"></i>
-              <h4>Ticketing Avanzato</h4>
-              <p>
-                Ciclo di vita completo dei ticket con assegnazione transazionale,
-                inoltro inter-servizio, scheduler Cron e notifiche email automatiche.
-              </p>
-            </div>
-            <div class="project-feature-card">
-              <i class="fas fa-network-wired"></i>
-              <h4>IPAM & Asset Management</h4>
-              <p>
-                Gestione completa dell'infrastruttura IT: inventario asset,
-                subnet, VLAN, indirizzi IP, rack e siti geografici con mappe Leaflet.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Backend: NestJS -->
-        <div class="project-block project-block-full reveal">
-          <div class="project-block-text" style="max-width: 100%;">
-            <h3><i class="fas fa-server"></i> Backend — NestJS Monorepo</h3>
-            <p>
-              Il backend è strutturato come un <strong>monorepo NestJS</strong> che contiene
-              tutti i 10 microservizi sotto la directory <code>apps/</code> e un set di
-              librerie condivise in <code>libs/</code>. Le librerie forniscono infrastruttura
-              trasversale: configurazione JWT, guard per autenticazione e autorizzazione,
-              decoratori custom, definizione dei permessi e pipe di validazione.
-            </p>
-            <p>
-              Ogni servizio espone i propri endpoint REST e si registra contemporaneamente
-              come microservizio RabbitMQ e NATS. Il sistema di permessi è granulare, con
-              autorizzazioni specifiche per ognuna delle 16+ risorse gestite (ticket, news,
-              FAQ, workflow, richieste, asset, IP, subnet, VLAN, rack, ecc.).
+              Atlas espone un gateway Socket.IO con stanze per utente, gruppo e
+              organizzazione. Quando un ticket viene creato, aggiornato o
+              rilasciato, chi deve saperlo lo sa subito. L'adapter
+              <strong>Redis</strong> fa sì che funzioni anche con più repliche
+              dello stesso servizio, che non condividono memoria.
             </p>
           </div>
         </div>
 
-        <!-- Codice: Ticket Schema -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Schema Ticket — Mongoose</h3>
-            <p>
-              I ticket sono il cuore del sistema di supporto. Lo schema Mongoose
-              utilizza decoratori <code>@Prop</code> con validazioni enum per
-              stati e priorità, e definisce <strong>indici ottimizzati</strong>
-              sulle query più frequenti: ricerca per destinatario, operatore attivo,
-              categoria e data di creazione.
-            </p>
-            <p>
-              Ogni ticket attraversa un ciclo di vita: <em>Nuovo → In carico →
-              In attesa → Risolto</em>, con quattro livelli di priorità
-              (Bassa, Media, Alta, Urgente) e assegnazione a utenti, gruppi o
-              organizzazioni.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">tickets/schemas/ticket.schema.ts</span>
-            </div>
-            <pre><code>@<span class="fn">Schema</span>()
-<span class="kw">export class</span> <span class="tp">Ticket</span> <span class="kw">extends</span> <span class="tp">Document</span> {
-  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> })
-  subject: <span class="tp">string</span>;
+        <div class="code-block">
+          <p class="code-head">ATLAS · TICKETS.CONTROLLER.TS — RICOSTRUZIONE SEMPLIFICATA</p>
+          <pre><code><span class="tk-cm">// Apertura di un ticket. Ogni riga fa una cosa sola.</span>
+<span class="tk-dec">@Controller</span>(<span class="tk-str">'tickets'</span>)
+<span class="tk-kw">export class</span> TicketsController {
+  <span class="tk-dec">@Post</span>()
+  <span class="tk-dec">@Permissions</span>(Permission.TicketCreate, Permission.TicketAll)
+  <span class="tk-kw">async</span> create(
+    <span class="tk-dec">@ActiveUser</span>() user: ActiveUserData,
+    <span class="tk-dec">@Body</span>() dto: CreateTicketDto,       <span class="tk-cm">// validato da class-validator</span>
+  ) {
+    <span class="tk-kw">const</span> ticket = <span class="tk-kw">await</span> <span class="tk-kw">this</span>.tickets.create(dto, user);
 
-  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> })
-  category: <span class="tp">string</span>;
+    <span class="tk-cm">// realtime: chi è nella stanza del gruppo destinatario lo vede subito</span>
+    <span class="tk-kw">this</span>.gateway.to(<span class="tk-str">`group:${ticket.destination}`</span>).emit(<span class="tk-str">'ticket.created'</span>, ticket);
 
-  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> })
-  description: <span class="tp">string</span>;
+    <span class="tk-cm">// asincrono: mail e audit non devono rallentare la risposta</span>
+    <span class="tk-kw">this</span>.bus.emit(<span class="tk-str">'send-email'</span>, { template: <span class="tk-str">'ticket-created'</span>, ticket });
+    <span class="tk-kw">this</span>.bus.emit(<span class="tk-str">'log.create'</span>,  { actor: user.sub, action: <span class="tk-str">'ticket.create'</span>, ref: ticket.id });
 
-  @<span class="fn">Prop</span>({
-    type: <span class="tp">String</span>,
-    enum: [<span class="st">'Nuovo'</span>, <span class="st">'In carico'</span>,
-           <span class="st">'In attesa'</span>, <span class="st">'Risolto'</span>],
-    default: <span class="st">'Nuovo'</span>,
-  })
-  status: <span class="tp">string</span>;
-
-  @<span class="fn">Prop</span>({
-    type: <span class="tp">String</span>,
-    enum: [<span class="st">'Bassa'</span>, <span class="st">'Media'</span>,
-           <span class="st">'Alta'</span>, <span class="st">'Urgente'</span>],
-    default: <span class="st">'Media'</span>,
-  })
-  priority: <span class="tp">string</span>;
-
-  @<span class="fn">Prop</span>({ type: <span class="tp">Object</span>, required: <span class="kw">true</span> })
-  user: Partial&lt;<span class="tp">ActiveUserData</span>&gt;;
-
-  @<span class="fn">Prop</span>({ type: <span class="tp">Object</span> })
-  operator: Partial&lt;<span class="tp">ActiveUserData</span>&gt;;
-
-  @<span class="fn">Prop</span>({ type: <span class="tp">Boolean</span>, default: <span class="kw">false</span> })
-  active: <span class="tp">boolean</span>;
-}
-
-<span class="kw">export const</span> TicketSchema =
-  SchemaFactory.<span class="fn">createForClass</span>(Ticket);
-
-<span class="cm">// Indici ottimizzati per query frequenti</span>
-TicketSchema.<span class="fn">index</span>(
-  { destination: <span class="nm">1</span>, destinationType: <span class="nm">1</span>, status: <span class="nm">1</span> }
-);
-TicketSchema.<span class="fn">index</span>(
-  { <span class="st">'operator.sub'</span>: <span class="nm">1</span>, active: <span class="nm">1</span> }
-);
-TicketSchema.<span class="fn">index</span>({ category: <span class="nm">1</span>, subcategory: <span class="nm">1</span> });
-TicketSchema.<span class="fn">index</span>({ creationDate: <span class="nm">-1</span> });</code></pre>
-          </div>
-        </div>
-
-        <!-- Codice: Creazione Ticket -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Creazione di un Ticket</h3>
-            <p>
-              Quando un utente crea un ticket, il servizio <strong>Atlas</strong>
-              arricchisce i dati con le informazioni dell'autore estratte dal JWT,
-              persiste il documento in MongoDB, registra l'azione nel logger
-              centralizzato <strong>Bravon</strong> tramite RabbitMQ e invia una
-              notifica email via <strong>Deltor</strong> con template Handlebars
-              personalizzato.
-            </p>
-            <p>
-              Questo flusso illustra la collaborazione tra microservizi: un singolo
-              endpoint REST in Atlas scatena eventi su due servizi distinti
-              (logging e notifiche) in modo completamente asincrono.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">tickets/tickets.service.ts — create()</span>
-            </div>
-            <pre><code><span class="kw">async</span> <span class="fn">create</span>(
-  createTicketDto: <span class="tp">CreateTicketDto</span>,
-  user: <span class="tp">ActiveUserData</span>,
-): <span class="tp">Promise</span>&lt;<span class="tp">Ticket</span>&gt; {
-  <span class="kw">const</span> author = {
-    fullname: user.fullname,
-    sub: user.sub,
-    email: user.email,
-    location: user.location,
-  };
-
-  <span class="kw">const</span> createdTicket = <span class="kw">new</span> <span class="kw">this</span>.ticketModel({
-    ...createTicketDto,
-    creationDate: <span class="kw">new</span> <span class="tp">Date</span>(),
-    user: author,
-  });
-
-  <span class="kw">await</span> createdTicket.<span class="fn">save</span>();
-
-  <span class="cm">// Log su Bravon (RabbitMQ fire-and-forget)</span>
-  <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">logAction</span>(
-    <span class="st">'ticket.create'</span>,
-    <span class="st">`Ticket: ${createTicketDto.subject}`</span>
-  );
-
-  <span class="cm">// Notifica via Deltor (template Handlebars)</span>
-  <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">sendEmailNotification</span>({
-    subject: <span class="st">`Nuovo Ticket - ${createTicketDto.subject}`</span>,
-    template: <span class="st">'ticket-created'</span>,
-    additionalData: {
-      ticketSubject: createTicketDto.subject,
-      authorName: user.fullname,
-      category: createTicketDto.category,
-      priority: createTicketDto.priority,
-    },
-  });
-
-  <span class="kw">return</span> createdTicket;
-}</code></pre>
-          </div>
-        </div>
-
-        <!-- Codice: Assegnazione transazionale -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Assegnazione transazionale</h3>
-            <p>
-              L'assegnazione di un ticket a un operatore utilizza le
-              <strong>transazioni MongoDB</strong> per garantire consistenza
-              atomica: il sistema verifica che l'operatore non abbia già un
-              ticket attivo e che il ticket non sia già assegnato, il tutto
-              all'interno di una singola sessione transazionale.
-            </p>
-            <p>
-              In caso di errore o violazione dei vincoli, l'intera operazione
-              viene annullata tramite <code>abortTransaction()</code>,
-              prevenendo assegnazioni duplicate o stati inconsistenti.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">tickets/tickets.service.ts — assignTicketToOperator()</span>
-            </div>
-            <pre><code><span class="kw">async</span> <span class="fn">assignTicketToOperator</span>(
-  ticketId: <span class="tp">string</span>,
-  operator: Partial&lt;<span class="tp">ActiveUserData</span>&gt;,
-): <span class="tp">Promise</span>&lt;<span class="tp">HttpStatus</span>&gt; {
-  <span class="kw">const</span> session = <span class="kw">await</span> <span class="kw">this</span>.ticketModel
-    .<span class="fn">startSession</span>();
-  session.<span class="fn">startTransaction</span>();
-
-  <span class="kw">try</span> {
-    <span class="cm">// Verifica vincoli di business</span>
-    <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">checkOperatorHasAssignedTicket</span>(
-      operator
-    );
-    <span class="kw">const</span> ticket = <span class="kw">await</span> <span class="kw">this</span>
-      .<span class="fn">checkTicketIsNotAssigned</span>(ticketId);
-
-    ticket.operator = {
-      fullname: operator.fullname,
-      sub: operator.sub,
-      email: operator.email,
-    };
-    ticket.active = <span class="kw">true</span>;
-    <span class="kw">await</span> ticket.<span class="fn">save</span>({ session });
-
-    <span class="kw">await</span> session.<span class="fn">commitTransaction</span>();
-    <span class="kw">return</span> HttpStatus.OK;
-  } <span class="kw">catch</span> (error) {
-    <span class="kw">await</span> session.<span class="fn">abortTransaction</span>();
-    <span class="kw">throw</span> error;
-  } <span class="kw">finally</span> {
-    session.<span class="fn">endSession</span>();
+    <span class="tk-kw">return</span> ticket;
   }
 }</code></pre>
-          </div>
         </div>
 
-        <!-- Codice: Workflow e Richieste (Gravos) -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Workflow e richieste — Gravos</h3>
-            <p>
-              <strong>Gravos</strong> implementa un motore di workflow configurabile.
-              Ogni workflow definisce dei <em>campi dinamici</em> (stringa, numero, email,
-              data, booleano, array con opzioni) e una pipeline di <em>step di approvazione</em>
-              con tre modalità:
-            </p>
-            <ul class="project-list">
-              <li>
-                <strong>SEQUENTIAL</strong> — Gli approvatori devono approvare in ordine.
-              </li>
-              <li>
-                <strong>PARALLEL</strong> — Approvazioni parallele con soglia minima configurabile.
-              </li>
-              <li>
-                <strong>DYNAMIC</strong> — Approvatore risolto a runtime in base al ruolo
-                (responsabile del richiedente o coordinatore del gruppo).
-              </li>
-            </ul>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">workflows/schemas/workflow.schema.ts</span>
-            </div>
-            <pre><code><span class="kw">export interface</span> <span class="tp">StepDefinition</span> {
-  name: <span class="tp">string</span>;
-  participants: <span class="tp">string</span>[];
-  mode: <span class="st">'SEQUENTIAL'</span> | <span class="st">'PARALLEL'</span>
-        | <span class="st">'DYNAMIC'</span>;
-  minApprovals?: <span class="tp">number</span>;
-  dynamicResolver?:
-    <span class="st">'REQUESTER_MANAGER'</span> |
-    <span class="st">'GROUP_COORDINATOR'</span>;
-}
-
-<span class="kw">export interface</span> <span class="tp">FieldDefinition</span> {
-  name: <span class="tp">string</span>;
-  label: <span class="tp">string</span>;
-  type: <span class="st">'string'</span> | <span class="st">'number'</span> | <span class="st">'email'</span>
-        | <span class="st">'date'</span> | <span class="st">'boolean'</span> | <span class="st">'array'</span>;
-  validations?: {
-    required?: <span class="tp">boolean</span>;
-    pattern?: <span class="tp">string</span>;
-    minLength?: <span class="tp">number</span>;
-  };
-  options?: <span class="tp">SelectOption</span>[];
-}
-
-@<span class="fn">Schema</span>({ timestamps: <span class="kw">true</span> })
-<span class="kw">export class</span> <span class="tp">Workflow</span> <span class="kw">extends</span> <span class="tp">Document</span> {
-  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> }) name: <span class="tp">string</span>;
-  @<span class="fn">Prop</span>({ required: <span class="kw">true</span> }) category: <span class="tp">string</span>;
-  @<span class="fn">Prop</span>() instructions: <span class="tp">string</span>;
-  @<span class="fn">Prop</span>() fields: <span class="tp">FieldDefinition</span>[];
-  @<span class="fn">Prop</span>() steps: <span class="tp">StepDefinition</span>[];
-}</code></pre>
-          </div>
+        <div class="note">
+          <p>
+            <strong>Il default è chiuso:</strong> su ogni servizio girano due
+            guard globali, uno per l'autenticazione e uno per i permessi. Un
+            endpoint pubblico va dichiarato esplicitamente, e nell'intera
+            piattaforma l'unica <em>scrittura</em> senza login è la pagina di
+            apertura ticket per chi non ha ancora un account: rate limit per
+            IP, honeypot, consenso privacy obbligatorio e destinazione risolta
+            lato server, così il form non può scegliere a chi arrivare.
+          </p>
         </div>
 
-        <!-- Codice: Motore di approvazione -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Motore di approvazione multi-step</h3>
+        <!-- ─── IDENTITÀ ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">IDENTITÀ</span>HEIMDALL, IL GUARDIANO
+        </h3>
+        <p class="section-sub">
+          // un solo servizio sa chi sei. tutti gli altri si fidano della sua firma
+        </p>
+
+        <div class="card-grid">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">DUE PORTE, UNA SOLA ANAGRAFICA</h4>
             <p>
-              Il cuore di Gravos è il metodo <code>approveRequest</code>: verifica
-              l'autorizzazione dell'utente sullo step corrente, previene doppie
-              approvazioni, determina se lo step è completato e avanza la richiesta
-              attraverso la pipeline. Lo stato segue il flusso:
-              <em>PENDING → IN_PROGRESS → APPROVED/REJECTED → COMPLETED</em>.
+              Si entra con l'account aziendale (<strong>Microsoft Entra ID</strong>)
+              o con la carta d'identità elettronica (<strong>CIE id</strong>).
+              In entrambi i casi: Authorization Code con
+              <strong>PKCE S256</strong>, firma del token verificata via JWKS,
+              controlli su issuer, audience, scadenza e nonce. Poi Heimdall
+              emette i JWT <em>interni</em> della piattaforma: gli altri undici
+              servizi validano quelli e non sanno nulla dell'identity provider.
             </p>
           </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">requests/requests.service.ts — approveRequest()</span>
-            </div>
-            <pre><code><span class="kw">async</span> <span class="fn">approveRequest</span>(
-  id: <span class="tp">string</span>,
-  approvalDto: <span class="tp">ApprovalRecordDto</span>,
-  user: <span class="tp">ActiveUserData</span>,
-): <span class="tp">Promise</span>&lt;<span class="tp">Request</span>&gt; {
-  <span class="kw">const</span> request = <span class="kw">await</span> <span class="kw">this</span>.requestModel
-    .<span class="fn">findById</span>(id);
-  <span class="kw">const</span> workflow = <span class="kw">await</span> <span class="kw">this</span>.workflowsService
-    .<span class="fn">findOne</span>(request.workflowId, user);
-  <span class="kw">const</span> currentStep =
-    workflow.steps[request.currentStepIndex];
 
-  <span class="cm">// Verifica autorizzazione e doppia approvazione</span>
-  <span class="kw">const</span> canApprove = <span class="kw">await</span> <span class="kw">this</span>
-    .<span class="fn">canUserApproveStep</span>(currentStep, user, request);
-  <span class="kw">if</span> (!canApprove) <span class="kw">throw new</span> <span class="tp">BadRequestException</span>(
-    <span class="st">'Non autorizzato per questo step'</span>
-  );
-
-  <span class="cm">// Registra approvazione e avanza pipeline</span>
-  request.approvals.<span class="fn">push</span>({
-    stepIndex: request.currentStepIndex,
-    userId: user.sub, approved: approvalDto.approved,
-    timestamp: <span class="kw">new</span> <span class="tp">Date</span>(),
-  });
-
-  <span class="kw">const</span> completed = <span class="kw">this</span>
-    .<span class="fn">isStepCompleted</span>(currentStep, request);
-  <span class="kw">const</span> approved = <span class="kw">this</span>
-    .<span class="fn">isStepApproved</span>(currentStep, request);
-
-  <span class="kw">if</span> (completed &amp;&amp; approved) {
-    <span class="kw">if</span> (request.currentStepIndex
-        &lt; workflow.steps.length - <span class="nm">1</span>) {
-      request.currentStepIndex += <span class="nm">1</span>;
-      request.status = <span class="st">'IN_PROGRESS'</span>;
-    } <span class="kw">else</span> {
-      request.status = <span class="st">'APPROVED'</span>;
-    }
-  }
-
-  <span class="kw">return await</span> request.<span class="fn">save</span>();
-}</code></pre>
-          </div>
-        </div>
-
-        <!-- Codice: Search Service -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Ricerca aggregata cross-service</h3>
+          <div class="pixel-card prose">
+            <h4 class="card-heading">REFRESH TOKEN A FAMIGLIE</h4>
             <p>
-              Il servizio <strong>Asgard</strong> (gateway) orchestra una
-              <strong>ricerca federata in parallelo</strong> interrogando
-              simultaneamente FAQ (Elios), News (Corvin), Categorie ticket (Atlas)
-              e Workflow (Gravos) tramite <code>Promise.allSettled</code>.
-              I risultati vengono aggregati, ordinati per relevance e arricchiti
-              con suggerimenti contestuali.
-            </p>
-            <p>
-              Se cerchi "permesso ferie", il sistema non solo trova FAQ e news
-              correlate, ma suggerisce automaticamente di creare un ticket HR
-              o avviare una richiesta ferie.
+              Ogni refresh ruota il token e lo lega a una <em>famiglia</em>. Se
+              un refresh token già consumato ricompare, qualcuno l'ha copiato:
+              si revoca l'intera catena, non solo quel token, e il dispositivo
+              legittimo rifà il login. Sugli endpoint di scambio il rate limit
+              è volutamente ostile.
             </p>
           </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">search/search.service.ts — performIntelligentSearch()</span>
-            </div>
-            <pre><code><span class="kw">async</span> <span class="fn">performIntelligentSearch</span>(
-  searchQuery: <span class="tp">SearchQueryDto</span>,
-): <span class="tp">Promise</span>&lt;<span class="tp">SearchResponseDto</span>&gt; {
-  <span class="kw">const</span> startTime = <span class="tp">Date</span>.<span class="fn">now</span>();
-  <span class="kw">const</span> { query } = searchQuery;
 
-  <span class="cm">// Ricerche parallele su 4 microservizi</span>
-  <span class="kw">const</span> [faqs, news, categories, workflows] =
-    <span class="kw">await</span> <span class="tp">Promise</span>.<span class="fn">allSettled</span>([
-      <span class="kw">this</span>.<span class="fn">searchFAQs</span>(query),
-      <span class="kw">this</span>.<span class="fn">searchNews</span>(query),
-      <span class="kw">this</span>.<span class="fn">getRelevantCategories</span>(query),
-      <span class="kw">this</span>.<span class="fn">searchWorkflows</span>(query),
-    ]);
-
-  <span class="cm">// Aggrega e ordina per rilevanza</span>
-  <span class="kw">const</span> quickActions: <span class="tp">QuickAction</span>[] = [];
-  <span class="kw">if</span> (faqs.status === <span class="st">'fulfilled'</span>)
-    quickActions.<span class="fn">push</span>(
-      ...<span class="kw">this</span>.<span class="fn">mapFAQsToActions</span>(faqs.value)
-    );
-  <span class="kw">if</span> (news.status === <span class="st">'fulfilled'</span>)
-    quickActions.<span class="fn">push</span>(
-      ...<span class="kw">this</span>.<span class="fn">mapNewsToActions</span>(news.value)
-    );
-
-  quickActions.<span class="fn">sort</span>(
-    (a, b) =&gt; b.relevance - a.relevance
-  );
-
-  <span class="kw">return</span> {
-    query,
-    quickActions: quickActions.<span class="fn">slice</span>(<span class="nm">0</span>, <span class="nm">10</span>),
-    ticketSuggestions: <span class="kw">this</span>
-      .<span class="fn">generateTicketSuggestions</span>(categories),
-    requestSuggestions: <span class="kw">this</span>
-      .<span class="fn">generateRequestSuggestions</span>(workflows),
-    processingTime: <span class="tp">Date</span>.<span class="fn">now</span>() - startTime,
-  };
-}</code></pre>
-          </div>
-        </div>
-
-        <!-- SSO: Microsoft Entra ID -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3><i class="fas fa-key"></i> SSO — Microsoft Entra ID</h3>
+          <div class="pixel-card prose">
+            <h4 class="card-heading">PERMESSI PER RISORSA</h4>
             <p>
-              L'autenticazione aziendale è gestita da <strong>Heimdall</strong>
-              attraverso <strong>Microsoft Entra ID</strong> (ex Azure AD) come
-              SSO aziendale, implementando il flusso completo
-              <strong>OAuth2/OIDC con PKCE</strong>. Il sistema supporta anche
-              l'autenticazione tramite <strong>CIE</strong> (Carta d'Identità Elettronica),
-              identificando l'utente tramite codice fiscale.
-            </p>
-            <p>
-              La validazione dell'ID Token include verifica della firma JWKS,
-              controllo issuer/audience, scadenza e protezione contro
-              <em>replay attack</em> tramite nonce. Dopo la validazione, il
-              sistema genera token JWT interni con permessi granulari, gruppi
-              e organizzazione dell'utente.
+              <code>Ticket.Create</code>, <code>Asset.Read</code>,
+              <code>Requests.Approve</code>, <code>Dashboard.Write</code>: ogni
+              servizio dichiara i permessi che accetta, Heimdall li assegna
+              tramite gruppi funzionali e organizzazioni. Lo stesso elenco
+              pilota il menu del frontend e i tool visibili all'assistente AI.
+              La regola è scritta una volta e letta ovunque.
             </p>
           </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">authentication/authentication.service.ts</span>
-            </div>
-            <pre><code><span class="kw">async</span> <span class="fn">exchangeOAuthCode</span>(
-  codeExchangeDto: <span class="tp">OAuthCodeExchangeDto</span>,
-): <span class="tp">Promise</span>&lt;<span class="tp">MicrosoftAuthResponse</span>&gt; {
-  <span class="cm">// 1. Validazione state (CSRF protection)</span>
-  <span class="kw">this</span>.<span class="fn">validateState</span>(codeExchangeDto.state);
 
-  <span class="cm">// 2. Scambio code → token con Microsoft</span>
-  <span class="kw">const</span> msTokens = <span class="kw">await</span> <span class="kw">this</span>
-    .<span class="fn">exchangeCodeForToken</span>(
-      codeExchangeDto.code,
-      codeExchangeDto.codeVerifier,
-      codeExchangeDto.redirectUri,
-    );
-
-  <span class="cm">// 3. Validazione ID Token (JWKS + nonce)</span>
-  <span class="kw">const</span> claims = <span class="kw">await</span> <span class="kw">this</span>
-    .<span class="fn">validateIdToken</span>(
-      msTokens.id_token,
-      codeExchangeDto.nonce,
-    );
-
-  <span class="cm">// 4. Informazioni utente da Microsoft Graph</span>
-  <span class="kw">const</span> userInfo = <span class="kw">await</span> <span class="kw">this</span>
-    .<span class="fn">getMicrosoftUserInfo</span>(msTokens.access_token);
-
-  <span class="cm">// 5. Lookup utente interno + populate gruppi</span>
-  <span class="kw">let</span> user = <span class="kw">await</span> <span class="kw">this</span>.userModel
-    .<span class="fn">findOne</span>({ email: claims.email })
-    .<span class="fn">populate</span>({
-      path: <span class="st">'groups'</span>,
-      populate: { path: <span class="st">'organization'</span> },
-    });
-
-  <span class="cm">// 6. Generazione token JWT interni</span>
-  <span class="kw">const</span> tokens = <span class="kw">await</span> <span class="kw">this</span>
-    .<span class="fn">generateTokens</span>(user._id, {
-      email: user.email,
-      permissions: user.permissions,
-      fullname: user.fullName,
-      groups: user.groups.<span class="fn">map</span>(g =&gt; g._id),
-      organization: user.groups[<span class="nm">0</span>]?.organization,
-    });
-
-  <span class="kw">return</span> { ...tokens, entraUserInfo: userInfo };
-}</code></pre>
-          </div>
-        </div>
-
-        <!-- Validazione ID Token -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Validazione ID Token — JWKS</h3>
+          <div class="pixel-card prose">
+            <h4 class="card-heading">L'ANAGRAFICA SI AGGIORNA DA SOLA</h4>
             <p>
-              La validazione del token Microsoft segue le best practice OIDC:
-              la libreria <code>jose</code> scarica le chiavi pubbliche dal
-              <strong>JWKS endpoint</strong> di Microsoft, verifica la firma,
-              controlla issuer e audience, e valida il nonce per prevenire
-              attacchi di tipo replay.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">authentication/authentication.service.ts — validateIdToken()</span>
-            </div>
-            <pre><code><span class="kw">private async</span> <span class="fn">validateIdToken</span>(
-  idToken: <span class="tp">string</span>,
-  expectedNonce?: <span class="tp">string</span>,
-): <span class="tp">Promise</span>&lt;<span class="tp">IdTokenClaims</span>&gt; {
-  <span class="kw">const</span> JWKS = jose.<span class="fn">createRemoteJWKSet</span>(
-    <span class="kw">new</span> <span class="tp">URL</span>(<span class="kw">this</span>.MICROSOFT_JWKS_URI)
-  );
-
-  <span class="kw">const</span> { payload } = <span class="kw">await</span> jose.<span class="fn">jwtVerify</span>(
-    idToken, JWKS, {
-      issuer: <span class="kw">this</span>.MICROSOFT_ISSUER,
-      audience: <span class="kw">this</span>.MICROSOFT_CLIENT_ID,
-    }
-  );
-
-  <span class="kw">const</span> claims = payload <span class="kw">as</span> <span class="tp">IdTokenClaims</span>;
-
-  <span class="cm">// Protezione contro replay attack</span>
-  <span class="kw">if</span> (expectedNonce &amp;&amp; claims.nonce !== expectedNonce)
-    <span class="kw">throw new</span> <span class="tp">UnauthorizedException</span>(
-      <span class="st">'Nonce validation failed'</span>
-    );
-
-  <span class="kw">return</span> claims;
-}</code></pre>
-          </div>
-        </div>
-
-        <!-- Frontend: Angular + NgRx -->
-        <div class="project-block project-block-full reveal">
-          <div class="project-block-text" style="max-width: 100%;">
-            <h3><i class="fas fa-desktop"></i> Frontend — Angular + NgRx</h3>
-            <p>
-              Il frontend è un'applicazione <strong>Angular 21</strong> basata
-              interamente su <strong>standalone components</strong> (nessun NgModule).
-              La gestione dello stato è centralizzata tramite <strong>NgRx</strong>
-              con <strong>17 feature slice</strong> nello store, corrispondenti ai
-              diversi domini dell'applicazione. L'interfaccia utilizza
-              <strong>PrimeNG</strong> con un tema custom (<em>AtlasPreset</em>),
-              <strong>Leaflet</strong> per le mappe, <strong>Chart.js</strong> per
-              i grafici e <strong>Quill</strong> come rich text editor.
-            </p>
-            <p>
-              Ogni feature segue una struttura consistente: dentro <code>state/</code>
-              si trovano <em>actions</em>, <em>reducer</em>, <em>effects</em>,
-              <em>selectors</em> e <em>model</em>. Questo pattern garantisce
-              separazione delle responsabilità, testabilità e prevedibilità del
-              flusso dati unidirezionale.
+              Un job sincronizza il gestionale HR: valida i dipendenti, crea o
+              aggiorna l'account su Entra ID e in Heimdall, assegna il manager,
+              disabilita i cessati e invia un report con il CSV degli scarti.
+              Gli endpoint interni consumati dagli altri servizi (manager di un
+              utente, coordinatore di un gruppo, account ancora attivi)
+              nascono tutti da qui. I dati personali nei log sono mascherati
+              <em>prima</em> di partire.
             </p>
           </div>
         </div>
 
-        <!-- Codice: NgRx Store Config -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Configurazione dello Store NgRx</h3>
-            <p>
-              Lo store globale è configurato a livello di applicazione con
-              <code>provideStore()</code> e raggruppa 17 reducer:
-              autenticazione, ticket, news, FAQ, workflow, richieste, utenti,
-              gruppi, organizzazioni, asset, subnet, VLAN, IP, geolocalizzazione,
-              categorie, notifiche e ricerca.
-            </p>
-            <p>
-              Ogni slice ha i propri <strong>Effects</strong> che gestiscono
-              le chiamate API, la navigazione e le notifiche toast. Il
-              <code>StoreDevtools</code> è attivo solo in development mode.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">app.config.ts</span>
-            </div>
-            <pre><code><span class="kw">export const</span> appConfig: <span class="tp">ApplicationConfig</span> = {
-  providers: [
-    <span class="fn">provideHttpClient</span>(
-      <span class="fn">withInterceptors</span>([authInterceptor])
-    ),
-    <span class="fn">provideRouter</span>(routes),
-    <span class="fn">providePrimeNG</span>({
-      theme: { preset: AtlasPreset },
-    }),
-    <span class="fn">provideStore</span>({
-      auth: authReducer,
-      tickets: ticketReducer,
-      news: newsReducer,
-      faqs: faqReducer,
-      workflows: workflowReducer,
-      requests: requestReducer,
-      users: userReducer,
-      groups: groupReducer,
-      organizations: organizationsReducer,
-      categories: categoryReducer,
-      notifications: notificationsReducer,
-      assets: assetReducer,
-      geography: geographyReducer,
-      subnets: subnetReducer,
-      vlans: vlanReducer,
-      ipAddresses: ipAddressReducer,
-      search: searchReducer,
-    }),
-    <span class="fn">provideEffects</span>([
-      AuthEffects, TicketEffects,
-      NewsEffects, FaqsEffects,
-      WorkflowEffects, RequestEffects,
-      UserEffects, GroupEffects,
-      OrganizationsEffects, CategoryEffects,
-      NotificationsEffects, AssetEffects,
-      GeographyEffects, SubnetEffects,
-      VlanEffects, IpAddressEffects,
-      SearchEffects,
-    ]),
-    <span class="fn">provideStoreDevtools</span>({
-      maxAge: <span class="nm">25</span>,
-      logOnly: !<span class="fn">isDevMode</span>(),
-    }),
+        <!-- ─── WORKFLOW ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">WORKFLOW</span>GRAVOS, LE APPROVAZIONI
+        </h3>
+        <p class="section-sub">
+          // un modulo di richiesta si definisce con un documento, non con un deploy
+        </p>
+
+        <div class="pixel-card prose">
+          <p>
+            Atlas gestisce i ticket; Gravos gestisce i <strong>processi</strong>:
+            richieste che hanno un modulo, una catena di approvazioni e delle
+            conseguenze. Un workflow è un documento con tre blocchi —
+            <code>fields</code> (il form), <code>steps</code> (chi approva e
+            come), <code>actions</code> (cosa succede dopo) — e viene
+            agganciato a una sottocategoria di tipo <em>richiesta</em> del
+            service desk: l'utente parte da «ho bisogno di» e il sistema
+            decide se è un ticket o un workflow.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">GRAVOS · DEFINIZIONE DI UN WORKFLOW — ESEMPIO</p>
+          <pre><code>{
+  <span class="tk-key">"name"</span>: <span class="tk-str">"Richiesta nuovo portatile"</span>,
+  <span class="tk-key">"category"</span>: <span class="tk-str">"Hardware"</span>, <span class="tk-key">"subcategory"</span>: <span class="tk-str">"Nuovo dispositivo"</span>,
+
+  <span class="tk-key">"fields"</span>: [
+    { <span class="tk-key">"name"</span>: <span class="tk-str">"motivazione"</span>, <span class="tk-key">"type"</span>: <span class="tk-str">"string"</span>,
+      <span class="tk-key">"validations"</span>: { <span class="tk-key">"required"</span>: <span class="tk-kw">true</span>, <span class="tk-key">"minLength"</span>: 20 } },
+    { <span class="tk-key">"name"</span>: <span class="tk-str">"entroIl"</span>, <span class="tk-key">"type"</span>: <span class="tk-str">"date"</span> }
   ],
-};</code></pre>
+
+  <span class="tk-key">"steps"</span>: [
+    { <span class="tk-key">"name"</span>: <span class="tk-str">"Responsabile"</span>, <span class="tk-key">"mode"</span>: <span class="tk-str">"DYNAMIC"</span>,
+      <span class="tk-key">"dynamicResolver"</span>: <span class="tk-str">"REQUESTER_MANAGER"</span> },        <span class="tk-cm">// risolto via Heimdall</span>
+    { <span class="tk-key">"name"</span>: <span class="tk-str">"Servizio IT"</span>,  <span class="tk-key">"mode"</span>: <span class="tk-str">"PARALLEL"</span>,
+      <span class="tk-key">"participants"</span>: [<span class="tk-str">"group:it-desk"</span>], <span class="tk-key">"minApprovals"</span>: 1 }
+  ],
+
+  <span class="tk-key">"actions"</span>: [
+    { <span class="tk-key">"type"</span>: <span class="tk-str">"ASSIGN_ASSET"</span>, <span class="tk-key">"trigger"</span>: <span class="tk-str">"ON_FINAL_APPROVAL"</span> },  <span class="tk-cm">// asset su Itria</span>
+    { <span class="tk-key">"type"</span>: <span class="tk-str">"SEND_EMAIL"</span>,   <span class="tk-key">"trigger"</span>: <span class="tk-str">"ON_COMPLETION"</span>,
+      <span class="tk-key">"templateId"</span>: <span class="tk-str">"device-ready"</span> }                        <span class="tk-cm">// email via Deltor</span>
+  ]
+}</code></pre>
+        </div>
+
+        <div class="card-grid card-grid-3">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">TRE MODI DI APPROVARE</h4>
+            <p>
+              <strong>SEQUENTIAL</strong>: A prima di B.
+              <strong>PARALLEL</strong>: <em>n</em> membri di un gruppo, con
+              un minimo di approvazioni. <strong>DYNAMIC</strong>:
+              l'approvatore non è scritto nel workflow ma calcolato al momento
+              — il manager del richiedente, il coordinatore del gruppo. Così un
+              cambio di organigramma non richiede di toccare i processi.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">AZIONI CON MEMORIA</h4>
+            <p>
+              Alla creazione, a ogni step, all'approvazione finale, al rifiuto
+              o al completamento possono scattare azioni: assegnare un asset,
+              inviare un'email, chiamare un'API. Ogni esecuzione viene
+              registrata con input, output, esito e tentativi, e si può
+              <em>riprovare</em> a mano se qualcosa a valle era giù.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">API_CALL, MA NON OVUNQUE</h4>
+            <p>
+              Un'azione che chiama un'API è comoda e pericolosa: chi definisce
+              i workflow potrebbe farla puntare dove vuole. Per questo il base
+              URL deve appartenere a una allowlist configurata e il path viene
+              sanificato — niente <code>..</code>, niente doppie barre, niente
+              schemi. La flessibilità si concede, non si regala.
+            </p>
           </div>
         </div>
 
-        <!-- Codice: NgRx Actions + Reducer -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Actions e Reducer — Pattern NgRx</h3>
+        <!-- ─── DATI ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">DATI</span>LYSOR, DAL DATO AL GRAFICO
+        </h3>
+        <p class="section-sub">
+          // dashboard self-service: chi conosce i dati costruisce i cruscotti, senza aspettare uno sviluppatore
+        </p>
+
+        <div class="code-block diagram">
+          <p class="code-head">LYSOR · PIPELINE DEI DATI</p>
+          <pre><code>  Sorgente ---&gt; Ingestor ---&gt; Dataset ---&gt; Pannello ---&gt; Dashboard
+  HTTP/REST     cron o        tabella      query DSL     filtri globali
+  MySQL         manuale       su Azure     eseguita      propagati
+  PostgreSQL    mapping       SQL, creata  su SQL        ai pannelli
+  SQL Server    dei campi     al volo
+  Oracle        replace |     <span class="tk-cm">// metadati su MongoDB, righe su Azure SQL:</span>
+  MariaDB       append        <span class="tk-cm">// l'unico servizio con doppia persistenza</span>
+  MongoDB
+  CSV (via Fayra)</code></pre>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">LYSOR · UN PANNELLO — ESEMPIO</p>
+          <pre><code>{
+  <span class="tk-key">"type"</span>: <span class="tk-str">"stacked-bar"</span>,
+  <span class="tk-key">"datasetId"</span>: <span class="tk-str">"ticket-service-desk"</span>,
+  <span class="tk-key">"query"</span>: {
+    <span class="tk-key">"groupBy"</span>: [<span class="tk-str">"mese"</span>, <span class="tk-str">"categoria"</span>],
+    <span class="tk-key">"metrics"</span>: [{ <span class="tk-key">"field"</span>: <span class="tk-str">"id"</span>, <span class="tk-key">"op"</span>: <span class="tk-str">"count"</span>, <span class="tk-key">"as"</span>: <span class="tk-str">"ticket"</span> }],
+    <span class="tk-key">"filters"</span>: [{ <span class="tk-key">"field"</span>: <span class="tk-str">"creationDate"</span>, <span class="tk-key">"op"</span>: <span class="tk-str">"gte"</span>, <span class="tk-key">"value"</span>: <span class="tk-str">"2026"</span> }],
+    <span class="tk-key">"orderBy"</span>: [{ <span class="tk-key">"field"</span>: <span class="tk-str">"mese"</span>, <span class="tk-key">"dir"</span>: <span class="tk-str">"asc"</span> }],
+    <span class="tk-key">"limit"</span>: 12
+  },
+  <span class="tk-key">"layout"</span>: { <span class="tk-key">"x"</span>: 0, <span class="tk-key">"y"</span>: 2, <span class="tk-key">"w"</span>: 8, <span class="tk-key">"h"</span>: 4 }
+}
+<span class="tk-cm">// "value": "2026" su un campo data è un intervallo: tutto l'anno.
+// "2026-06" è giugno, "15/06/2026" è un giorno. Chi scrive filtri
+// pensa in periodi, non in timestamp: il DSL fa la traduzione.</span></code></pre>
+        </div>
+
+        <div class="card-grid card-grid-3">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">OTTO CONNETTORI, ZERO PASSWORD</h4>
             <p>
-              Ogni entità segue il pattern <strong>Command/Success/Failure</strong>:
-              l'action di comando viene dispatched dal componente, l'effect gestisce
-              la chiamata API, e le action di successo/errore aggiornano il reducer.
-              Lo stato traccia il loading per ogni operazione individualmente.
-            </p>
-            <p>
-              Il reducer dei ticket usa una <code>Map</code> per deduplicare
-              i risultati durante lo scroll infinito, evitando duplicati quando
-              nuovi dati vengono accumulati progressivamente.
+              Le credenziali di una sorgente non vengono mai salvate in chiaro:
+              nel database c'è solo un <code>secretRef</code>, risolto a
+              runtime da Key Vault o da variabili d'ambiente. Il test di
+              connessione registra stato, latenza e ultimo errore, così una
+              sorgente rotta si vede prima che un grafico resti vuoto.
             </p>
           </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">atlas/state/ticket.actions.ts + ticket.reducer.ts</span>
-            </div>
-            <pre><code><span class="cm">// ─── Actions (tripletta Command/Success/Failure)</span>
-<span class="kw">export const</span> getAllTickets = <span class="fn">createAction</span>(
-  <span class="st">'[Ticket] Get All'</span>
-);
-<span class="kw">export const</span> getAllTicketsSuccess = <span class="fn">createAction</span>(
-  <span class="st">'[Ticket] Get All Success'</span>,
-  <span class="fn">props</span>&lt;{ total: <span class="tp">number</span>; tickets: <span class="tp">Ticket</span>[] }&gt;()
-);
-<span class="kw">export const</span> createTicket = <span class="fn">createAction</span>(
-  <span class="st">'[Ticket] Create'</span>,
-  <span class="fn">props</span>&lt;{ ticket: <span class="tp">CreateTicketDto</span> }&gt;()
-);
-<span class="kw">export const</span> assignTicket = <span class="fn">createAction</span>(
-  <span class="st">'[Ticket] Assign'</span>,
-  <span class="fn">props</span>&lt;{ id: <span class="tp">string</span> }&gt;()
-);
 
-<span class="cm">// ─── Reducer con Map per deduplicazione</span>
-<span class="kw">export const</span> ticketReducer = <span class="fn">createReducer</span>(
-  initialState,
-  <span class="fn">on</span>(getAllTicketsSuccess, (state, { total, tickets }) =&gt; {
-    <span class="kw">const</span> map = <span class="kw">new</span> <span class="tp">Map</span>(
-      state.allTickets.<span class="fn">map</span>(t =&gt; [t._id, t])
-    );
-    tickets.<span class="fn">forEach</span>(t =&gt; map.<span class="fn">set</span>(t._id, t));
-    <span class="kw">return</span> {
-      ...state,
-      allTickets: <span class="tp">Array</span>.<span class="fn">from</span>(map.<span class="fn">values</span>()),
-      loadingAllTickets: { loading: <span class="kw">false</span>, error: <span class="kw">null</span> },
-      pagination: { ...state.pagination, total,
-        hasMore: tickets.length === state.pagination.limit },
-    };
+          <div class="pixel-card prose">
+            <h4 class="card-heading">UN DSL, NON SQL LIBERO</h4>
+            <p>
+              I pannelli non scrivono SQL: descrivono raggruppamenti, metriche,
+              filtri e ordinamenti in un piccolo linguaggio che il motore
+              traduce. È meno potente di una query a mano, ed è esattamente il
+              punto: un errore di sintassi diventa un 400 con un suggerimento,
+              non una tabella cancellata.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">ANCHE LA PIATTAFORMA SI GUARDA</h4>
+            <p>
+              Lysor ospita la dashboard di <strong>stato del sistema</strong>:
+              container, database, code e cache letti da Azure Monitor, più un
+              probe <code>/health</code> per ogni servizio. Se Azure non
+              risponde, restano i probe HTTP e l'ultimo inventario valido: la
+              pagina degrada, non muore. Riservata a un ruolo che non dà
+              accesso ai dati.
+            </p>
+          </div>
+        </div>
+
+        <!-- ─── AI ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">AI</span>MIMIR, LA PORTA PER GLI LLM
+        </h3>
+        <p class="section-sub">
+          // un assistente può usare la piattaforma. con i permessi di chi gli sta parlando, e non uno di più
+        </p>
+
+        <div class="pixel-card prose">
+          <p>
+            Mimir è un server <strong>MCP</strong> (Model Context Protocol):
+            espone i servizi esistenti come <em>tool</em> a un assistente
+            esterno — Copilot, VS Code, Claude — o interno al portale. Non
+            contiene logica di dominio e non ha un database: è un
+            <strong>adattatore di protocollo</strong>. Ogni tool si traduce in
+            una o più chiamate HTTP ai servizi, con il token dell'utente che
+            sta chiedendo, e riusa validazione, permessi, audit, email e socket
+            già implementati. Niente accesso diretto ai dati, mai.
+          </p>
+        </div>
+
+        <div class="code-block diagram">
+          <p class="code-head">MIMIR · FLUSSO DI AUTORIZZAZIONE (OAUTH 2.1)</p>
+          <pre><code>  1. POST /mcp senza token                        -&gt; Mimir:    401 + WWW-Authenticate (dov'è il resource metadata)
+  2. GET  /.well-known/oauth-protected-resource   -&gt; Mimir:    «l'authorization server è Heimdall» (RFC 9728)
+  3. GET  /.well-known/oauth-authorization-server -&gt; Heimdall: metadata del server (RFC 8414)
+  4. POST /oauth/register                         -&gt; Heimdall: registrazione dinamica del client (RFC 7591)
+  5. GET  /oauth/authorize + PKCE                 -&gt; Heimdall: redirect su Entra ID, poi code monouso (60 s)
+  6. POST /oauth/token + code_verifier            -&gt; Heimdall: JWT con claim <span class="tk-hi">mcpClientId</span>, TTL breve
+  7. POST /mcp + Bearer                           -&gt; Mimir:    guard (app Mimir + Mcp.Access),
+                                                               tool filtrati sui permessi dell'utente,
+                                                               audit di ogni chiamata su Bravon</code></pre>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">MIMIR · REGISTRAZIONE DI UN TOOL — RICOSTRUZIONE SEMPLIFICATA</p>
+          <pre><code>registry.register({
+  name: <span class="tk-str">'asgard_create_ticket'</span>,
+  permissions: [<span class="tk-str">'Ticket.Create'</span>, <span class="tk-str">'Ticket.All'</span>],     <span class="tk-cm">// gli stessi di Atlas, nessuno nuovo</span>
+  input: z.object({
+    category:    z.string(),
+    subcategory: z.string(),
+    subject:     z.string().min(5).max(240),
+    description: z.string().min(10).max(5000),
   }),
-  <span class="fn">on</span>(setFilters, (state, { filters }) =&gt; ({
-    ...state, filters, allTickets: [],
-    pagination: { ...state.pagination, skip: <span class="nm">0</span> },
-  })),
-);</code></pre>
-          </div>
-        </div>
-
-        <!-- Codice: NgRx Effects -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Effects — Side Effects & API Calls</h3>
-            <p>
-              Gli Effects gestiscono ogni interazione con il backend.
-              Utilizzano <code>exhaustMap</code> per le chiamate API,
-              <code>withLatestFrom</code> per leggere lo stato corrente
-              (paginazione e filtri), <code>retry</code> per resilienza
-              automatica e <code>tap</code> per side effect come toast e
-              navigazione.
-            </p>
-            <p>
-              Il pattern è consistente in tutti i 17 slice: l'effect si
-              sottoscrive all'action, legge i parametri dallo store, chiama
-              il service HTTP e dispatcha l'action di successo o errore.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">atlas/state/ticket.effects.ts</span>
-            </div>
-            <pre><code>@<span class="fn">Injectable</span>()
-<span class="kw">export class</span> <span class="tp">TicketEffects</span> {
-  <span class="kw">private</span> actions = <span class="fn">inject</span>(Actions);
-  <span class="kw">private</span> store = <span class="fn">inject</span>(Store);
-  <span class="kw">private</span> ticketService = <span class="fn">inject</span>(TicketService);
-  <span class="kw">private</span> messageService = <span class="fn">inject</span>(MessageService);
-
-  getAllTickets = <span class="fn">createEffect</span>(() =&gt;
-    <span class="kw">this</span>.actions.<span class="fn">pipe</span>(
-      <span class="fn">ofType</span>(getAllTickets, setFilters),
-      <span class="fn">withLatestFrom</span>(
-        <span class="kw">this</span>.store.<span class="fn">pipe</span>(<span class="fn">select</span>(selectLimit)),
-        <span class="kw">this</span>.store.<span class="fn">pipe</span>(<span class="fn">select</span>(selectSkip)),
-        <span class="kw">this</span>.store.<span class="fn">pipe</span>(<span class="fn">select</span>(selectFilter))
-      ),
-      <span class="fn">exhaustMap</span>(([, limit, skip, filters]) =&gt;
-        <span class="kw">this</span>.ticketService
-          .<span class="fn">getAllTickets</span>(limit, skip, filters).<span class="fn">pipe</span>(
-            <span class="fn">retry</span>({ count: <span class="nm">4</span>, delay: <span class="nm">4000</span> }),
-            <span class="fn">map</span>(({ total, tickets }) =&gt;
-              <span class="fn">getAllTicketsSuccess</span>({ total, tickets })
-            ),
-            <span class="fn">catchError</span>(err =&gt;
-              <span class="fn">of</span>(<span class="fn">getAllTicketsFailure</span>({ error: err }))
-            )
-          )
-      )
-    )
-  );
-
-  createTicketSuccess = <span class="fn">createEffect</span>(() =&gt;
-    <span class="kw">this</span>.actions.<span class="fn">pipe</span>(
-      <span class="fn">ofType</span>(createTicketSuccess),
-      <span class="fn">tap</span>(({ id }) =&gt; {
-        <span class="kw">this</span>.messageService.<span class="fn">add</span>({
-          key: <span class="st">'global-toast'</span>,
-          severity: <span class="st">'success'</span>,
-          summary: <span class="st">'Successo'</span>,
-          detail: <span class="st">'Ticket creato con successo!'</span>,
-        });
-        <span class="kw">this</span>.router.<span class="fn">navigate</span>(
-          [<span class="st">'/atlas/create-ticket/end'</span>, id]
-        );
-      })
-    ), { dispatch: <span class="kw">false</span> }
-  );
-}</code></pre>
-          </div>
-        </div>
-
-        <!-- Cloud: Azure -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3><i class="fas fa-cloud"></i> Cloud & DevOps — Azure</h3>
-            <p>
-              L'infrastruttura di Asgard è interamente basata sull'ecosistema
-              <strong>Microsoft Azure</strong>:
-            </p>
-            <ul class="project-list">
-              <li>
-                <strong>Azure Container Apps</strong> — Ogni microservizio viene
-                deployato come container isolato su Azure Container Apps,
-                beneficiando di scaling automatico, revisioni e ingress management
-                senza la complessità di Kubernetes.
-              </li>
-              <li>
-                <strong>Azure Container Registry (ACR)</strong> — Le immagini Docker
-                di tutti i servizi (backend e frontend) vengono costruite e
-                pubblicate in un registry privato ACR, garantendo sicurezza e
-                velocità di pull durante il deployment.
-              </li>
-              <li>
-                <strong>Azure DevOps</strong> — Le pipeline CI/CD sono definite
-                in <code>azure-pipelines.yml</code> e gestiscono build, test,
-                creazione immagini Docker e deployment automatico su Container Apps.
-                Ogni push sul branch principale attiva l'intera pipeline.
-              </li>
-              <li>
-                <strong>Microsoft Entra ID</strong> — Utilizzato come identity
-                provider aziendale per il Single Sign-On (SSO) tramite il
-                protocollo OAuth2/OIDC con PKCE, integrato nativamente nel
-                flusso di autenticazione di Heimdall.
-              </li>
-            </ul>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">Pipeline CI/CD</span>
-            </div>
-            <pre><code>┌──────────────┐    ┌──────────────┐
-│  Developer   │    │ Azure DevOps │
-│  git push    │───→│  Pipeline    │
-└──────────────┘    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │    Build     │
-                    │  + Test      │
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │   Docker     │
-                    │  Build &     │
-                    │  Push to ACR │
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │ Azure        │
-                    │ Container    │
-                    │ Apps Deploy  │
-                    └──────────────┘
-
-Registry: Azure Container Registry
-Auth:     Microsoft Entra ID (SSO)
-Runtime:  Azure Container Apps</code></pre>
-          </div>
-        </div>
-
-        <!-- Guard e Sicurezza -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Sistema di Guard e Permessi</h3>
-            <p>
-              Ogni endpoint è protetto da un sistema a due livelli di guard
-              globali registrati come <code>APP_GUARD</code>: il primo verifica
-              l'autenticazione (JWT access token, skip per endpoint pubblici), il
-              secondo controlla i <strong>permessi granulari</strong> per le 16+
-              risorse del sistema.
-            </p>
-            <p>
-              I decoratori custom <code>@Auth()</code>, <code>@Permissions()</code>
-              e <code>@ActiveUser()</code> semplificano l'uso nei controller,
-              rendendo la sicurezza dichiarativa e consistente in tutto il monorepo.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">Architettura di sicurezza</span>
-            </div>
-            <pre><code><span class="cm">// Guard globali registrati in ogni servizio</span>
-providers: [
-  { provide: APP_GUARD,
-    useClass: <span class="tp">AuthenticationGuard</span> },
-  { provide: APP_GUARD,
-    useClass: <span class="tp">PermissionsGuard</span> },
-],
-
-<span class="cm">// Uso nei controller con decoratori custom</span>
-@<span class="fn">Permissions</span>(
-  Permission.TicketCreate,
-  Permission.TicketAll
-)
-@<span class="fn">Post</span>()
-<span class="kw">async</span> <span class="fn">create</span>(
-  @<span class="fn">Body</span>() dto: <span class="tp">CreateTicketDto</span>,
-  @<span class="fn">ActiveUser</span>() user: <span class="tp">ActiveUserData</span>,
-) {
-  <span class="kw">return</span> <span class="kw">this</span>.ticketsService.<span class="fn">create</span>(dto, user);
-}
-
-<span class="cm">// Endpoint pubblico (nessuna autenticazione)</span>
-@<span class="fn">Auth</span>(AuthType.None)
-@<span class="fn">Get</span>(<span class="st">'public'</span>)
-<span class="kw">async</span> <span class="fn">getPublicFaqs</span>() {
-  <span class="kw">return</span> <span class="kw">this</span>.faqsService.<span class="fn">findPublic</span>();
-}</code></pre>
-          </div>
-        </div>
-
-        <!-- Scheduler & Cron -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Scheduler e task automatici</h3>
-            <p>
-              <strong>Atlas</strong> utilizza il modulo
-              <code>@nestjs/schedule</code> per eseguire task automatici tramite
-              espressioni Cron. Lo scheduler sblocca automaticamente i ticket
-              rimasti inattivi per oltre un'ora e esegue un cleanup giornaliero
-              dei ticket attivi, garantendo che nessuna richiesta rimanga bloccata
-              per disattenzione.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">tickets/ticket-scheduler.service.ts</span>
-            </div>
-            <pre><code><span class="cm">// Ogni ora: sblocca ticket inattivi &gt; 1h</span>
-@<span class="fn">Cron</span>(<span class="st">'0 * * * *'</span>,
-  { timeZone: <span class="st">'Europe/Rome'</span> })
-<span class="kw">async</span> <span class="fn">unlockInactiveTickets</span>() {
-  <span class="cm">// Auto-unlock ticket inattivi</span>
-}
-
-<span class="cm">// Ogni giorno alle 22:03: cleanup</span>
-@<span class="fn">Cron</span>(<span class="st">'3 22 * * *'</span>,
-  { timeZone: <span class="st">'Europe/Rome'</span> })
-<span class="kw">async</span> <span class="fn">handleCron</span>() {
-  <span class="cm">// Pulizia giornaliera ticket attivi</span>
-}</code></pre>
-          </div>
-        </div>
-
-        <!-- Stato del progetto -->
-        <div class="project-block project-block-full reveal">
-          <div class="project-block-text" style="max-width: 100%;">
-            <h3><i class="fas fa-code-branch"></i> Stato del progetto</h3>
-            <p>
-              Asgard è un progetto in <strong>sviluppo attivo</strong>,
-              continuamente esteso con nuove funzionalità e moduli. L'architettura
-              a microservizi consente di aggiungere nuovi servizi senza impattare
-              quelli esistenti, e il monorepo NestJS facilita la condivisione di
-              codice tra i servizi tramite le librerie in <code>libs/</code>.
-            </p>
-            <p>
-              <em>Nota: essendo un progetto ad uso aziendale interno,
-              le configurazioni infrastrutturali, le variabili d'ambiente,
-              gli endpoint specifici e altri dettagli sensibili sono stati
-              omessi da questa presentazione per ragioni di riservatezza.</em>
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ═══════════════ PROGETTO 2: TOKEN RING ═══════════════ -->
-    <section class="section project-section" id="token-ring">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Progetto 02 — Accademico</span>
-          <h2 class="section-title">Token Ring Banking System</h2>
-          <p class="section-desc">
-            Mutua esclusione distribuita con elezione del coordinatore
-          </p>
-        </div>
-
-        <!-- Intro -->
-        <div class="project-intro reveal">
-          <div class="project-meta">
-            <span class="project-type">
-              <i class="fas fa-graduation-cap"></i> Progetto Universitario
-            </span>
-            <span class="project-type">
-              <i class="fas fa-network-wired"></i> Sistemi Distribuiti
-            </span>
-            <div class="project-tags">
-              <span>NestJS</span>
-              <span>TypeScript</span>
-              <span>Axios</span>
-              <span>RxJS</span>
-              <span>UUID</span>
-              <span>Jest</span>
-            </div>
-          </div>
-          <p>
-            Progetto per il corso di <strong>Intelligenza Artificiale
-            Distribuita</strong>. Implementa un sistema bancario distribuito con
-            4 nodi ATM indipendenti che condividono l'accesso a un saldo comune
-            senza memoria condivisa — tutta la coordinazione avviene tramite
-            message passing HTTP.
-          </p>
-          <p>
-            L'algoritmo <strong>Token Ring</strong> garantisce la mutua
-            esclusione: un singolo token circola nel ring e porta con sé il
-            saldo. Solo il nodo che possiede il token può eseguire transazioni.
-            Il <strong>Bully Algorithm</strong> gestisce l'elezione del
-            coordinatore in caso di guasti.
-          </p>
-        </div>
-
-        <!-- Architettura Ring -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Architettura del Ring</h3>
-            <p>
-              4 processi NestJS indipendenti (ATM1–ATM4) su porte 3001–3004,
-              disposti in un anello logico. Il token circola in una sola
-              direzione e trasporta il saldo corrente del conto bancario.
-            </p>
-            <p>
-              Nessuna memoria condivisa: il saldo vive esclusivamente nel
-              token. Quando un nodo riceve il token, può eseguire una transazione
-              (deposito/prelievo) e poi lo inoltra al nodo successivo.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">ring-topology.txt</span>
-            </div>
-            <pre><code>    ┌──────────┐         ┌──────────┐
-    │  ATM 1   │────────→│  ATM 2   │
-    │  :3001   │         │  :3002   │
-    └──────────┘         └──────────┘
-         ↑                     │
-         │      Token Ring     │
-         │    (porta il $)     ↓
-    ┌──────────┐         ┌──────────┐
-    │  ATM 4   │←────────│  ATM 3   │
-    │  :3004   │         │  :3003   │
-    └──────────┘         └──────────┘</code></pre>
-          </div>
-        </div>
-
-        <!-- Codice: Token interface e processToken -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Il cuore del Token Ring</h3>
-            <p>
-              Il token è una struttura semplice: un ID univoco (UUID), l'ID del
-              nodo che lo detiene e il saldo corrente. Quando un nodo lo riceve,
-              controlla se ha transazioni in coda: se sì, entra nella sezione
-              critica ed esegue; altrimenti, inoltra immediatamente.
-            </p>
-            <p>
-              Questa è la garanzia fondamentale della mutua esclusione: un solo
-              nodo alla volta può modificare il saldo, eliminando race condition
-              senza lock o semafori.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">common/types.ts</span>
-            </div>
-            <pre><code><span class="kw">export interface</span> <span class="tp">Token</span> {
-  id: <span class="tp">string</span>;       <span class="cm">// UUID univoco</span>
-  holderId: <span class="tp">number</span>;  <span class="cm">// Nodo corrente</span>
-  balance: <span class="tp">number</span>;   <span class="cm">// Saldo del conto</span>
-}</code></pre>
-          </div>
-        </div>
-
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Sezione critica</h3>
-            <p>
-              <code>processToken()</code> è il cuore dell'algoritmo. Quando
-              arriva il token, se ci sono transazioni in coda il nodo entra
-              nella sezione critica, esegue la transazione, aggiorna il saldo
-              nel token e lo inoltra al prossimo nodo.
-            </p>
-            <p>
-              Il servizio <code>BankingService</code> è stateless: riceve il
-              saldo corrente e restituisce il nuovo saldo, senza mantenere stato
-              locale. Questo riflette il principio che il saldo vive
-              esclusivamente nel token.
-            </p>
-          </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">atm/atm.service.ts</span>
-            </div>
-            <pre><code><span class="kw">private async</span> <span class="fn">processToken</span>(): <span class="tp">Promise</span>&lt;<span class="tp">void</span>&gt; {
-  <span class="kw">this</span>.isProcessing = <span class="kw">true</span>;
-  <span class="kw">try</span> {
-    <span class="kw">if</span> (<span class="kw">this</span>.tokenService.<span class="fn">canAccessCriticalSection</span>()) {
-      <span class="cm">// Ha transazioni in coda: esegui</span>
-      <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">executeNextTransaction</span>();
-    } <span class="kw">else</span> {
-      <span class="cm">// Nessuna transazione: inoltra</span>
-      <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">forwardToken</span>();
+  <span class="tk-kw">async</span> run(input, user) {
+    <span class="tk-kw">const</span> sub = <span class="tk-kw">await</span> categories.resolve(input, user.token);
+    <span class="tk-kw">if</span> (sub.type === <span class="tk-str">'richiesta'</span>) {
+      <span class="tk-kw">return</span> refuse(<span class="tk-str">'È un workflow: usa asgard_create_request'</span>);
     }
-  } <span class="kw">finally</span> {
-    <span class="kw">this</span>.isProcessing = <span class="kw">false</span>;
-  }
-}</code></pre>
+    <span class="tk-cm">// stessa chiamata che farebbe il frontend, stesso token, stessi side effect</span>
+    <span class="tk-kw">return</span> upstream.post(atlas(<span class="tk-str">'/tickets'</span>), { ...input, destination: sub.group }, user.token);
+  },
+});</code></pre>
+        </div>
+
+        <div class="card-grid card-grid-3">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">VEDE SOLO CIÒ CHE PUOI</h4>
+            <p>
+              L'elenco dei tool viene filtrato sui permessi dell'utente prima
+              di arrivare al modello: niente 403 evitabili, niente tentativi.
+              Su una trentina di tool, le scritture sono
+              <strong>quattro</strong> — aprire un ticket, avviare una
+              richiesta, pubblicare una news o una FAQ. Nessuna modifica,
+              nessuna cancellazione.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">SI SA CHE C'ERA UN ROBOT</h4>
+            <p>
+              Un ticket aperto tramite assistente resta intestato all'utente,
+              ma nasce con un commento di origine di tipo <code>mcp</code> —
+              derivato dal claim nel token, non dal body che un client
+              potrebbe scrivere a piacere. L'operatore vede un banner e sa che
+              nessuno ha compilato il form a mano.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">I TOKEN COSTANO</h4>
+            <p>
+              Ogni risposta viene proiettata in forma compatta: via gli id
+              ridondanti, i campi di audit, gli embedding; elenchi con un tetto
+              esplicito e testi troncati con una nota. È qui che si governa il
+              costo di una conversazione — e il modello, con meno rumore,
+              sbaglia meno.
+            </p>
           </div>
         </div>
 
-        <!-- Bully Algorithm -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Bully Algorithm</h3>
+        <!-- ─── DEPLOY ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">DEPLOY</span>DAL PUSH ALLA PRODUZIONE
+        </h3>
+        <p class="section-sub">
+          // una pipeline a due stage, nessun segreto che la attraversa
+        </p>
+
+        <div class="card-grid card-grid-3">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">UNA IMMAGINE, DODICI CONTAINER</h4>
             <p>
-              Quando un nodo rileva un guasto, avvia un'elezione: invia un
-              messaggio ELECTION a tutti i nodi con ID superiore. Se nessuno
-              risponde OK, si autoelegge coordinatore. Altrimenti, attende che
-              un nodo con ID più alto annunci la sua coordinazione.
-            </p>
-            <p>
-              Il coordinatore ha responsabilità speciali: monitorare la
-              circolazione del token, condurre votazioni di consenso e
-              rigenerare il token in caso di perdita.
+              Il monorepo compila tutte le app in una sola immagine; il
+              comando di avvio è parametrico. Dodici container, una build da
+              otto minuti invece di dodici build da venti. L'unica eccezione è
+              Lysor, che si porta dietro il client Oracle e ha il suo
+              Dockerfile.
             </p>
           </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">election/election.service.ts</span>
-            </div>
-            <pre><code><span class="kw">async</span> <span class="fn">startElection</span>(): <span class="tp">Promise</span>&lt;<span class="tp">void</span>&gt; {
-  <span class="kw">if</span> (<span class="kw">this</span>.electionInProgress) <span class="kw">return</span>;
-  <span class="kw">this</span>.electionInProgress = <span class="kw">true</span>;
 
-  <span class="kw">const</span> higherNodes = <span class="kw">this</span>.<span class="fn">getNodesWithHigherIds</span>();
+          <div class="pixel-card prose">
+            <h4 class="card-heading">I SEGRETI NON PASSANO DI QUI</h4>
+            <p>
+              La pipeline non conosce nessuna password. Le Container Apps
+              leggono i segreti da <strong>Key Vault</strong> tramite una
+              managed identity, e le variabili d'ambiente contengono solo un
+              riferimento. Anche la build avviene sul registry remoto: l'agent
+              non ha Docker, e non ne ha bisogno.
+            </p>
+          </div>
 
-  <span class="kw">if</span> (higherNodes.length === <span class="nm">0</span>) {
-    <span class="cm">// Nessun nodo con ID superiore</span>
-    <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">becomeCoordinator</span>();
-    <span class="kw">return</span>;
-  }
-
-  <span class="kw">const</span> responses = <span class="kw">await</span> <span class="tp">Promise</span>.<span class="fn">allSettled</span>(
-    higherNodes.<span class="fn">map</span>((nodeId) =&gt;
-      <span class="kw">this</span>.<span class="fn">sendElectionMessage</span>(nodeId)
-    )
-  );
-
-  <span class="kw">const</span> receivedOk = responses.<span class="fn">some</span>(
-    (r) =&gt; r.status === <span class="st">'fulfilled'</span>
-  );
-
-  <span class="kw">if</span> (!receivedOk) {
-    <span class="kw">await</span> <span class="kw">this</span>.<span class="fn">becomeCoordinator</span>();
-  }
-}</code></pre>
+          <div class="pixel-card prose">
+            <h4 class="card-heading">IN LOCALE COME IN PRODUZIONE</h4>
+            <p>
+              <code>docker-compose up</code> alza i dodici servizi con hot
+              reload, l'emulatore ufficiale del Service Bus (che si porta
+              dietro un SQL Server, perché così vuole Microsoft) e Redis. Le
+              code sono dichiarate nello stesso file di configurazione che
+              descrive quelle vere: un bug di messaging si riproduce sulla
+              scrivania.
+            </p>
           </div>
         </div>
 
-        <!-- Fault Tolerance -->
-        <div class="project-block reveal">
-          <div class="project-block-text">
-            <h3>Tolleranza ai guasti</h3>
-            <p>
-              Il sistema gestisce tre scenari di failure:
+        <div class="code-block">
+          <p class="code-head">DOCKERFILE.PROD — IL PATTERN MULTI-APP</p>
+          <pre><code><span class="tk-kw">FROM</span> node:24-alpine <span class="tk-kw">AS</span> builder
+<span class="tk-kw">WORKDIR</span> /usr/src/app
+<span class="tk-kw">COPY</span> package*.json ./
+<span class="tk-kw">RUN</span> npm ci
+<span class="tk-kw">COPY</span> . .
+<span class="tk-kw">RUN</span> npm run build                     <span class="tk-cm"># compila tutte le app in dist/apps/*</span>
+
+<span class="tk-kw">FROM</span> node:24-alpine <span class="tk-kw">AS</span> production
+<span class="tk-kw">ARG</span> APP_NAME
+<span class="tk-kw">ENV</span> APP_NAME=${APP_NAME}
+<span class="tk-kw">RUN</span> apk add --no-cache dumb-init      <span class="tk-cm"># PID 1 che inoltra i segnali come si deve</span>
+<span class="tk-kw">WORKDIR</span> /usr/src/app
+<span class="tk-kw">COPY</span> package*.json ./
+<span class="tk-kw">RUN</span> npm ci --omit=dev
+<span class="tk-kw">COPY</span> --from=builder /usr/src/app/dist ./dist
+<span class="tk-kw">ENTRYPOINT</span> ["dumb-init", "--"]
+<span class="tk-kw">CMD</span> ["sh", "-c", "node dist/apps/${APP_NAME}/main.js"]   <span class="tk-cm"># stessa immagine, app diversa</span></code></pre>
+        </div>
+
+        <!-- ─── IL PANTHEON ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">LORE</span>IL PANTHEON
+        </h3>
+        <p class="section-sub">
+          // dodici servizi, dodici nomi. nessuno scelto a caso, e uno scelto
+          decisamente troppo tardi la sera
+        </p>
+
+        <div class="card-grid card-grid-3">
+          <div class="pixel-card deity">
+            <span class="deity-name">ASGARD</span>
+            <span class="deity-role">IL NUCLEO</span>
+            <p class="deity-why">
+              Planner, ricerca trasversale e note personali. Dà il nome
+              all'intera suite.
+              <strong>Perché:</strong> nella mitologia norrena è il regno degli
+              dèi, il posto dove vivono tutti gli altri. Chiamare così una
+              piattaforma gestionale è esattamente il livello di modestia che
+              ti aspetti da chi sceglie i nomi alle undici di sera.
             </p>
-            <ul class="project-list">
-              <li>
-                <strong>Scenario A — Token perso:</strong> il nodo con il token
-                crasha. Il coordinatore rileva l'assenza del token, conduce una
-                votazione di consenso e rigenera un nuovo token con il saldo più
-                recente.
-              </li>
-              <li>
-                <strong>Scenario B — Nodo non-token:</strong> un nodo senza
-                token fallisce. Il ring viene ricostruito automaticamente
-                escludendo il nodo guasto.
-              </li>
-              <li>
-                <strong>Scenario C — Recovery:</strong> un nodo ripristinato si
-                annuncia al coordinatore e viene reintegrato nella topologia.
-              </li>
+            <ul class="deity-spec">
+              <li>Planner con piani, bucket, obiettivi, task con dipendenze (e controllo anti-ciclo), vista Gantt e capacità per membro</li>
+              <li>Ricerca semantica su FAQ, news, documenti, procedure e workflow: embedding su Azure OpenAI, con fallback per parole chiave se non configurato</li>
+              <li>Consuma <code>search.index</code> / <code>search.remove</code> dagli altri servizi; propone <em>quick action</em>: «apri un ticket», «avvia questa richiesta»</li>
             </ul>
           </div>
-          <div class="project-code">
-            <div class="code-header">
-              <div class="code-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="code-title">coordinator/coordinator.service.ts</span>
-            </div>
-            <pre><code><span class="fn">reconstructRing</span>(): <span class="tp">Map</span>&lt;<span class="tp">number</span>, <span class="tp">number</span>&gt; {
-  <span class="kw">const</span> topology = <span class="kw">new</span> <span class="tp">Map</span>&lt;<span class="tp">number</span>, <span class="tp">number</span>&gt;();
 
-  <span class="kw">for</span> (<span class="kw">let</span> i = <span class="nm">0</span>;
-       i &lt; <span class="kw">this</span>.activeNodes.length; i++) {
-    <span class="kw">const</span> current = <span class="kw">this</span>.activeNodes[i];
-    <span class="kw">const</span> next = <span class="kw">this</span>.activeNodes[
-      (i + <span class="nm">1</span>) % <span class="kw">this</span>.activeNodes.length
-    ];
-    topology.<span class="fn">set</span>(current, next);
-  }
+          <div class="pixel-card deity">
+            <span class="deity-name">ATLAS</span>
+            <span class="deity-role">SERVICE DESK</span>
+            <p class="deity-why">
+              Ticket, categorie, code e assegnazioni: il ciclo completo di una
+              segnalazione.
+              <strong>Perché:</strong> il titano che regge il peso del mondo —
+              ma anche l'atlante, la raccolta di mappe. Regge il carico
+              operativo e mappa ogni richiesta nella casella giusta. Il doppio
+              senso è voluto.
+            </p>
+            <ul class="deity-spec">
+              <li>Quattro stati (Nuovo · In carico · In attesa · Risolto), quattro priorità, commenti di tipo <code>user</code> / <code>forward</code> / <code>system</code> / <code>mcp</code></li>
+              <li>Categorie a due livelli: la sottocategoria decide il gruppo destinatario, e se è di tipo <em>richiesta</em> reindirizza a Gravos</li>
+              <li>Rilascio automatico dei ticket presi in carico e dimenticati, con nota di sistema; gateway realtime; pagina pubblica per chi non ha ancora un account</li>
+            </ul>
+          </div>
 
-  <span class="kw">return</span> topology;
-}</code></pre>
+          <div class="pixel-card deity">
+            <span class="deity-name">BRAVON</span>
+            <span class="deity-role">LOG &amp; AUDIT</span>
+            <p class="deity-why">
+              Registra chi ha fatto cosa e quando.
+              <strong>Perché:</strong> è la scatola nera. Quando qualcosa va
+              storto, Bravon sa già com'è andata e non ha la minima intenzione
+              di coprirti.
+            </p>
+            <ul class="deity-spec">
+              <li>Unico consumer della <code>logger-queue</code>: nessun servizio gli scrive via HTTP, quindi se è fermo gli altri non se ne accorgono</li>
+              <li>Espone un'API di consultazione per l'area amministrativa: filtri per attore, azione, servizio e periodo</li>
+              <li>Non maschera nulla, perché arriva già mascherato: email e codici fiscali vengono offuscati da chi produce il log</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">CORVIN</span>
+            <span class="deity-role">COMUNICAZIONI</span>
+            <p class="deity-why">
+              News e bacheca aziendale.
+              <strong>Perché:</strong> i corvi di Odino, Huginn e Munin,
+              volavano per il mondo e tornavano a riferirgli le notizie. Corvin
+              fa lo stesso senza lasciare piume sulla scrivania.
+            </p>
+            <ul class="deity-spec">
+              <li>News con testo formattato, copertina e allegati (caricati su Fayra), pubblicazione programmata</li>
+              <li>Visibilità per utente, gruppo o organizzazione, applicata dal servizio e non dal client</li>
+              <li>Salvataggio, feedback di utilità, notizie correlate; ogni contenuto finisce nell'indice di ricerca globale</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">DELTOR</span>
+            <span class="deity-role">NOTIFICHE</span>
+            <p class="deity-why">
+              Messaggi ed email generati da modelli riutilizzabili.
+              <strong>Perché:</strong> dalla <em>delivery</em>, la consegna. È
+              il servizio che ti scrive «la tua richiesta è stata approvata» e,
+              ogni tanto, anche il contrario.
+            </p>
+            <ul class="deity-spec">
+              <li>Template <strong>Handlebars</strong> per le email transazionali, inviate via SMTP e storicizzate una per una</li>
+              <li>Messaggi intranet in-app con stato letto / da leggere, opzionalmente inoltrati anche per email</li>
+              <li>Riceve quasi tutto via evento <code>send-email</code>: la logica di notifica non vive nei servizi che la scatenano</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">ELIOS</span>
+            <span class="deity-role">KNOWLEDGE BASE</span>
+            <p class="deity-why">
+              FAQ e procedure, organizzate e cercabili.
+              <strong>Perché:</strong> Helios, il sole: fa luce. Esiste per
+              farti trovare la risposta <em>prima</em> di aprire un ticket.
+              Statisticamente non sempre riesce nell'intento.
+            </p>
+            <ul class="deity-spec">
+              <li>FAQ categorizzate con ricerca full-text, conteggio delle visualizzazioni e tracciamento delle ricerche più frequenti</li>
+              <li>Ogni creazione, modifica o cancellazione emette un evento verso l'indice di ricerca di Asgard</li>
+              <li>Le ricerche senza risultato sono il miglior backlog per le prossime FAQ da scrivere</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">FAYRA</span>
+            <span class="deity-role">DOCUMENTI</span>
+            <p class="deity-why">
+              Archivio dei file e collegamenti con le altre entità.
+              <strong>Perché:</strong> è l'archivio, il posto dove i documenti
+              vanno a stare davvero — invece che in
+              <em>definitivo_v3_FINALE_ok.pdf</em> sul desktop di qualcuno.
+            </p>
+            <ul class="deity-spec">
+              <li>Quattro tipi in una libreria unica: documenti versionati con storico, procedure a passi, file binari, cartelle trasversali</li>
+              <li>Binari su <strong>Azure Blob Storage</strong>: container privato servito con URL firmati a scadenza, container pubblico per copertine e media</li>
+              <li>Ospita anche i CSV che Lysor usa come sorgenti dati, isolati dal resto della knowledge base</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">GRAVOS</span>
+            <span class="deity-role">WORKFLOW</span>
+            <p class="deity-why">
+              Moduli configurabili e approvazioni a più passaggi, anche in
+              parallelo.
+              <strong>Perché:</strong> <em>gravitas</em>. Qui si firma, si
+              approva e si passa allo step successivo. È il servizio più serio
+              della famiglia e lo sa.
+            </p>
+            <ul class="deity-spec">
+              <li>Form builder con campi tipizzati e validazioni; richieste con stati PENDING → IN_PROGRESS → APPROVED / REJECTED → COMPLETED</li>
+              <li>Step sequenziali, paralleli con quorum, o dinamici (manager del richiedente, coordinatore del gruppo)</li>
+              <li>Azioni automatiche tracciate e riprovabili; template di azione riutilizzabili tra workflow</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">HEIMDALL</span>
+            <span class="deity-role">IDENTITÀ &amp; PERMESSI</span>
+            <p class="deity-why">
+              Chi sei, in che gruppo stai, cosa puoi toccare.
+              <strong>Perché:</strong> il guardiano del Bifröst, che vede a
+              cento leghe e sente crescere l'erba. Se Heimdall dice di no, non
+              entri: non c'è appello e non c'è «ma io sono il responsabile».
+            </p>
+            <ul class="deity-spec">
+              <li>Login OAuth2/OIDC con Entra ID e CIE id; JWT interni con refresh token a rotazione e rilevamento del riuso</li>
+              <li>Utenti, gruppi, organizzazioni, permessi per risorsa; provisioning degli account su Entra ID via Graph</li>
+              <li>Fa anche da <strong>authorization server</strong> OAuth 2.1 per i client MCP di Mimir: registrazione dinamica, PKCE, token a vita breve</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">ITRIA</span>
+            <span class="deity-role">INVENTARIO IT</span>
+            <p class="deity-why">
+              Asset, sedi e indirizzi di rete.
+              <strong>Perché:</strong> «IT» più un suffisso che suonasse
+              mitologico. Sa quali macchine esistono, dove stanno e a chi sono
+              in carico: le tre domande a cui in azienda nessuno sa mai
+              rispondere.
+            </p>
+            <ul class="deity-spec">
+              <li>Asset con ciclo di vita AVAILABLE → IN_USE → DISPOSED, categorie con campi custom, storico immutabile di ogni modifica, centri di costo</li>
+              <li><strong>IPAM</strong>: VLAN, subnet gerarchiche con % di utilizzo, indirizzi IP con stato, MAC e hostname, rack a livello di unità</li>
+              <li>Sincronizzazione con il NAC di rete per scoprire host reali; controllo notturno degli asset rimasti assegnati a persone cessate</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">LYSOR</span>
+            <span class="deity-role">DASHBOARD</span>
+            <p class="deity-why">
+              Cruscotti e grafici costruiti su dati raccolti da fonti diverse.
+              <strong>Perché:</strong> dal greco <em>lýsis</em>, sciogliere,
+              scomporre. Prende numeri sparsi e li trasforma in grafici che
+              qualcuno, prima o poi, metterà in una slide.
+            </p>
+            <ul class="deity-spec">
+              <li>Otto connettori (HTTP, MySQL, PostgreSQL, SQL Server, Oracle, MariaDB, MongoDB, CSV), ingestor schedulati, dataset materializzati su Azure SQL</li>
+              <li>Tredici tipi di pannello, dal contatore al grafico misto; filtri di dashboard che si propagano ai pannelli via binding; export CSV</li>
+              <li>Permessi per singola dashboard; monitor di stato dell'infrastruttura riservato agli amministratori di sistema</li>
+            </ul>
+          </div>
+
+          <div class="pixel-card deity">
+            <span class="deity-name">MIMIR</span>
+            <span class="deity-role">PONTE VERSO GLI LLM</span>
+            <p class="deity-why">
+              Espone un insieme chiuso di strumenti agli assistenti AI, sempre
+              con l'identità e i permessi di chi sta chiedendo.
+              <strong>Perché:</strong> Odino conservava la testa di Mimir per
+              consultarla quando gli serviva un consiglio. Io ho collegato un
+              modello linguistico a una lista di strumenti sorvegliati.
+              Concettualmente identico, sensibilmente meno truculento.
+            </p>
+            <ul class="deity-spec">
+              <li>Server MCP con trasporto Streamable HTTP <em>stateless</em>: funziona con più repliche senza sessioni appiccicose</li>
+              <li>Una trentina di tool su knowledge base, news, ticket, richieste, asset e rete; input validato con zod; quattro sole scritture</li>
+              <li>Stessi tool anche come façade REST, per la futura chat interna al portale; audit di ogni chiamata con l'id del client</li>
+            </ul>
           </div>
         </div>
-      </div>
-    </section>
+
+        <!-- ─── L'INDIZIO NASCOSTO ─── -->
+        <div class="pixel-card prose" style="border-color: var(--yellow)">
+          <h3 class="card-heading" style="color: var(--yellow)">
+            E ORA RILEGGI LE INIZIALI
+          </h3>
+          <p>
+            <strong>A</strong>sgard · <strong>A</strong>tlas ·
+            <strong>B</strong>ravon · <strong>C</strong>orvin ·
+            <strong>D</strong>eltor · <strong>E</strong>lios ·
+            <strong>F</strong>ayra · <strong>G</strong>ravos ·
+            <strong>H</strong>eimdall · <strong>I</strong>tria ·
+            <strong>L</strong>ysor · <strong>M</strong>imir.
+          </p>
+          <p>
+            Sì: sono in ordine alfabetico. E sì, è l'alfabeto
+            <em>italiano</em> — quello che salta J e K — quindi la sequenza non
+            ha buchi. Serviva un criterio per non ritrovarmi con dodici servizi
+            chiamati <em>service-utils-2</em>, e questo aveva il vantaggio di
+            essere impossibile da dimenticare.
+          </p>
+          <p>
+            Il rovescio della medaglia è che il tredicesimo servizio dovrà
+            chiamarsi con la <strong>N</strong>, e a questo ci penso con un
+            certo disagio da diversi mesi.
+          </p>
+        </div>
+
+        <!-- ─── COSA HO IMPARATO ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">LEZIONI</span>COSA MI HA INSEGNATO
+        </h3>
+
+        <div class="card-grid card-grid-3">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">CONFINI, NON STRATI</h4>
+            <p>
+              La domanda utile non è «dove metto questo codice», ma «di chi è
+              questo problema». Un servizio che risponde a una sola domanda
+              resta piccolo abbastanza da poterlo cambiare senza avere paura.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">PARLARSI SENZA DIPENDERE</h4>
+            <p>
+              Le operazioni dirette vanno in chiamata sincrona; tutto ciò che
+              può aspettare viaggia a eventi. Così una notifica lenta non
+              rallenta chi ha aperto il ticket, e un servizio fermo non
+              trascina giù gli altri.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">IL BUS NON È UN TELEFONO</h4>
+            <p>
+              All'inizio anche le domande con risposta — «chi è il manager di
+              X?» — passavano dal broker. Era comodo e sbagliato: un
+              request/reply su una coda è più lento, più fragile e più
+              difficile da proteggere di una chiamata HTTP interna. Le ho
+              spostate. Il bus è rimasto per gli eventi, che è ciò per cui esiste.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">I PERMESSI STANNO IN UN POSTO SOLO</h4>
+            <p>
+              La regola su chi può fare cosa vive in un servizio unico. Se la
+              duplichi in dodici punti, prima o poi undici sono aggiornati e
+              uno no — ed è sempre quello sbagliato.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">DEGRADARE, NON CROLLARE</h4>
+            <p>
+              Senza Azure OpenAI la ricerca torna per parole chiave. Senza
+              Azure Monitor restano i probe HTTP. Senza Redis lo state OAuth
+              va su Mongo. Ogni dipendenza opzionale ha un piano B scritto
+              prima che serva, perché quando serve non c'è tempo di scriverlo.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">L'INTERFACCIA È METÀ DEL LAVORO</h4>
+            <p>
+              Uno strumento interno lo usano persone che non hanno scelto di
+              usarlo. Se il flusso è confuso, non «si abitueranno»: torneranno
+              a mandarti email. La UI qui non è la rifinitura, è il requisito.
+              <a href="design-showcase.html" style="color: var(--cyan)">Il case study della dashboard</a>
+              racconta come.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider" role="presentation"></div>
+
+      <!-- ═══════════════════════════════════════════════
+           PROGETTO 02 — TOKEN RING
+      ═══════════════════════════════════════════════ -->
+      <section class="section" id="token-ring">
+        <h2 class="section-title">
+          <span class="title-level">WORLD 2-2 · SIDE QUEST</span>TOKEN RING
+        </h2>
+        <p class="section-sub">// sistema bancario distribuito — progetto universitario, codice pubblico</p>
+
+        <div class="pixel-card prose">
+          <p>
+            Quattro sportelli bancomat indipendenti condividono lo stesso conto
+            corrente. Non hanno memoria in comune e nessuno fa da capo: devono
+            mettersi d'accordo <strong>solo scambiandosi messaggi</strong>.
+          </p>
+          <p>
+            La soluzione è l'algoritmo <strong>Token Ring</strong>: un unico
+            gettone gira nell'anello e porta con sé il saldo. Chi ha il gettone
+            può operare, tutti gli altri aspettano. È la mutua esclusione
+            ottenuta senza lock e senza semafori — e soprattutto senza
+            <em>race condition</em>, perché due nodi non possono proprio
+            toccare il saldo nello stesso momento.
+          </p>
+          <p>
+            Ogni nodo è un processo <strong>NestJS</strong> separato che
+            conosce solo il proprio successore; il gettone viaggia come una
+            <code>POST</code> HTTP. Sopra l'anello c'è un
+            <strong>coordinatore</strong> eletto con il Bully Algorithm, che
+            interviene solo quando qualcosa si rompe: rigenera il gettone se
+            si perde, ricostruisce l'anello se un nodo cade, reintegra chi torna.
+          </p>
+          <div class="stack-row">
+            <span class="loot-item">TypeScript</span>
+            <span class="loot-item">NestJS</span>
+            <span class="loot-item">HTTP / Axios</span>
+            <span class="loot-item">Jest</span>
+            <span class="loot-item">PowerShell</span>
+            <span class="loot-item">Sistemi distribuiti</span>
+          </div>
+          <div class="link-row">
+            <a
+              href="https://github.com/enri-arn/token-ring-banking-system"
+              class="back-link alt"
+              target="_blank"
+              rel="noopener"
+            >CODICE SU GITHUB &gt;&gt;</a>
+            <a
+              href="https://www.youtube.com/watch?v=w2MyXmvMnGs"
+              class="back-link alt"
+              target="_blank"
+              rel="noopener"
+            >DEMO SU YOUTUBE &gt;&gt;</a>
+          </div>
+        </div>
+
+        <div class="pixel-card">
+          <h4 class="card-heading">TOPOLOGIA DELL'ANELLO</h4>
+          <div class="ring" role="img" aria-label="Quattro nodi ATM disposti in anello: il token circola da ATM 1 a ATM 2, poi ATM 3, poi ATM 4 e di nuovo ATM 1.">
+            <div class="ring-node">ATM 1</div>
+            <div class="ring-arrow ring-arrow-h ring-right"></div>
+            <div class="ring-node">ATM 2</div>
+
+            <div class="ring-arrow ring-arrow-v ring-up"></div>
+            <div class="ring-core">TOKEN<br />&#9679;<br />saldo</div>
+            <div class="ring-arrow ring-arrow-v ring-down"></div>
+
+            <div class="ring-node">ATM 4</div>
+            <div class="ring-arrow ring-arrow-h ring-left"></div>
+            <div class="ring-node">ATM 3</div>
+          </div>
+        </div>
+
+        <div class="pixel-card prose">
+          <h4 class="card-heading">IL GETTONE</h4>
+          <p>
+            Il token è una struttura minuscola: un identificativo univoco, il
+            nodo che lo detiene e il saldo. Tutta la correttezza del sistema
+            sta in quel terzo campo — il saldo <em>non</em> è replicato da
+            nessuna parte, esiste solo dentro il gettone che sta girando.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">SRC/COMMON/TYPES.TS</p>
+          <pre><code><span class="tk-cm">/**
+ * Represents the token in the Token Ring algorithm
+ */</span>
+<span class="tk-kw">export interface</span> Token {
+  <span class="tk-cm">/** Unique identifier for the token */</span>
+  id: string;
+  <span class="tk-cm">/** ID of the node currently holding the token */</span>
+  holderId: number;
+  <span class="tk-cm">/** Current shared bank account balance carried with the token */</span>
+  balance: number;
+}</code></pre>
+        </div>
+
+        <div class="card-grid">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">SEZIONE CRITICA</h4>
+            <p>
+              Quando il gettone arriva, il nodo guarda se ha transazioni in
+              coda. Se sì entra nella sezione critica, esegue
+              <strong>una</strong> transazione, aggiorna il saldo nel token e
+              lo passa avanti. Se no, lo inoltra subito: tenere fermo il
+              gettone significa bloccare tutti gli altri. Una transazione per
+              giro, così nessun nodo può monopolizzare il conto.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">IL SALDO NON STA DA NESSUNA PARTE</h4>
+            <p>
+              Il servizio bancario è fatto di <strong>funzioni pure</strong>:
+              riceve il saldo dal token, restituisce il saldo nuovo, non
+              conserva niente. Prelievo oltre la disponibilità? Un'eccezione, e
+              il saldo nel gettone resta quello di prima. È l'unico modo per
+              rispettare il vincolo «nessuna memoria condivisa» senza barare.
+            </p>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">SRC/ATM/ATM.SERVICE.TS — processToken()</p>
+          <pre><code><span class="tk-kw">private async</span> processToken(): Promise&lt;<span class="tk-kw">void</span>&gt; {
+  <span class="tk-kw">this</span>.isProcessing = <span class="tk-kw">true</span>;
+  <span class="tk-kw">try</span> {
+    <span class="tk-kw">if</span> (<span class="tk-kw">this</span>.tokenService.canAccessCriticalSection()) {
+      <span class="tk-cm">// Has pending transactions: execute one transaction</span>
+      <span class="tk-kw">await this</span>.executeNextTransaction();
+    } <span class="tk-kw">else</span> {
+      <span class="tk-cm">// No pending transactions: brief display delay, then forward immediately
+      // (In production, this delay should be 0 - token should be forwarded immediately)</span>
+      <span class="tk-kw">if</span> (TOKEN_DISPLAY_DELAY &gt; 0) {
+        <span class="tk-kw">this</span>.logger.info(
+          <span class="tk-str">`No pending transactions. Holding token for ${TOKEN_DISPLAY_DELAY}ms (display only)...`</span>,
+        );
+        <span class="tk-kw">await new</span> Promise((resolve) =&gt; setTimeout(resolve, TOKEN_DISPLAY_DELAY));
+      }
+      <span class="tk-kw">await this</span>.forwardToken();
+    }
+  } <span class="tk-kw">finally</span> {
+    <span class="tk-kw">this</span>.isProcessing = <span class="tk-kw">false</span>;
+  }
+}</code></pre>
+        </div>
+
+        <div class="note">
+          <p>
+            <strong>Sul ritardo di cinque secondi:</strong> non fa parte
+            dell'algoritmo. Senza, il gettone fa il giro dell'anello in pochi
+            millisecondi e in una presentazione non si vede niente. È una
+            costante, è documentata come «solo per la demo», e in produzione
+            vale zero. Barare in modo dichiarato è comunque non barare.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">SRC/BANKING/BANKING.SERVICE.TS — withdraw()</p>
+          <pre><code>withdraw(currentBalance: number, amount: number): number {
+  <span class="tk-kw">if</span> (amount &lt;= 0) {
+    <span class="tk-kw">throw new</span> Error(<span class="tk-str">'Withdrawal amount must be positive'</span>);
+  }
+  <span class="tk-kw">if</span> (currentBalance &lt; amount) {
+    <span class="tk-kw">throw new</span> Error(
+      <span class="tk-str">`Insufficient funds. Current balance: ${currentBalance}, requested: ${amount}`</span>,
+    );
+  }
+  <span class="tk-kw">return</span> currentBalance - amount;   <span class="tk-cm">// nessuno stato: il saldo entra ed esce</span>
+}</code></pre>
+        </div>
+
+        <!-- ─── PROTOCOLLO ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">PROTOCOLLO</span>COSA SI DICONO I NODI
+        </h3>
+        <p class="section-sub">
+          // dieci rotte HTTP per nodo. le prime quattro fanno funzionare l'anello, le altre sei lo tengono in vita
+        </p>
+
+        <div class="pixel-card">
+          <div class="table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr><th>ROTTA</th><th>CHI LA CHIAMA</th><th>A COSA SERVE</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code><span class="m-post">POST</span> /atm/token</code></td><td>il predecessore</td><td>consegna del gettone (con il saldo dentro)</td></tr>
+                <tr><td><code><span class="m-post">POST</span> /atm/transaction</code></td><td>un client</td><td>mette in coda un deposito o un prelievo</td></tr>
+                <tr><td><code><span class="m-get">GET</span> /atm/status</code></td><td>chiunque</td><td>ho il token? quante transazioni in coda? chi è il coordinatore?</td></tr>
+                <tr><td><code><span class="m-get">GET</span> /atm/health</code></td><td>il coordinatore</td><td>sei vivo?</td></tr>
+                <tr><td><code><span class="m-post">POST</span> /atm/election</code></td><td>un nodo con id più basso</td><td>messaggio ELECTION del Bully: rispondo OK se ho id più alto</td></tr>
+                <tr><td><code><span class="m-post">POST</span> /atm/coordinator</code></td><td>il nuovo coordinatore</td><td>annuncio COORDINATOR: da ora comando io</td></tr>
+                <tr><td><code><span class="m-post">POST</span> /atm/topology</code></td><td>il coordinatore</td><td>nuovo anello (chi è attivo, chi è il tuo successore, id del token valido)</td></tr>
+                <tr><td><code><span class="m-post">POST</span> /atm/recovery</code></td><td>un nodo che torna</td><td>«sono tornato, reintegrami»</td></tr>
+                <tr><td><code><span class="m-post">POST</span> /atm/token-status-vote</code></td><td>il coordinatore</td><td>voto di consenso: hai il token? quale? con che saldo?</td></tr>
+                <tr><td><code><span class="m-post">POST</span> /atm/invalidate-token</code></td><td>il coordinatore</td><td>butta via qualunque gettone tu abbia: ne sta per nascere uno nuovo</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pixel-card">
+          <h4 class="card-heading">I NUMERI DEL SISTEMA — SRC/COMMON/CONSTANTS.TS</h4>
+          <div class="stat-grid" style="margin-top: 0">
+            <div class="stat-tile"><span class="stat-num">$1000</span><span class="stat-lbl">SALDO INIZIALE</span></div>
+            <div class="stat-tile"><span class="stat-num">4</span><span class="stat-lbl">NODI · PORTE 3001–3004</span></div>
+            <div class="stat-tile"><span class="stat-num">5 s</span><span class="stat-lbl">RITARDO DEMO</span></div>
+            <div class="stat-tile"><span class="stat-num">30 s</span><span class="stat-lbl">TIMEOUT GETTONE PERSO</span></div>
+            <div class="stat-tile"><span class="stat-num">5 × 2 s</span><span class="stat-lbl">RETRY PRIMA DI DICHIARARE UN NODO MORTO</span></div>
+            <div class="stat-tile"><span class="stat-num">3 s</span><span class="stat-lbl">TIMEOUT RISPOSTA</span></div>
+            <div class="stat-tile"><span class="stat-num">5 s</span><span class="stat-lbl">ATTESA DEGLI OK IN ELEZIONE</span></div>
+            <div class="stat-tile"><span class="stat-num">10 s</span><span class="stat-lbl">ATTESA DELL'ANNUNCIO DEL COORDINATORE</span></div>
+          </div>
+        </div>
+
+        <!-- ─── GUASTI ─── -->
+        <h3 class="section-title" style="margin-top: 3rem">
+          <span class="title-level">FAULT TOLERANCE</span>QUANDO SMETTE DI FUNZIONARE
+        </h3>
+        <p class="section-sub">
+          // la parte facile è far girare il gettone. la parte vera è decidere cosa succede quando si ferma
+        </p>
+
+        <div class="pixel-card prose">
+          <h4 class="card-heading">IL BULLY ALGORITHM</h4>
+          <p>
+            Quando un nodo sospetta che il coordinatore sia morto, manda
+            <code>ELECTION</code> a tutti quelli con id più alto. Se qualcuno
+            risponde <code>OK</code>, si fa da parte e aspetta l'annuncio;
+            se nessuno risponde entro il timeout, si proclama coordinatore e
+            lo comunica a tutti quelli con id più basso. Vince sempre l'id più
+            alto ancora vivo. Il nome dell'algoritmo è letteralmente «il
+            bullo», perché il nodo più grosso zittisce gli altri. Non l'ho
+            scelto io.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">SRC/ELECTION/ELECTION.SERVICE.TS — startElection(), condensato</p>
+          <pre><code><span class="tk-kw">async</span> startElection(): Promise&lt;<span class="tk-kw">void</span>&gt; {
+  <span class="tk-kw">if</span> (<span class="tk-kw">this</span>.electionInProgress) <span class="tk-kw">return</span>;      <span class="tk-cm">// una alla volta</span>
+  <span class="tk-kw">this</span>.electionInProgress = <span class="tk-kw">true</span>;
+
+  <span class="tk-kw">const</span> higherNodes = <span class="tk-kw">this</span>.getNodesWithHigherIds();
+  <span class="tk-kw">if</span> (higherNodes.length === 0) {
+    <span class="tk-kw">await this</span>.becomeCoordinator();          <span class="tk-cm">// nessuno sopra di me: comando io</span>
+    <span class="tk-kw">return</span>;
+  }
+
+  <span class="tk-kw">const</span> responses = <span class="tk-kw">await</span> Promise.allSettled(
+    higherNodes.map((id) =&gt; <span class="tk-kw">this</span>.sendElectionMessage(id, { type: <span class="tk-str">'ELECTION'</span>, senderId: <span class="tk-kw">this</span>.nodeId })),
+  );
+  <span class="tk-kw">const</span> receivedOk = responses.some((r) =&gt; r.status === <span class="tk-str">'fulfilled'</span> &amp;&amp; r.value === <span class="tk-kw">true</span>);
+
+  <span class="tk-kw">if</span> (receivedOk) {
+    <span class="tk-cm">// qualcuno più grosso è vivo: aspetto il suo COORDINATOR, altrimenti riprovo</span>
+    <span class="tk-kw">this</span>.coordinatorTimeoutHandle = setTimeout(() =&gt; {
+      <span class="tk-kw">this</span>.electionInProgress = <span class="tk-kw">false</span>;
+      <span class="tk-kw">this</span>.startElection();
+    }, COORDINATOR_TIMEOUT);
+  } <span class="tk-kw">else</span> {
+    <span class="tk-kw">await this</span>.becomeCoordinator();
+  }
+}</code></pre>
+        </div>
+
+        <div class="card-grid card-grid-3">
+          <div class="pixel-card prose">
+            <h4 class="card-heading">A · IL GETTONE È PERSO</h4>
+            <p>
+              Il nodo che lo aveva è crollato con il saldo in tasca. Ogni nodo
+              tiene un <code>lastTokenSeen</code> e ogni 5 secondi controlla:
+              se sono passati più di 30 senza vedere il gettone, lo dichiara
+              perso e avvia un'elezione. Il coordinatore non rigenera subito:
+              prima <strong>indice un voto</strong>.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">B · UN NODO CADE, SENZA GETTONE</h4>
+            <p>
+              Il predecessore prova a consegnare: 5 tentativi a 2 secondi, poi
+              marca il successore come <code>FAILED</code>. Se è il
+              coordinatore, ricostruisce l'anello saltando il morto e manda la
+              nuova topologia a tutti; se non lo è, avvia un'elezione. Il
+              gettone continua a girare, con un nodo in meno.
+            </p>
+          </div>
+
+          <div class="pixel-card prose">
+            <h4 class="card-heading">C · UN NODO TORNA</h4>
+            <p>
+              Al riavvio il nodo annuncia il rientro al coordinatore, che
+              verifica la sua salute e lo reinserisce nell'anello. Se ha
+              ancora un vecchio gettone in memoria, lo butta: accetta solo il
+              token con l'id che il coordinatore gli comunica nella topologia.
+            </p>
+          </div>
+        </div>
+
+        <div class="pixel-card prose">
+          <h4 class="card-heading">IL PROBLEMA DEL DOPPIO GETTONE</h4>
+          <p>
+            Il bug più subdolo di un token ring non è perdere il gettone: è
+            ritrovarsi con <strong>due</strong>. Succede se più nodi rilevano
+            la perdita nello stesso istante e ognuno ne rigenera uno; o se un
+            nodo «morto» era in realtà solo lento e riappare con il vecchio
+            token. Due gettoni significano due saldi, e a quel punto la banca
+            ha un problema serio. La difesa è in quattro mosse:
+          </p>
+          <ol class="steps">
+            <li><strong>Una sola elezione.</strong> Chi rileva la perdita non decide: avvia il Bully, e decide solo chi lo vince.</li>
+            <li><strong>Voto di consenso.</strong> Il coordinatore chiede a ogni nodo attivo: hai il token? quale id? che saldo? Se anche uno solo ce l'ha, non era perso — era lento. Nessuna rigenerazione.</li>
+            <li><strong>Invalidazione prima della nascita.</strong> Se nessuno ce l'ha, il coordinatore manda <code>INVALIDATE_TOKEN</code>: tutti scartano qualunque gettone e rifiutano qualsiasi token in arrivo finché non conoscono il nuovo id.</li>
+            <li><strong>Un id solo è valido.</strong> Il token rigenerato ha un UUID nuovo e il saldo più alto tra quelli votati; l'id viaggia nella topologia e ogni nodo accetta solo quello. Un vecchio gettone che riappare viene ignorato.</li>
+          </ol>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">SRC/ATM/ATM.SERVICE.TS — voteTokenStatus() e il cuore di handleTokenLost()</p>
+          <pre><code><span class="tk-cm">// ogni nodo risponde al coordinatore con la verità, non con un'opinione</span>
+voteTokenStatus(request: TokenStatusVoteRequest): TokenStatusVoteResponse {
+  <span class="tk-kw">const</span> token = <span class="tk-kw">this</span>.tokenService.getToken();
+  <span class="tk-kw">return</span> {
+    nodeId: <span class="tk-kw">this</span>.nodeId,
+    hasToken: token !== <span class="tk-kw">null</span>,
+    tokenId: token?.id ?? <span class="tk-kw">null</span>,
+    balance: token?.balance ?? <span class="tk-kw">null</span>,
+    timestamp: <span class="tk-kw">new</span> Date(),
+  };
+}
+
+<span class="tk-cm">// ...e il coordinatore decide sulla base dei voti</span>
+<span class="tk-kw">const</span> votes = <span class="tk-kw">await this</span>.conductTokenStatusVote();
+<span class="tk-kw">const</span> nodesWithToken = votes.filter((v) =&gt; v.hasToken);
+
+<span class="tk-kw">if</span> (nodesWithToken.length &gt; 0) {
+  <span class="tk-cm">// SCENARIO B: qualcuno ce l'ha. Era lento, non perso. Non si tocca niente.</span>
+  <span class="tk-kw">this</span>.startTokenCirculationMonitor();
+} <span class="tk-kw">else</span> {
+  <span class="tk-cm">// SCENARIO A: perso davvero. Prima si invalida, poi si rigenera.</span>
+  <span class="tk-kw">await this</span>.broadcastInvalidateToken(<span class="tk-str">'Token lost, regenerating new token'</span>);
+
+  <span class="tk-kw">let</span> maxBalance = <span class="tk-kw">this</span>.lastKnownBalance;
+  <span class="tk-kw">for</span> (<span class="tk-kw">const</span> vote <span class="tk-kw">of</span> votes) {
+    <span class="tk-kw">if</span> (vote.balance !== <span class="tk-kw">null</span> &amp;&amp; vote.balance &gt; maxBalance) maxBalance = vote.balance;
+  }
+
+  <span class="tk-kw">const</span> regenerated = <span class="tk-kw">this</span>.coordinatorService.regenerateToken(uuidv4(), maxBalance);
+  <span class="tk-kw">this</span>.tokenService.receiveToken(regenerated);
+  <span class="tk-kw">await this</span>.coordinatorService.broadcastTopology(<span class="tk-kw">this</span>.coordinatorService.reconstructRing());
+  <span class="tk-kw">await this</span>.processToken();          <span class="tk-cm">// e si riparte</span>
+}</code></pre>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">SRC/COORDINATOR/COORDINATOR.SERVICE.TS — reconstructRing()</p>
+          <pre><code>reconstructRing(): Map&lt;number, number&gt; {
+  <span class="tk-kw">if</span> (!<span class="tk-kw">this</span>.isCoordinator) {
+    <span class="tk-kw">throw new</span> Error(<span class="tk-str">'Only coordinator can reconstruct ring'</span>);
+  }
+  <span class="tk-kw">const</span> topology = <span class="tk-kw">new</span> Map&lt;number, number&gt;();
+
+  <span class="tk-cm">// For each active node, find the next active node (circular)</span>
+  <span class="tk-kw">for</span> (<span class="tk-kw">let</span> i = 0; i &lt; <span class="tk-kw">this</span>.activeNodes.length; i++) {
+    <span class="tk-kw">const</span> currentNode = <span class="tk-kw">this</span>.activeNodes[i];
+    <span class="tk-kw">const</span> nextNode = <span class="tk-kw">this</span>.activeNodes[(i + 1) % <span class="tk-kw">this</span>.activeNodes.length];
+    topology.set(currentNode, nextNode);
+    <span class="tk-kw">this</span>.logger.info(<span class="tk-str">`ATM${currentNode} -&gt; ATM${nextNode}`</span>);
+  }
+  <span class="tk-kw">return</span> topology;
+}</code></pre>
+        </div>
+
+        <div class="code-block">
+          <p class="code-head">LOG REALE — SCENARIO A, DALLA PERDITA ALLA RIGENERAZIONE</p>
+          <pre><code>[15:15:30.456Z] [ATM2] [INFO] *** TOKEN LOST DETECTED *** (not seen for 30.2s)
+[15:15:30.456Z] [ATM2] [INFO] Handling token lost scenario - starting election to regenerate token
+[15:15:30.460Z] [ATM2] [INFO] Starting election (Bully Algorithm)
+[15:15:30.475Z] [ATM4] [INFO] Received ELECTION from ATM2
+[15:15:35.680Z] [ATM4] [INFO] <span class="tk-hi">*** BECAME COORDINATOR ***</span>
+[15:15:35.685Z] [ATM4] [INFO] I am coordinator - regenerating lost token
+[15:15:36.120Z] [ATM4] [INFO] *** REGENERATING TOKEN *** (balance: $1500)
+[15:15:36.125Z] [ATM4] [INFO] Token regenerated (ID: abc-123..., Balance: $1500). Restarting circulation...
+[15:15:36.130Z] [ATM4] [INFO] Token forwarded to ATM1
+
+<span class="tk-cm">-- e quando ATM1 si riavvia, non crea un secondo gettone:</span>
+[14:47:02.900Z] [ATM1] [INFO] Checking if other nodes are active...
+[14:47:02.912Z] [ATM1] [INFO] Found active node: ATM2
+[14:47:02.913Z] [ATM1] [INFO] <span class="tk-hi">Detected other active nodes - treating as recovery (not creating token)</span>
+[14:47:07.935Z] [ATM1] [INFO] *** ANNOUNCING RECOVERY TO COORDINATOR ***</code></pre>
+        </div>
+
+        <div class="note">
+          <p>
+            <strong>Perché lo tengo nel portfolio:</strong> è il progetto in
+            cui ho capito che in un sistema distribuito la parte difficile non
+            è far funzionare le cose, ma decidere cosa succede
+            <em>quando smettono di funzionare</em>. Una lezione che poi mi è
+            tornata utile ogni singolo giorno su Asgard: il voto di consenso
+            del coordinatore e il «degradare, non crollare» di Lysor sono la
+            stessa idea, con un budget molto diverso.
+          </p>
+        </div>
+      </section>
+    </main>
 
     <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <a href="index.html" class="nav-logo">
-              <span class="logo-bracket">&lt;</span>
-              <span class="logo-text">EA</span>
-              <span class="logo-bracket">/&gt;</span>
-            </a>
-            <p>
-              Enrico Arnaudo — Informatico presso ASL CN1. Cuneo,
-              Italia.
-            </p>
-          </div>
-
-          <div class="footer-links">
-            <h5>Navigazione</h5>
-            <ul>
-              <li><a href="index.html#about">Chi sono</a></li>
-              <li><a href="index.html#services">Cosa faccio</a></li>
-              <li><a href="index.html#experience">Esperienze</a></li>
-              <li><a href="index.html#design">Design & UI</a></li>
-              <li><a href="index.html#beyond">Oltre il codice</a></li>
-              <li><a href="index.html#contact">Contatti</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-links">
-            <h5>Competenze</h5>
-            <ul>
-              <li>Full-Stack Development</li>
-              <li>Microsoft Ecosystem</li>
-              <li>Cloud & DevOps</li>
-              <li>UI/UX Design</li>
-              <li>Sistemi Distribuiti</li>
-            </ul>
-          </div>
-
-          <div class="footer-contact">
-            <h5>Contatti</h5>
-            <p>
-              <a href="mailto:arnaudoenrico@gmail.com"
-                >arnaudoenrico@gmail.com</a
-              >
-            </p>
-            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
-            <p>Bernezzo (CN), Italia</p>
-            <div class="footer-social">
-              <a
-                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
-                target="_blank"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
-                <i class="fas fa-envelope"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2025 Enrico Arnaudo. Tutti i diritti riservati.</p>
-          <div class="footer-bottom-links">
-            <a href="index.html#privacy">Privacy Policy</a>
-            <span>&middot;</span>
-            <a href="index.html#contact">Contatti</a>
-          </div>
-        </div>
-      </div>
+      <p class="footer-line">
+        (c) 2026 Enrico Arnaudo · fatto a mano, un pixel alla volta
+      </p>
+      <p class="footer-hint" style="margin-top: 1.25rem">
+        <a href="index.html" class="back-link">&lt;&lt; TORNA ALLA MAPPA</a>
+      </p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <script src="js/pixel-page.js"></script>
   </body>
 </html>

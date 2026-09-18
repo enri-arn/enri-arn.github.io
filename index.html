@@ -1,1331 +1,914 @@
 <!doctype html>
-<html lang="it" data-theme="dark">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Enrico Arnaudo — Informatico · ASL CN1 Cuneo</title>
+    <title>Enrico Arnaudo — Player 1 · Full Stack Dev</title>
     <meta
       name="description"
-      content="Informatico presso l'ASL CN1 di Cuneo. Sviluppo software, sistemi Microsoft, cloud e progettazione UI/UX nel settore sanitario pubblico."
+      content="Enrico Arnaudo — sviluppatore full stack e nerd di professione. Applicazioni web, UI/UX pixel-perfect e sistemi nel settore sanitario. Premi START per iniziare."
+    />
+    <meta name="theme-color" content="#0f0f23" />
+
+    <!-- favicon pixel: la "E" verde, disegnata a mano in SVG -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230f0f23'/%3E%3Crect x='2' y='1' width='4' height='1' fill='%234ade80'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='3' width='3' height='1' fill='%234ade80'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='6' width='4' height='1' fill='%234ade80'/%3E%3C/svg%3E"
     />
 
-    <!-- Fonts -->
+    <!--
+      ═══════════════════════════════════════════════════════════
+       Ehi, tu. Sì, proprio tu che leggi il sorgente.
+       Achievement sbloccato: CURIOSONE 🏆
+       Suggerimenti per gli altri easter egg:
+         · ↑ ↑ ↓ ↓ ← → ← → B A
+         · prova a scrivere "nerd", "coffee" o "jedi"
+         · il mio avatar odia essere cliccato 5 volte
+         · i cuori si possono perdere...
+         · nel footer c'è una console portatile funzionante
+         · e il terreno sotto l'hero? si può correre.
+      ═══════════════════════════════════════════════════════════
+    -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
-    />
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pixel.css" />
   </head>
+
   <body>
-    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <!-- CRT scanlines + vignette -->
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <!-- ═══════════════ NAVBAR ═══════════════ -->
     <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <a href="#home" class="nav-logo">
-          <span class="logo-bracket">&lt;</span>
-          <span class="logo-text">EA</span>
-          <span class="logo-bracket">/&gt;</span>
-        </a>
+      <a href="#home" class="nav-logo" id="navLogo" aria-label="Home">
+        <span class="logo-block">&lt;EA /&gt;</span>
+      </a>
 
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#about" class="nav-link">Chi sono</a></li>
-          <li><a href="#services" class="nav-link">Cosa faccio</a></li>
-          <li><a href="#experience" class="nav-link">Esperienze</a></li>
-          <li><a href="#design" class="nav-link">Design & UI</a></li>
-          <li><a href="#beyond" class="nav-link">Oltre il codice</a></li>
-          <li><a href="#contact" class="nav-link">Contatti</a></li>
-        </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
 
-        <div class="nav-actions">
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Cambia tema"
-          >
-            <i class="fas fa-sun" id="themeIcon"></i>
-          </button>
-          <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">Chi sono</a></li>
+        <li><a href="#quests" class="nav-link">Quest Log</a></li>
+        <li><a href="#education" class="nav-link">Formazione</a></li>
+        <li><a href="#skills" class="nav-link">Skill Tree</a></li>
+        <li><a href="#portfolio" class="nav-link">Bonus Level</a></li>
+        <li><a href="#contact" class="nav-link">Contatti</a></li>
+      </ul>
     </nav>
 
-    <!-- ═══════════════ HERO ═══════════════ -->
-    <section class="hero" id="home">
-      <div class="hero-bg">
-        <div class="hero-grid"></div>
-        <div class="hero-glow hero-glow-1"></div>
-        <div class="hero-glow hero-glow-2"></div>
+    <!-- ═══════════════ HUD ═══════════════ -->
+    <div class="hud" id="hud">
+      <div class="hud-hearts" id="hudHearts" title="Non cliccarli. Fidati.">
+        <span class="heart" data-heart>♥</span>
+        <span class="heart" data-heart>♥</span>
+        <span class="heart" data-heart>♥</span>
       </div>
+      <div class="hud-coins" id="hudCoins">
+        <span class="coin-icon" aria-hidden="true"></span>
+        <span id="coinCount">×00</span>
+      </div>
+      <div class="hud-level" id="hudLevel">LVL 30</div>
+    </div>
 
-      <div class="hero-content">
-        <div class="hero-badge reveal">
-          <span class="badge-dot"></span>
-          <span>Informatico — ASL CN1 Cuneo</span>
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <header class="hero" id="home">
+      <div class="hero-inner">
+        <p class="hero-player">PLAYER 1</p>
+
+        <div class="avatar-wrap">
+          <!-- ? block: colpiscilo! -->
+          <button class="qblock" id="qblock" aria-label="Blocco misterioso">?</button>
+
+          <!-- Avatar pixel art (SVG 16×16) -->
+          <div class="avatar" id="avatar" title="Clicca pure, tanto non succede niente. (5 volte)">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" role="img" aria-label="Avatar pixel art di Enrico">
+              <!-- capelli -->
+              <rect x="4" y="1" width="8" height="1" fill="#5b3a1e"/>
+              <rect x="3" y="2" width="10" height="1" fill="#5b3a1e"/>
+              <rect x="3" y="3" width="10" height="1" fill="#6b4423"/>
+              <rect x="3" y="4" width="2" height="1" fill="#6b4423"/>
+              <rect x="11" y="4" width="2" height="1" fill="#6b4423"/>
+              <!-- viso -->
+              <rect x="4" y="4" width="8" height="1" fill="#f2c49b"/>
+              <rect x="3" y="5" width="10" height="4" fill="#f2c49b"/>
+              <rect x="4" y="9" width="8" height="1" fill="#f2c49b"/>
+              <!-- occhiali da nerd -->
+              <g class="glasses">
+                <rect x="3" y="5" width="4" height="1" fill="#111122"/>
+                <rect x="9" y="5" width="4" height="1" fill="#111122"/>
+                <rect x="7" y="5" width="2" height="1" fill="#111122"/>
+                <rect x="3" y="6" width="1" height="2" fill="#111122"/>
+                <rect x="6" y="6" width="1" height="2" fill="#111122"/>
+                <rect x="9" y="6" width="1" height="2" fill="#111122"/>
+                <rect x="12" y="6" width="1" height="2" fill="#111122"/>
+                <rect x="4" y="6" width="2" height="2" fill="#bfe8ff"/>
+                <rect x="10" y="6" width="2" height="2" fill="#bfe8ff"/>
+                <rect x="3" y="8" width="4" height="1" fill="#111122"/>
+                <rect x="9" y="8" width="4" height="1" fill="#111122"/>
+                <!-- occhi dietro le lenti -->
+                <rect x="5" y="7" width="1" height="1" fill="#22223a"/>
+                <rect x="10" y="7" width="1" height="1" fill="#22223a"/>
+              </g>
+              <!-- occhiali da sole (nascosti finché non... sai cosa fare) -->
+              <g class="sunglasses" hidden>
+                <rect x="3" y="5" width="10" height="1" fill="#000000"/>
+                <rect x="3" y="6" width="4" height="2" fill="#000000"/>
+                <rect x="9" y="6" width="4" height="2" fill="#000000"/>
+                <rect x="7" y="6" width="2" height="1" fill="#000000"/>
+                <rect x="4" y="6" width="1" height="1" fill="#3a3a5c"/>
+                <rect x="10" y="6" width="1" height="1" fill="#3a3a5c"/>
+              </g>
+              <!-- bocca -->
+              <rect x="6" y="9" width="4" height="1" fill="#a5654a" class="mouth"/>
+              <!-- felpa -->
+              <rect x="5" y="10" width="6" height="1" fill="#1fb2a6"/>
+              <rect x="4" y="11" width="8" height="3" fill="#1fb2a6"/>
+              <rect x="3" y="12" width="1" height="2" fill="#178f86"/>
+              <rect x="12" y="12" width="1" height="2" fill="#178f86"/>
+              <rect x="7" y="11" width="2" height="2" fill="#178f86"/>
+              <!-- mani -->
+              <rect x="3" y="14" width="2" height="1" fill="#f2c49b"/>
+              <rect x="11" y="14" width="2" height="1" fill="#f2c49b"/>
+            </svg>
+          </div>
         </div>
 
-        <h1 class="hero-title reveal">
-          <span class="title-line">Trasformo idee</span>
-          <span class="title-line title-accent">in soluzioni digitali</span>
-          <span class="title-line">che funzionano.</span>
-        </h1>
+        <h1 class="hero-title">ENRICO<br />ARNAUDO</h1>
 
-        <p class="hero-subtitle reveal">
-          Sviluppatore full-stack · Sistemista Microsoft · Designer di
-          interfacce
-          <br />
-          Lavoro nel settore IT sanitario pubblico, progettando architetture
-          solide, automazioni intelligenti e interfacce che fanno la differenza.
+        <p class="hero-sub">
+          <!-- il testo iniziale fa da fallback se il JS non parte -->
+          <span class="typewriter" id="typewriter">FULL STACK DEVELOPER</span><span class="cursor">▌</span>
         </p>
 
-        <div class="hero-cta reveal">
-          <a href="#experience" class="btn btn-primary">
-            <span>Scopri il mio lavoro</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
-          <a href="#contact" class="btn btn-ghost">
-            <span>Contattami</span>
-          </a>
-        </div>
+        <p class="hero-tag">
+          Sviluppo applicazioni che funzionano e interfacce che non fanno
+          venire il mal di testa. Nerd dentro, pixel-perfect fuori.
+        </p>
 
-        <div class="hero-stats reveal">
-          <div class="stat-item">
-            <span class="stat-number">5+</span>
-            <span class="stat-label">Anni di esperienza</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-number">10+</span>
-            <span class="stat-label">Certificazioni</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-number">ASL CN1</span>
-            <span class="stat-label">Settore Informatico</span>
-          </div>
-        </div>
+        <a href="#about" class="press-start" id="pressStart">▶ PRESS START</a>
       </div>
 
-      <div class="hero-scroll">
-        <div class="scroll-indicator">
-          <span>Scorri</span>
-          <div class="scroll-line"></div>
+      <!-- ═══════ RUNNER: easter egg giocabile ═══════ -->
+      <div class="runner" id="runner" hidden>
+        <div class="runner-bar">
+          <span class="runner-pick">SCEGLI L'OMINO:</span>
+          <span class="runner-chars" id="runnerChars"></span>
+          <button class="runner-exit" id="runnerExit" type="button">ESCI</button>
         </div>
+        <canvas id="runnerCanvas" aria-label="Gioco: salta gli ostacoli"></canvas>
+        <p class="runner-help">SPAZIO o TOCCA per saltare &middot; ESC per uscire</p>
       </div>
-    </section>
 
-    <!-- ═══════════════ CHI SONO ═══════════════ -->
-    <section class="section about" id="about">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">01 — Chi sono</span>
-          <h2 class="section-title">
-            Un professionista IT con<br />la testa nel futuro.
-          </h2>
-        </div>
+      <button
+        class="hero-ground"
+        id="heroGround"
+        type="button"
+        title="Un terreno così liscio sembra fatto apposta per correrci. Provaci."
+        aria-label="Avvia il gioco nascosto"
+      >
+        <span class="ground-sign" aria-hidden="true">?</span>
+      </button>
+    </header>
+
+    <main>
+      <!-- ═══════════════ ABOUT ═══════════════ -->
+      <section class="section" id="about">
+        <h2 class="section-title"><span class="title-level">WORLD 1-1</span>CHI SONO</h2>
 
         <div class="about-grid">
-          <div class="about-text reveal">
-            <p class="about-lead">
-              Mi chiamo <strong>Enrico Arnaudo</strong>, sono un informatico
-              dipendente pubblico presso l'<strong>ASL CN1 di Cuneo</strong>,
-              in Piemonte. Da anni mi occupo di progettare e implementare
-              soluzioni digitali nel settore sanitario, unendo robustezza
-              tecnica e attenzione all'esperienza utente.
+          <!-- scheda personaggio: ritratto + stats -->
+          <div class="pixel-card char-card">
+            <figure class="portrait">
+              <img
+                src="pixelart-profile.png"
+                alt="Ritratto pixel art di Enrico: occhiali, barba, zaino in spalla e montagne innevate sullo sfondo"
+                width="1024"
+                height="1536"
+                decoding="async"
+                title="Ritratto ufficiale. La barba è a 16 bit."
+              />
+              <figcaption class="portrait-tag">PLAYER 1 · ENRICO</figcaption>
+            </figure>
+
+            <h3 class="card-heading">CHARACTER STATS</h3>
+            <ul class="stats-list">
+              <li>
+                <span class="stat-name">CLASSE</span>
+                <span class="stat-value">Full Stack Dev</span>
+              </li>
+              <li>
+                <span class="stat-name">SPEC.</span>
+                <span class="stat-value">UI/UX Design</span>
+              </li>
+              <li>
+                <span class="stat-name">BASE</span>
+                <span class="stat-value">Cuneo, Italia</span>
+              </li>
+              <li>
+                <span class="stat-name">GILDA</span>
+                <span class="stat-value">ASL CN1</span>
+              </li>
+              <li>
+                <span class="stat-name">HABITAT</span>
+                <span class="stat-value">Alta quota</span>
+              </li>
+              <li>
+                <span class="stat-name">MOUNT</span>
+                <span class="stat-value">Le mie gambe</span>
+              </li>
+            </ul>
+            <div class="bar-row">
+              <span class="bar-label">CODE</span>
+              <div class="pixel-bar"><div class="bar-fill" style="--w: 92%"></div></div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">DESIGN</span>
+              <div class="pixel-bar"><div class="bar-fill" style="--w: 88%"></div></div>
+            </div>
+            <div class="bar-row" title="Allenata in salita, un weekend alla volta.">
+              <span class="bar-label">STAMINA</span>
+              <div class="pixel-bar"><div class="bar-fill" style="--w: 85%"></div></div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">CAFFEINA</span>
+              <div class="pixel-bar"><div class="bar-fill bar-max" style="--w: 100%"></div></div>
+            </div>
+          </div>
+
+          <!-- bio -->
+          <div class="pixel-card about-text">
+            <p>
+              Ciao! Sono <strong>Enrico</strong>, informatico di mestiere e nerd
+              per vocazione. Da più di <strong>6 anni</strong> sviluppo
+              applicazioni web nel settore sanitario pubblico: software veri,
+              usati ogni giorno da persone vere, dove un'interfaccia confusa
+              non è un dettaglio — è un problema.
             </p>
             <p>
-              Il mio lavoro si muove all'intersezione tra sviluppo software,
-              infrastrutture di sistema e design delle interfacce. Non mi limito
-              a scrivere codice che funziona: mi preoccupo che sia scalabile,
-              manutenibile e che porti valore reale alle persone che lo usano
-              ogni giorno.
+              Per questo sono fissato con il <strong>design</strong>: curo la
+              UI/UX dei miei progetti dal primo wireframe all'ultimo pixel.
+              Buon codice e buona grafica, per me, sono la stessa cosa:
+              <em>attenzione ai dettagli</em>.
             </p>
             <p>
-              Ho una forte passione per l'automazione dei processi aziendali e
-              per la <strong>digitalizzazione dei flussi di lavoro</strong>.
-              Riconosco in ogni problema operativo un'opportunità per costruire
-              qualcosa di più efficiente, e in ogni interfaccia grezza
-              un'occasione per migliorare la vita dell'utente finale.
+              Fuori dall'IDE sono una persona semplice: datemi uno
+              <strong>zaino in spalla</strong>, un sentiero in salita e una
+              mappa che funziona anche senza rete, e sono a posto. La
+              <strong>montagna</strong> è dove ricarico le batterie — le mie,
+              perché quelle del telefono lassù si scaricano comunque.
             </p>
             <p>
-              Credo che la tecnologia debba essere trasparente: se la senti,
-              qualcosa non va. Il mio obiettivo è costruire sistemi e interfacce
-              che sembrino naturali, quasi ovvi — perché sono stati progettati
-              con cura.
+              Il resto del tempo lo passo con la <strong>tecnologia</strong>,
+              in ogni sua forma: nuovi framework, gadget, modelli AI, qualunque
+              cosa abbia un pulsante «aggiorna». Cerco di stare sempre al passo
+              — e sì, sono anche quel tipo di persona che legge le release
+              notes per hobby. Nessuno è perfetto.
             </p>
-
-            <div class="about-values">
-              <div class="value-chip">
-                <i class="fas fa-layer-group"></i> Architettura scalabile
-              </div>
-              <div class="value-chip">
-                <i class="fas fa-eye"></i> Attenzione al dettaglio
-              </div>
-              <div class="value-chip">
-                <i class="fas fa-bolt"></i> Automazione intelligente
-              </div>
-              <div class="value-chip">
-                <i class="fas fa-users"></i> Orientato all'utente
-              </div>
-            </div>
           </div>
 
-          <div class="about-sidebar reveal">
-            <div class="profile-card">
-              <div class="profile-avatar">
-                <div class="avatar-placeholder" id="avatarPlaceholder">
-                  <img src="profilo.jpg" alt="Enrico Arnaudo" class="avatar-face" />
-                </div>
-              </div>
-              <h3 class="profile-name">Enrico Arnaudo</h3>
-              <p class="profile-role">Informatico — ASL CN1 Cuneo</p>
-              <p class="profile-location">
-                <i class="fas fa-map-marker-alt"></i>
-                Cuneo, Piemonte — Italia
-              </p>
+          <!-- hobby: le quest secondarie -->
+          <div class="pixel-card side-quests">
+            <h3 class="card-heading">SIDE QUESTS</h3>
+            <p class="side-sub">// attive quando il laptop è chiuso (succede, giuro)</p>
 
-              <div class="profile-links">
-                <a
-                  href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
-                  target="_blank"
-                  class="profile-link linkedin"
-                >
-                  <i class="fab fa-linkedin"></i>
-                  LinkedIn
-                </a>
-                <a
-                  href="mailto:arnaudoenrico@gmail.com"
-                  class="profile-link email"
-                >
-                  <i class="fas fa-envelope"></i>
-                  Email
-                </a>
-                <a href="tel:+393476681614" class="profile-link phone">
-                  <i class="fas fa-phone"></i>
-                  +39 347 668 1614
-                </a>
-              </div>
-            </div>
-
-            <div class="languages-card">
-              <h4>Lingue</h4>
-              <div class="lang-item">
-                <span class="lang-name">Italiano</span>
-                <span class="lang-level native">Madrelingua</span>
-              </div>
-              <div class="lang-item">
-                <span class="lang-name">Inglese</span>
-                <span class="lang-level professional">Professionale</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ COSA FACCIO ═══════════════ -->
-    <section class="section services" id="services">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">02 — Cosa faccio</span>
-          <h2 class="section-title">Le mie aree di competenza.</h2>
-          <p class="section-desc">
-            Ogni progetto è diverso. Ecco le discipline in cui mi muovo con più
-            sicurezza e in cui riesco a portare il maggior valore.
-          </p>
-        </div>
-
-        <div class="services-grid">
-          <div class="service-card reveal" data-delay="0">
-            <div class="service-icon">
-              <i class="fas fa-code"></i>
-            </div>
-            <h3>Sviluppo Full-Stack</h3>
-            <p>
-              Architetture moderne basate su
-              <strong>microservizi NestJS</strong> e frontend Angular. Progetto
-              API RESTful, gestisco database relazionali e NoSQL, implemento
-              autenticazione OAuth2 e integrazione tra sistemi eterogenei.
-            </p>
-            <div class="service-tags">
-              <span>NestJS</span><span>Angular</span><span>TypeScript</span
-              ><span>MongoDB</span><span>PostgreSQL</span><span>REST API</span>
-            </div>
-          </div>
-
-          <div class="service-card reveal" data-delay="100">
-            <div class="service-icon">
-              <i class="fab fa-microsoft"></i>
-            </div>
-            <h3>Ecosistema Microsoft</h3>
-            <p>
-              Amministrazione avanzata di <strong>Windows Server</strong>,
-              gestione del ciclo di vita dei dispositivi con
-              <strong>Intune (MDM/MAM)</strong>, automazione IT con
-              <strong>PowerShell</strong> e deployment su Azure. Una competenza
-              trasversale che copre infrastruttura, sicurezza e governance.
-            </p>
-            <div class="service-tags">
-              <span>Windows Server</span><span>Intune</span
-              ><span>PowerShell</span><span>Azure</span
-              ><span>Active Directory</span>
-            </div>
-          </div>
-
-          <div class="service-card reveal" data-delay="200">
-            <div class="service-icon">
-              <i class="fas fa-cloud"></i>
-            </div>
-            <h3>Cloud & DevOps</h3>
-            <p>
-              Progettazione e gestione di infrastrutture cloud scalabili.
-              Deployment containerizzato, pipeline CI/CD e monitoring. Mi
-              interessa portare le aziende verso un modello cloud-first,
-              riducendo la dipendenza dall'hardware fisico e aumentando la
-              resilienza operativa.
-            </p>
-            <div class="service-tags">
-              <span>Azure</span><span>Docker</span><span>CI/CD</span
-              ><span>Microservizi</span>
-            </div>
-          </div>
-
-          <div class="service-card reveal" data-delay="300">
-            <div class="service-icon">
-              <i class="fas fa-magic"></i>
-            </div>
-            <h3>Automazione & Integrazione</h3>
-            <p>
-              Progettazione di workflow automatizzati per eliminare le attività
-              ripetitive e connettere sistemi diversi. Dall'automazione IT con
-              PowerShell all'integrazione di sistemi sanitari tramite
-              <strong>HL7</strong>, la mia filosofia è: se può essere
-              automatizzato, va automatizzato.
-            </p>
-            <div class="service-tags">
-              <span>PowerShell</span><span>HL7</span><span>API Integration</span
-              ><span>Workflow</span>
-            </div>
-          </div>
-
-          <div class="service-card reveal" data-delay="400">
-            <div class="service-icon">
-              <i class="fas fa-paint-brush"></i>
-            </div>
-            <h3>UI/UX Design</h3>
-            <p>
-              Progettazione di interfacce grafiche moderne e usabili. Non solo
-              estetiche: ogni scelta di design deve rispondere a una logica
-              funzionale. Lavoro con attenzione alla gerarchia visiva,
-              all'accessibilità e alla coerenza dell'esperienza utente su ogni
-              dispositivo.
-            </p>
-            <div class="service-tags">
-              <span>UI Design</span><span>UX Research</span
-              ><span>Responsive</span><span>Accessibilità</span>
-            </div>
-          </div>
-
-          <div class="service-card reveal" data-delay="500">
-            <div class="service-icon">
-              <i class="fas fa-shield-alt"></i>
-            </div>
-            <h3>Sicurezza & Reti</h3>
-            <p>
-              Conoscenza approfondita di protocolli di rete (Token Ring,
-              algoritmi di consenso distribuito), sicurezza degli accessi con
-              <strong>OAuth2</strong>, gestione delle identità e implementazione
-              di policy di sicurezza aziendali. La sicurezza non è un'aggiunta:
-              è parte del progetto.
-            </p>
-            <div class="service-tags">
-              <span>OAuth2</span><span>Network Security</span
-              ><span>Token Ring</span><span>Distributed Systems</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ COMPETENZE TECNICHE ═══════════════ -->
-    <section class="section skills" id="skills">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">03 — Competenze tecniche</span>
-          <h2 class="section-title">Il mio stack tecnologico.</h2>
-        </div>
-
-        <div class="skills-container">
-          <div class="skills-group reveal">
-            <h4 class="skills-group-title">
-              <i class="fas fa-laptop-code"></i> Frontend
-            </h4>
-            <div class="skills-list">
-              <div class="skill-pill">Angular</div>
-              <div class="skill-pill">TypeScript</div>
-              <div class="skill-pill">HTML5 / CSS3</div>
-              <div class="skill-pill">JavaScript</div>
-              <div class="skill-pill">Responsive Design</div>
-            </div>
-          </div>
-
-          <div class="skills-group reveal" data-delay="100">
-            <h4 class="skills-group-title">
-              <i class="fas fa-server"></i> Backend
-            </h4>
-            <div class="skills-list">
-              <div class="skill-pill">NestJS</div>
-              <div class="skill-pill">Node.js</div>
-              <div class="skill-pill">REST API</div>
-              <div class="skill-pill">OAuth2</div>
-              <div class="skill-pill">Microservizi</div>
-            </div>
-          </div>
-
-          <div class="skills-group reveal" data-delay="200">
-            <h4 class="skills-group-title">
-              <i class="fas fa-database"></i> Database
-            </h4>
-            <div class="skills-list">
-              <div class="skill-pill">MongoDB</div>
-              <div class="skill-pill">PostgreSQL</div>
-              <div class="skill-pill">SQL Server</div>
-            </div>
-          </div>
-
-          <div class="skills-group reveal" data-delay="300">
-            <h4 class="skills-group-title">
-              <i class="fab fa-microsoft"></i> Microsoft
-            </h4>
-            <div class="skills-list">
-              <div class="skill-pill">Windows Server 2022</div>
-              <div class="skill-pill">Azure</div>
-              <div class="skill-pill">Intune MDM/MAM</div>
-              <div class="skill-pill">PowerShell</div>
-              <div class="skill-pill">Active Directory</div>
-            </div>
-          </div>
-
-          <div class="skills-group reveal" data-delay="400">
-            <h4 class="skills-group-title">
-              <i class="fas fa-tools"></i> DevOps & Tools
-            </h4>
-            <div class="skills-list">
-              <div class="skill-pill">Docker</div>
-              <div class="skill-pill">Git</div>
-              <div class="skill-pill">CI/CD</div>
-              <div class="skill-pill">Linux</div>
-            </div>
-          </div>
-
-          <div class="skills-group reveal" data-delay="500">
-            <h4 class="skills-group-title">
-              <i class="fas fa-heartbeat"></i> Sanità & Integrazione
-            </h4>
-            <div class="skills-list">
-              <div class="skill-pill">HL7 Standards</div>
-              <div class="skill-pill">HealthIT</div>
-              <div class="skill-pill">Interoperabilità</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ ESPERIENZE ═══════════════ -->
-    <section class="section experience" id="experience">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">04 — Esperienze & Percorso</span>
-          <h2 class="section-title">Da dove vengo,<br />dove sono arrivato.</h2>
-          <p class="section-desc">
-            Il mio percorso professionale non è una lista di ruoli — è una serie
-            di problemi risolti, sistemi costruiti e competenze acquisite sul
-            campo.
-          </p>
-        </div>
-
-        <div class="experience-timeline">
-          <div class="timeline-item reveal">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-              <div class="timeline-card">
-                <div class="timeline-header">
-                  <div>
-                    <span class="timeline-period">Attuale</span>
-                    <h3 class="timeline-role">
-                      Collaboratore Tecnico Professionale — Informatico
-                    </h3>
-                    <p class="timeline-company">
-                      <i class="fas fa-building"></i> ASL CN1 — Cuneo, Piemonte
-                    </p>
-                  </div>
-                  <div class="timeline-badge current">In corso</div>
-                </div>
-                <div class="timeline-body">
+            <ul class="side-grid">
+              <li class="side-quest">
+                <span class="side-icon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <!-- sole -->
+                    <rect x="12" y="1" width="3" height="3" fill="#facc15"/>
+                    <!-- cima innevata -->
+                    <rect x="7" y="3" width="2" height="1" fill="#e8e8f5"/>
+                    <rect x="6" y="4" width="4" height="1" fill="#e8e8f5"/>
+                    <rect x="5" y="5" width="6" height="1" fill="#e8e8f5"/>
+                    <!-- roccia: lato in luce / lato in ombra -->
+                    <rect x="4" y="6" width="4" height="1" fill="#7b8db5"/>
+                    <rect x="8" y="6" width="4" height="1" fill="#4a5a85"/>
+                    <rect x="5" y="6" width="2" height="1" fill="#e8e8f5"/>
+                    <rect x="9" y="6" width="2" height="1" fill="#e8e8f5"/>
+                    <rect x="3" y="7" width="5" height="1" fill="#7b8db5"/>
+                    <rect x="8" y="7" width="5" height="1" fill="#4a5a85"/>
+                    <rect x="2" y="8" width="6" height="1" fill="#7b8db5"/>
+                    <rect x="8" y="8" width="6" height="1" fill="#4a5a85"/>
+                    <rect x="1" y="9" width="7" height="1" fill="#7b8db5"/>
+                    <rect x="8" y="9" width="7" height="1" fill="#4a5a85"/>
+                    <rect x="0" y="10" width="8" height="4" fill="#7b8db5"/>
+                    <rect x="8" y="10" width="8" height="4" fill="#4a5a85"/>
+                    <!-- prato -->
+                    <rect x="0" y="14" width="16" height="2" fill="#4ade80"/>
+                  </svg>
+                </span>
+                <div class="side-body">
+                  <h4 class="side-title">MONTAGNA</h4>
                   <p>
-                    In qualità di dipendente pubblico presso l'<strong>ASL CN1 di Cuneo</strong>,
-                    progetto e implemento soluzioni full-stack per la
-                    <strong>digitalizzazione dei flussi aziendali</strong> in ambito
-                    sanitario. Il lavoro quotidiano mi porta a combinare microservizi
-                    NestJS, frontend Angular e sistemi Microsoft in architetture
-                    coerenti e scalabili.
+                    Sentieri, cime e quel punto esatto in cui il telefono smette
+                    di prendere. Lo chiamano «fuori copertura», io lo chiamo
+                    weekend.
                   </p>
+                  <span class="side-status">STATO: IN CORSO · da sempre</span>
+                </div>
+              </li>
+
+              <li class="side-quest">
+                <span class="side-icon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <!-- maniglia -->
+                    <rect x="6" y="1" width="4" height="1" fill="#9c9cc4"/>
+                    <rect x="5" y="2" width="1" height="1" fill="#9c9cc4"/>
+                    <rect x="10" y="2" width="1" height="1" fill="#9c9cc4"/>
+                    <!-- patella -->
+                    <rect x="3" y="3" width="10" height="3" fill="#b91c1c"/>
+                    <!-- corpo -->
+                    <rect x="2" y="6" width="12" height="8" fill="#ef4444"/>
+                    <!-- spallacci laterali -->
+                    <rect x="1" y="7" width="1" height="6" fill="#9c9cc4"/>
+                    <rect x="14" y="7" width="1" height="6" fill="#9c9cc4"/>
+                    <!-- fibbie -->
+                    <rect x="4" y="7" width="2" height="1" fill="#facc15"/>
+                    <rect x="10" y="7" width="2" height="1" fill="#facc15"/>
+                    <!-- tasca frontale con zip -->
+                    <rect x="5" y="9" width="6" height="4" fill="#b91c1c"/>
+                    <rect x="5" y="9" width="6" height="1" fill="#0f0f23"/>
+                    <!-- fondo -->
+                    <rect x="3" y="14" width="10" height="1" fill="#b91c1c"/>
+                  </svg>
+                </span>
+                <div class="side-body">
+                  <h4 class="side-title">ZAINO IN SPALLA</h4>
                   <p>
-                    Mi occupo di analizzare i processi operativi delle realtà
-                    con cui collaboro, identificare inefficienze e progettare
-                    soluzioni tecniche che portino un impatto misurabile: meno
-                    tempo sprecato, meno errori, più controllo.
+                    Viaggi con lo stretto necessario e un itinerario scritto a
+                    matita. Il piano B, di solito, è quello che poi ricordo
+                    meglio.
                   </p>
+                  <span class="side-status">INVENTARIO: pieno · slot liberi: 0</span>
                 </div>
-                <div class="timeline-achievements">
-                  <div class="achievement">
-                    <i class="fas fa-check-circle"></i>
-                    <span
-                      >Digitalizzazione di flussi documentali aziendali</span
-                    >
-                  </div>
-                  <div class="achievement">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Architetture microservizi NestJS + Angular</span>
-                  </div>
-                  <div class="achievement">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Gestione e amministrazione sistemi Microsoft</span>
-                  </div>
-                  <div class="achievement">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Integrazione sistemi sanitari HL7</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+              </li>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              <div class="timeline-line"></div>
-            </div>
-            <div class="timeline-content">
-              <div class="timeline-card">
-                <div class="timeline-header">
-                  <div>
-                    <span class="timeline-period"
-                      >Percorso formativo continuo</span
-                    >
-                    <h3 class="timeline-role">
-                      Sviluppo Competenze & Certificazioni
-                    </h3>
-                    <p class="timeline-company">
-                      <i class="fas fa-graduation-cap"></i> Autoformazione &
-                      Corsi Professionali
-                    </p>
-                  </div>
-                  <div class="timeline-badge">Certificato</div>
-                </div>
-                <div class="timeline-body">
+              <li class="side-quest">
+                <span class="side-icon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <!-- pin -->
+                    <rect x="4" y="1" width="1" height="2" fill="#9c9cc4"/>
+                    <rect x="6" y="1" width="1" height="2" fill="#9c9cc4"/>
+                    <rect x="9" y="1" width="1" height="2" fill="#9c9cc4"/>
+                    <rect x="11" y="1" width="1" height="2" fill="#9c9cc4"/>
+                    <rect x="4" y="13" width="1" height="2" fill="#9c9cc4"/>
+                    <rect x="6" y="13" width="1" height="2" fill="#9c9cc4"/>
+                    <rect x="9" y="13" width="1" height="2" fill="#9c9cc4"/>
+                    <rect x="11" y="13" width="1" height="2" fill="#9c9cc4"/>
+                    <rect x="1" y="4" width="2" height="1" fill="#9c9cc4"/>
+                    <rect x="1" y="6" width="2" height="1" fill="#9c9cc4"/>
+                    <rect x="1" y="9" width="2" height="1" fill="#9c9cc4"/>
+                    <rect x="1" y="11" width="2" height="1" fill="#9c9cc4"/>
+                    <rect x="13" y="4" width="2" height="1" fill="#9c9cc4"/>
+                    <rect x="13" y="6" width="2" height="1" fill="#9c9cc4"/>
+                    <rect x="13" y="9" width="2" height="1" fill="#9c9cc4"/>
+                    <rect x="13" y="11" width="2" height="1" fill="#9c9cc4"/>
+                    <!-- package -->
+                    <rect x="3" y="3" width="10" height="10" fill="#9c9cc4"/>
+                    <rect x="4" y="4" width="8" height="8" fill="#1b1b38"/>
+                    <!-- core -->
+                    <rect x="6" y="6" width="4" height="4" fill="#22d3ee"/>
+                    <rect x="6" y="6" width="1" height="1" fill="#e8e8f5"/>
+                  </svg>
+                </span>
+                <div class="side-body">
+                  <h4 class="side-title">TECNOLOGIA</h4>
                   <p>
-                    Ho sempre creduto nell'apprendimento continuo come vantaggio
-                    competitivo. Nel corso degli anni ho conseguito
-                    certificazioni specifiche su tecnologie che uso
-                    quotidianamente, mantenendomi aggiornato su uno stack in
-                    continua evoluzione.
+                    In ogni sua forma: framework, gadget, AI, qualunque cosa abbia
+                    un changelog. Provo tutto, tengo poco, aggiorno sempre.
                   </p>
+                  <span class="side-status">PATCH NOTES: lette · tutte</span>
                 </div>
-                <div class="certs-grid">
-                  <div class="cert-item">
-                    <i class="fas fa-cubes"></i>
-                    <span>Software Architecture & System Design</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fab fa-node-js"></i>
-                    <span>NestJS — (Microservices, Auth …)</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fab fa-angular"></i>
-                    <span>Angular — The Complete Guide</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fab fa-react"></i>
-                    <span>React — The Complete Guide</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fas fa-database"></i>
-                    <span>MongoDB — Complete Developer's Guide</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fab fa-docker"></i>
-                    <span>Docker & Kubernetes — Practical Guide</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fas fa-lock"></i>
-                    <span>OAuth 2.0 — The Nuts and Bolts</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fab fa-microsoft"></i>
-                    <span>Azure DevOps Fundamentals</span>
-                  </div>
-                  <div class="cert-item">
-                    <svg class="cert-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 317"><path d="M157.666 0L0 157.666l48.8 48.8L206.466 48.8h.001L157.666 0zm0 110.034L65.333 202.467l48.8 48.8 43.533-43.534 48.8 48.8L157.666 305.4l48.8 48.8L255.266 305.4l-48.8-48.8 48.8-48.933-48.8-48.833-48.8 48.833-48.8-48.833 48.8-48.8z" fill="currentColor"/></svg>
-                    <span>Flutter UI Masterclass</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fab fa-python"></i>
-                    <span>Python Django — Practical Guide</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fab fa-css3-alt"></i>
-                    <span>CSS — Complete Guide (Flexbox, Grid, Sass)</span>
-                  </div>
-                  <div class="cert-item">
-                    <i class="fas fa-server"></i>
-                    <span>Nginx — Load Balancing & Reverse Proxy</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
+      </section>
 
-        <!-- Project Cards -->
-        <div class="projects-showcase reveal">
-          <h3 class="projects-title">Focus su alcune aree di impatto</h3>
-          <div class="projects-grid">
-            <div class="project-card">
-              <div class="project-icon"><i class="fas fa-hospital"></i></div>
-              <h4>Interoperabilità Sanitaria</h4>
+      <!-- ═══════════════ QUEST LOG / ESPERIENZA ═══════════════ -->
+      <section class="section" id="quests">
+        <h2 class="section-title"><span class="title-level">WORLD 1-2</span>QUEST LOG</h2>
+        <p class="section-sub">// le mie esperienze lavorative, in ordine di apparizione inversa</p>
+
+        <div class="quest-list">
+          <!-- ASL CN1 -->
+          <article class="pixel-card quest quest-active">
+            <header class="quest-head">
+              <span class="quest-badge badge-main">MAIN QUEST · IN CORSO</span>
+              <h3 class="quest-org">ASL CN1 — Cuneo</h3>
+              <p class="quest-meta">gen 2025 → presente · Cuneo · in sede</p>
+            </header>
+
+            <div class="quest-role">
+              <h4>Sviluppatore Full Stack</h4>
               <p>
-                Integrazione di sistemi informativi sanitari tramite lo standard
-                HL7, per migliorare il flusso delle informazioni cliniche tra
-                reparti e sistemi diversi.
-              </p>
-              <div class="project-tags">
-                <span>HL7</span><span>HealthIT</span><span>Integration</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-icon"><i class="fas fa-robot"></i></div>
-              <h4>Automazione Aziendale</h4>
-              <p>
-                Sviluppo di script PowerShell e pipeline automatizzate per
-                ridurre le attività manuali ripetitive nell'amministrazione IT e
-                nella gestione dei dispositivi.
-              </p>
-              <div class="project-tags">
-                <span>PowerShell</span><span>Intune</span
-                ><span>Automation</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-icon">
-                <i class="fas fa-network-wired"></i>
-              </div>
-              <h4>Architetture Distribuite</h4>
-              <p>
-                Progettazione di sistemi distribuiti con consapevolezza degli
-                algoritmi di consenso (Bully Algorithm) e dei protocolli di rete
-                per garantire affidabilità e coerenza.
-              </p>
-              <div class="project-tags">
-                <span>Distributed Systems</span><span>Microservizi</span
-                ><span>NestJS</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ DESIGN & UI ═══════════════ -->
-    <section class="section design" id="design">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">05 — Design & Interfacce</span>
-          <h2 class="section-title">
-            Il codice è logica.<br />Il design è empatia.
-          </h2>
-          <p class="section-desc">
-            Progettare un'interfaccia non significa renderla bella — significa
-            capire chi la userà e come si sentirà usandola. È la parte del
-            lavoro che mi appassiona di più.
-          </p>
-        </div>
-
-        <div class="design-philosophy reveal">
-          <div class="philosophy-text">
-            <h3>Il mio approccio al design</h3>
-            <p>
-              Vengo dal mondo dello sviluppo backend, il che mi dà una
-              prospettiva unica quando progetto interfacce: non mi fermo
-              all'aspetto visivo, ma ragiono su
-              <strong>performance, accessibilità e fattibilità tecnica</strong>
-              fin dal primo wireframe.
-            </p>
-            <p>
-              Mi interessa il design che <em>scompare</em> — quello che non si
-              nota perché è così fluido e naturale da sembrare ovvio. Gerarchie
-              visive chiare, spazi bianchi ben calibrati, feedback immediato per
-              ogni azione dell'utente.
-            </p>
-            <p>
-              Ogni progetto è un'opportunità per migliorare l'esperienza di
-              qualcuno. Anche una schermata di login o un form di inserimento
-              dati può essere progettata con cura.
-            </p>
-          </div>
-          <div class="philosophy-principles">
-            <div class="principle-item">
-              <div class="principle-icon"><i class="fas fa-eye-slash"></i></div>
-              <div>
-                <h5>Design invisibile</h5>
-                <p>
-                  Il miglior design è quello che non si nota: fluisce, guida,
-                  aiuta.
-                </p>
-              </div>
-            </div>
-            <div class="principle-item">
-              <div class="principle-icon">
-                <i class="fas fa-universal-access"></i>
-              </div>
-              <div>
-                <h5>Accessibilità prima</h5>
-                <p>
-                  Contrasto, leggibilità e navigazione da tastiera non sono
-                  opzionali.
-                </p>
-              </div>
-            </div>
-            <div class="principle-item">
-              <div class="principle-icon">
-                <i class="fas fa-mobile-alt"></i>
-              </div>
-              <div>
-                <h5>Mobile-first</h5>
-                <p>
-                  Progetto per il contesto più vincolato, poi espando verso
-                  schermi più grandi.
-                </p>
-              </div>
-            </div>
-            <div class="principle-item">
-              <div class="principle-icon">
-                <i class="fas fa-tachometer-alt"></i>
-              </div>
-              <div>
-                <h5>Performance is UX</h5>
-                <p>
-                  Un'interfaccia lenta è un'interfaccia cattiva,
-                  indipendentemente da quanto sia bella.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mockup showcase -->
-        <div class="mockup-showcase reveal">
-          <h3>Lavori & Mockup</h3>
-          <p class="mockup-note">
-            Molti dei lavori svolti in ambito sanitario pubblico non possono
-            essere mostrati per motivi di riservatezza. Questa sezione verrà
-            aggiornata con progetti personali e mockup dimostrativi.
-          </p>
-          <div class="mockup-grid">
-            <a href="design-showcase.html#dashboard" class="mockup-placeholder-link">
-              <div class="mockup-placeholder">
-                <div class="mockup-inner">
-                  <div class="mockup-browser">
-                    <div class="browser-dots">
-                      <span></span><span></span><span></span>
-                    </div>
-                    <div class="browser-content">
-                      <div class="placeholder-ui">
-                        <div class="ph-nav"></div>
-                        <div class="ph-hero"></div>
-                        <div class="ph-cards">
-                          <div class="ph-card"></div>
-                          <div class="ph-card"></div>
-                          <div class="ph-card"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <p>Dashboard Applicativa</p>
-                  <span class="mockup-link-hint">
-                    <i class="fas fa-external-link-alt"></i> Vedi caso studio
-                  </span>
-                </div>
-              </div>
-            </a>
-            <a href="design-showcase-panel.html" class="mockup-placeholder-link">
-                <div class="mockup-placeholder">
-                  <div class="mockup-inner">
-                    <div class="mockup-browser">
-                      <div class="browser-dots">
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div class="browser-content">
-                        <div class="placeholder-ui">
-                          <div class="ph-sidebar"></div>
-                          <div class="ph-main">
-                            <div class="ph-form"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <p>Pannello di Gestione</p>
-                    <span class="mockup-link-hint">
-                      <i class="fas fa-external-link-alt"></i> Vedi caso studio
-                    </span>
-                  </div>
-                </div>
-              </a>
-            <a href="design-showcase-rambler.html" class="mockup-placeholder-link">
-                <div class="mockup-placeholder">
-                  <div class="mockup-inner">
-                    <div class="mockup-phone-mini">
-                      <div class="phone-mini-notch"></div>
-                      <div class="phone-mini-screen">
-                        <div class="ph-mini-header"></div>
-                        <div class="ph-mini-card"></div>
-                        <div class="ph-mini-card"></div>
-                        <div class="ph-mini-tabbar"></div>
-                      </div>
-                    </div>
-                    <p>Interfaccia Mobile</p>
-                    <span class="mockup-link-hint">
-                      <i class="fas fa-external-link-alt"></i> Vedi caso studio
-                    </span>
-                  </div>
-                </div>
-              </a>
-          </div>
-          <div class="design-cta-separator reveal">
-            <p class="design-cta-text">
-              Cerchi i progetti tecnici? Architetture, codice e case study.
-            </p>
-            <a href="projects.html" class="btn btn-ghost btn-lg">
-              <i class="fas fa-arrow-right"></i> Esplora i Progetti Tecnici
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ OLTRE IL CODICE ═══════════════ -->
-    <section class="section beyond" id="beyond">
-      <!-- Mountain silhouette background -->
-      <div class="beyond-mountains" aria-hidden="true">
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="mountain-layer mountain-back">
-          <path d="M0,280 L120,200 L240,240 L360,160 L480,220 L600,140 L720,180 L840,100 L960,160 L1080,120 L1200,180 L1320,140 L1440,200 L1440,320 L0,320 Z"/>
-        </svg>
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="mountain-layer mountain-mid">
-          <path d="M0,300 L180,220 L320,260 L480,180 L640,240 L800,160 L960,220 L1120,180 L1280,240 L1440,200 L1440,320 L0,320 Z"/>
-        </svg>
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="mountain-layer mountain-front">
-          <path d="M0,310 L240,260 L400,280 L560,230 L720,270 L880,220 L1040,260 L1200,240 L1440,270 L1440,320 L0,320 Z"/>
-        </svg>
-      </div>
-
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">06 — Oltre il codice</span>
-          <h2 class="section-title">
-            Dove finisce il codice,<br />iniziano i sentieri.
-          </h2>
-          <p class="section-desc">
-            Non sono solo un informatico. Sono uno che si ricarica lontano
-            dagli schermi — tra cime, bivacchi e strade sterrate.
-          </p>
-        </div>
-
-        <div class="beyond-grid">
-          <div class="beyond-card beyond-mountain reveal">
-            <div class="beyond-card-icon">
-              <i class="fas fa-mountain"></i>
-            </div>
-            <h3>Montagna & Avventura</h3>
-            <p>
-              Le <strong>Alpi Marittime</strong> e le <strong>valli occitane</strong>
-              sono il mio terreno. Amo camminare per ore tra sentieri,
-              piantare la tenda in quota e svegliarmi con l'alba che
-              colora le cime di rosso e violetto — gli stessi colori che
-              ispirano questo sito. La montagna mi insegna pazienza,
-              orientamento e rispetto per i limiti.
-            </p>
-            <div class="beyond-tags">
-              <span><i class="fas fa-hiking"></i> Trekking</span>
-              <span><i class="fas fa-campground"></i> Bivacco</span>
-              <span><i class="fas fa-route"></i> GTA</span>
-            </div>
-            <!-- Cervino silhouette -->
-            <svg class="cervino-svg" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
-              <defs>
-                <linearGradient id="cervinoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.4"/>
-                  <stop offset="50%" stop-color="var(--dawn-2)" stop-opacity="0.3"/>
-                  <stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.2"/>
-                </linearGradient>
-                <linearGradient id="cervinoSnow" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.5"/>
-                  <stop offset="40%" stop-color="#ffffff" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <!-- Main Cervino shape -->
-              <path d="M120,200 L160,110 L175,130 L190,80 L198,50 L206,25 L210,15 L214,25 L220,50 L228,75 L240,95 L255,120 L270,140 L300,200 Z" fill="url(#cervinoGrad)"/>
-              <!-- Snow cap -->
-              <path d="M198,50 L206,25 L210,15 L214,25 L220,50 L215,55 L210,42 L205,55 Z" fill="url(#cervinoSnow)"/>
-              <!-- Secondary ridge left -->
-              <path d="M0,200 L40,170 L80,155 L100,165 L120,200 Z" fill="url(#cervinoGrad)" opacity="0.4"/>
-              <!-- Secondary ridge right -->
-              <path d="M300,200 L320,165 L350,150 L380,160 L400,175 L400,200 Z" fill="url(#cervinoGrad)" opacity="0.4"/>
-              <!-- Dawn glow behind peak -->
-              <ellipse cx="210" cy="30" rx="60" ry="25" fill="var(--dawn-1)" opacity="0.08"/>
-            </svg>
-          </div>
-
-          <div class="beyond-card beyond-backpack reveal" data-delay="100">
-            <div class="beyond-card-icon">
-              <i class="fas fa-suitcase-rolling"></i>
-            </div>
-            <h3>Zaino in spalla</h3>
-            <p>
-              Viaggiare leggeri, dormire dove capita, scoprire posti
-              fuori dalle guide. Il backpacking è il mio modo di
-              esplorare — con curiosità e senza fretta.
-            </p>
-            <div class="beyond-tags">
-              <span><i class="fas fa-globe-europe"></i> Europa</span>
-              <span><i class="fas fa-map-marked-alt"></i> Off-trail</span>
-            </div>
-            <!-- Backpack SVG -->
-            <svg class="backpack-svg" viewBox="0 0 160 200" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
-              <defs>
-                <linearGradient id="backpackGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.7"/>
-                  <stop offset="50%" stop-color="var(--dawn-2)" stop-opacity="0.5"/>
-                  <stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.3"/>
-                </linearGradient>
-              </defs>
-              <!-- Backpack body -->
-              <rect x="40" y="60" width="80" height="100" rx="12" fill="url(#backpackGrad)" opacity="0.8"/>
-              <!-- Top flap -->
-              <path d="M38,70 Q38,45 80,42 Q122,45 122,70" fill="none" stroke="var(--dawn-2)" stroke-width="2.5" opacity="0.6"/>
-              <!-- Handle -->
-              <path d="M65,42 Q65,28 80,28 Q95,28 95,42" fill="none" stroke="var(--dawn-1)" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
-              <!-- Front pocket -->
-              <rect x="52" y="100" width="56" height="40" rx="8" fill="none" stroke="var(--dawn-3)" stroke-width="1.5" opacity="0.5"/>
-              <!-- Pocket zipper line -->
-              <line x1="60" y1="100" x2="100" y2="100" stroke="var(--dawn-1)" stroke-width="1" opacity="0.4"/>
-              <!-- Straps -->
-              <path d="M48,70 Q35,100 38,160" fill="none" stroke="var(--dawn-2)" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
-              <path d="M112,70 Q125,100 122,160" fill="none" stroke="var(--dawn-2)" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
-              <!-- Compass rose on pocket -->
-              <circle cx="80" cy="120" r="10" fill="none" stroke="var(--dawn-1)" stroke-width="1" opacity="0.5" class="compass"/>
-              <line x1="80" y1="112" x2="80" y2="128" stroke="var(--dawn-1)" stroke-width="0.8" opacity="0.4"/>
-              <line x1="72" y1="120" x2="88" y2="120" stroke="var(--dawn-1)" stroke-width="0.8" opacity="0.4"/>
-              <polygon points="80,112 78,118 82,118" fill="var(--dawn-1)" opacity="0.6" class="compass-needle"/>
-              <!-- Trail dots -->
-              <circle cx="20" cy="180" r="2" fill="var(--dawn-1)" opacity="0.3" class="trail-dot trail-1"/>
-              <circle cx="12" cy="168" r="1.5" fill="var(--dawn-2)" opacity="0.25" class="trail-dot trail-2"/>
-              <circle cx="8" cy="155" r="1.8" fill="var(--dawn-3)" opacity="0.2" class="trail-dot trail-3"/>
-              <circle cx="15" cy="143" r="1.2" fill="var(--dawn-1)" opacity="0.15" class="trail-dot trail-4"/>
-              <!-- Map pin -->
-              <path d="M140,170 Q140,160 145,155 Q150,160 150,170 Q145,178 145,178 Q140,178 140,170 Z" fill="var(--dawn-1)" opacity="0.35" class="map-pin"/>
-              <circle cx="145" cy="166" r="2" fill="var(--bg-primary)" opacity="0.4"/>
-            </svg>
-          </div>
-
-          <div class="beyond-card beyond-campfire reveal" data-delay="200">
-            <div class="beyond-card-icon">
-              <i class="fas fa-campground"></i>
-            </div>
-            <h3>Campeggio & Outdoor</h3>
-            <p>
-              Tenda, fornelletto, cielo stellato. Il campeggio mi
-              ricorda che le cose migliori sono semplici. Un'idea
-              che si riflette anche nel mio approccio al codice:
-              meno è meglio, quando funziona.
-            </p>
-            <div class="beyond-tags">
-              <span><i class="fas fa-fire"></i> Wild camping</span>
-              <span><i class="fas fa-moon"></i> Bivacco</span>
-              <span><i class="fas fa-star"></i> Cielo stellato</span>
-            </div>
-            <!-- Campfire SVG -->
-            <svg class="campfire-svg" viewBox="0 0 200 180" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
-              <defs>
-                <linearGradient id="fireGrad1" x1="0.5" y1="1" x2="0.5" y2="0">
-                  <stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.7"/>
-                  <stop offset="60%" stop-color="var(--dawn-2)" stop-opacity="0.4"/>
-                  <stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.1"/>
-                </linearGradient>
-                <linearGradient id="fireGrad2" x1="0.5" y1="1" x2="0.5" y2="0">
-                  <stop offset="0%" stop-color="#ff6b4a" stop-opacity="0.9"/>
-                  <stop offset="100%" stop-color="#ff6b4a" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <!-- Glow -->
-              <ellipse cx="100" cy="155" rx="60" ry="15" fill="var(--dawn-1)" opacity="0.15"/>
-              <!-- Logs -->
-              <rect x="60" y="150" width="80" height="8" rx="4" fill="var(--text-muted)" opacity="0.3" transform="rotate(-8, 100, 154)"/>
-              <rect x="65" y="148" width="75" height="8" rx="4" fill="var(--text-muted)" opacity="0.25" transform="rotate(10, 100, 152)"/>
-              <!-- Outer flame -->
-              <path d="M100,40 C115,70 135,100 130,130 C128,145 115,155 100,155 C85,155 72,145 70,130 C65,100 85,70 100,40 Z" fill="url(#fireGrad1)" class="flame-outer"/>
-              <!-- Inner flame -->
-              <path d="M100,70 C108,85 120,105 116,125 C114,138 108,145 100,145 C92,145 86,138 84,125 C80,105 92,85 100,70 Z" fill="url(#fireGrad2)" class="flame-inner"/>
-              <!-- Sparks -->
-              <circle cx="90" cy="55" r="1.5" fill="var(--dawn-1)" opacity="0.6" class="spark spark-1"/>
-              <circle cx="112" cy="48" r="1" fill="var(--dawn-2)" opacity="0.5" class="spark spark-2"/>
-              <circle cx="95" cy="35" r="1.2" fill="var(--dawn-1)" opacity="0.4" class="spark spark-3"/>
-              <circle cx="107" cy="60" r="0.8" fill="var(--dawn-2)" opacity="0.5" class="spark spark-4"/>
-              <!-- Stars around -->
-              <circle cx="30" cy="20" r="1" fill="var(--text-muted)" opacity="0.4" class="star"/>
-              <circle cx="170" cy="15" r="0.8" fill="var(--text-muted)" opacity="0.3" class="star"/>
-              <circle cx="155" cy="40" r="1.2" fill="var(--text-muted)" opacity="0.35" class="star"/>
-              <circle cx="45" cy="45" r="0.8" fill="var(--text-muted)" opacity="0.3" class="star"/>
-              <circle cx="20" cy="60" r="1" fill="var(--text-muted)" opacity="0.25" class="star"/>
-              <circle cx="180" cy="65" r="0.6" fill="var(--text-muted)" opacity="0.2" class="star"/>
-            </svg>
-          </div>
-
-          <div class="beyond-card beyond-occitan reveal" data-delay="300">
-            <div class="beyond-card-icon">
-              <i class="fas fa-landmark"></i>
-            </div>
-            <h3>Cultura Occitana</h3>
-            <p>
-              Le valli cuneesi sono terra occitana. Lingue antiche,
-              tradizioni vive, architteture di pietra e legno. Porto
-              con me queste radici: la concretezza della montagna e
-              l'orgoglio di una cultura resistente.
-            </p>
-            <div class="beyond-tags">
-              <span><i class="fas fa-music"></i> Tradizioni</span>
-              <span><i class="fas fa-mountain"></i> Valli occitane</span>
-            </div>
-            <!-- Dancing people SVG -->
-            <!-- Polka dancers SVG -->
-            <svg class="dancers-svg" viewBox="0 0 140 150" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
-              <!-- Floor shadow -->
-              <ellipse cx="70" cy="140" rx="45" ry="8" fill="var(--dawn-2)" opacity="0.1"/>
-              <!-- Dancer 1 (left, leaning right) -->
-              <g class="dancer dancer-1">
-                <!-- Head -->
-                <circle cx="48" cy="52" r="7" fill="var(--dawn-1)" opacity="0.7"/>
-                <!-- Body tilted slightly right -->
-                <line x1="48" y1="59" x2="52" y2="88" stroke="var(--dawn-1)" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
-                <!-- Left arm reaching to partner -->
-                <line x1="50" y1="68" x2="68" y2="62" stroke="var(--dawn-1)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                <!-- Right arm out for balance -->
-                <line x1="50" y1="70" x2="32" y2="60" stroke="var(--dawn-1)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                <!-- Left leg stepping -->
-                <line x1="52" y1="88" x2="60" y2="110" stroke="var(--dawn-1)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                <!-- Right leg back -->
-                <line x1="52" y1="88" x2="38" y2="108" stroke="var(--dawn-1)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                <!-- Skirt hint -->
-                <path d="M44,80 Q52,92 60,80" fill="none" stroke="var(--dawn-1)" stroke-width="1.2" opacity="0.35"/>
-              </g>
-              <!-- Dancer 2 (right, leaning left) -->
-              <g class="dancer dancer-2">
-                <!-- Head -->
-                <circle cx="92" cy="48" r="7" fill="var(--dawn-2)" opacity="0.7"/>
-                <!-- Body tilted slightly left -->
-                <line x1="92" y1="55" x2="88" y2="85" stroke="var(--dawn-2)" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
-                <!-- Right arm reaching to partner -->
-                <line x1="90" y1="65" x2="72" y2="60" stroke="var(--dawn-2)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                <!-- Left arm out -->
-                <line x1="90" y1="67" x2="108" y2="57" stroke="var(--dawn-2)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                <!-- Right leg stepping -->
-                <line x1="88" y1="85" x2="80" y2="108" stroke="var(--dawn-2)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-                <!-- Left leg back -->
-                <line x1="88" y1="85" x2="102" y2="106" stroke="var(--dawn-2)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-              </g>
-              <!-- Held hands (connecting line) -->
-              <line x1="68" y1="62" x2="72" y2="60" stroke="var(--dawn-3)" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
-              <!-- Music notes -->
-              <text x="18" y="38" font-size="11" fill="var(--dawn-1)" opacity="0.3" class="note note-1">♪</text>
-              <text x="112" y="32" font-size="9" fill="var(--dawn-2)" opacity="0.25" class="note note-2">♫</text>
-              <text x="70" y="25" font-size="8" fill="var(--dawn-3)" opacity="0.2" class="note note-3">♪</text>
-            </svg>
-          </div>
-        </div>
-
-        <div class="beyond-quote reveal">
-          <blockquote>
-            <span class="quote-icon"><i class="fas fa-quote-left"></i></span>
-            <p>
-              Il buon codice e il buon sentiero hanno la stessa qualità:
-              ti portano dove devi andare senza farti pensare al percorso.
-            </p>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ CONTATTI ═══════════════ -->
-    <section class="section contact" id="contact">
-      <div class="container">
-        <div class="contact-inner">
-          <div class="contact-text reveal">
-            <span class="section-tag">07 — Contatti</span>
-            <h2 class="section-title">Parliamoci.</h2>
-            <p>
-              Ti interessa saperne di più sul mio lavoro? Vuoi scambiare idee
-              su tecnologia, sistemi o interfacce? O semplicemente fare due
-              chiacchiere tech?
-            </p>
-            <p>
-              Sono sempre aperto a una conversazione. Scrivi, chiama, o
-              collegati su LinkedIn — rispondo a tutto.
-            </p>
-
-            <div class="contact-methods">
-              <a href="mailto:arnaudoenrico@gmail.com" class="contact-method">
-                <div class="cm-icon"><i class="fas fa-envelope"></i></div>
-                <div class="cm-info">
-                  <span class="cm-label">Email</span>
-                  <span class="cm-value">arnaudoenrico@gmail.com</span>
-                </div>
-                <i class="fas fa-external-link-alt cm-arrow"></i>
-              </a>
-
-              <a href="tel:+393476681614" class="contact-method">
-                <div class="cm-icon"><i class="fas fa-phone"></i></div>
-                <div class="cm-info">
-                  <span class="cm-label">Telefono / WhatsApp</span>
-                  <span class="cm-value">+39 347 668 1614</span>
-                </div>
-                <i class="fas fa-external-link-alt cm-arrow"></i>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
-                target="_blank"
-                class="contact-method"
-              >
-                <div class="cm-icon linkedin-icon">
-                  <i class="fab fa-linkedin"></i>
-                </div>
-                <div class="cm-info">
-                  <span class="cm-label">LinkedIn</span>
-                  <span class="cm-value">enrico-arnaudo-1552a41b7</span>
-                </div>
-                <i class="fas fa-external-link-alt cm-arrow"></i>
-              </a>
-
-              <a href="cuneo-wars.html" class="contact-method location-method" style="text-decoration:none;color:inherit;cursor:pointer;transition:all .3s ease;" onmouseenter="this.style.borderColor='var(--primary)';this.style.transform='translateY(-2px)'" onmouseleave="this.style.borderColor='';this.style.transform=''">
-                <div class="cm-icon"><i class="fas fa-mountain"></i></div>
-                <div class="cm-info">
-                  <span class="cm-label">Sede</span>
-                  <span class="cm-value">Cuneo, provincia galattica ai piedi delle Alpi</span>
-                  <span class="cm-value" style="font-size:.78rem;opacity:.65;display:block;margin-top:2px;">Fiero cuneese. Clicca se hai il coraggio di sapere perch&eacute;.</span>
-                </div>
-                <i class="fas fa-jedi cm-arrow"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="contact-cta reveal">
-            <div class="cta-card">
-              <div class="cta-icon"><i class="fas fa-rocket"></i></div>
-              <h3>Restiamo in contatto</h3>
-              <p>
-                Che si tratti di tecnologia, design di interfacce, automazione
-                o semplicemente una chiacchierata — scrivimi.
-              </p>
-              <a
-                href="mailto:arnaudoenrico@gmail.com"
-                class="btn btn-primary btn-lg"
-              >
-                <span>Scrivimi subito</span>
-                <i class="fas fa-paper-plane"></i>
-              </a>
-              <div class="cta-availability">
-                <span class="avail-dot"></span>
-                <span>Dipendente pubblico — ASL CN1 Cuneo</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ PRIVACY POLICY ═══════════════ -->
-    <section class="section privacy" id="privacy">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag"><i class="fas fa-shield-alt"></i> Privacy Policy</span>
-          <h2 class="section-title">
-            I tuoi dati sono al sicuro.<br />Perché non ne ho nessuno.
-          </h2>
-        </div>
-
-        <div class="privacy-content reveal">
-          <div class="privacy-grid">
-            <div class="privacy-card">
-              <div class="privacy-icon"><i class="fas fa-cookie-bite"></i></div>
-              <h4>Cookie</h4>
-              <p>
-                Questo sito non usa cookie. Nemmeno quelli buoni al cioccolato,
-                purtroppo. Se il tuo browser ne trova, non sono i miei — parlane
-                con lui.
+                Porto avanti un progetto di <strong>digital transformation</strong>:
+                digitalizzo processi manuali e frammentati e ridisegno i flussi
+                di lavoro interni. Sviluppo le applicazioni end-to-end, dal
+                database all'interfaccia, con la stessa cura per entrambi.
               </p>
             </div>
 
-            <div class="privacy-card">
-              <div class="privacy-icon"><i class="fas fa-database"></i></div>
-              <h4>Raccolta dati</h4>
+            <div class="quest-role">
+              <h4>Collaboratore tecnico professionale — Informatico</h4>
               <p>
-                Non raccolgo dati personali. Non ho un database, non ho un backend,
-                non ho neanche un server. È tutto HTML statico servito con amore.
+                Gestione, configurazione e manutenzione di server Windows e
+                ambienti Microsoft Server. Reti, infrastruttura e tutto ciò che
+                deve <em>semplicemente funzionare</em>, sempre.
               </p>
             </div>
 
-            <div class="privacy-card">
-              <div class="privacy-icon"><i class="fas fa-chart-line"></i></div>
-              <h4>Analytics</h4>
+            <footer class="quest-loot">
+              <span class="loot-label">LOOT:</span>
+              <span class="loot-item">Sviluppo web</span>
+              <span class="loot-item">Windows Server</span>
+              <span class="loot-item">Reti</span>
+              <span class="loot-item">Process design</span>
+            </footer>
+          </article>
+
+          <!-- ASL Torino -->
+          <article class="pixel-card quest">
+            <header class="quest-head">
+              <span class="quest-badge">QUEST COMPLETATA</span>
+              <h3 class="quest-org">ASL Città di Torino</h3>
+              <p class="quest-meta">ott 2020 → dic 2025 · Torino · ibrido</p>
+            </header>
+
+            <div class="quest-role">
+              <h4>Sviluppatore applicazioni</h4>
               <p>
-                Nessun sistema di tracciamento. Non so quante persone visitano
-                questo sito. Potrebbe essere una. Potresti essere tu. Ciao.
+                Ho seguito l'intero ciclo di vita di diverse applicazioni in
+                ambito sanitario: analisi, progettazione <strong>UI/UX</strong>
+                e sviluppo frontend con <strong>React</strong> e
+                <strong>Angular</strong>. Durante l'emergenza Covid-19 ero in
+                prima linea a costruire strumenti digitali quando servivano
+                <em>ieri</em>.
               </p>
             </div>
 
-            <div class="privacy-card">
-              <div class="privacy-icon"><i class="fas fa-ad"></i></div>
-              <h4>Pubblicità</h4>
+            <div class="quest-role">
+              <h4>Collaboratore tecnico professionale — Informatico</h4>
+              <p class="quest-role-meta">feb 2023 → dic 2024</p>
               <p>
-                Zero pubblicità. L'unica cosa che promuovo qui è me stesso,
-                e lo faccio già abbastanza male da non aver bisogno di banner.
+                Gestione dei sistemi e delle reti aziendali con
+                <strong>VMware</strong>: un'esperienza che mi ha fatto capire a
+                fondo l'infrastruttura su cui girano le applicazioni che
+                sviluppo. Sapere <em>dove</em> gira il codice lo rende migliore.
               </p>
             </div>
 
-            <div class="privacy-card">
-              <div class="privacy-icon"><i class="fas fa-user-secret"></i></div>
-              <h4>Terze parti</h4>
+            <footer class="quest-loot">
+              <span class="loot-label">LOOT:</span>
+              <span class="loot-item">React</span>
+              <span class="loot-item">Angular</span>
+              <span class="loot-item">SQL</span>
+              <span class="loot-item">VMware</span>
+              <span class="loot-item">+21 skill point</span>
+            </footer>
+          </article>
+
+          <!-- Smartronic -->
+          <article class="pixel-card quest">
+            <header class="quest-head">
+              <span class="quest-badge badge-tutorial">TUTORIAL LEVEL</span>
+              <h3 class="quest-org">Smartronic S.r.l.</h3>
+              <p class="quest-meta">lug 2019 → dic 2019 · Cuneo · stage</p>
+            </header>
+
+            <div class="quest-role">
+              <h4>Stagista — Front-end Developer</h4>
               <p>
-                Google Fonts carica i font. A parte quello, nessun servizio esterno
-                ti spia. Se Google vuole sapere che usi Inter e JetBrains Mono...
-                beh, hai buon gusto.
+                Sviluppo del front-end di un gestionale di ticket aziendali in
+                <strong>React.js</strong>. La prima quest: quella in cui scopri
+                che il codice vero non assomiglia agli esercizi dell'università.
               </p>
             </div>
 
-            <div class="privacy-card">
-              <div class="privacy-icon"><i class="fas fa-gavel"></i></div>
-              <h4>Base giuridica</h4>
-              <p>
-                Art. 6 GDPR: il legittimo interesse di farti vedere un sito
-                carino. Se non sei d'accordo, puoi chiudere la tab. Nessun
-                rancore.
-              </p>
-            </div>
-          </div>
+            <footer class="quest-loot">
+              <span class="loot-label">LOOT:</span>
+              <span class="loot-item">React.js</span>
+              <span class="loot-item">Front-end</span>
+              <span class="loot-item">Prima esperienza</span>
+            </footer>
+          </article>
+        </div>
+      </section>
 
-          <div class="privacy-footer-note">
-            <p>
-              <i class="fas fa-info-circle"></i>
-              <strong>Nota seria per un secondo:</strong> questo sito è puramente statico e non
-              elabora dati personali. Per qualsiasi domanda, scrivi a
-              <a href="mailto:arnaudoenrico@gmail.com">arnaudoenrico@gmail.com</a>.
-              Ultimo aggiornamento: Marzo 2026.
+      <!-- ═══════════════ FORMAZIONE ═══════════════ -->
+      <section class="section" id="education">
+        <h2 class="section-title"><span class="title-level">WORLD 1-3</span>FORMAZIONE</h2>
+
+        <div class="pixel-card edu-card">
+          <div class="edu-trophy" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect x="3" y="1" width="10" height="1" fill="#facc15"/><rect x="3" y="2" width="10" height="4" fill="#facc15"/><rect x="1" y="2" width="2" height="1" fill="#facc15"/><rect x="13" y="2" width="2" height="1" fill="#facc15"/><rect x="1" y="3" width="1" height="2" fill="#facc15"/><rect x="14" y="3" width="1" height="2" fill="#facc15"/><rect x="4" y="6" width="8" height="1" fill="#d4a90f"/><rect x="5" y="7" width="6" height="1" fill="#facc15"/><rect x="7" y="8" width="2" height="3" fill="#d4a90f"/><rect x="5" y="11" width="6" height="1" fill="#facc15"/><rect x="4" y="12" width="8" height="2" fill="#facc15"/><rect x="5" y="3" width="2" height="2" fill="#fde68a"/></svg></div>
+          <div class="edu-body">
+            <span class="quest-badge badge-edu">ACHIEVEMENT UNLOCKED</span>
+            <h3 class="edu-title">Laurea triennale in Scienze e Tecnologie Informatiche</h3>
+            <p class="edu-org">Università degli Studi di Torino · 2016 → 2019</p>
+            <p class="edu-vote">Votazione: <strong>90/110</strong></p>
+            <p class="edu-desc">
+              Algoritmi, strutture dati, basi di dati, programmazione in
+              <strong>Python</strong> e <strong>JavaScript</strong> e tutte le
+              fondamenta su cui ho costruito il resto. È qui che ho capito che
+              questa non era solo una carriera: era il mio gioco preferito.
             </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- ═══════════════ SKILL TREE ═══════════════ -->
+      <section class="section" id="skills">
+        <h2 class="section-title"><span class="title-level">WORLD 1-4</span>SKILL TREE</h2>
+        <p class="section-sub">// punti abilità distribuiti in anni di grinding</p>
+
+        <div class="skills-grid">
+          <div class="pixel-card skill-branch">
+            <h3 class="card-heading branch-front">FRONTEND</h3>
+            <div class="bar-row"><span class="bar-label">React</span><div class="pixel-bar"><div class="bar-fill" style="--w: 90%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">Angular</span><div class="pixel-bar"><div class="bar-fill" style="--w: 85%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">JavaScript</span><div class="pixel-bar"><div class="bar-fill" style="--w: 90%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">HTML/CSS</span><div class="pixel-bar"><div class="bar-fill" style="--w: 95%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">UI/UX</span><div class="pixel-bar"><div class="bar-fill" style="--w: 88%"></div></div></div>
+          </div>
+
+          <div class="pixel-card skill-branch">
+            <h3 class="card-heading branch-back">BACKEND & DATI</h3>
+            <div class="bar-row"><span class="bar-label">SQL</span><div class="pixel-bar"><div class="bar-fill" style="--w: 85%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">Python</span><div class="pixel-bar"><div class="bar-fill" style="--w: 75%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">API REST</span><div class="pixel-bar"><div class="bar-fill" style="--w: 85%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">NestJS</span><div class="pixel-bar"><div class="bar-fill" style="--w: 85%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">TypeScript</span><div class="pixel-bar"><div class="bar-fill" style="--w: 85%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">MongoDB</span><div class="pixel-bar"><div class="bar-fill" style="--w: 80%"></div></div></div>
+          </div>
+
+          <div class="pixel-card skill-branch">
+            <h3 class="card-heading branch-sys">SISTEMI & RETI</h3>
+            <div class="bar-row"><span class="bar-label">Win Server</span><div class="pixel-bar"><div class="bar-fill" style="--w: 88%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">Microsoft</span><div class="pixel-bar"><div class="bar-fill" style="--w: 85%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">VMware</span><div class="pixel-bar"><div class="bar-fill" style="--w: 78%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">Networking</span><div class="pixel-bar"><div class="bar-fill" style="--w: 80%"></div></div></div>
+            <div class="bar-row"><span class="bar-label">Docker/K8s</span><div class="pixel-bar"><div class="bar-fill" style="--w: 75%"></div></div></div>
+          </div>
+
+          <div class="pixel-card skill-branch">
+            <h3 class="card-heading branch-extra">EQUIPAGGIAMENTO</h3>
+            <div class="loot-cloud">
+              <span class="loot-item">Git</span>
+              <span class="loot-item">VS Code</span>
+              <span class="loot-item">Figma</span>
+              <span class="loot-item">Scrum</span>
+              <span class="loot-item">Azure DevOps</span>
+              <span class="loot-item">HL7 / FHIR</span>
+              <span class="loot-item">OAuth 2.0</span>
+              <span class="loot-item">Problem solving</span>
+              <span class="loot-item">Pazienza +99</span>
+            </div>
+          </div>
+
+          <!-- Certificazioni: una pergamena per ogni corso finito.
+               Un elemento per credenziale: Angular compare una volta sola
+               perché le tre edizioni condividono lo stesso certificato Udemy. -->
+          <div class="pixel-card skill-branch cert-card">
+            <div class="cert-head">
+              <h3 class="card-heading branch-cert">CERTIFICAZIONI</h3>
+              <span class="cert-count"><b>27</b> PERGAMENE · 21 UDEMY · 6 NESTJS</span>
+            </div>
+            <p class="cert-intro">
+              Ogni corso finito è una pergamena in più nell'inventario. Le più
+              recenti sono in cima, il resto è nel baule.
+            </p>
+
+            <ul class="cert-list" id="certList">
+              <li class="cert">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">APR 2026 · UDEMY</span>
+                <span class="cert-name">Identity and Access Management (IAM): Vendor Neutral Course</span>
+                <span class="cert-tags">identity management · IAM</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-fed85523-647a-49e2-82c8-d8b27af2bf73/" target="_blank" rel="noopener" title="Credenziale UC-fed85523-647a-49e2-82c8-d8b27af2bf73">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">MAR 2026 · UDEMY</span>
+                <span class="cert-name">Angular - The Complete Guide (2026 edition)</span>
+                <span class="cert-tags">angular · TypeScript · RxJS · <em>NG+ ×2</em> (ed. 2023 → 2024 → 2026)</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-0050dea7-75b4-460d-8fa3-28c659ec9b21/" target="_blank" rel="noopener" title="Credenziale UC-0050dea7-75b4-460d-8fa3-28c659ec9b21">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">GEN 2026 · UDEMY</span>
+                <span class="cert-name">The Nuts and Bolts of OAuth 2.0</span>
+                <span class="cert-tags">OAuth 2.0 · OAuth 2.1</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-25eaf124-31b7-4cd8-8a1e-61d373e0d150/" target="_blank" rel="noopener" title="Credenziale UC-25eaf124-31b7-4cd8-8a1e-61d373e0d150">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">NOV 2025 · UDEMY</span>
+                <span class="cert-name">Introduction to Interoperability Issues in Healthcare IT</span>
+                <span class="cert-tags">HL7 · FHIR · interoperabilità</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-f43772c9-5b08-4ff3-8662-f14d3cfe4991/" target="_blank" rel="noopener" title="Credenziale UC-f43772c9-5b08-4ff3-8662-f14d3cfe4991">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">NOV 2025 · UDEMY</span>
+                <span class="cert-name">Software Architecture &amp; System Design Practical Case Studies</span>
+                <span class="cert-tags">architettura software · system design</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-05059c9d-a8c1-4e6a-95bb-35173b2726af/" target="_blank" rel="noopener" title="Credenziale UC-05059c9d-a8c1-4e6a-95bb-35173b2726af">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">OTT 2025 · UDEMY</span>
+                <span class="cert-name">MongoDB - The Complete Developer's Guide 2025</span>
+                <span class="cert-tags">MongoDB · Mongoose</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-c1c93311-c6f3-41e6-a197-89cb4a20e49b/" target="_blank" rel="noopener" title="Credenziale UC-c1c93311-c6f3-41e6-a197-89cb4a20e49b">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">OTT 2025 · UDEMY</span>
+                <span class="cert-name">Azure DevOps Fundamentals for Beginners</span>
+                <span class="cert-tags">DevOps · Azure</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-8dd83d13-533b-441b-95c1-58a992caf2a7/" target="_blank" rel="noopener" title="Credenziale UC-8dd83d13-533b-441b-95c1-58a992caf2a7">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">SET 2025 · UDEMY</span>
+                <span class="cert-name">NestJS: The Complete Developer's Guide</span>
+                <span class="cert-tags">NestJS · TypeScript · Node.js</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-efa1b988-6c3e-42a3-ad74-a563b2007fc4/" target="_blank" rel="noopener" title="Credenziale UC-efa1b988-6c3e-42a3-ad74-a563b2007fc4">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer issuer-nest" aria-hidden="true">N</span>
+                <span class="cert-meta">DIC 2024 · NESTJS UFFICIALE</span>
+                <span class="cert-name">NestJS Microservices</span>
+                <span class="cert-tags">NestJS · TypeScript · microservizi</span>
+                <a class="cert-link" href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7/details/certifications/" target="_blank" rel="noopener" title="Credenziale cert_cqswqjcb — certificato PDF su LinkedIn">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer issuer-nest" aria-hidden="true">N</span>
+                <span class="cert-meta">DIC 2024 · NESTJS UFFICIALE</span>
+                <span class="cert-name">NestJS Authentication and Authorization</span>
+                <span class="cert-tags">NestJS · JWT · auth</span>
+                <a class="cert-link" href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7/details/certifications/" target="_blank" rel="noopener" title="Credenziale cert_8y6ltbcy — certificato PDF su LinkedIn">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer issuer-nest" aria-hidden="true">N</span>
+                <span class="cert-meta">DIC 2024 · NESTJS UFFICIALE</span>
+                <span class="cert-name">NestJS Architecture &amp; Advanced Patterns</span>
+                <span class="cert-tags">NestJS · design pattern · architettura</span>
+                <a class="cert-link" href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7/details/certifications/" target="_blank" rel="noopener" title="Credenziale cert_84qqfpd3 — certificato PDF su LinkedIn">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer issuer-nest" aria-hidden="true">N</span>
+                <span class="cert-meta">DIC 2024 · NESTJS UFFICIALE</span>
+                <span class="cert-name">NestJS Advanced Concepts</span>
+                <span class="cert-tags">RxJS · TypeScript · NestJS</span>
+                <a class="cert-link" href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7/details/certifications/" target="_blank" rel="noopener" title="Credenziale cert_0bwyhtyv — certificato PDF su LinkedIn">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer issuer-nest" aria-hidden="true">N</span>
+                <span class="cert-meta">NOV 2024 · NESTJS UFFICIALE</span>
+                <span class="cert-name">NestJS GraphQL - Code-first approach</span>
+                <span class="cert-tags">GraphQL · RxJS · TypeScript</span>
+                <a class="cert-link" href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7/details/certifications/" target="_blank" rel="noopener" title="Credenziale cert_y9xtyzqk — certificato PDF su LinkedIn">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert">
+                <span class="cert-issuer issuer-nest" aria-hidden="true">N</span>
+                <span class="cert-meta">NOV 2024 · NESTJS UFFICIALE</span>
+                <span class="cert-name">NestJS Fundamentals</span>
+                <span class="cert-tags">NestJS · RxJS · MongoDB · TypeScript</span>
+                <a class="cert-link" href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7/details/certifications/" target="_blank" rel="noopener" title="Credenziale cert_9kj7jbmf — certificato PDF su LinkedIn">VERIFICA &gt;&gt;</a>
+              </li>
+
+              <!-- da qui in giù: nel baule (collassate via JS) -->
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">OTT 2024 · UDEMY</span>
+                <span class="cert-name">MongoDB - The Complete Developer's Guide 2024</span>
+                <span class="cert-tags">MongoDB</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-10c88b6a-e990-4de5-b70e-7abb4bd5dcfb/" target="_blank" rel="noopener" title="Credenziale UC-10c88b6a-e990-4de5-b70e-7abb4bd5dcfb">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">AGO 2024 · UDEMY</span>
+                <span class="cert-name">Beginners guide to HL7 Standards &amp; HealthIT Interoperability</span>
+                <span class="cert-tags">HL7 · FHIR</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-0d8fc65a-919c-4552-a6e5-47df0ca87d61/" target="_blank" rel="noopener" title="Credenziale UC-0d8fc65a-919c-4552-a6e5-47df0ca87d61">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">GIU 2024 · UDEMY</span>
+                <span class="cert-name">Intune (MDM / MAM) Microsoft training course</span>
+                <span class="cert-tags">Intune · MDM · MAM</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-4bc7bdfa-420c-420e-acde-2f3142956b75/" target="_blank" rel="noopener" title="Credenziale UC-4bc7bdfa-420c-420e-acde-2f3142956b75">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">MAG 2024 · UDEMY</span>
+                <span class="cert-name">Windows Server 2022 administration course</span>
+                <span class="cert-tags">Hyper-V · Windows Server</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-a44e6979-072f-4271-a69c-7e1a663d361f/" target="_blank" rel="noopener" title="Credenziale UC-a44e6979-072f-4271-a69c-7e1a663d361f">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">APR 2024 · UDEMY</span>
+                <span class="cert-name">PowerShell from Beginner To Sheller And Scripter</span>
+                <span class="cert-tags">PowerShell · Active Directory · amministrazione server</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-c07e4a25-e904-4b2d-a142-47222d951fd7/" target="_blank" rel="noopener" title="Credenziale UC-c07e4a25-e904-4b2d-a142-47222d951fd7">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">APR 2024 · UDEMY</span>
+                <span class="cert-name">Healthcare IT Decoded</span>
+                <span class="cert-tags">HL7 · FHIR</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-26ac5c18-4dee-4f52-80c0-dd2671c00c6d/" target="_blank" rel="noopener" title="Credenziale UC-26ac5c18-4dee-4f52-80c0-dd2671c00c6d">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">MAR 2024 · UDEMY</span>
+                <span class="cert-name">Docker &amp; Kubernetes: The Practical Guide [2024 Edition]</span>
+                <span class="cert-tags">Docker · Kubernetes</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-6db8b1fe-6c0c-4d97-af50-e17d3cade64a/" target="_blank" rel="noopener" title="Credenziale UC-6db8b1fe-6c0c-4d97-af50-e17d3cade64a">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">NOV 2023 · UDEMY</span>
+                <span class="cert-name">Software Architecture &amp; Design of Modern Large Scale Systems</span>
+                <span class="cert-tags">architettura software · sistemi distribuiti</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-dd46a335-3cf1-485f-859a-771166e805ba/" target="_blank" rel="noopener" title="Credenziale UC-dd46a335-3cf1-485f-859a-771166e805ba">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">GEN 2023 · UDEMY</span>
+                <span class="cert-name">Introduzione a Nginx</span>
+                <span class="cert-tags">Nginx · load balancing · Docker</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-8d97e51b-130c-44f8-911d-0dc9fabd122c/" target="_blank" rel="noopener" title="Credenziale UC-8d97e51b-130c-44f8-911d-0dc9fabd122c">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">GEN 2023 · UDEMY</span>
+                <span class="cert-name">Python Django - The Practical Guide</span>
+                <span class="cert-tags">Python · Django</span>
+                <a class="cert-link" href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7/details/certifications/" target="_blank" rel="noopener" title="Certificato su LinkedIn">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">DIC 2022 · UDEMY</span>
+                <span class="cert-name">The Complete Flutter UI Masterclass | iOS, Android, &amp; Web</span>
+                <span class="cert-tags">Flutter · front-end · mobile</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-747c2e75-cec7-44fb-b849-6cfb8f3e8d57/" target="_blank" rel="noopener" title="Credenziale UC-747c2e75-cec7-44fb-b849-6cfb8f3e8d57">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">DIC 2022 · UDEMY</span>
+                <span class="cert-name">React - The Complete Guide (incl Hooks, React Router, Redux)</span>
+                <span class="cert-tags">React · Redux · TypeScript</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-49fc1dc1-bcc9-4013-9734-256bbb14d031/" target="_blank" rel="noopener" title="Credenziale UC-49fc1dc1-bcc9-4013-9734-256bbb14d031">VERIFICA &gt;&gt;</a>
+              </li>
+              <li class="cert cert-extra">
+                <span class="cert-issuer" aria-hidden="true">U</span>
+                <span class="cert-meta">NOV 2022 · UDEMY</span>
+                <span class="cert-name">CSS - The Complete Guide 2023 (incl. Flexbox, Grid &amp; Sass)</span>
+                <span class="cert-tags">CSS · Flexbox · Grid · Sass</span>
+                <a class="cert-link" href="https://www.udemy.com/certificate/UC-bc752a7d-d9af-424a-887e-3802f433ff26/" target="_blank" rel="noopener" title="Credenziale UC-bc752a7d-d9af-424a-887e-3802f433ff26">VERIFICA &gt;&gt;</a>
+              </li>
+            </ul>
+
+            <!-- il JS lo mostra e chiude il baule; senza JS si vede tutto -->
+            <button type="button" class="cert-more" id="certMore" aria-controls="certList" aria-expanded="true" hidden>
+              APRI IL BAULE (+13)
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ PORTFOLIO ═══════════════ -->
+      <section class="section" id="portfolio">
+        <h2 class="section-title"><span class="title-level">WORLD 1-5</span>BONUS LEVEL</h2>
+        <p class="section-sub">// progetti e studi di design che ho costruito nel tempo libero</p>
+
+        <div class="portfolio-grid">
+          <a class="pixel-card port-card" href="projects.html">
+            <span class="port-tag tag-code">CODICE</span>
+            <h3 class="port-title">Progetti</h3>
+            <p class="port-desc">
+              Asgard, dodici microservizi su Azure con un pantheon di nomi
+              mitologici: architettura, identità, workflow, MCP e snippet. E un
+              sistema bancario distribuito che si passa un gettone, con il
+              codice vero e i guasti che sopravvive.
+            </p>
+            <span class="port-go">ENTRA &gt;&gt;</span>
+          </a>
+
+          <a class="pixel-card port-card" href="design-showcase.html">
+            <span class="port-tag tag-design">DESIGN</span>
+            <h3 class="port-title">Dashboard Asgard</h3>
+            <p class="port-desc">
+              Tre persone, otto decisioni, un sistema di colori in cui il
+              rosso compare una volta sola, e come il mockup diventa codice
+              Angular.
+            </p>
+            <span class="port-go">ENTRA &gt;&gt;</span>
+          </a>
+
+          <a class="pixel-card port-card" href="design-showcase-panel.html">
+            <span class="port-tag tag-design">DESIGN</span>
+            <h3 class="port-title">Scheda Clinica</h3>
+            <p class="port-desc">
+              Zero gradienti, contrasto massimo e un codice colore in cui ogni
+              tinta ha un solo significato. Interfaccia pensata per chi lavora
+              in corsia.
+            </p>
+            <span class="port-go">ENTRA &gt;&gt;</span>
+          </a>
+
+          <a class="pixel-card port-card" href="design-showcase-rambler.html">
+            <span class="port-tag tag-concept">CONCEPT</span>
+            <h3 class="port-title">Trail App</h3>
+            <p class="port-desc">
+              Un'app per il mondo outdoor progettata mobile-first, dove
+              l'entità centrale non è l'utente ma il sentiero.
+            </p>
+            <span class="port-go">ENTRA &gt;&gt;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ═══════════════ CONTATTI ═══════════════ -->
+      <section class="section" id="contact">
+        <h2 class="section-title"><span class="title-level">FINAL BOSS</span>JOIN PARTY</h2>
+        <p class="section-sub">// cerchi un dev per la tua squadra? invito accettato</p>
+
+        <div class="contact-grid">
+          <a class="pixel-card contact-card" href="mailto:arnaudoenrico@gmail.com">
+            <span class="contact-icon"><svg viewBox="0 0 16 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="0" y="0" width="16" height="12" fill="#4ade80"/><rect x="1" y="1" width="14" height="10" fill="#0f0f23"/><rect x="1" y="1" width="2" height="1" fill="#4ade80"/><rect x="13" y="1" width="2" height="1" fill="#4ade80"/><rect x="3" y="2" width="2" height="1" fill="#4ade80"/><rect x="11" y="2" width="2" height="1" fill="#4ade80"/><rect x="5" y="3" width="2" height="1" fill="#4ade80"/><rect x="9" y="3" width="2" height="1" fill="#4ade80"/><rect x="7" y="4" width="2" height="1" fill="#4ade80"/></svg></span>
+            <span class="contact-label">EMAIL</span>
+            <span class="contact-value">arnaudoenrico@gmail.com</span>
+          </a>
+          <a class="pixel-card contact-card" href="tel:+393476681614">
+            <span class="contact-icon"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="8" height="16" fill="#4ade80"/><rect x="5" y="3" width="6" height="9" fill="#0f0f23"/><rect x="6" y="1" width="4" height="1" fill="#0f0f23"/><rect x="6" y="13" width="4" height="2" fill="#0f0f23"/></svg></span>
+            <span class="contact-label">TELEFONO</span>
+            <span class="contact-value">+39 347 668 1614</span>
+          </a>
+          <a
+            class="pixel-card contact-card"
+            href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="contact-icon"><svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="0" y="0" width="16" height="16" fill="#4ade80"/><rect x="2" y="2" width="3" height="3" fill="#0f0f23"/><rect x="2" y="6" width="3" height="8" fill="#0f0f23"/><rect x="7" y="6" width="3" height="8" fill="#0f0f23"/><rect x="10" y="6" width="4" height="2" fill="#0f0f23"/><rect x="11" y="8" width="3" height="6" fill="#0f0f23"/></svg></span>
+            <span class="contact-label">LINKEDIN</span>
+            <span class="contact-value">enrico-arnaudo</span>
+          </a>
+        </div>
+      </section>
+    </main>
 
     <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <a href="#home" class="nav-logo">
-              <span class="logo-bracket">&lt;</span>
-              <span class="logo-text">EA</span>
-              <span class="logo-bracket">/&gt;</span>
-            </a>
-            <p>
-              Enrico Arnaudo — Informatico presso ASL CN1. Cuneo,
-              Italia.
-            </p>
-          </div>
-
-          <div class="footer-links">
-            <h5>Navigazione</h5>
-            <ul>
-              <li><a href="#about">Chi sono</a></li>
-              <li><a href="#services">Cosa faccio</a></li>
-              <li><a href="#experience">Esperienze</a></li>
-              <li><a href="#design">Design & UI</a></li>
-              <li><a href="#beyond">Oltre il codice</a></li>
-              <li><a href="#contact">Contatti</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-links">
-            <h5>Competenze</h5>
-            <ul>
-              <li>Full-Stack Development</li>
-              <li>Microsoft Ecosystem</li>
-              <li>Cloud & DevOps</li>
-              <li>UI/UX Design</li>
-              <li>Sistemi Distribuiti</li>
-            </ul>
-          </div>
-
-          <div class="footer-contact">
-            <h5>Contatti</h5>
-            <p>
-              <a href="mailto:arnaudoenrico@gmail.com"
-                >arnaudoenrico@gmail.com</a
-              >
-            </p>
-            <p><a href="tel:+393476681614">+39 347 668 1614</a></p>
-            <p>Bernezzo (CN), Italia</p>
-            <div class="footer-social">
-              <a
-                href="https://www.linkedin.com/in/enrico-arnaudo-1552a41b7"
-                target="_blank"
-                aria-label="LinkedIn"
-              >
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="mailto:arnaudoenrico@gmail.com" aria-label="Email">
-                <i class="fas fa-envelope"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>&copy; 2026 Enrico Arnaudo. Tutti i diritti riservati.</p>
-          <div class="footer-bottom-links">
-            <a href="#privacy">Privacy Policy</a>
-            <span>·</span>
-            <a href="#contact">Contatti</a>
-          </div>
-        </div>
-      </div>
+      <button class="gameboy" id="gameboyBtn" aria-label="Console portatile segreta">
+        <span class="gb-screen"></span>
+        <span class="gb-dpad"></span>
+        <span class="gb-btn-a"></span>
+        <span class="gb-btn-b"></span>
+      </button>
+      <p class="footer-line">
+        © <button class="footer-year" id="footerYear">2026</button> Enrico Arnaudo ·
+        fatto a mano, un pixel alla volta
+      </p>
+      <p class="footer-eggs" id="eggCounter">EASTER EGG TROVATI: 0/15</p>
+      <p class="footer-hint">↑ ↑ ↓ ↓ ← → ← → B A</p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <!-- ═══════════════ OVERLAY: GAME OVER ═══════════════ -->
+    <div class="overlay" id="gameOverOverlay" hidden>
+      <div class="overlay-inner">
+        <h2 class="gameover-title">GAME OVER</h2>
+        <p class="gameover-text">Hai esaurito i cuori. Te l'avevo detto di non cliccarli.</p>
+        <button class="press-start" id="continueBtn">▶ CONTINUE? (3 ♥)</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ OVERLAY: SNAKE ═══════════════ -->
+    <div class="overlay" id="snakeOverlay" hidden>
+      <div class="overlay-inner snake-inner">
+        <h2 class="snake-title">SNAKE.EXE</h2>
+        <canvas id="snakeCanvas" width="240" height="240"></canvas>
+        <p class="snake-score">SCORE: <span id="snakeScore">0</span> · BEST: <span id="snakeBest">0</span></p>
+        <p class="snake-help">Frecce / WASD — o swipe sul touch</p>
+        <button class="press-start" id="snakeClose">✕ ESCI</button>
+      </div>
+    </div>
+
+    <!-- Toast achievement -->
+    <div class="toast-zone" id="toastZone" aria-live="polite"></div>
+
+    <script src="js/pixel.js"></script>
   </body>
 </html>

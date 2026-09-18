@@ -446,6 +446,121 @@
         }
       }
     </style>
+
+    <!-- ═══════════════════════════════════════════════
+         LIVELLO PIXEL ART
+         Sovrascrive solo font, colori e pulsanti: le
+         animazioni del crawl e dell'iperspazio restano
+         quelle originali.
+    ═══════════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230f0f23'/%3E%3Crect x='2' y='1' width='4' height='1' fill='%234ade80'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='3' width='3' height='1' fill='%234ade80'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%234ade80'/%3E%3Crect x='2' y='6' width='4' height='1' fill='%234ade80'/%3E%3C/svg%3E"
+    />
+    <style>
+      body,
+      .phase-intro,
+      .scroll-hint {
+        font-family: "VT323", monospace;
+        image-rendering: pixelated;
+      }
+
+      /* il testo introduttivo azzurro */
+      .phase-intro {
+        font-size: 1.6rem;
+        letter-spacing: 0.02em;
+      }
+
+      /* titolone: 8 bit al posto del font Star Wars */
+      .logo-title {
+        font-family: "Press Start 2P", monospace !important;
+        letter-spacing: 0.02em;
+        text-shadow: 4px 4px 0 #000;
+      }
+
+      .logo-subtitle {
+        font-family: "Press Start 2P", monospace !important;
+        font-size: 0.7rem !important;
+        line-height: 2;
+        text-shadow: 2px 2px 0 #000;
+      }
+
+      /* il crawl */
+      .crawl-content {
+        font-family: "VT323", monospace;
+        font-size: 1.9rem;
+        line-height: 1.35;
+      }
+
+      .crawl-content h2,
+      .crawl-content h3 {
+        font-family: "Press Start 2P", monospace;
+        line-height: 1.7;
+      }
+
+      .crawl-content h2 { font-size: 1.15rem; }
+      .crawl-content h3 { font-size: 0.8rem; }
+
+      .crawl-content .ending,
+      .crawl-content .sigil {
+        font-family: "Press Start 2P", monospace;
+        font-size: 0.85rem;
+        line-height: 2;
+      }
+
+      /* pulsanti: blocchi pieni con ombra dura */
+      .back-btn,
+      .audio-toggle,
+      .hyperspace-btn {
+        font-family: "Press Start 2P", monospace !important;
+        font-size: 0.5rem !important;
+        border-radius: 0 !important;
+        border: none !important;
+        background: #ffd700 !important;
+        color: #101010 !important;
+        box-shadow: 3px 3px 0 #000 !important;
+        backdrop-filter: none !important;
+        letter-spacing: 0;
+      }
+
+      .back-btn:hover,
+      .audio-toggle:hover,
+      .hyperspace-btn:hover {
+        background: #4ade80 !important;
+        transform: translate(2px, 2px) !important;
+        box-shadow: 1px 1px 0 #000 !important;
+      }
+
+      /* le icone Font Awesome non vengono più caricate */
+      .back-btn i,
+      .audio-toggle i,
+      .scroll-hint i {
+        font-family: inherit;
+        font-style: normal;
+      }
+
+      .back-btn i::before { content: "<<"; }
+      .audio-toggle i::before { content: "))"; }
+      .scroll-hint i::before { content: "vv"; }
+
+      .scroll-hint {
+        font-family: "Press Start 2P", monospace;
+        font-size: 0.5rem;
+      }
+
+      /* la spada laser diventa squadrata */
+      .saber-blade-core,
+      .saber-blade-glow,
+      .saber-handle {
+        border-radius: 0 !important;
+      }
+    </style>
   </head>
   <body>
     <!-- Audio element -->
