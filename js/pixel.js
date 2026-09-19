@@ -1059,6 +1059,20 @@
 
 
   /* ─────────────────────────────────────────────
+     FINTA BARRA DEI COOKIE
+  ───────────────────────────────────────────── */
+  document.querySelectorAll("[data-cookie-choice]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      sfx.coin();
+      toast(
+        "🍪",
+        btn.dataset.cookieChoice === "si" ? "COOKIE ACCETTATI" : "COOKIE RIFIUTATI",
+        "Non è cambiato niente: non ce n'erano."
+      );
+    });
+  });
+
+  /* ─────────────────────────────────────────────
      CONSOLE — per chi apre i DevTools
   ───────────────────────────────────────────── */
   console.log(

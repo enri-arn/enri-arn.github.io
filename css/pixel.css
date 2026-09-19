@@ -1089,6 +1089,102 @@ svg {
   overflow-wrap: anywhere;
 }
 
+/* ═══════════════ PRIVACY & COOKIE ═══════════════ */
+.privacy-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 1.5rem;
+}
+
+.priv-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 0;
+}
+
+.priv-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.priv-icon svg {
+  width: 100%;
+  filter: drop-shadow(3px 3px 0 var(--shadow));
+}
+
+.priv-title {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.priv-desc {
+  color: var(--ink-dim);
+  flex: 1;
+}
+
+.priv-stat {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: var(--green);
+  border: 3px solid var(--panel-edge);
+  padding: 0.45rem 0.55rem;
+}
+
+/* finta barra dei cookie: i due pulsanti fanno esattamente la stessa cosa */
+.cookie-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-color: var(--yellow);
+}
+
+.cookie-bar-text {
+  color: var(--ink-dim);
+  flex: 1;
+}
+
+.cookie-bar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  gap: 0.75rem;
+}
+
+.cookie-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  color: var(--bg);
+  background: var(--yellow);
+  border: none;
+  padding: 0.7rem 0.85rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--shadow);
+  transition: transform 0.1s;
+}
+
+.cookie-btn:hover,
+.cookie-btn:focus-visible {
+  background: var(--green);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.priv-note {
+  color: var(--ink-dim);
+  border-left: 4px solid var(--magenta);
+  padding-left: 1rem;
+}
+
+.priv-note a {
+  color: var(--cyan);
+}
+
 /* ═══════════════ FOOTER ═══════════════ */
 .footer {
   text-align: center;
@@ -1099,6 +1195,10 @@ svg {
 
 .footer-line {
   color: var(--ink-dim);
+}
+
+.footer-link {
+  color: var(--cyan);
 }
 
 .footer-year {
@@ -1372,8 +1472,15 @@ body.gb-mode {
   }
 
   .skills-grid,
-  .portfolio-grid {
+  .portfolio-grid,
+  .privacy-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .cookie-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .cert {
@@ -1460,6 +1567,10 @@ body.gb-mode {
 
   .cert-list {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .privacy-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   /* la scheda personaggio occupa tutta la colonna sinistra;
